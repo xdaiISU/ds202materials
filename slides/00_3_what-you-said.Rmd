@@ -1,0 +1,69 @@
+---
+title: "DS 202 - What previous students said"
+author: "Xiongtao Dai"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+    incremental: true
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+## Let form study groups {.shout}
+
+## Distributing talents
+- Who have 3+ years of work experience? 
+- Who have international experience? 
+- Who have 3+ years of programming experience? 
+- Who are non-engineering and non-science students? 
+- Science students?
+- Engineering students?
+
+## Introduce yourself to the groupmates
+
+Next up, break into groups and introduce yourselves. Please include the following points:
+
+- name
+- major
+- what do you want to do after graduation
+- why are you taking this class
+
+## First group activity {.shout}
+
+
+##  A previous class survey on favorate data topics
+
+This is what the raw data looks like 
+
+```{r, echo=FALSE}
+topics <- read.csv("data/topics202_20S.csv", stringsAsFactors = FALSE)
+topics <- topics %>% 
+    setNames(gsub('Topics.of.Interest..', '', names(topics), fixed=TRUE)) %>% 
+    select(-Timestamp)
+head(topics)
+```
+
+## Visualizing all topics
+
+```{r, echo=FALSE, fig.with = 8, fig.height = 4.5}
+tlong <- topics %>% gather(key='topic', value='rating')
+tlong %>% 
+  ggplot(aes(x = rating)) + geom_bar(aes(fill=rating)) +
+  facet_wrap(~topic, ncol=5) +
+  theme(legend.position="bottom")
+```
+
+## Group activiy (8 minutes) {.white}
+
+<img class="cover" src="images/darkgreen.jpeg" alt="" width=2000>
+<span style="color:white"> 
+Discuss with the groupmates and jog down brief notes. We will then discuss with the class.
+</span>
+
+- <span style="color:white"> What information is being shown by the previous figure? </span>
+- <span style="color:white"> Is the figure easy to read? Why? </span>
+- <span style="color:white"> What might be improved? </span>
