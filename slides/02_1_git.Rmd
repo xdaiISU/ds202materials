@@ -1,0 +1,113 @@
+---
+title: "DS 202 - bash and git"
+author: "Xiongtao Dai"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Bash and Git {.shout}
+
+
+## Mess in the code
+
+<center>
+<img src="images/yelp1.png" width=600>
+</center>
+
+
+## Mess in the code
+**Yelp's application update:**
+
+<center>
+<img src="images/yelp2.png" width=900>
+</center>
+
+
+## What is Git?
+
+- `git` is a *version control system* that is created to help developers track changes in source codes and manage collaborative projects. 
+`git` tracks the evolution of a folder containing code files and subfolders. 
+<!-- The tracked folder is called a **repository** or **repo**.  -->
+- `git` helps us
+    - *make records* of the code files, creating snapshots
+    - *compare* snapshots to locate changes or bugs
+    - *rollback* to previous versions of files as necessary
+    - store *master* and multiple versions of files, no more `paper_final_final_I_really_mean_it.docx`
+    - *merge* versions and *resolve conflicts* that arise from collaboration
+
+
+## `bash` Command-Line.
+
+- To use `git`, we will be accessing the command-line tools in `bash`
+- We can access `bash` in the Terminal tab in RStudio. Homework 1 instructs you how to set this up
+- `bash` command line is a text-based interface to your operating system
+- The most important `bash` commands are: 
+    - `pwd`, present working directory. All relative paths are relative to the present working directory.
+    - `ls`, list files; `ls -a`, list all files including hidden ones
+    - `cd`, change directory
+- Other important commands: `mkdir`, `cp`, `mv`, `rm`, `open`
+
+## `bash` Demonstration...
+
+## Bash: Your Turn   {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+<!-- **<span style="color:white"> Exploring bash command line </span>** -->
+
+<!-- <span style="color:white"> If you are on Windows, you need to install [Git for Windows](https://gitforwindows.org/) and configure RStudio to use Git bash as the shell for the Terminal. See Homework 1 question 4. </span> -->
+
+2. <span style="color:white"><img src="images/green.png" width=20> In RStudio, click the Terminal tab (right to the Console tab).</span>
+3. <span style="color:white"><img src="images/green.png" width=20> Find the present working directory?</span>
+4. <span style="color:white"><img src="images/green.png" width=20> Create a new directory named `example1`, and then `cd` into this directory. </span>
+5. <span style="color:white"><img src="images/blue.png" width=20> Create an RMarkDown file named 'tmp.Rmd' in RStudio and knit it. Move it into `example1` in Bash. Also move the generated html file.</span>
+6. <span style="color:white"><img src="images/green.png" width=20> Use `open` to view the content of the html file in Bash.</span>
+
+## Git 
+
+Terminology from [github glossary](https://help.github.com/articles/github-glossary/)
+
+- **Repository:** the basic element of `git` - like a project's folder. A repository contains all of the project files, and their __revision history__. 
+- **Commit:** A checkpoint, i.e., snapshot of the codes files at a time point. Every time you commit, git creates a unique ID that allows you to keep record of what changes were made when and by whom.
+
+`git` commands important to us: `git init`, `git status`, `git log`, `git add`, `git commit`, `git diff`.
+
+Caution: `git` works well with text files but not binary files
+
+## `git` Demonstration...
+
+## Your turn: Making git commits  {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+1. <span style="color:white"> <img src="images/green.png" width=20> Make `example1` your current directory. </span>
+2. <span style="color:white"><img src="images/green.png" width=20> Initiate the current directory as a Git repository (`git init`). What does `git status` show? </span>
+3. <span style="color:white"><img src="images/green.png" width=20> Ask Git to track the RMarkDown file and create a commit (`git add fileName`, and then `git commit -m 'Your Message Here'`).</span>
+4. <span style="color:white"><img src="images/green.png" width=20> Repeat part 3 for the html file.</span>
+5. <span style="color:white"><img src="images/blue.png" width=20> Look at the repo status (`git status`) and repo history (`git log`)</span>
+
+## Looking ahead ... 
+
+In this class we will use git & github for 
+
+- homework and lab assignments, and
+- the projects.
+
+<!-- ## Resources -->
+
+<!-- **A great tutorial written by Nick Ulle:** -->
+
+<!-- - Bash & Git guide: https://github.com/2016-ucdavis-sts98/notes/blob/master/git_guide.pdf -->
+
+<!-- **More extensive resources:** -->
+
+<!-- - Data Carpentry's tutorials: https://software-carpentry.org/lessons/ -->
+<!-- - Scott Chacon and Ben Straub's *Pro Git*: https://git-scm.com/book/en/v2 -->
+<!-- - Reproducible Science Curriculum intitative: https://github.com/Reproducible-Science-Curriculum -->
+

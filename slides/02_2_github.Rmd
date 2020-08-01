@@ -1,0 +1,67 @@
+---
+title: "DS 202 - github"
+author: "Xiongtao Dai"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Collaboration on GitHub {.shout}
+
+<!--
+
+<center>
+<img src="http://imgs.xkcd.com/comics/git_2x.png" width=300>
+
+http://xkcd.com/1597/
+</center>
+-->
+
+## What is GitHub?
+
+[GitHub](github.com) is one of many hosting services, which provides additional project management functions 
+<!-- (other choices are [Bitbucket](bitbucket.org), [GitLab](gitlab.com), etc.).  -->
+
+<center>
+<img src="images/github.png" width=400>
+</center>
+
+## [Git Terminology](https://help.github.com/articles/github-glossary/)
+
+- **Repository:** A project's folder tracked by `git`, containing all of the project files and their __revision history__ 
+- **Commit:** A checkpoint/snapshot for the local clone to save changes to a file (or set of files). 
+
+## More Terminology 
+- **Remote repository:** This is the version of a repo that is hosted on a server, such as GitHub
+- **Local repository**: In collaboration, each person will own a local repository sitting on their own computers. Local repositories are usually set up to track a remote 
+- **Clone:** A copy of a remote repository
+- **Pull:** Obtaining the commits from the remote repository
+- **Push:** Sending your local commits to the remote repository
+<!-- - **Fork:** A copy of a repository that includes (or will potentially include) changes. Forking allow you to freely make changes to an existing project without affecting the original.  -->
+
+
+<!--
+## Terminology (cont'd)
+
+
+- **Pull Request:** Proposed changes to a repository submitted by a user and accepted or rejected by a repository's collaborators.
+- **Issue:** Issues are suggested improvements, tasks or questions related to the repository. 
+-->
+
+
+## Repositories
+
+By default, all materials on GitHub are **public**. This is *good* because you are getting your work out there and contributing to the open source community! 
+
+If you need **private** repos, checkout [GitHub for Education](https://education.github.com/) - free private repos for students/postdocs/professors.
+
+<!-- ![123](https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png) -->
+
+## GitHub demo...
+
