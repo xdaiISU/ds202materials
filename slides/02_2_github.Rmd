@@ -45,6 +45,19 @@ http://xkcd.com/1597/
 - **Push:** Sending your local commits to the remote repository
 <!-- - **Fork:** A copy of a repository that includes (or will potentially include) changes. Forking allow you to freely make changes to an existing project without affecting the original.  -->
 
+## Repositories
+
+By default, all materials on GitHub are **public**. This is *good* because you are getting your work out there and contributing to the open source community! 
+
+If you need **private** repos, checkout [GitHub for Education](https://education.github.com/) - free private repos for students/postdocs/professors.
+
+<!-- ![123](https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png) -->
+
+## More `git` commands
+
+- `git remote`: Set up remotes to be used for a local git repo
+- `git push`: Push updates to the local repo to the remote
+- `git pull`: Obtain updates in the remote and apply them to the local repo
 
 <!--
 ## Terminology (cont'd)
@@ -54,14 +67,6 @@ http://xkcd.com/1597/
 - **Issue:** Issues are suggested improvements, tasks or questions related to the repository. 
 -->
 
-
-## Repositories
-
-By default, all materials on GitHub are **public**. This is *good* because you are getting your work out there and contributing to the open source community! 
-
-If you need **private** repos, checkout [GitHub for Education](https://education.github.com/) - free private repos for students/postdocs/professors.
-
-<!-- ![123](https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png) -->
 
 ## GitHub demo...
 

@@ -80,6 +80,13 @@ Terminology from [github glossary](https://help.github.com/articles/github-gloss
 
 Caution: `git` works well with text files but not binary files
 
+<!-- ## Looking ahead ...  -->
+
+<!-- In this class we will use git & github for  -->
+
+<!-- - homework and lab assignments, and -->
+<!-- - the projects. -->
+
 ## `git` Demonstration...
 
 ## Your turn: Making git commits  {.white}
@@ -92,12 +99,6 @@ Caution: `git` works well with text files but not binary files
 4. <span style="color:white"><img src="images/green.png" width=20> Repeat part 3 for the html file.</span>
 5. <span style="color:white"><img src="images/blue.png" width=20> Look at the repo status (`git status`) and repo history (`git log`)</span>
 
-## Looking ahead ... 
-
-In this class we will use git & github for 
-
-- homework and lab assignments, and
-- the projects.
 
 <!-- ## Resources -->
 

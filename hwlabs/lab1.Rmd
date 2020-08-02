@@ -1,6 +1,6 @@
 ---
 title: "DS 202 - Lab 1: working with git and github"
-author: "Full Names of Teammates"
+# author: "Full Names of Teammates"
 output: html_document
 ---
 
@@ -133,5 +133,5 @@ You have completed a cycle of collaboration. Congratulations! **Now the Owner an
 
 Submission: Each student should submit the HTTPS URL of their own repository on Canvas. In the submission note, include the full name and github username of the partner who made changes to your repo.
 
-**Note:**
-Make sure that each team member has collaborated on the other member's repo. Help out your team member in case he/she is stuck. 
+## Grading
+You will be graded based on your own repository. Since it includes your Partner's changes, make sure to help out your partner and check the teamwork. 
