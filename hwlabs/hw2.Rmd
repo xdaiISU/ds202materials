@@ -25,7 +25,7 @@ a0
 
 ## R commands
 1. Today's temperature has a high of 85 and a low of 67 degree fahrenheit.  Find the corresponding degress in celsius and storage it in a (single) vector named `cel`. Print the variable.
-2. Create a vector of numbers that runs from 200 to 1. Set the value of the entries to 0 for every 3 entries, starting from the first entry. Storage the results in a variable named `vec200` and print.
+2. Create a vector of numbers that runs from 200 to 1. Set the value of the entries to 0 every 3 entries, starting from the first entry. Storage the results in a variable named `vec200` and print.
 3. How many perfect squares are there between 1 and 2001? Storage the answer in a  variable named `numPerfect` and print. You may want to look at `?round`.
 
 ## Cars and mileage
