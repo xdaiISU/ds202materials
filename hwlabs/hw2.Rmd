@@ -1,0 +1,38 @@
+---
+title: 'Homework #2'
+output: html_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Example question and answer
+0\. What is the smallest positive odd integer? Storage it in a variable named `a0` and print it.
+
+**Example answer**:
+In the RMarkDown file, type in
+<pre>```{r}
+a0 <- 1
+a0
+```</pre>
+The knitted html file will show:
+```{r}
+a0 <- 1
+a0
+```
+
+## R commands
+1. Today's temperature has a high of 85 and a low of 67 degree fahrenheit.  Find the corresponding degress in celsius and storage it in a (single) vector named `cel`. Print the variable.
+2. Create a vector of numbers that runs from 200 to 1. Set the value of the entries to 0 for every 3 entries, starting from the first entry. Storage the results in a variable named `vec200` and print.
+3. How many perfect squares are there between 1 and 2001? Storage the answer in a  variable named `numPerfect` and print. You may want to look at `?round`.
+
+## Cars and mileage
+For this part we will use the `mpg` data set, you can access the data by first installing (using `install.packages('ggplot2')`) and then loading the package `ggplot2` (using `library(ggplot2)`) into your R session. The `mpg` data includes information about fuel economy of popular car models
+for the years 1999 and 2008 as collected by the US Environmental Protection Agency. An answer should include a short paragraph of text for the explanation to a (human) reader, together with appropriate R code, outputs, and graphs.
+
+1. What are the 5 least fuel-efficient models in terms of highway mileage? Storage the data frame (with 5 rows) containing all information of these three cars in a variable named `worst5` and print.
+2. How many different pickup models are included in this dataset? Storage the answer in  a variable named `numPickup` and print.
+3. Create a scatterplot of `hwy` and `cty` and describe the relationship. Why are there so few points visible? Explain your findings.
+4. Which manufacturer produces cars with higher fuel efficiency, Ford or Toyota? Use graphs *and* summary statistics to answer this question. Explain your findings.
