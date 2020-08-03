@@ -20,6 +20,7 @@ output:
 - `<, >, ==, !=, <=, >=` are the comparison operators
 - `x %in% c(1, 4, 3, 7)` tells whether each element of `x` is one of `c(1, 4, 3, 7)`
 - use parentheses `()` when linking expressions to avoid mis-interpretation
+- TALK ABOUT IFELSE
 
 ## Logical Operations
 

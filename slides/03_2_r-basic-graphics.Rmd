@@ -1,5 +1,5 @@
 ---
-title: "DS 202: R Basic Graphics"
+title: "Numerical and Graphical Summaries"
 author: Xiongtao Dai
 ratio: 16x10
 output:
@@ -13,46 +13,39 @@ output:
 knitr::opts_chunk$set(fig.width=3.5, fig.height=3.5)
 ```
 
-## Looking at data {.shout}
+## Numerical and Graphical Exploration {.shout}
 
-## Data Exploration
+## More numerical summaries and functions
+<!-- - `mean, median, sd, var` -->
+<!-- - `quantile` -->
+<!-- - `summary` -->
+- `length`: length of an object
+- `unique`: returns the unique elements
+- `log, exp, sqrt`: logarithm, exponential, and square root functions
+- `sort, rank, order`: returns the sorted vector, the rank of a vector, and the order of the numbers so as to sort the vector
+<!-- - `ifelse(test, yes, no)`: Returns different values depending on whether the element of `test` is `TRUE` or `FALSE` -->
 
-- asking good questions is important for any data exploration: "your data won't speak unless you ask the right questions"
-- a data exploration is a cycle of asking questions, looking at the answers, and deriving new questions from them
-- for a sound exploration: start by checking individual variables, and then move on to higher dimensions
+## Graphical summaries
+- `plot(x, y, type, col, pch, lwd, lty, xlim, ylim, main, xlab, ylab, ...)`: Make a scatter plot of `x` vs `y` with various options
+- `lines, points`: Add lines and points to an existing plot, resp.
+- `barplot, hist, boxplot`: Create a barplot,  histogram, and boxplot, resp.
+- `legend`: Add legends
 
-## An example exploration {.shout}
+## Boxplot definition
 
+- definition by J.W. Tukey (1960s, EDA 1977)
+<img src="images/boxplots-definition.png" alt="" width=100%>
 
+## R demo...
 
-## Your turn {.white}
-
-
-<img class="cover" src="images/blue.jpeg" alt="" width=2000>
-
-<span style="color:white">
-Write down questions that you could answer with this data 4 minutes by yourself, and then pair up for another 3 minutes. We'll project your ideas</span>
-
-```{r}
-library(classdata)
-str(cities)
-```
-
-
-## Plan for answers
-
-- Explore how one (or more) variables are distributed: *histogram, boxplot, or barplot*
-- Explore how two variables are related:  *scatterplot, boxplot, tile plot*
-- Explore how two variables are related, considering other variables: *color & other symbols*
-- Explore trends
-
-We will be using the basic R graphics today for plotting, which is amazingly flexible!
-
-- A reference for graphical parameters <https://www.statmethods.net/advgraphs/parameters.html>
+## (Optional) Setting R graphics parameters
+Here is a link which summarizes how to tune the parameters for R graphics: 
+https://www.statmethods.net/advgraphs/parameters.html
 
 ## Your turn {.white}
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
+<span style="color:white"> Use the `cities` dataset in the `classdata` package. </span>
 
 1. <span style="color:white"><img src="images/green.png" width=20> 
 Draw a scatterplot of the number of burglaries by murders.</span>
@@ -62,10 +55,3 @@ Adjust the numbers of the above scatterplot to show log transformed numbers. </s
 Draw a scatterplot of the log transformed number of burglaries by motor vehicle thefts using only data for 2016.</span>
 3. <span style="color:white"><img src="images/blue.png" width=20> 
 Are larger cities or smaller cities more dangerous in 2016?</span>
-4. <span style="color:white"><img src="images/blue.png" width=20> 
-State a question. Use R graphics to answer it.</span>
-5. <span style="color:white"><img src="images/blue.png" width=20> 
-Repeat above.</span>
-
-
-
