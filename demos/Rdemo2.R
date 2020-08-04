@@ -72,3 +72,6 @@ abline(h = 2)
 # Make plots nicer
 plot(ames$Year, ames$Violent1000, ylim=c(0, max(ames$Violent1000)),
      type='b', xlab='Year', ylab='Violent crimes per 1000', main='Violent crimes over the years')
+points(ankeny$Year, ankeny$Violent1000, col='blue', pch=2)
+lines(ankeny$Year, ankeny$Violent1000, col='blue', lty=2)
+legend('topright', c('Ames', 'Ankeny'), col=c('black', 'blue'), pch=c(1, 2), lty = c(1, 2))
