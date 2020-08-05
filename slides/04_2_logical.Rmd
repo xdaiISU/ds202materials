@@ -9,22 +9,23 @@ output:
     theme: ribbon
 ---
 
-## More Logical variables  {.shout}
+## Logical variables  {.shout}
 
 ## Logical vectors
 
 - Vectors consisting of values `TRUE` and `FALSE`
-- Usually created with a logical comparison
 - `&` and `|` are the logical *and* and *or*
 - `!` is the logical negation
-- `<, >, ==, !=, <=, >=` are the comparison operators
-- `x %in% c(1, 4, 3, 7)` tells whether each element of `x` is one of `c(1, 4, 3, 7)`
+- `<, >, ==, !=, <=, >=` are comparison operators that returns a logical vector
 - use parentheses `()` when linking expressions to avoid mis-interpretation
-- TALK ABOUT IFELSE
+- `x %in% c(1, 3, 5)` tells whether each element of `x` is one of `c(1, 3, 5)`
+- `ifelse` assigns values in a vector according to a logical variable
 
 ## Logical Operations
 
 <img class="cover" src="images/logical.png" alt="" width=2000>
+
+## R demo...
 
 ## Your turn {.white}
 
@@ -34,7 +35,7 @@ output:
 Define a vector: `a <- c(1, 15, 3, 20, 5, 8, 9, 10, 1, 3)`
 
 <span style="color:white">
-Find the expression for the logical vector that is TRUE where `a` is:
+Create logical vectors to indicate which entries in  `a` are:
 </span>
 
 <span style="color:white"><img src="images/green.png" width=20> less than 20</span><br/>
@@ -44,9 +45,9 @@ Find the expression for the logical vector that is TRUE where `a` is:
   Hint: have a look at the help for the operator `%%`</span>
 
 
-<span style="color:white">  <img src="images/dblack.png" width=20><span style="color:white"> (Expers only) What is the difference between `|` and `||`? (Likewise, `&` and `&&`) </span>
+<!-- <span style="color:white">  <img src="images/dblack.png" width=20><span style="color:white"> (Expers only) What is the difference between `|` and `||`? (Likewise, `&` and `&&`) </span> -->
 
-## `Subsetting Data Frames`
+## Subsetting Data Frames
 ```{r}
 library(classdata)
 Iowa2009 <- fbi[fbi$State == 'Iowa' & fbi$Year == 2009, ] 
@@ -71,6 +72,8 @@ fbi$Population <- signif(fbi$Population, 3)
 str(fbi$Population)
 ```
 If that column exists before, it is being over-written/updated
+
+## R demo...
 
 ## Your turn {.white}
 
