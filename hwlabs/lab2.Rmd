@@ -1,5 +1,5 @@
 ---
-title: "DS 202 - Lab 2: exploring chocolates"
+title: "DS 202 - Lab 2: Exploring chocolates"
 author: "Xiongtao Dai"
 ratio: 16x10
 output:
@@ -55,12 +55,12 @@ Flavors of Cacao Rating System:
 
 ## Reading the data
 
-The file `choco.csv` at https://xdaiisu.github.io/ds202materials/hwlabs/choco.csv is a web scrap from the chocolate flavor data base.
+The file `choco.csv` at https://xdaiisu.github.io/ds202materials/hwlabs/data/choco.csv is a web scrap from the chocolate flavor data base.
 
 You can load the data into your session using the command below:
 
 ```{r}
-choco <- read.csv("https://xdaiisu.github.io/ds202materials/hwlabs/choco.csv")
+choco <- read.csv("https://xdaiisu.github.io/ds202materials/hwlabs/data/choco.csv")
 head(choco)
 ```
 
