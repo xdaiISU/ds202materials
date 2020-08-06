@@ -13,7 +13,11 @@ sep %>%
   }) %>% 
   setNames(sep)
 
-clean <- separate(dat, Characteristics, into=paste0('Characteristics', 1:4), sep='[[:space:]]*(,|and )[[:space:]]*')
+clean <- separate(dat, 
+                  Characteristics, 
+                  into=paste0('Characteristics', 1:4), 
+                  sep='[[:space:]]*(,|and )[[:space:]]*') %>% 
+  mutate(Cocoa_Percent = parse_number(Cocoa_Percent))
 
 ## Worst characteristics
 clean %>% 

@@ -1,59 +1,48 @@
 ---
-title: "DS 202 - Lab 2: Exploring chocolates"
-author: "Xiongtao Dai"
-ratio: 16x10
-output:
-  rmdshower::shower_presentation:
-    self_contained: false
-    katex: true
-    theme: ribbon
+title: "DS 202 - Lab 2: Chocolate tasting"
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, cache = TRUE)
 ```
 
-## { .white }
+## 
 
-<img src="images/choco.jpeg" class="cover" height=1500>
+<img src="images/choco.jpeg">
 
-<p class="white" style="font-size:100px" align=center>
- Lab #2<br> chocolate tasting
-</p>
+
 
 
 
 ## Outline
 
-- Pair up and find your team member
+- Pair up with a partner in your study group
 - Create a repository (one per team) & give access to your teammate
-- Do a data exploration (on chocolate ratings)
+- Explore data on chocolate ratings
 - Create R markdown files that contain code to read the data and create the plots
 - Submit!
 
 
-# Pair up and find your team member
-
 ## Background
 
-Brady Brelinski, Founding Member of the Manhattan Chocolate Society, obviously likes chocolate. He has assembled a database of ratings for plain dark chocolate bars: [Flavors of chocolate](http://flavorsofcacao.com/chocolate_database.html)
+Brady Brelinski, Founding Member of the Manhattan Chocolate Society, obviously likes chocolate. He has assembled a database of ratings for plain dark chocolate bars: [Flavors of chocolate](http://flavorsofcacao.com/chocolate_database.html). 
+By now, over 2300 different chocolate bars have been rated. 
 
-By now, over 1900 different chocolate bars have been rated. 
-
-## Meaning of ratings
+### Meaning of ratings
 
 Flavors of Cacao Rating System:
 
-- 5= Elite (Transcending beyond the ordinary limits)
-- 4= Premium (Superior flavor development, character and style)
-- 3= Satisfactory (3.0) to praiseworthy (3.75) (well made with special qualities)
-- 2= Disappointing (Passable but contains at least one significant flaw)
-- 1= Unpleasant (mostly unpalatable)
+- 5 = Elite (Transcending beyond the ordinary limits)
+- 4 = Premium (Superior flavor development, character and style)
+- 3 = Satisfactory (3.0) to praiseworthy (3.75) (well made with special qualities)
+- 2 = Disappointing (Passable but contains at least one significant flaw)
+- 1 = Unpleasant (mostly unpalatable)
 
 
 
 
-## Reading the data
+### Reading the data
 
 The file `choco.csv` at https://xdaiisu.github.io/ds202materials/hwlabs/data/choco.csv is a web scrap from the chocolate flavor data base.
 
@@ -61,38 +50,16 @@ You can load the data into your session using the command below:
 
 ```{r}
 choco <- read.csv("https://xdaiisu.github.io/ds202materials/hwlabs/data/choco.csv")
-head(choco)
+str(choco)
 ```
 
-# A data exploration
+## Searching for the Best Chocolates
 
-## Question set (Individual)
-
-Coordinate with your teammate and decide among you who is Individual 1 and who is Individual 2. You should create an RMarkdown file named either `individual1.Rmd` or `individual2.Rmd` accordingly to include the answers.
-Answer the following questions individually in your own file. Provide at least one graph as a basis for your answer.
+## Question set (team)
 
 1. How are the ratings distributed? Draw a histogram of the ratings and describe it. Don't forget to mention outliers, if there are any.
 1. Do ratings depend on the cacao percentage of a chocolate bar? 
 
-## Collaborating on a GitHub repository
-
-**Individual 1:**
-
-1. Log into github, and create a repository called `ds202_lab2`
-2. Go into the settings of the repository and add your team member as a collaborator
-3. Push `individual1.Rmd` and `individual1.html` to the remote.
-
-When the above is finished, **Individual 2:**
-
-1. Log into your email provider, and accept the invitation to the GitHub repo.
-1. Clone the remote repo of Individual 1's.
-2. Add `individual2.Rmd` and `individual2.html` to the local repo, and push.
-
-## What did you do in Lab 1 and how this time is different?
-
-(Scribble)
-
-## Question set (team)
 
 Discuss how to approach the following questions with your teammate. You can write your preliminary exploration into your own `individual_.Rmd` file. When finished, both teammate should collaborate on a single `team.Rmd` file which include the answers to the following questions. 
 
@@ -108,13 +75,36 @@ Discuss how to approach the following questions with your teammate. You can writ
 
 6\. Write one paragraph commenting on the workflow.
 
-## Tips:
+## Collaboration Workflow
+
+### Overview
+1. Discuss with your teammate plans for the analyses.
+1. Coordinate with your teammate and decide among you who is Individual 1 and Individual 2. Accordingly, create an RMarkdown file named `individual1.Rmd` or `individual2.Rmd` to include your own exploration of the dataset.
+2. When you and your teammate are done with your own exploration and analysis, collaborate on a `team.Rmd` file which includes the final analysis. 
+
+### Recap: Collaborating on a GitHub repository
+
+**Individual 1:**
+
+1. Log into github, and create a repository called `ds202_lab2`
+2. Go into the settings of the repository and add your team member as a collaborator
+3. Push `individual1.Rmd` and `individual1.html` to the remote.
+
+When the above is finished, **Individual 2:**
+
+1. Log into GitHub and accept the invitation to work on the team repo.
+1. Clone the remote repo of Individual 1's.
+2. Add `individual2.Rmd` and `individual2.html` to the local repo, and push.
+
+### Working on the `team.Rmd`
+1. One of the teammates will make a draft `team.Rmd`, include the file in a git commit, and then push to the remote. 
+2. The other teammate will pull, make additions and modifications to `team.Rmd`, create a commit, and then push.
+3. Repeat as necessary. 
+
+
+
+### Tips:
 - You can start from Invididual 1 adding and pushing `team.Rmd`, and then Individual 2 `git pull`
 - Before you make changes to existing files or `git push`, remember to `git pull` first
 - Coorindate with your teammate to avoid merge conflict
-- Make sure both teammates have modified `team.Rmd` file! Users who have modified this file can be viewed by issuing `git log team.Rmd` in the Terminal.
-
-## Submission
-
-- Due date: You have time until Wednesday Feb 12 before class to submit the final files. To submit, only the owner of the GitHub repo should email his/her username the repo name (should be `ds202_lab2`) to the TA, An Nguyen <atn@iastate.edu>.
-
+- All three files `individual1.Rmd`, `individual2.Rmd`, `team.Rmd` and their knitted html files are required. Both teammates must modify `team.Rmd` (check this is done using `git log team.Rmd` in `bash`).
