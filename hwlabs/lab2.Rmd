@@ -4,7 +4,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, cache = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, cache = FALSE)
 ```
 
 ## 
@@ -44,36 +44,27 @@ Flavors of Cacao Rating System:
 
 ### Reading the data
 
-The file `choco.csv` at https://xdaiisu.github.io/ds202materials/hwlabs/data/choco.csv is a web scrap from the chocolate flavor data base.
+The file `choco.csv` at https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv is a web scrap from the chocolate flavor data base.
 
 You can load the data into your session using the command below:
 
 ```{r}
-choco <- read.csv("https://xdaiisu.github.io/ds202materials/hwlabs/data/choco.csv")
-str(choco)
+choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv") 
+str(choco) 
 ```
 
 ## Searching for the Best Chocolates
 
-## Question set (team)
+We will be exploring what aspects of the chocolates may affect taste. Before setting off to the exploration, answer the following questions.
 
-1. How are the ratings distributed? Draw a histogram of the ratings and describe it. Don't forget to mention outliers, if there are any.
-1. Do ratings depend on the cacao percentage of a chocolate bar? 
-
-
-Discuss how to approach the following questions with your teammate. You can write your preliminary exploration into your own `individual_.Rmd` file. When finished, both teammate should collaborate on a single `team.Rmd` file which include the answers to the following questions. 
-
-1. What is the overall number of chocolate bars rated?
+1. How are the ratings distributed? Create both a histogram and a boxplot and describe them. Don't forget to mention outliers, if there are any.
 2. How does the number of ratings depend on the year? Draw a bar chart of the number of reports.
-3. Which are the three locations with the most ratings? How do ratings compare across these company locations?
+3. Do ratings depend on the cacao percentage of a chocolate bar? Create both numerical and graphical summaries, and explain. 
 
-## Question set (team) cont
+  Now, we are ready to explore.
 
-4\. Brainstorm and write down an interesting question that can be answer from the dataset. The question should not duplicate the questions above.
-
-5\. Answer the question from the dataset.
-
-6\. Write one paragraph commenting on the workflow.
+4. How do different characteristics of the chocolate compare? To elaborate, which characteristics tend to be more favorable and which ones are not?  Create both numerical and graphical summaries, and explain. 
+5. Brainstorm *two* analyses you would like to perform with your teammate. Describe in plain language what comparisons are you making. Create suitable numerical and graphical summaries for your analyses. Describe the results.
 
 ## Collaboration Workflow
 
@@ -101,7 +92,16 @@ When the above is finished, **Individual 2:**
 2. The other teammate will pull, make additions and modifications to `team.Rmd`, create a commit, and then push.
 3. Repeat as necessary. 
 
+### Repo structure
+The git repo of your team should be named ds202_lab2. Use the same folder structure and file names as follows:
 
+```
+ds202_lab2
+|-- individual1.Rmd
+|-- individual2.Rmd
+|-- team.Rmd
+|-- *.html files
+```
 
 ### Tips:
 - You can start from Invididual 1 adding and pushing `team.Rmd`, and then Individual 2 `git pull`

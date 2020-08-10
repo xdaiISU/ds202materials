@@ -59,3 +59,4 @@ someStates <- fbi[fbi$State %in% c('Nebraska', 'Minnesota', 'Illinois'), ]
 table(someStates$State)
 
 fbi$State[fbi$State == 'Iowa'] <- 'Our State'
+unique(fbi$State)

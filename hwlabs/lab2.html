@@ -409,10 +409,10 @@ summary {
 </div>
 <div id="reading-the-data" class="section level3">
 <h3>Reading the data</h3>
-<p>The file <code>choco.csv</code> at <a href="https://xdaiisu.github.io/ds202materials/hwlabs/data/choco.csv" class="uri">https://xdaiisu.github.io/ds202materials/hwlabs/data/choco.csv</a> is a web scrap from the chocolate flavor data base.</p>
+<p>The file <code>choco.csv</code> at <a href="https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv" class="uri">https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv</a> is a web scrap from the chocolate flavor data base.</p>
 <p>You can load the data into your session using the command below:</p>
-<pre class="r"><code>choco &lt;- read.csv(&quot;https://xdaiisu.github.io/ds202materials/hwlabs/data/choco.csv&quot;)
-str(choco)</code></pre>
+<pre class="r"><code>choco &lt;- read.csv(&quot;https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv&quot;) 
+str(choco) </code></pre>
 <pre><code>## &#39;data.frame&#39;:    2312 obs. of  13 variables:
 ##  $ REF                 : int  2454 2458 2454 797 797 1015 1019 1011 1019 1011 ...
 ##  $ Company             : Factor w/ 541 levels &quot;5150&quot;,&quot;A. Morin&quot;,..: 1 1 1 2 2 2 2 2 2 2 ...
@@ -420,7 +420,7 @@ str(choco)</code></pre>
 ##  $ Date                : int  2019 2019 2019 2012 2012 2013 2013 2013 2013 2013 ...
 ##  $ Bean_Origin         : Factor w/ 63 levels &quot;Australia&quot;,&quot;Belize&quot;,..: 30 14 54 38 5 62 38 16 38 7 ...
 ##  $ Specific_Bean_Origin: Factor w/ 1436 levels &quot;\&quot;heirloom\&quot;, Arriba Nacional&quot;,..: 141 1435 666 1029 179 289 267 482 267 189 ...
-##  $ Cocoa_Percent       : Factor w/ 46 levels &quot;100%&quot;,&quot;42%&quot;,&quot;46%&quot;,..: 30 30 30 14 21 21 14 21 21 21 ...
+##  $ Cocoa_Percent       : num  76 76 76 63 70 70 63 70 70 70 ...
 ##  $ Ingredients         : Factor w/ 21 levels &quot;1- B&quot;,&quot;2- B,C&quot;,..: 5 5 5 10 10 10 5 10 10 10 ...
 ##  $ Characteristics1    : Factor w/ 450 levels &quot;accesible&quot;,&quot;accessible&quot;,..: 81 81 311 131 430 272 403 328 81 240 ...
 ##  $ Characteristics2    : Factor w/ 502 levels &quot;&quot;,&quot;\&quot;Andes\&quot; mint&quot;,..: 29 482 137 236 304 301 94 304 408 NA ...
@@ -431,25 +431,17 @@ str(choco)</code></pre>
 </div>
 <div id="searching-for-the-best-chocolates" class="section level2">
 <h2>Searching for the Best Chocolates</h2>
-</div>
-<div id="question-set-team" class="section level2">
-<h2>Question set (team)</h2>
+<p>We will be exploring what aspects of the chocolates may affect taste. Before setting off to the exploration, answer the following questions.</p>
 <ol style="list-style-type: decimal">
-<li>How are the ratings distributed? Draw a histogram of the ratings and describe it. Don’t forget to mention outliers, if there are any.</li>
-<li>Do ratings depend on the cacao percentage of a chocolate bar?</li>
-</ol>
-<p>Discuss how to approach the following questions with your teammate. You can write your preliminary exploration into your own <code>individual_.Rmd</code> file. When finished, both teammate should collaborate on a single <code>team.Rmd</code> file which include the answers to the following questions.</p>
-<ol style="list-style-type: decimal">
-<li>What is the overall number of chocolate bars rated?</li>
+<li>How are the ratings distributed? Create both a histogram and a boxplot and describe them. Don’t forget to mention outliers, if there are any.</li>
 <li>How does the number of ratings depend on the year? Draw a bar chart of the number of reports.</li>
-<li>Which are the three locations with the most ratings? How do ratings compare across these company locations?</li>
+<li>Do ratings depend on the cacao percentage of a chocolate bar? Create both numerical and graphical summaries, and explain.</li>
 </ol>
-</div>
-<div id="question-set-team-cont" class="section level2">
-<h2>Question set (team) cont</h2>
-<p>4. Brainstorm and write down an interesting question that can be answer from the dataset. The question should not duplicate the questions above.</p>
-<p>5. Answer the question from the dataset.</p>
-<p>6. Write one paragraph commenting on the workflow.</p>
+<p>Now, we are ready to explore.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>How do different characteristics of the chocolate compare? To elaborate, which characteristics tend to be more favorable and which ones are not? Create both numerical and graphical summaries, and explain.</li>
+<li>Brainstorm <em>two</em> analyses you would like to perform with your teammate. Describe in plain language what comparisons are you making. Create suitable numerical and graphical summaries for your analyses. Describe the results.</li>
+</ol>
 </div>
 <div id="collaboration-workflow" class="section level2">
 <h2>Collaboration Workflow</h2>
@@ -483,6 +475,15 @@ str(choco)</code></pre>
 <li>The other teammate will pull, make additions and modifications to <code>team.Rmd</code>, create a commit, and then push.</li>
 <li>Repeat as necessary.</li>
 </ol>
+</div>
+<div id="repo-structure" class="section level3">
+<h3>Repo structure</h3>
+<p>The git repo of your team should be named ds202_lab2. Use the same folder structure and file names as follows:</p>
+<pre><code>ds202_lab2
+|-- individual1.Rmd
+|-- individual2.Rmd
+|-- team.Rmd
+|-- *.html files</code></pre>
 </div>
 <div id="tips" class="section level3">
 <h3>Tips:</h3>
