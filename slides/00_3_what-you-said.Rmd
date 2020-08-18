@@ -23,7 +23,7 @@ library(tidyverse)
 - Science students?
 - Engineering students?
 
-## Introduce yourself to the groupmates
+## Introduce yourself to the groupmates (6 minutes)
 
 Next up, break into groups and introduce yourselves. Please include the following points:
 

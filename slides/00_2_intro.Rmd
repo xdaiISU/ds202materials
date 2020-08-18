@@ -48,7 +48,7 @@ Typical data science project:
 <img src="https://r4ds.had.co.nz/diagrams/data-science.png" alt="typical cycle of a data science project" />
 
 ## A map created by R
-<img src="images/mostDeath.pdf" alt="covid deaths" width=100% />
+<img src="images/mostDeath.jpg" alt="covid deaths" width=100% />
 
 ## ... we will be using R for that! {.shout}
 
@@ -114,12 +114,12 @@ Have a look at:
 
 - stackoverflow's [Asking a good question](http://stackoverflow.com/help/how-to-ask)
 
-## What do you know already?
+<!-- ## What do you know already? -->
 
-- excel?
-- a programming language? 
-- SAS? R? R markdown?
-- database theory? third normal form?
+<!-- - excel? -->
+<!-- - a programming language?  -->
+<!-- - SAS? R? R markdown? -->
+<!-- - database theory? third normal form? -->
 
 ## What data will we look at?
 
