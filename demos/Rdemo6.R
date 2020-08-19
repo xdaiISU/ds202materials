@@ -105,3 +105,34 @@ summarize(fbiNew,
           mean_rate = mean(rate, na.rm=TRUE),
           sd_rate = sd(rate, na.rm=TRUE),
           nrows = n())
+
+fbi2017 <- fbiNew %>% filter(Year == 2017)
+
+## group_by
+fbi2017 %>% 
+  group_by(Type)
+
+fbi2017 %>% 
+  group_by(Type) %>% 
+  summarize(
+    mean_rate = mean(rate, na.rm=TRUE),
+    sd_rate = sd(rate, na.rm=TRUE),
+    nrows = n()
+  )
+
+fbiNew %>%
+  group_by(Year, Type) %>% 
+  summarize(
+    mean_rate = mean(rate, na.rm=TRUE),
+    sd_rate = sd(rate, na.rm=TRUE),
+    nrows = n()
+  )
+
+b <- fbi2017 %>% 
+  group_by(Type) %>% 
+  mutate(max_rate = max(rate, na.rm = TRUE),
+         rel_rate = rate / max_rate)
+View(b)
+
+b %>% summarize(worst = max(max_rate))
+b %>% ungroup %>% summarize(worst = max(max_rate))
