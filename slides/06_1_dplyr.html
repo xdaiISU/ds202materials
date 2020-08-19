@@ -100,9 +100,9 @@
 <section id="outline" class="slide level2">
 <h2>Outline</h2>
 <ul>
-<li>elements of data management: filtering, sorting, and aggregations</li>
-<li>the pipe operator <code>%&gt;%</code></li>
-<li>examples</li>
+<li><code>tidyverse</code></li>
+<li><code>dplyr</code> for data management: filtering, sorting, and aggregations</li>
+<li>the pipe operator <code>%&gt;%</code> <!-- - examples --></li>
 </ul>
 </section>
 <section id="tidyverse" class="slide level2">
@@ -113,34 +113,85 @@
 <li>share common data representations and API, i.e. work well together</li>
 <li>see <a href="https://github.com/hadley/tidyverse" class="uri">https://github.com/hadley/tidyverse</a> for more information</li>
 </ul>
-<p>Producing Summaries:</p>
-<ul>
-<li>numerical summaries - elements of <code>dplyr</code></li>
-<li>graphical summaries - visualizations with <code>ggplot2</code></li>
-</ul>
 </section>
 <section id="dplyr" class="slide level2">
+<h2><code>dplyr</code></h2>
+<ul>
+<li><code>dplyr</code> is a database-like package for operating and performing calculation on data frames.</li>
+<li>produce numerical summaries</li>
+<li>join data frames and combine information from different sources</li>
+<li>convenient and neat syntax</li>
+</ul>
+</section>
+<section id="dplyr-1" class="slide level2">
 <h2><code>dplyr</code></h2>
 <p>There are a couple of primary <code>dplyr</code> <em>verbs</em>, representing distinct data analysis tasks:</p>
 <ul>
 <li><code>select</code>: Select particular columns of a data frame</li>
 <li><code>filter</code>: Select specified rows of a data frame, produce subsets</li>
 <li><code>mutate</code>: Add new or change existing columns of the data frame (as functions of existing columns)</li>
-<li><code>arrange</code>: Reorder the rows of a data frame</li>
-<li><code>summarize</code>: Create collapsed summaries of a data frame</li>
-<li><code>group_by</code>: Introduce structure to a data frame</li>
 </ul>
 </section>
 <section id="common-structure" class="slide level2">
 <h2>Common structure</h2>
-<p>All functions of the tidyverse have <code>data</code> as their first element</p>
-<p><code>ggplot(data=fbi, aes(x = Year, y = Count)) + geom_point()</code></p>
+<p>Functions in <code>tidyverse</code> have <code>data</code> as their first element</p>
+<p><code>ggplot(fbi, aes(x = Year, y = Count)) + geom_point()</code></p>
 <p><code>filter(fbi, Year&gt;=2017 &amp; State=="Iowa")</code></p>
-<p><strong>Caution</strong>: non-standard evaluation is used to refer to columns in <code>dplyr</code> and many other functions in <code>tidyverse</code>! <code>$</code> is not used to refer to a column.</p>
+<!-- **Caution**: non-standard evaluation is used to refer to columns in `dplyr` and many other functions in `tidyverse`! `$` is not used to refer to a column. -->
+</section>
+<section id="r-demo" class="slide level2">
+<h2>R demo…</h2>
+</section>
+<section id="your-turn-select-filter-and-mutate" class="slide level2 white">
+<h2 class="white">Your turn: select, filter, and mutate</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white"> Use the <code>fbi</code> data from the <code>classdata</code> package </span></p>
+<p><span style="color:white"> <img src="images/green.png" width=20> Create a data frame containing the state abbreviation, year, population, crime type, and crime count. </br> <img src="images/green.png" width=20> Continue the last part: Now create a data frame containing data in 2017 for all states except for Iowa.</br> <img src="images/green.png" width=20> Continue the last part: Now introduce a column which is the number of crimes per thousand residents into the previous data frame.</br> <img src="images/green.png" width=20> Continue the last part: Drop the population and crime count columns. </br> <img src="images/blue.png" width=20> What is the population of each state in 2017? Remove redundant information. Check out <code>?distinct</code>. </span></p>
+</section>
+<section id="the-pipe-operator" class="slide level2">
+<h2>The pipe operator <code>%&gt;%</code></h2>
+<p><code>lhs %&gt;% f</code> means using <code>lhs</code> as the first argument in the next function. Read <code>%&gt;%</code> as “then do”:</p>
+<ul>
+<li><code>x %&gt;% g</code> is equivalent to <code>g(x)</code>,</li>
+<li><code>x %&gt;% g(y)</code> is equivalent to <code>g(x, y)</code></li>
+</ul>
+<p>Consequences:</p>
+<ul>
+<li><code>f(x) %&gt;% g(y)</code> is the same as <code>g(f(x), y)</code></li>
+<li>complex statement <code>k(h(g(f(x, y), z), u), v, w)</code> can be written as <code>x %&gt;% f(y) %&gt;% g(z) %&gt;% h(u) %&gt;% k(v, w)</code></li>
+</ul>
+</section>
+<section id="r-demo-1" class="slide level2">
+<h2>R demo…</h2>
+</section>
+<section id="your-turn" class="slide level2 white">
+<h2 class="white">Your turn: <code>%&gt;%</code></h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white">Repeat the last your turn, but now using the pipe <code>%&gt;%</code>: </span></p>
+<p><span style="color:white"> <img src="images/green.png" width=20> 1. Create a data frame containing the state abbreviation, year, population, crime type, and crime count. 2. Include data in 2017 for all states except for Iowa. 3. Introduce a column which is the number of crimes per thousand residence into the previous data frame. 4. Lastly, drop the population and crime count columns. </br> <img src="images/blue.png" width=20> What is the population of each state in 2017? Remove redundant information. Check out <code>?distinct</code>. </span></p>
+</section>
+<section id="more-dplyr-verbs" class="slide level2">
+<h2>More <code>dplyr</code> <strong>verbs</strong></h2>
+<ul>
+<li><code>arrange</code>: Reorder the rows of a data frame</li>
+<li><code>summarize</code>: Create collapsed summaries of a data frame</li>
+<li><code>group_by</code>: Do something for each group level</li>
+</ul>
+</section>
+<section id="r-demo-2" class="slide level2">
+<h2>R demo…</h2>
+</section>
+<section id="your-turn-summarize-group_by-and-arrange." class="slide level2 white">
+<h2 class="white">Your turn: summarize, group_by, and arrange.</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white"> <img src="images/green.png" width=20> Find the crime rate for each year and each type of crime. </br> <img src="images/green.png" width=20> Arrange your finding by the crime rate from high to low.</br> <img src="images/blue.png" width=20> Look at just burglary. How does the crime rate compare with the all-time high within each state? </span></p>
+</section>
+<section id="usage-summaries" class="slide level2 shout">
+<h2 class="shout">Usage Summaries</h2>
 </section>
 <section id="select" class="slide level2">
 <h2><code>select</code></h2>
-<p>Select specific columns/variables of a data frame (vertical selection):</p>
+<p>Take out specific columns/variables of a data frame:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(classdata)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(dplyr)</span>
 <span id="cb1-3"><a href="#cb1-3"></a>dat &lt;-<span class="st"> </span><span class="kw">select</span>(fbi, Type, Count, State, Year)</span>
@@ -159,7 +210,7 @@
 </section>
 <section id="filter" class="slide level2">
 <h2><code>filter</code></h2>
-<p>select a subset of the rows/observations (horizontal selection):</p>
+<p>Take out a subset of the rows/observations:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>dat &lt;-<span class="st"> </span><span class="kw">filter</span>(fbi, Type<span class="op">==</span><span class="st">&quot;Burglary&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Year<span class="op">==</span><span class="dv">2014</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="kw">head</span>(dat)</span></code></pre></div>
 <pre><code>##        State Abb Year Population     Type  Count Violent.crime
@@ -173,7 +224,7 @@
 <section id="mutate" class="slide level2">
 <h2><code>mutate</code></h2>
 <p>Introduce a new variable into a data set or transform/update an old variable:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">head</span>(<span class="kw">mutate</span>(fbi, <span class="dt">Rate =</span> Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">66000</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">head</span>(<span class="kw">mutate</span>(fbi, <span class="dt">Rate =</span> Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">1000</span>))</span></code></pre></div>
 <pre><code>##     State Abb Year Population                                 Type Count
 ## 1 Alabama  AL 1961    3302000 Murder.and.nonnegligent.Manslaughter   427
 ## 2 Alabama  AL 1962    3358000 Murder.and.nonnegligent.Manslaughter   316
@@ -181,33 +232,13 @@
 ## 4 Alabama  AL 1964    3407000 Murder.and.nonnegligent.Manslaughter   316
 ## 5 Alabama  AL 1965    3462000 Murder.and.nonnegligent.Manslaughter   395
 ## 6 Alabama  AL 1966    3517000 Murder.and.nonnegligent.Manslaughter   384
-##   Violent.crime     Rate
-## 1          TRUE 8.534827
-## 2          TRUE 6.210840
-## 3          TRUE 6.704512
-## 4          TRUE 6.121515
-## 5          TRUE 7.530329
-## 6          TRUE 7.206142</code></pre>
-</section>
-<section id="your-turn-select-filter-and-mutate" class="slide level2 white">
-<h2 class="white">Your turn: select, filter, and mutate</h2>
-<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white"> Use the <code>fbi</code> data from the <code>classdata</code> package </span></p>
-<p><span style="color:white"> <img src="images/green.png" width=20> Create a data frame containing the state abbreviation, year, population, crime type, and crime count. </br> <img src="images/green.png" width=20> Continue the last part: Now create a data frame containing data in 2017 for all states except for Iowa.</br> <img src="images/green.png" width=20> Continue the last part: Now introduce a column which is the number of crimes per thousand residents into the previous data frame.</br> <img src="images/green.png" width=20> Continue the last part: Drop the population and crime count columns. </br> <img src="images/blue.png" width=20> What is the population of each state in 2017? Remove redundant information. Check out <code>?distinct</code>. </span></p>
-</section>
-<section id="the-pipe-operator" class="slide level2">
-<h2>The pipe operator <code>%&gt;%</code></h2>
-<p>Read <code>%&gt;%</code> as “then do”:</p>
-<ul>
-<li><code>x %&gt;% g</code> is equivalent to <code>g(x)</code>,</li>
-<li><code>x %&gt;% g(y)</code> is equivalent to <code>g(x, y)</code></li>
-</ul>
-<p>i.e. the output of one function is used as the first argument in the next function.</p>
-<p>Consequences:</p>
-<ul>
-<li><code>f(x) %&gt;% g(y)</code> is the same as <code>g(f(x), y)</code></li>
-<li>complex statement <code>k(h(g(f(x, y), z), u), v, w)</code> can be written as <code>x %&gt;% f(y) %&gt;% g(z) %&gt;% h(u) %&gt;% k(v, w)</code></li>
-</ul>
+##   Violent.crime       Rate
+## 1          TRUE 0.12931557
+## 2          TRUE 0.09410363
+## 3          TRUE 0.10158351
+## 4          TRUE 0.09275022
+## 5          TRUE 0.11409590
+## 6          TRUE 0.10918396</code></pre>
 </section>
 <section id="using-the-pipe" class="slide level2">
 <h2>Using the pipe <code>%&gt;%</code></h2>
@@ -218,12 +249,6 @@ ggplot(data = dat, aes(x = Year, y = Count)) + geom_point()</code></pre>
   filter(Type==&quot;Murder.and.nonnegligent.Manslaughter&quot;) %&gt;%
   ggplot(aes(x = Year, y = Count)) + 
     geom_point()</code></pre>
-</section>
-<section id="your-turn" class="slide level2 white">
-<h2 class="white">Your turn: <code>%&gt;%</code></h2>
-<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">Repeat the last your turn, but now using the pipe <code>%&gt;%</code>: </span></p>
-<p><span style="color:white"> <img src="images/green.png" width=20> 1. Create a data frame containing the state abbreviation, year, population, crime type, and crime count. 2. Include data in 2017 for all states except for Iowa. 3. Introduce a column which is the number of crimes per thousand residence into the previous data frame. 4. Lastly, drop the population and crime count columns. </br> <img src="images/blue.png" width=20> What is the population of each state in 2017? Remove redundant information. Check out <code>?distinct</code>. </span></p>
 </section>
 <section id="arrange" class="slide level2">
 <h2><code>arrange</code></h2>
@@ -242,35 +267,29 @@ ggplot(data = dat, aes(x = Year, y = Count)) + geom_point()</code></pre>
 <h2><code>summarize</code></h2>
 <p>summarize (or aggregates) observations into a (set of) one-number statistic(s):</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">summarize</span>(fbi, </span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="dt">mean_rate =</span> <span class="kw">mean</span>(Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">66000</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="dt">sd_rate =</span> <span class="kw">sd</span>(Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">66000</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="dt">mean_rate =</span> <span class="kw">mean</span>(Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">1000</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="dt">sd_rate =</span> <span class="kw">sd</span>(Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">1000</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>##   mean_rate  sd_rate
-## 1  372.9456 575.1419</code></pre>
+## 1  5.650691 8.714272</code></pre>
 </section>
 <section id="group_by-do-something-for-each-level" class="slide level2">
 <h2><code>group_by</code>: Do something for each level</h2>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>fbi2017 &lt;-<span class="st"> </span>fbi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Year <span class="op">==</span><span class="st"> </span><span class="dv">2017</span>)</span>
 <span id="cb14-2"><a href="#cb14-2"></a>fbi2017 <span class="op">%&gt;%</span></span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="st">    </span><span class="kw">group_by</span>(Type) <span class="op">%&gt;%</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">mean_rate =</span> <span class="kw">mean</span>(Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">66000</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </span>
-<span id="cb14-5"><a href="#cb14-5"></a>              <span class="dt">sd_rate =</span> <span class="kw">sd</span>(Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">66000</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">mean_rate =</span> <span class="kw">mean</span>(Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">1000</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </span>
+<span id="cb14-5"><a href="#cb14-5"></a>              <span class="dt">sd_rate =</span> <span class="kw">sd</span>(Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">1000</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 8 x 3
 ##   Type                                 mean_rate sd_rate
 ##   &lt;fct&gt;                                    &lt;dbl&gt;   &lt;dbl&gt;
-## 1 Aggravated.assault                      166.     78.9 
-## 2 Burglary                                286.    110.  
-## 3 Larceny.theft                          1136.    327.  
-## 4 Legacy.rape                             NaN      NA   
-## 5 Motor.vehicle.theft                     153.     79.0 
-## 6 Murder.and.nonnegligent.Manslaughter      3.65    2.44
-## 7 Rape                                     29.9    11.1 
-## 8 Robbery                                  55.7    38.3</code></pre>
-</section>
-<section id="your-turn-summarize-group_by-and-arrange." class="slide level2 white">
-<h2 class="white">Your turn: summarize, group_by, and arrange.</h2>
-<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white"> <img src="images/green.png" width=20> Find the crime rate for each year and each type of crime. </br> <img src="images/green.png" width=20> Arrange your finding by the crime rate from high to low.</br> <img src="images/blue.png" width=20> Look at just burglary. How does the crime rate compare with the all-time high within each state? </span></p>
+## 1 Aggravated.assault                      2.51    1.20  
+## 2 Burglary                                4.33    1.67  
+## 3 Larceny.theft                          17.2     4.95  
+## 4 Legacy.rape                           NaN      NA     
+## 5 Motor.vehicle.theft                     2.32    1.20  
+## 6 Murder.and.nonnegligent.Manslaughter    0.0553  0.0369
+## 7 Rape                                    0.453   0.169 
+## 8 Robbery                                 0.844   0.580</code></pre>
 </section>
 
   <!--

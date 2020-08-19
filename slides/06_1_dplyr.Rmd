@@ -9,7 +9,7 @@ output:
     theme: ribbon
 ---
 ```{r, include=FALSE}
-knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message=FALSE)
 ```
 
 ## Data Science in R: the `tidyverse` 
@@ -18,10 +18,10 @@ knitr::opts_chunk$set(warning = FALSE)
 
 
 ## Outline
-
-- elements of data management: filtering, sorting, and aggregations
+- `tidyverse`
+- `dplyr` for data management: filtering, sorting, and aggregations
 - the pipe operator `%>%`
-- examples
+<!-- - examples -->
 
 ## `tidyverse`
 
@@ -31,11 +31,11 @@ knitr::opts_chunk$set(warning = FALSE)
 - share common data representations and API, i.e. work well together
 - see https://github.com/hadley/tidyverse for more information
 
-Producing Summaries:
-
-- numerical summaries - elements of `dplyr`
-- graphical summaries - visualizations with `ggplot2`
-
+## `dplyr`
+- `dplyr` is a database-like package for operating and performing calculation on data frames. 
+- produce numerical summaries
+- join data frames and combine information from different sources
+- convenient and neat syntax
 
 ## `dplyr` 
 
@@ -44,55 +44,21 @@ There are a couple of primary `dplyr` *verbs*, representing distinct data analys
 - `select`: Select particular columns of a data frame
 - `filter`: Select specified rows of a data frame, produce subsets
 - `mutate`: Add new or change existing columns of the data frame (as functions of existing columns)
-- `arrange`: Reorder the rows of a data frame
-- `summarize`: Create collapsed summaries of a data frame
-- `group_by`: Introduce structure to a data frame
 
 ## Common structure
 
-All functions of the tidyverse have `data` as their first element
+Functions in `tidyverse` have `data` as their first element
 
 
-`ggplot(data=fbi, aes(x = Year, y = Count)) + geom_point()`
+`ggplot(fbi, aes(x = Year, y = Count)) + geom_point()`
 
 
 `filter(fbi, Year>=2017 & State=="Iowa")`
 
 
-**Caution**: non-standard evaluation is used to refer to columns in `dplyr` and many other functions in `tidyverse`! `$` is not used to refer to a column.
+<!-- **Caution**: non-standard evaluation is used to refer to columns in `dplyr` and many other functions in `tidyverse`! `$` is not used to refer to a column. -->
 
-## `select`
-
-Select specific columns/variables of a data frame (vertical selection):
-
-```{r, message=FALSE}
-library(classdata)
-library(dplyr)
-dat <- select(fbi, Type, Count, State, Year)
-head(dat)
-# All same as dat except for column order
-dat1 <- select(fbi, -Abb, -Violent.crime, -Population)
-dat2 <- select(fbi, c(1, 3, 5:6))
-dat3 <- select(fbi, c(-2, -4, -7))
-```
-
-## `filter`
-
-select a subset of the rows/observations (horizontal selection):
-
-```{r, message=FALSE}
-dat <- filter(fbi, Type=="Burglary" & Year==2014)
-head(dat)
-```
-
-## `mutate`
-
-Introduce a new variable into a data set or transform/update an old variable:
-
-```{r}
-head(mutate(fbi, Rate = Count/Population*66000))
-```
-
+## R demo...
 
 ## Your turn: select, filter, and mutate {.white}
 
@@ -110,12 +76,10 @@ head(mutate(fbi, Rate = Count/Population*66000))
 
 ## The pipe operator `%>%`
 
-Read `%>%` as "then do":
+`lhs %>% f` means using `lhs` as the first argument in the next function. Read `%>%` as "then do":
 
 - `x %>% g` is equivalent to `g(x)`,
 - `x %>% g(y)` is equivalent to `g(x, y)`
-
-i.e. the output of one function is used as the first argument in the next function. 
 
 Consequences:
 
@@ -123,6 +87,69 @@ Consequences:
 - complex statement `k(h(g(f(x, y), z), u), v, w)` can be written as 
 `x %>% f(y) %>% g(z) %>% h(u) %>% k(v, w)`
 
+## R demo...
+
+## Your turn: `%>%` {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">Repeat the last your turn, but now using the pipe `%>%`: </span>
+
+<span style="color:white">
+<img src="images/green.png" width=20> 1. Create a data frame containing the state abbreviation, year, population, crime type, and crime count. 2. Include data in 2017 for all states except for Iowa. 3. Introduce a column which is the number of crimes per thousand residence into the previous data frame. 4. Lastly, drop the population and crime count columns. </br>
+<img src="images/blue.png" width=20> What is the population of each state in 2017? Remove redundant information. Check out `?distinct`. </span>
+
+## More `dplyr` **verbs**
+
+- `arrange`: Reorder the rows of a data frame
+- `summarize`: Create collapsed summaries of a data frame
+- `group_by`: Do something for each group level
+
+## R demo...
+
+## Your turn: summarize, group_by, and arrange. {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">
+<img src="images/green.png" width=20> Find the crime rate for each year and each type of crime. </br>
+<img src="images/green.png" width=20> Arrange your finding by the crime rate from high to low.</br>
+<img src="images/blue.png" width=20> Look at just burglary. How does the crime rate compare with the all-time high within each state? </span>
+
+## Usage Summaries {.shout}
+
+
+## `select`
+
+Take out specific columns/variables of a data frame:
+
+```{r, message=FALSE}
+library(classdata)
+library(dplyr)
+dat <- select(fbi, Type, Count, State, Year)
+head(dat)
+# All same as dat except for column order
+dat1 <- select(fbi, -Abb, -Violent.crime, -Population)
+dat2 <- select(fbi, c(1, 3, 5:6))
+dat3 <- select(fbi, c(-2, -4, -7))
+```
+
+## `filter`
+
+Take out a subset of the rows/observations:
+
+```{r, message=FALSE}
+dat <- filter(fbi, Type=="Burglary" & Year==2014)
+head(dat)
+```
+
+## `mutate`
+
+Introduce a new variable into a data set or transform/update an old variable:
+
+```{r}
+head(mutate(fbi, Rate = Count/Population*1000))
+```
 
 ## Using the pipe `%>%`
 
@@ -139,16 +166,6 @@ fbi %>%
   ggplot(aes(x = Year, y = Count)) + 
     geom_point()
 ```
-
-## Your turn: `%>%` {.white}
-
-<img class="cover" src="images/blue.jpeg" alt="" width=2000>
-
-<span style="color:white">Repeat the last your turn, but now using the pipe `%>%`: </span>
-
-<span style="color:white">
-<img src="images/green.png" width=20> 1. Create a data frame containing the state abbreviation, year, population, crime type, and crime count. 2. Include data in 2017 for all states except for Iowa. 3. Introduce a column which is the number of crimes per thousand residence into the previous data frame. 4. Lastly, drop the population and crime count columns. </br>
-<img src="images/blue.png" width=20> What is the population of each state in 2017? Remove redundant information. Check out `?distinct`. </span>
 
 ## `arrange`
 
@@ -168,8 +185,8 @@ summarize (or aggregates) observations into a (set of) one-number statistic(s):
 
 ```{r}
 summarize(fbi, 
-  mean_rate = mean(Count/Population*66000, na.rm=TRUE), 
-  sd_rate = sd(Count/Population*66000, na.rm = TRUE))
+  mean_rate = mean(Count/Population*1000, na.rm=TRUE), 
+  sd_rate = sd(Count/Population*1000, na.rm = TRUE))
 ```
 
 
@@ -179,15 +196,6 @@ summarize(fbi,
 fbi2017 <- fbi %>% filter(Year == 2017)
 fbi2017 %>%
     group_by(Type) %>%
-    summarize(mean_rate = mean(Count/Population*66000, na.rm=TRUE), 
-              sd_rate = sd(Count/Population*66000, na.rm = TRUE))
+    summarize(mean_rate = mean(Count/Population*1000, na.rm=TRUE), 
+              sd_rate = sd(Count/Population*1000, na.rm = TRUE))
 ```
-
-## Your turn: summarize, group_by, and arrange. {.white}
-
-<img class="cover" src="images/blue.jpeg" alt="" width=2000>
-
-<span style="color:white">
-<img src="images/green.png" width=20> Find the crime rate for each year and each type of crime. </br>
-<img src="images/green.png" width=20> Arrange your finding by the crime rate from high to low.</br>
-<img src="images/blue.png" width=20> Look at just burglary. How does the crime rate compare with the all-time high within each state? </span>

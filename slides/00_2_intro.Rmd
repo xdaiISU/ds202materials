@@ -144,7 +144,7 @@ Have a look at:
 
 ## Syllabus
 
-The full syllabus is [here](https://xdaiisu.github.io/ds202materials/syllabus/syllabus.pdf). It can also be found on Canvas.
+The full syllabus can be found on Canvas.
 
 
 <!-- ## An example of Exploratory Data Analysis: mind the gap! -->
