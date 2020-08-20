@@ -121,8 +121,8 @@ dat5 <- fbi
 # Space does not matter for R.
 dat6 <- fbi %>% filter(
   State == 
-                         'Iowa' &
-                         Year == 2017)
+    'Iowa' &
+    Year == 2017)
 
 # Your turn
 
@@ -202,8 +202,8 @@ b %>% ungroup %>% summarize(worst=max(max_rate))
 # First 4 Slides
 # 50'
 # Load data
-library(readxl)
-defense <- read_excel('../_slides/03_tidyverse/cyclonesFootball2019.xlsx', sheet='Defensive')
+library(readxl) # install.packages('readxl')
+defense <- read_excel('../_slides/cyclonesFootball2019.xlsx', sheet='Defensive') # Change path for yourself
 str(defense)
 
 # Clean
@@ -214,22 +214,18 @@ defense <- defense %>%
          Tackles_ASST = as.numeric(Tackles_ASST)) 
 str(defense)
 
-# a <- defense %>% 
-#  mutate_at(vars(-Name, -Opponent_Opponent), as.numeric)
-
-# rename(NewName=OldName)
 # More cleaning
 defense <- defense %>% 
   rename(Opponent=Opponent_Opponent) %>% 
   mutate(Opponent = factor(Opponent))
 
-lvls <- as.character(sort(unique(defense$Opponent)))
-lvls <- c('UNI', lvls[lvls != 'UNI'])
 defense <- defense %>% 
-  mutate(Opponent = factor(Opponent, lvls))
+  select(Name, Opponent, Tackles_Solo) %>% 
+  filter(!Opponent %in% c('Iowa', 'UNI', 'Notre Dame'))
 
 
 # tackle solo
+defense %>% ggplot(aes(x = Tackles_Solo)) + geom_histogram()
 defense %>% ggplot(aes(x = Tackles_Solo)) + geom_histogram(binwidth = 1)
 
 #  Total number of tackles
@@ -245,13 +241,13 @@ defense %>%
 soloPerGame <- defense %>% 
   group_by(Opponent) %>% 
   summarize(solo = sum(Tackles_Solo))
+
 ggplot(soloPerGame, aes(x=Opponent, weight=solo)) + geom_bar() + coord_flip()
 
 # n(): gives the total number of rows
 # Counting players appeared in each game
 defense %>% 
   group_by(Opponent) %>% 
-  summarize(nPlayers = n(), solo = sum(Tackles_Solo)) %>% 
-  str
+  summarize(nPlayers = n(), solo = sum(Tackles_Solo))
 
 # Your turn

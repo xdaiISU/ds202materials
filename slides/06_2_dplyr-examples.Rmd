@@ -12,22 +12,21 @@ output:
 knitr::opts_chunk$set(warning=FALSE)
 ```
 
-## { .white }
+## <span style="color:white"> Cyclone Football</span> { .shout .black }
 
 <link href="https://cdn.theme.iastate.edu/nimbus-sans/css/nimbus-sans.css" rel="stylesheet">
-<img class="cover" src="https://images.sidearmsports.com/sidearm.sites/isuni.sidearmsports.com/images/logo_top.png" alt="Iowa State" width=100%>
+<img class="cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Iowa_State_Cyclones_logo.svg/640px-Iowa_State_Cyclones_logo.svg.png" alt="Iowa State" width=100%>
 <p style="font-size:100px" font-weight=bold align=center font-family=nimbus-sans-bold>
-Cyclone </br> Football 
 </p>
 
 ## Outline
 
-- cleaning the 2019 Cyclone football data
-- working with `group_by` and `summarize`
+- Case study: Analyzing 2019 Cyclone football data with `dplyr`
+- working with `dplyr` verbs
 
 ## The 2019 Cyclone football data
 
-- [Iowa State University Athelete](https://cyclones.com/index.aspx) hosts some statistics for the Cyclone football team for the last season [here](https://cyclones.com/cumestats.aspx?path=football). 
+- Iowa State University Athelete hosts some statistics for the Cyclone football team for the last season [here](https://cyclones.com/cumestats.aspx?path=football). 
 - When using dataset on the internet, always check whether you have the permission to do so!
 - An excerpt of the individual player data is available from our course website. Dowload the [excel file](cyclonesFootball2019.xlsx) and put the file next to your Rmd file. Look at what does the file contain. 
 
@@ -42,11 +41,29 @@ str(defense)
 
 <!-- You can find a codebook with explanations for each of the variables at https://gssdataexplorer.norc.org/ -->
 
-## Your turn: What is in the dataset? {.white}
+<!-- ## Your turn: What is in the dataset? {.white} -->
+
+<!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
+
+<!-- <span style="color:white">For this your turn import the "Defensive" sheet from  `cyclonesFootball2019.xlsx` into R and name the data frame `defense`. What does each column stand for? </span> -->
+
+## R demo...
+
+
+## Your turn: group_by and summarize {.white}
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
-<span style="color:white">For this your turn import the "Defensive" sheet from  `cyclonesFootball2019.xlsx` into R and name the data frame `defense`. What does each column stand for? </span>
+<span style="color:white">For this your turn use the `defense` data from the `cyclonesFootball2019.xlsx` </span>
+
+<span style="color:white">
+<img src="images/green.png" width=20> What is the total number of tackle assists per game?</br>
+<img src="images/green.png" width=20> Which two ISU players have the highest average number of tackle assists? </br>
+<img src="images/green.png" width=20> Is our defense more successful against U of Iowa or TCU? Filter data first and compare total number of solo tackles. </br>
+<img src="images/green.png" width=20> What is the relationship between the ability of solo tackles and tackles assists? </br>
+<img src="images/green.png" width=20> Find a plot that shows the differences for each one of the above summaries.</br>
+
+## Brief Summaries {.shout}
 
 ## Cleaning up `defense`
 
@@ -119,22 +136,10 @@ defense %>%
   str
 ```
 
-## Your turn: group_by and summarize {.white}
 
-<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+<!-- ## Your turn: asking questions {.white} -->
 
-<span style="color:white">For this your turn use the `defense` data from the `cyclonesFootball2019.xlsx` </span>
-
-<span style="color:white">
-<img src="images/green.png" width=20> What is the total number of tackle assists per game?</br>
-<img src="images/green.png" width=20> Which two ISU players have the highest average number of tackle assists? </br>
-<img src="images/green.png" width=20> Is our defense more successful against U of Iowa or TCU? Filter data first and compare total number of solo tackles. </br>
-<img src="images/green.png" width=20> What is the relationship between the ability of solo tackles and tackles assists? </br>
-<img src="images/green.png" width=20> Find a plot that shows the differences for each one of the above summaries.</br>
-
-## Your turn: asking questions {.white}
-
-<img class="cover" src="images/blue.jpeg" alt="" width=2000>
-<span style="color:white">
-<img src="images/blue.png" width=20> What else can be answered from this data?</span>
+<!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
+<!-- <span style="color:white"> -->
+<!-- <img src="images/blue.png" width=20> What else can be answered from this data?</span> -->
 
