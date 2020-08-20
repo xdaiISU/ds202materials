@@ -1,0 +1,98 @@
+---
+title: "DS 202 - lab #3: Exploring General Social Survey"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Outline
+
+- Work in assigned pairs, as in Lab 2
+- Create a repository (one per team) & give access to your teammate
+- For a refreshment of git & github, review the procedures for collaboration for Lab 2.
+- Explore what leads to happiness using data from the General Social Survey
+- Create an R markdown file that contains all code to read the data, create the plots, and your answers.
+- Teammates will review and revise each other's work.
+- Submit!
+
+
+## Submission Requirements
+
+- A team member should create a GitHub repository called `ds202_lab3` which includes the group work.
+- Each team member should create at least one commit with message "Review and Revision".
+- The team will collaborate on `team.Rmd` to answer all the questions, which will be graded. Also include your individual exploration in either `individual1.Rmd` or `individual2.Rmd`.
+- Also include the data you used, extracted from the General Social Survey website.
+- The correct folder structure is as below. The folder `ds202_lab3` is a git repository.
+
+    ```
+    ds202_lab3
+    |-- individual1.Rmd
+    |-- individual2.Rmd
+    |-- team.Rmd
+    |-- *.html
+    |-- Data files...
+    ```
+
+## Background
+
+The General Social Survey (GSS) has been run by NORC since 1972 to keep track of current opinions across the United States. 
+
+There is a data explorer which let you to interactively explore and extract the data here https://gssdataexplorer.norc.org/
+
+## Part zero: Exploring the GSS data
+
+You can search for information you are interested in under in Keyword search box. Try "happiness". If you do not find desired result, click the dropdown arrow, and select "All" to search in all avaiable information, not just the variable names. We will focus on variables that have a long span of availablility over the years. Discuss interesting findings in your study group.
+
+We will be exploring variables related to 
+
+- **Happiness**
+- **Family (marital status)**
+- **Education**
+- **Political affilation**
+- Many other possible topics, such as Work (hours) and Belief -- it is up to you
+
+## Part one: Extracting and loading data
+
+1. Go to https://gssdataexplorer.norc.org/
+2. Click Search variable
+3. Search "happy"; click add to cart; go back. Repeat for "marital status", "educ", "respondent sex", "political party affiliation", and other variables (you decide)
+4. After you finished adding the variables, click Actions -- Save to Project
+5. Register an account
+6. Click Default Project
+7. Click Actions -- Extract data
+8.  a. Name your extract (e.g. `extract1`) -- click NEXT; 
+    b. ADD ALL variables -- click NEXT; 
+    c. click NEXT; 
+    d. **Check Excel Workbook (data + metadata), and leave all others unchecked**; 
+    e. CREATE EXTRACT
+9. Wait for the extract to be ready, and then download an archive file. 
+10. Extract the archive file (ending with .tar.gz). Windows users: You may need [7-Zip](https://www.7-zip.org/)
+11. Load the Excel file into R, using 
+  ```
+  install.packages('readxl')
+  dat <- readxl::read_xls('PATH_TO_EXL/GSS.xls')
+  ```
+
+## Part two: Exploration
+
+Use `ggplot2` to create the plots, and `dplyr` to manipulate the data frame as much as possible.  You may want to rename the columns of the data frame for your convenience using `rename` in `dplyr`.
+
+1. Find the average years of education for the respondents with each political party affiliation. Arrange your output in a meaningful order. Describe any pattern you find.
+2. Create a single data frame containing records for the better educated respondents in each political party affiliation. A "better educated" respondent is someone who has more years of education than the median within the same party affiliation. Print the structure of the data frame.
+
+  For each investigation below, create at least one appropriate visualization. Write a paragraph to describe your findings and the variables you used.
+
+3. How is the happiness of a respondent related to his/her marriage status?
+4. Does party affiliation affect the relationship you found in the last question?
+5. How is marrital status related to the education of a respondent? What are possible reasons accounting for the patterns you see?
+6. Explore two more interesting questions, and answer those questions using the GSS data. 
+
+The team's exploration will be evaluated according to the  general interest and the depth of the exploration.
+
+## Tips and Resources 
+- Decide a common version of the dataset to work on
+- Take a look at the [key trends](https://gssdataexplorer.norc.org/trends) to find interesting questions to explore. 
+<!-- - The package `classdata` also contains a small extraction of the opinion data, called `happy`. You can play around with it to familiarize yourself with the structure of the data. However, *since this is an incomplete collection, your final answer must be based on the data extracted from the data explorer.*  -->
+
