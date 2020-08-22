@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Flight data
 
-The `nycflights13` package contains information regarding the flights that departed New York City in 2013. Use `help(package='nycflights13')` to see what datasets does the package contain, and read the documentations to get a better idea what are the datasets abouts. In this homework, we are going to focus on the `airports`, `flights`, and `weather` datasets.
+The `nycflights13` package contains information regarding the flights that departed New York City in 2013. Use `help(package='nycflights13')` to see what datasets does the package contain, and read the documentations to get a better idea what are the datasets abouts. In this homework, we are going to focus on the `airports`, `flights`, and `weather` datasets. Optional: More information about this dataset and joins can be found in the optional reading of this module.
 
 For all of the questions, use `dplyr` functions, joins, and the pipe `%>%` as much as possible.
 
