@@ -1,0 +1,218 @@
+---
+title: "DS 202 - Web Scraping"
+author: "Xiongtao Dai"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+```{r setup, include=FALSE, message=FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Web Scraping with R {.shout}
+
+## Outline
+- Lists in R
+- html format
+- scraping html
+
+## Lists {.shout}
+
+
+## Lists
+
+- are most general form of vectors in R
+```{r}
+l <- list(1:2, c('ha', 'ma', 'da'))
+l
+```
+- `[` accesses sub lists
+```{r}
+l[2] # `[ ]` extract a sublist
+```
+
+## Lists (cont)
+- `[[` accesses elements
+```{r}
+l[[2]] # `[[ ]]` extract an element
+```
+
+
+## List operations...
+<img src="images/listSalt.png" width="100%" alt="">
+
+## R demo...
+
+
+## handling html {.shout}
+
+
+## html
+
+- html stands for Hyper Text Markup Language
+- A raw html file is a pure text file -- similar to Rmd. A web browser knows how to display an html file.
+- An HTML page consists of HTML elements
+- HTML elements are described by tags (e.g. `<h1>`, `<div>`, `<a>`, etc)
+<!-- - A great html tutorial: [w3schools](https://www.w3schools.com/html/default.asp) -->
+
+
+## The `rvest` package
+
+`rvest`: A package for making web scraping simpler.
+
+We want to crawl top demostic movie info from https://www.the-numbers.com/box-office-chart/weekend/2020/03/13 before the COVID-19 freeze. `read_html` gets *all* the information from a URL
+
+```{r warning = FALSE, message = FALSE}
+library(rvest)
+url <- "https://www.the-numbers.com/box-office-chart/weekend/2020/03/13"
+html <- read_html(url)
+html
+```
+
+## Get a *table* from an online source
+
+`html_table` extracts all tables from the sourced html into a list of data frames:
+
+```{r}
+tables <- html %>% html_table(fill=TRUE)
+length(tables)
+class(tables)
+```
+
+## Contents of a list
+```{r}
+str(tables)
+```
+
+## Contents of a list (cont)
+```{r}
+head(tables[[2]])
+```
+
+##
+
+Most tables need a bit of clean-up:
+
+```{r}
+names(tables[[2]])[1:2] <- c("Rank", "Rank.Last.Week")
+box <- tables[[2]] %>% mutate(
+  Gross = parse_number(Gross),
+  Thr = parse_number(Thr)
+)
+str(box)
+```
+
+## Your Turn (5 mins) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at https://www.the-numbers.com/box-office-chart/weekend/2020/03/13
+</span>
+
+<span style="color:white">
+<img src="images/green.png" width=20> Pick the week that you were last in the cinema. Use `rvest` to download the box office gross in that week.
+</br>
+<img src="images/green.png" width=20> Clean up the data. Remove rows not corresponding to movies, and name all the variables (numbers should be numbers).
+</br>
+</span>
+
+## Your Turn (5 Minutes)  {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+<span style="color:white">
+Now, scrape information from the [One World: Together at Home](https://en.wikipedia.org/wiki/Together_at_Home) wiki page.
+</span>
+
+
+<span style="color:white">
+<img src="images/blue.png" width=20> Obtain a data frame containing the artists/groups, songs performed, and location for the global television broadcast. 
+</br>
+<img src="images/blue.png" width=20> Obtain the same information for the six-hour pre-concert streamed online. Combine with the data frame obtained before, and add a column indicating whether the performance is  for the global television broadcast. 
+</br>
+<img src="images/black.png" width=20> Data wrangling: Now transform the combined data so that each artist occupy one row (rather than each group of artists). Hint: use `tidyr::separate`
+</br>
+</span>
+
+
+## Scraping elements from html {.shout}
+
+
+## Beyond tables
+
+Sometimes data on the web is not structured as nicely ... e.g. let's assume we want to get a list of all recently active baseball players from [Baseball reference](http://www.baseball-reference.com/players/)
+
+<img src="images/baseball-reference.png" height=400>
+
+## SelectorGadget
+
+- SelectorGadget is a javascript bookmarklet to determine the css selectors of pieces of a website we want to extract.
+- Read up on the [SelectorGadget](http://selectorgadget.com/) link: install it for your machine by bookmarking the [second last link](javascript:(function(){var%20s=document.createElement('div');s.innerHTML='Loading...';s.style.color='black';s.style.padding='20px';s.style.position='fixed';s.style.zIndex='9999';s.style.fontSize='3.0em';s.style.border='2px%20solid%20black';s.style.right='40px';s.style.top='40px';s.setAttribute('class','selector_gadget_loading');s.style.background='white';document.body.appendChild(s);s=document.createElement('script');s.setAttribute('type','text/javascript');s.setAttribute('src','https://dv0akt2986vzh.cloudfront.net/unstable/lib/selectorgadget.js');document.body.appendChild(s);})();) (or installing the Chrome extension). Then click on the bookmark to use it.
+- When SelectorGadget is active, pieces of the website are highlighted in orange/green/red.
+- Use SelectorGadget on http://www.baseball-reference.com/players/a/ .
+- read more details on `vignette("selectorgadget")`
+
+## SelectorGadget Result
+
+```{r}
+url <- "http://www.baseball-reference.com/players/a/"
+html <- read_html(url)
+html %>% html_nodes("#div_players_ a") %>% head()
+```
+
+## Extract contents
+
+We want to get access to pieces of the links. `<tagName attrName=attrContent>Text Contents</tagName>`
+
+
+- `html_text` allows us to get text out, 
+- `html_attr` let us access an attribute of a html node, 
+- `html_attrs` extracts all attributes of an html node:
+
+
+```{r}
+html %>% html_nodes("#div_players_ a") %>% html_text() %>% head()
+html %>% html_nodes("#div_players_ a") %>% html_attr(name="href") %>% head()
+```
+
+
+
+
+## Your Turn (5 Minutes)  {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+<span style="color:white">
+Use the SelectorGadget on the website for [David Aardsma](http://www.baseball-reference.com/players/a/aardsda01.shtml)
+</span>
+
+<span style="color:white">
+<img src="images/blue.png" width=20> Find the css description to extract his career statistics and load them into your R session. Hint: Extract the column names (the row above that starting with CAREER), and then the numbers. 
+</br>
+<img src="images/blue.png" width=20> Does the same code work to extract career statistics for (some of) the other players?
+</br>
+<!-- <img src="images/blue.png" width=20>  -->
+<!-- What other information do we need to know? - and how can we get to that? -->
+<!-- </br> -->
+</span>
+
+## Your Turn  - Solution
+
+```{r}
+url <- "http://www.baseball-reference.com/players/a/aardsda01.shtml"
+html <- read_html(url)
+# good first start, but not good for further processing
+html %>% html_nodes(".stats_pullout")
+```
+
+## Your Turn  - Solution (2)
+
+```{r}
+# better: pull out individual vectors
+html %>% html_nodes("h4") %>% html_text()
+html %>% html_nodes(".stats_pullout p") %>% html_text() 
+```
+
+

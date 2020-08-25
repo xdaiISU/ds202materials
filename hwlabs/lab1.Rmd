@@ -33,7 +33,7 @@ So far, you have a local Git repo (sitting on your laptop/desktop) containing yo
 
 ### Pushing Homework to a Remote Repository
 
-**Step 1, create a remote repository on Github**. Follow along with your instructor and perform these steps:
+**Step 1, create a remote repository on Github**. Follow along the instructions below and perform these steps:
 
 1. Log in your account on [Github](https://github.com)
 2. Create a new Github repository, click <span style="background:limegreen; color:white">New</span> button.

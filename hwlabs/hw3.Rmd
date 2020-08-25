@@ -10,11 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Tips at Restaurants
 
-In this homework we will use the `tips` data set. This data set is part of the `reshape2` package. You can load the data set by executing the command:
+In this homework we will use the `tips` data set. The dataset contains tip information and is collected by one waiter, who recorded each tip he received while working in one restaurant over the course of a season. This data set is part of the `reshape2` package. You can load the data set by executing the command:
 ```{r}
 data(tips, package="reshape2")
 ```
-If you do not have available the package `reshape2`, issue `install.packages('reshape2')` to install. The information contained in the data is collected by one waiter, who recorded over the course of a season information about each tip he received working in one restaurant. See `?tips` for a description of all of the variables. 
+If you do not have available the package `reshape2`, issue `install.packages('reshape2')` to install. See `?tips` for a description of all of the variables. 
 
 Include at least one `ggplot` visualization in each of your answer, and describe what you find.
 <!-- **Submission instructions**: Create a folder named `ds202_hw3`, and name the RMarkDown file `hw3.Rmd`  which should include your solutions under this folder. For submission, create a GitHub repository named `ds202_hw3` under your GitHub account, and push both `hw3.Rmd` and the knitted `hw3.html` before the deadline. I will assume you use the same GitHub username as for your HW2 submission. The latest version of your homework appearing on GitHub before the deadline is graded. *It is crucial to follow the exact folder structure and file names*, so that your homework can be reproduced and graded by an automated script. This homework is **due on Feb 19** before class. -->

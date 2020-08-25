@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202 - Web Scraping 2</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="10_2_purrr_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="10_2_purrr_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="10_2_purrr_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="10_2_purrr_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="10_2_purrr_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+    <style type="text/css">
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
+   div.sourceCode { margin: 1em 0; }
+   pre.sourceCode { margin: 0; }
+   @media screen {
+   div.sourceCode { overflow: auto; }
+   }
+   @media print {
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+   }
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
+       position: relative; left: -1em; text-align: right; vertical-align: baseline;
+       border: none; display: inline-block;
+       -webkit-touch-callout: none; -webkit-user-select: none;
+       -khtml-user-select: none; -moz-user-select: none;
+       -ms-user-select: none; user-select: none;
+       padding: 0 4px; width: 4em;
+       color: #aaaaaa;
+     }
+   pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+   div.sourceCode
+     {   }
+   @media screen {
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+   }
+   code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code span.at { color: #7d9029; } /* Attribute */
+   code span.bn { color: #40a070; } /* BaseN */
+   code span.bu { } /* BuiltIn */
+   code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code span.ch { color: #4070a0; } /* Char */
+   code span.cn { color: #880000; } /* Constant */
+   code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code span.dt { color: #902000; } /* DataType */
+   code span.dv { color: #40a070; } /* DecVal */
+   code span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code span.ex { } /* Extension */
+   code span.fl { color: #40a070; } /* Float */
+   code span.fu { color: #06287e; } /* Function */
+   code span.im { } /* Import */
+   code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code span.op { color: #666666; } /* Operator */
+   code span.ot { color: #007020; } /* Other */
+   code span.pp { color: #bc7a00; } /* Preprocessor */
+   code span.sc { color: #4070a0; } /* SpecialChar */
+   code span.ss { color: #bb6688; } /* SpecialString */
+   code span.st { color: #4070a0; } /* String */
+   code span.va { color: #19177c; } /* Variable */
+   code span.vs { color: #4070a0; } /* VerbatimString */
+   code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  
+  
+      <script src="10_2_purrr_files/header-attrs-2.3/header-attrs.js"></script>
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202 - Web Scraping 2</h1>
+    <p>Xiongtao Dai</p>
+  </header>
+
+  
+  
+<section id="web-scraping-with-r" class="slide level2 shout">
+<h2 class="shout">Web Scraping with R</h2>
+</section>
+<section id="automating-the-process" class="slide level2">
+<h2>Automating the process</h2>
+<ul>
+<li>functions in R</li>
+<li>loops in R</li>
+</ul>
+</section>
+<section id="functions-in-r" class="slide level2">
+<h2>Functions in R</h2>
+<ul>
+<li>Have been using functions a lot, now we want to write them ourselves!</li>
+<li>Idea: avoid repetitive coding (errors will creep in)</li>
+<li>Instead: extract common core, wrap it in a function, make it reusable</li>
+</ul>
+</section>
+<section id="structure-of-functions" class="slide level2">
+<h2>Structure of functions</h2>
+<ul>
+<li>Function name</li>
+<li>Input arguments
+<ul>
+<li>names,</li>
+<li>default values</li>
+</ul></li>
+<li>Body</li>
+<li>Output values</li>
+</ul>
+</section>
+<section id="a-first-function" class="slide level2">
+<h2>A first function</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>mymean &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">return</span>(<span class="kw">sum</span>(x)<span class="op">/</span><span class="kw">length</span>(x))</span>
+<span id="cb1-3"><a href="#cb1-3"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">mymean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">mymean</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="ot">NA</span>))</span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+</section>
+<section id="a-first-function-2" class="slide level2">
+<h2>A first function (2)</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>mymean &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">na.rm=</span><span class="ot">FALSE</span>) {</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="cf">if</span> (na.rm) {</span>
+<span id="cb6-3"><a href="#cb6-3"></a>      x &lt;-<span class="st"> </span><span class="kw">na.omit</span>(x)</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    }</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="kw">return</span>(<span class="kw">sum</span>(x)<span class="op">/</span><span class="kw">length</span>(x))</span>
+<span id="cb6-6"><a href="#cb6-6"></a>}</span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="kw">mymean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">mymean</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="ot">NA</span>), <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+</section>
+<section id="your-turn" class="slide level2 white">
+<h2 class="white">Your Turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at <a href="https://www.the-numbers.com/box-office-chart/weekend/2020/03/13" class="uri">https://www.the-numbers.com/box-office-chart/weekend/2020/03/13</a> </span></p>
+<p><span style="color:white"> <img src="images/green.png" width=20> Use <code>rvest</code> to download the box office gross in that week. </br> <img src="images/blue.png" width=20> Write a function that uses the url as input argument, scrapes the data, cleans it up, and returns the cleaned data. </span></p>
+</section>
+<section id="your-turn---solution" class="slide level2">
+<h2>Your turn - solution</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">library</span>(rvest)</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a>url &lt;-<span class="st"> &quot;https://www.the-numbers.com/box-office-chart/weekend/2020/03/13&quot;</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a>boxoffice_scraper &lt;-<span class="st"> </span><span class="cf">function</span>(url) {</span>
+<span id="cb10-7"><a href="#cb10-7"></a>  html &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)</span>
+<span id="cb10-8"><a href="#cb10-8"></a>  tables &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_table</span>()</span>
+<span id="cb10-9"><a href="#cb10-9"></a>  box &lt;-<span class="st"> </span>tables[[<span class="dv">2</span>]]</span>
+<span id="cb10-10"><a href="#cb10-10"></a>  <span class="kw">names</span>(box)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Rank&quot;</span>, <span class="st">&quot;Rank.Last.Week&quot;</span>)</span>
+<span id="cb10-11"><a href="#cb10-11"></a>  box &lt;-<span class="st"> </span>box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</span>
+<span id="cb10-12"><a href="#cb10-12"></a>    <span class="dt">Gross =</span> <span class="kw">parse_number</span>(Gross),</span>
+<span id="cb10-13"><a href="#cb10-13"></a>    <span class="dt">Thr =</span> <span class="kw">parse_number</span>(Thr)</span>
+<span id="cb10-14"><a href="#cb10-14"></a>  )</span>
+<span id="cb10-15"><a href="#cb10-15"></a>  box  </span>
+<span id="cb10-16"><a href="#cb10-16"></a>}</span></code></pre></div>
+</section>
+<section id="now-try-it-out" class="slide level2">
+<h2>Now try it out</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>box &lt;-<span class="st"> </span><span class="kw">boxoffice_scraper</span>(<span class="st">&quot;https://www.the-numbers.com/box-office-chart/weekend/2020/03/13&quot;</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">head</span>(box)</span></code></pre></div>
+<pre><code>##   Rank Rank.Last.Week              Movie       Distr    Gross  %LW  Thr ThrChng
+## 1    1            (1)             Onward Walt Disney 10601952 -73% 4310     n/c
+## 2    2              N          Bloodshot  Sony Pict…  9176695      2861        
+## 3    3              N    I Still Believe   Lionsgate  9103614      3250        
+## 4    4            (2)  The Invisible Man   Universal  5890805 -61% 3636     +26
+## 5    5              N           The Hunt   Universal  5304455      3028        
+## 6    6            (4) Sonic The Hedgehog  Paramount…  2522584 -67% 3041    -676
+##   PerThr   TotalGross W
+## 1 $2,460  $60,360,639 2
+## 2 $3,208   $9,176,695 1
+## 3 $2,801   $9,103,614 1
+## 4 $1,620  $64,310,490 3
+## 5 $1,752   $5,304,455 1
+## 6   $830 $145,753,912 5</code></pre>
+</section>
+<section id="previous-week-grosses" class="slide level2">
+<h2>Previous week grosses</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>url &lt;-<span class="st"> &quot;https://www.the-numbers.com/box-office-chart/weekend/2020/03/13&quot;</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>html &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.previous a&quot;</span>)</span></code></pre></div>
+<pre><code>## {xml_nodeset (1)}
+## [1] &lt;a href=&quot;/box-office-chart/weekend/2020/03/06&quot;&gt;← Previous Chart&lt;/a&gt;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.previous a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;/box-office-chart/weekend/2020/03/06&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>newurl &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.previous a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>)</span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>newhtml &lt;-<span class="st"> </span><span class="kw">read_html</span>(<span class="kw">paste0</span>(<span class="st">&quot;https://www.the-numbers.com/&quot;</span>, newurl))</span></code></pre></div>
+<p>… could repeatedly use this to scrape all previous week grosses.</p>
+</section>
+<section id="always-scrape-responsibly" class="slide level2 shout">
+<h2 class="shout">Always scrape responsibly!</h2>
+</section>
+<section id="loops-in-r" class="slide level2">
+<h2>Loops in R</h2>
+<p>For-loop:</p>
+<pre><code>for (i in 1:n) {
+  # expression to be run for each i
+  
+}</code></pre>
+<p>but: for-loops sometimes are not the most convenient to write. May have lower efficiency.</p>
+</section>
+<section id="another-example" class="slide level2">
+<h2>Another example</h2>
+<p>Clean up baseball career statistics: <a href="http://www.baseball-reference.com/players/a/aardsda01.shtml" class="uri">http://www.baseball-reference.com/players/a/aardsda01.shtml</a> Write a function that returns a dataset:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>bb_scraper &lt;-<span class="st"> </span><span class="cf">function</span>(url) {</span>
+<span id="cb19-2"><a href="#cb19-2"></a>  html &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)</span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a>  names &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h4&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
+<span id="cb19-5"><a href="#cb19-5"></a>  values &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.stats_pullout p&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>() </span>
+<span id="cb19-6"><a href="#cb19-6"></a>  player &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
+<span id="cb19-7"><a href="#cb19-7"></a>  <span class="kw">data.frame</span>(<span class="dt">player=</span>player, </span>
+<span id="cb19-8"><a href="#cb19-8"></a>             <span class="dt">statistics=</span>names,  <span class="dt">values=</span><span class="kw">parse_number</span>(values))</span>
+<span id="cb19-9"><a href="#cb19-9"></a>}</span></code></pre></div>
+</section>
+<section id="now-try-it-out-1" class="slide level2">
+<h2>Now try it out</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">bb_scraper</span>(<span class="st">&quot;http://www.baseball-reference.com/players/a/aardsda01.shtml&quot;</span>)</span></code></pre></div>
+<pre><code>##                         player statistics  values
+## 1  \n\t\tDavid Aardsma\n\t\t\t    SUMMARY      NA
+## 2  \n\t\tDavid Aardsma\n\t\t\t        WAR   1.800
+## 3  \n\t\tDavid Aardsma\n\t\t\t          W  16.000
+## 4  \n\t\tDavid Aardsma\n\t\t\t          L  18.000
+## 5  \n\t\tDavid Aardsma\n\t\t\t        ERA   4.270
+## 6  \n\t\tDavid Aardsma\n\t\t\t          G 331.000
+## 7  \n\t\tDavid Aardsma\n\t\t\t         GS   0.000
+## 8  \n\t\tDavid Aardsma\n\t\t\t         SV  69.000
+## 9  \n\t\tDavid Aardsma\n\t\t\t         IP 337.000
+## 10 \n\t\tDavid Aardsma\n\t\t\t         SO 340.000
+## 11 \n\t\tDavid Aardsma\n\t\t\t       WHIP   1.421</code></pre>
+</section>
+<section id="purrr-package" class="slide level2">
+<h2><code>purrr</code> package</h2>
+<p>Includes <code>map</code> function, that allows us to run a function on a subgroup or elements of a vector</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>html &lt;-<span class="st"> </span><span class="kw">read_html</span>(<span class="st">&quot;http://www.baseball-reference.com/players/a/&quot;</span>)</span>
+<span id="cb22-2"><a href="#cb22-2"></a>links &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>)</span>
+<span id="cb22-3"><a href="#cb22-3"></a></span>
+<span id="cb22-4"><a href="#cb22-4"></a>bb &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">links =</span> <span class="kw">paste0</span>(<span class="st">&quot;http://www.baseball-reference.com&quot;</span>, links), </span>
+<span id="cb22-5"><a href="#cb22-5"></a>                 <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="co"># get data for the first few players:</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>bb &lt;-<span class="st"> </span><span class="kw">head</span>(bb) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</span>
+<span id="cb22-8"><a href="#cb22-8"></a>  <span class="dt">data =</span> purrr<span class="op">::</span><span class="kw">map</span>(links, <span class="dt">.f =</span> bb_scraper)</span>
+<span id="cb22-9"><a href="#cb22-9"></a>)</span></code></pre></div>
+<p>This makes <code>data</code> a variable consisting of data frames</p>
+</section>
+<section id="unpacking-the-data" class="slide level2">
+<h2>Unpacking the data</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>bb1 &lt;-<span class="st"> </span>bb <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unnest</span>(data)</span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="kw">summary</span>(bb1)</span></code></pre></div>
+<pre><code>##     links                            player            statistics
+##  Length:72          \n\t\tDavid Aardsma\n\t\t\t:11   SUMMARY: 6  
+##  Class :character   \n\t\tHank Aaron\n\t\t\t   :13   WAR    : 6  
+##  Mode  :character   \n\t\tTommie Aaron\n\t\t\t :13   ERA    : 3  
+##                     \n\t\tDon Aase\n\t\t\t     :11   G      : 3  
+##                     \n\t\tAndy Abad\n\t\t\t    :13   GS     : 3  
+##                     \n\t\tFernando Abad\n\t\t\t:11   IP     : 3  
+##                                                      (Other):48  
+##      values         
+##  Min.   :   -8.000  
+##  1st Qu.:    0.571  
+##  Median :   11.000  
+##  Mean   :  425.037  
+##  3rd Qu.:  200.750  
+##  Max.   :12364.000  
+##  NA&#39;s   :6</code></pre>
+</section>
+<section id="your-turn-5-minutes" class="slide level2 white">
+<h2 class="white">Your Turn (5 minutes)</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white">Now get the player names, <strong>position</strong>, and career statistics. </span></p>
+<p><span style="color:white"> <img src="images/blue.png" width=20> Write a function that uses the url of a player detail page as input argument, scrapes the data, cleans it up, and returns the cleaned data. </br> <img src="images/blue.png" width=20> Find the url of the player detail pages of all players with last name starting with B. The list of players is here: <a href="https://www.baseball-reference.com/players/b/" class="uri">https://www.baseball-reference.com/players/b/</a> </br> <img src="images/blue.png" width=20> Apply the function to the first 10 urls obtained using <code>purrr::map</code>. </span></p>
+</section>
+<section id="your-turn-solutions" class="slide level2">
+<h2>Your turn solutions</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>bb_scraper2 &lt;-<span class="st"> </span><span class="cf">function</span>(url) {</span>
+<span id="cb25-2"><a href="#cb25-2"></a>  html &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)</span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a>  names &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h4&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
+<span id="cb25-5"><a href="#cb25-5"></a>  values &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.stats_pullout p&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>() </span>
+<span id="cb25-6"><a href="#cb25-6"></a>  player &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
+<span id="cb25-7"><a href="#cb25-7"></a>  position &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h1+ p&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
+<span id="cb25-8"><a href="#cb25-8"></a>  names &lt;-<span class="st"> </span><span class="kw">trimws</span>(names)</span>
+<span id="cb25-9"><a href="#cb25-9"></a>  player &lt;-<span class="st"> </span><span class="kw">trimws</span>(player)</span>
+<span id="cb25-10"><a href="#cb25-10"></a>  position &lt;-<span class="st"> </span><span class="kw">trimws</span>(position)</span>
+<span id="cb25-11"><a href="#cb25-11"></a>  <span class="kw">data.frame</span>(<span class="dt">player=</span>player, </span>
+<span id="cb25-12"><a href="#cb25-12"></a>             <span class="dt">position=</span>position,</span>
+<span id="cb25-13"><a href="#cb25-13"></a>             <span class="dt">statistics=</span>names,  <span class="dt">values=</span><span class="kw">parse_number</span>(values))</span>
+<span id="cb25-14"><a href="#cb25-14"></a>}</span></code></pre></div>
+</section>
+<section id="your-turn-solutions-cont." class="slide level2">
+<h2>Your turn solutions cont.</h2>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Get all urls</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>html &lt;-<span class="st"> </span><span class="kw">read_html</span>(<span class="st">&quot;http://www.baseball-reference.com/players/b/&quot;</span>)</span>
+<span id="cb26-3"><a href="#cb26-3"></a>links &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>)</span>
+<span id="cb26-4"><a href="#cb26-4"></a></span>
+<span id="cb26-5"><a href="#cb26-5"></a>bb2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">links =</span> <span class="kw">paste0</span>(<span class="st">&quot;http://www.baseball-reference.com&quot;</span>, </span>
+<span id="cb26-6"><a href="#cb26-6"></a>                                 links[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]), </span>
+<span id="cb26-7"><a href="#cb26-7"></a>                 <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb26-8"><a href="#cb26-8"></a></span>
+<span id="cb26-9"><a href="#cb26-9"></a><span class="co"># get data for the first 10 players:</span></span>
+<span id="cb26-10"><a href="#cb26-10"></a>bb2 &lt;-<span class="st"> </span>bb2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</span>
+<span id="cb26-11"><a href="#cb26-11"></a>  <span class="dt">data =</span> purrr<span class="op">::</span><span class="kw">map</span>(links, <span class="dt">.f =</span> bb_scraper2)</span>
+<span id="cb26-12"><a href="#cb26-12"></a>)</span>
+<span id="cb26-13"><a href="#cb26-13"></a>bb2 &lt;-<span class="st"> </span>bb2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unnest</span>(data)</span>
+<span id="cb26-14"><a href="#cb26-14"></a><span class="kw">str</span>(bb2)</span></code></pre></div>
+<pre><code>## tibble [120 × 5] (S3: tbl_df/tbl/data.frame)
+##  $ links     : chr [1:120] &quot;http://www.baseball-reference.com/players/b/babbch01.shtml&quot; &quot;http://www.baseball-reference.com/players/b/babbch01.shtml&quot; &quot;http://www.baseball-reference.com/players/b/babbch01.shtml&quot; &quot;http://www.baseball-reference.com/players/b/babbch01.shtml&quot; ...
+##  $ player    : Factor w/ 10 levels &quot;Charlie Babb&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ position  : Factor w/ 7 levels &quot;Positions:\n    Shortstop, First Baseman and Third Baseman&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ statistics: Factor w/ 22 levels &quot;AB&quot;,&quot;BA&quot;,&quot;H&quot;,..: 12 13 1 3 4 2 8 9 10 5 ...
+##  $ values    : num [1:120] NA 4 1180 287 0 0.243 144 116 66 0.339 ...</code></pre>
+</section>
+<section id="your-turn-1" class="slide level2 white">
+<h2 class="white">Your Turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white">Now, scrape information of the celebrities who appeared in One World: Together at Home. </span></p>
+<p><span style="color:white"> <img src="images/blue.png" width=20> Obtain the wikipedia URLs of the celebrities who appeared. Start from <a href="https://en.wikipedia.org/wiki/Together_at_Home#Appearances">One World: Together at Home</a>. </br> <img src="images/blue.png" width=20> For each of the first 10 celebrity, use SelectorGadget to select all the paragraph contents. </br> <img src="images/blue.png" width=20> Clean the data by removing dubious paragraphs. </span></p>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="10_2_purrr_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>
