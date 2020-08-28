@@ -19,6 +19,7 @@ library(tidyverse)
 - Lists in R
 - html format
 - scraping html
+- selector gadget
 
 ## Lists {.shout}
 
@@ -64,7 +65,13 @@ l[[2]] # `[[ ]]` extract an element
 
 `rvest`: A package for making web scraping simpler.
 
-We want to crawl top demostic movie info from https://www.the-numbers.com/box-office-chart/weekend/2020/03/13 before the COVID-19 freeze. `read_html` gets *all* the information from a URL
+We want to crawl top demostic movie info from https://www.the-numbers.com/box-office-chart/weekend/2020/03/13 before the COVID-19 freeze. 
+
+## R demo...
+
+## Get a *table* from an online source
+
+`read_html` gets *all* the information from a URL
 
 ```{r warning = FALSE, message = FALSE}
 library(rvest)
@@ -72,6 +79,7 @@ url <- "https://www.the-numbers.com/box-office-chart/weekend/2020/03/13"
 html <- read_html(url)
 html
 ```
+
 
 ## Get a *table* from an online source
 
@@ -120,22 +128,22 @@ str(box)
 </br>
 </span>
 
-## Your Turn (5 Minutes)  {.white}
+<!-- ## Your Turn (5 Minutes)  {.white} -->
 
-<img class="cover" src="images/blue.jpeg" alt="" width=2000>
-<span style="color:white">
-Now, scrape information from the [One World: Together at Home](https://en.wikipedia.org/wiki/Together_at_Home) wiki page.
-</span>
+<!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
+<!-- <span style="color:white"> -->
+<!-- Now, scrape information from the [One World: Together at Home](https://en.wikipedia.org/wiki/Together_at_Home) wiki page. -->
+<!-- </span> -->
 
 
-<span style="color:white">
-<img src="images/blue.png" width=20> Obtain a data frame containing the artists/groups, songs performed, and location for the global television broadcast. 
-</br>
-<img src="images/blue.png" width=20> Obtain the same information for the six-hour pre-concert streamed online. Combine with the data frame obtained before, and add a column indicating whether the performance is  for the global television broadcast. 
-</br>
-<img src="images/black.png" width=20> Data wrangling: Now transform the combined data so that each artist occupy one row (rather than each group of artists). Hint: use `tidyr::separate`
-</br>
-</span>
+<!-- <span style="color:white"> -->
+<!-- <img src="images/blue.png" width=20> Obtain a data frame containing the artists/groups, songs performed, and location for the global television broadcast.  -->
+<!-- </br> -->
+<!-- <img src="images/blue.png" width=20> Obtain the same information for the six-hour pre-concert streamed online. Combine with the data frame obtained before, and add a column indicating whether the performance is  for the global television broadcast.  -->
+<!-- </br> -->
+<!-- <img src="images/black.png" width=20> Data wrangling: Now transform the combined data so that each artist occupy one row (rather than each group of artists). Hint: use `tidyr::separate` -->
+<!-- </br> -->
+<!-- </span> -->
 
 
 ## Scraping elements from html {.shout}
@@ -179,6 +187,7 @@ html %>% html_nodes("#div_players_ a") %>% html_attr(name="href") %>% head()
 ```
 
 
+## R demo...
 
 
 ## Your Turn (5 Minutes)  {.white}
@@ -198,6 +207,9 @@ Use the SelectorGadget on the website for [David Aardsma](http://www.baseball-re
 <!-- </br> -->
 </span>
 
+## Your Turn -- R demo...
+
+
 ## Your Turn  - Solution
 
 ```{r}
@@ -216,3 +228,9 @@ html %>% html_nodes(".stats_pullout p") %>% html_text()
 ```
 
 
+## Optional: Scrapable sports websites
+
+- [Baseketball reference](https://www.basketball-reference.com/)
+- [Hockey reference](https://www.hockey-reference.com/)
+- [Football reference](https://www.pro-football-reference.com/)
+- [Soccer reference](https://fbref.com/en/)

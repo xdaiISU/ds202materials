@@ -9,21 +9,22 @@ output:
     theme: ribbon
 ---
 ```{r setup, include=FALSE, message=FALSE, warning = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
 library(tidyverse)
 ```
 
 ## Web Scraping with R {.shout}
 
 
-## Automating the process
+## Outline
 
 - functions in R
 - loops in R
+- using loops to scrape websites
 
 ## Functions in R
 
-- Have been using functions a lot, now we want to write them ourselves!
+- Have been using functions a lot, now we want to write one ourselves!
 - Idea: avoid repetitive coding (errors will creep in)
 - Instead: extract common core, wrap it in a function, make it reusable
 
@@ -63,6 +64,8 @@ mymean(1:15)
 mymean(c(1:15, NA), na.rm=TRUE)
 ```
 
+
+## R demo...
 
 
 ## Your Turn {.white}
@@ -122,21 +125,11 @@ newhtml <- read_html(paste0("https://www.the-numbers.com/", newurl))
 
 ## Always scrape responsibly! {.shout}
 
-## Loops in R
-
-For-loop: 
-
-```
-for (i in 1:n) {
-  # expression to be run for each i
-  
-}
-```
-but: for-loops sometimes are not the most convenient to write. May have lower efficiency.
 
 ## Another example
 
-Clean up baseball career statistics: http://www.baseball-reference.com/players/a/aardsda01.shtml 
+Clean up baseball career statistics of **all players**, starting with: http://www.baseball-reference.com/players/a/aardsda01.shtml 
+
 Write a function that returns a dataset:
 
 ```{r}
@@ -156,30 +149,37 @@ bb_scraper <- function(url) {
 bb_scraper("http://www.baseball-reference.com/players/a/aardsda01.shtml")
 ```
 
+
+## Loops in R
+
+For-loop: 
+
+```
+for (i in 1:n) {
+  # expression to be run for each i
+  
+}
+```
+but: for-loops sometimes are not the most convenient to write. It is not so expressive sometimes.
+
 ## `purrr` package
 
-Includes `map` function, that allows us to run a function on a subgroup or elements of a vector
+Includes `map` function, that allows us to run a function on a subgroup or elements of a vector, returning a list. `dplyr::bind_rows` combine a list of data frames by rows.
 
 ```{r, warning=FALSE}
 html <- read_html("http://www.baseball-reference.com/players/a/")
 links <- html %>% html_nodes("#div_players_ a") %>% html_attr("href")
+links <- paste0("http://www.baseball-reference.com", links)
 
-bb <- data.frame(links = paste0("http://www.baseball-reference.com", links), 
-                 stringsAsFactors = FALSE)
 # get data for the first few players:
-bb <- head(bb) %>% mutate(
-  data = purrr::map(links, .f = bb_scraper)
-)
+data <- map(head(links), .f=bb_scraper) %>%
+  bind_rows()
+summary(data)
 ```
 
-This makes `data` a variable consisting of data frames
 
-## Unpacking the data
+## R demo...
 
-```{r, warning=FALSE}
-bb1 <- bb %>% unnest(data)
-summary(bb1)
-```
 
 ## Your Turn (5 minutes) {.white}
 
@@ -220,31 +220,26 @@ bb_scraper2 <- function(url) {
 # Get all urls
 html <- read_html("http://www.baseball-reference.com/players/b/")
 links <- html %>% html_nodes("#div_players_ a") %>% html_attr("href")
-
-bb2 <- data.frame(links = paste0("http://www.baseball-reference.com", 
-                                 links[1:10]), 
-                 stringsAsFactors = FALSE)
+links <- paste0("http://www.baseball-reference.com", links) 
 
 # get data for the first 10 players:
-bb2 <- bb2 %>% mutate(
-  data = purrr::map(links, .f = bb_scraper2)
-)
-bb2 <- bb2 %>% unnest(data)
+bb2 <- map(links[1:10], bb_scraper2) %>%
+  bind_rows()
 str(bb2)
 ```
 
 
-## Your Turn {.white}
+<!-- ## Your Turn {.white} -->
 
-<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+<!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
 
-<span style="color:white">Now, scrape information of the celebrities who appeared in One World: Together at Home.
-</span>
+<!-- <span style="color:white">Now, scrape information of the celebrities who appeared in One World: Together at Home. -->
+<!-- </span> -->
 
-<span style="color:white">
-<img src="images/blue.png" width=20> Obtain the wikipedia URLs of the celebrities who appeared. Start from [One World: Together at Home](https://en.wikipedia.org/wiki/Together_at_Home#Appearances).
-</br>
-<img src="images/blue.png" width=20> For each of the first 10 celebrity, use SelectorGadget to select all the paragraph contents.
-</br>
-<img src="images/blue.png" width=20> Clean the data by removing dubious paragraphs.
-</span>
+<!-- <span style="color:white"> -->
+<!-- <img src="images/blue.png" width=20> Obtain the wikipedia URLs of the celebrities who appeared. Start from [One World: Together at Home](https://en.wikipedia.org/wiki/Together_at_Home#Appearances). -->
+<!-- </br> -->
+<!-- <img src="images/blue.png" width=20> For each of the first 10 celebrity, use SelectorGadget to select all the paragraph contents. -->
+<!-- </br> -->
+<!-- <img src="images/blue.png" width=20> Clean the data by removing dubious paragraphs. -->
+<!-- </span> -->

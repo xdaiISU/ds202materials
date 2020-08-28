@@ -102,6 +102,7 @@
 <li>Lists in R</li>
 <li>html format</li>
 <li>scraping html</li>
+<li>selector gadget</li>
 </ul>
 </section>
 <section id="lists" class="slide level2 shout">
@@ -156,7 +157,14 @@
 <section id="the-rvest-package" class="slide level2">
 <h2>The <code>rvest</code> package</h2>
 <p><code>rvest</code>: A package for making web scraping simpler.</p>
-<p>We want to crawl top demostic movie info from <a href="https://www.the-numbers.com/box-office-chart/weekend/2020/03/13" class="uri">https://www.the-numbers.com/box-office-chart/weekend/2020/03/13</a> before the COVID-19 freeze. <code>read_html</code> gets <em>all</em> the information from a URL</p>
+<p>We want to crawl top demostic movie info from <a href="https://www.the-numbers.com/box-office-chart/weekend/2020/03/13" class="uri">https://www.the-numbers.com/box-office-chart/weekend/2020/03/13</a> before the COVID-19 freeze.</p>
+</section>
+<section id="r-demo-1" class="slide level2">
+<h2>R demo…</h2>
+</section>
+<section id="get-a-table-from-an-online-source" class="slide level2">
+<h2>Get a <em>table</em> from an online source</h2>
+<p><code>read_html</code> gets <em>all</em> the information from a URL</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">library</span>(rvest)</span>
 <span id="cb7-2"><a href="#cb7-2"></a>url &lt;-<span class="st"> &quot;https://www.the-numbers.com/box-office-chart/weekend/2020/03/13&quot;</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a>html &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)</span>
@@ -166,7 +174,7 @@
 ## [1] &lt;head&gt;\n&lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;&lt;script asyn ...
 ## [2] &lt;body&gt;\n\r\n&lt;script&gt;\r\n  window.fbAsyncInit = function() {\r\n    FB.ini ...</code></pre>
 </section>
-<section id="get-a-table-from-an-online-source" class="slide level2">
+<section id="get-a-table-from-an-online-source-1" class="slide level2">
 <h2>Get a <em>table</em> from an online source</h2>
 <p><code>html_table</code> extracts all tables from the sourced html into a list of data frames:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>tables &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_table</span>(<span class="dt">fill=</span><span class="ot">TRUE</span>)</span>
@@ -241,11 +249,19 @@
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <p><span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at <a href="https://www.the-numbers.com/box-office-chart/weekend/2020/03/13" class="uri">https://www.the-numbers.com/box-office-chart/weekend/2020/03/13</a> </span></p>
 <p><span style="color:white"> <img src="images/green.png" width=20> Pick the week that you were last in the cinema. Use <code>rvest</code> to download the box office gross in that week. </br> <img src="images/green.png" width=20> Clean up the data. Remove rows not corresponding to movies, and name all the variables (numbers should be numbers). </br> </span></p>
-</section>
-<section id="your-turn-5-minutes" class="slide level2 white">
-<h2 class="white">Your Turn (5 Minutes)</h2>
-<p><img class="cover" src="images/blue.jpeg" alt="" width=2000> <span style="color:white"> Now, scrape information from the <a href="https://en.wikipedia.org/wiki/Together_at_Home">One World: Together at Home</a> wiki page. </span></p>
-<p><span style="color:white"> <img src="images/blue.png" width=20> Obtain a data frame containing the artists/groups, songs performed, and location for the global television broadcast. </br> <img src="images/blue.png" width=20> Obtain the same information for the six-hour pre-concert streamed online. Combine with the data frame obtained before, and add a column indicating whether the performance is for the global television broadcast. </br> <img src="images/black.png" width=20> Data wrangling: Now transform the combined data so that each artist occupy one row (rather than each group of artists). Hint: use <code>tidyr::separate</code> </br> </span></p>
+<!-- ## Your Turn (5 Minutes)  {.white} -->
+<!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
+<!-- <span style="color:white"> -->
+<!-- Now, scrape information from the [One World: Together at Home](https://en.wikipedia.org/wiki/Together_at_Home) wiki page. -->
+<!-- </span> -->
+<!-- <span style="color:white"> -->
+<!-- <img src="images/blue.png" width=20> Obtain a data frame containing the artists/groups, songs performed, and location for the global television broadcast.  -->
+<!-- </br> -->
+<!-- <img src="images/blue.png" width=20> Obtain the same information for the six-hour pre-concert streamed online. Combine with the data frame obtained before, and add a column indicating whether the performance is  for the global television broadcast.  -->
+<!-- </br> -->
+<!-- <img src="images/black.png" width=20> Data wrangling: Now transform the combined data so that each artist occupy one row (rather than each group of artists). Hint: use `tidyr::separate` -->
+<!-- </br> -->
+<!-- </span> -->
 </section>
 <section id="scraping-elements-from-html" class="slide level2 shout">
 <h2 class="shout">Scraping elements from html</h2>
@@ -294,10 +310,16 @@
 ## [3] &quot;/players/a/aaronto01.shtml&quot; &quot;/players/a/aasedo01.shtml&quot; 
 ## [5] &quot;/players/a/abadan01.shtml&quot;  &quot;/players/a/abadfe01.shtml&quot;</code></pre>
 </section>
-<section id="your-turn-5-minutes-1" class="slide level2 white">
+<section id="r-demo-2" class="slide level2">
+<h2>R demo…</h2>
+</section>
+<section id="your-turn-5-minutes" class="slide level2 white">
 <h2 class="white">Your Turn (5 Minutes)</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000> <span style="color:white"> Use the SelectorGadget on the website for <a href="http://www.baseball-reference.com/players/a/aardsda01.shtml">David Aardsma</a> </span></p>
 <p><span style="color:white"> <img src="images/blue.png" width=20> Find the css description to extract his career statistics and load them into your R session. Hint: Extract the column names (the row above that starting with CAREER), and then the numbers. </br> <img src="images/blue.png" width=20> Does the same code work to extract career statistics for (some of) the other players? </br> <!-- <img src="images/blue.png" width=20>  --> <!-- What other information do we need to know? - and how can we get to that? --> <!-- </br> --> </span></p>
+</section>
+<section id="your-turn-r-demo" class="slide level2">
+<h2>Your Turn – R demo…</h2>
 </section>
 <section id="your-turn---solution" class="slide level2">
 <h2>Your Turn - Solution</h2>
@@ -317,6 +339,15 @@
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.stats_pullout p&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>() </span></code></pre></div>
 <pre><code>##  [1] &quot;Career&quot; &quot;1.8&quot;    &quot;16&quot;     &quot;18&quot;     &quot;4.27&quot;   &quot;331&quot;    &quot;0&quot;      &quot;69&quot;    
 ##  [9] &quot;337.0&quot;  &quot;340&quot;    &quot;1.421&quot;</code></pre>
+</section>
+<section id="optional-scrapable-sports-websites" class="slide level2">
+<h2>Optional: Scrapable sports websites</h2>
+<ul>
+<li><a href="https://www.basketball-reference.com/">Baseketball reference</a></li>
+<li><a href="https://www.hockey-reference.com/">Hockey reference</a></li>
+<li><a href="https://www.pro-football-reference.com/">Football reference</a></li>
+<li><a href="https://fbref.com/en/">Soccer reference</a></li>
+</ul>
 </section>
 
   <!--
