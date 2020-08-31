@@ -1,0 +1,179 @@
+---
+title: "DS 202 - Date and Time"
+author: "Xiongtao Dai"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE, message=FALSE, warning=FALSE)
+```
+
+## Working with date and time {.shout}
+
+## Outline
+
+- Parse a string into a date object
+- Operate on a date object
+- Access different parts of a date
+
+## Preparation 
+
+We will update the `classdata` library, and then load the required packages.
+
+```{r, eval=FALSE}
+devtools::install_github('xdaiISU/classdata', force=TRUE)
+library(classdata)
+library(lubridate)
+library(tidyverse)
+```
+```{r, include=FALSE}
+devtools::install_github('xdaiISU/classdata', force=TRUE)
+library(classdata)
+library(lubridate)
+library(tidyverse)
+```
+
+## `lubridate` package
+
+- package for working with dates and times
+- defines different classes of time: instants, intervals, durations & periods
+- defines converter and accessor functions, enables time calculus
+
+## Date objects
+Dates in raw data are often in the form of character vectors. 
+```{r}
+a <- "03-01-2019"
+str(a)
+```
+
+In order for R to understand, we need to parse it (convert from chr to date)
+```{r}
+library(lubridate)
+mdy(a)
+str(mdy(a))
+```
+
+## Converter functions and instants in time
+
+- time instants: one (absolute) moment in time, e.g. now, Jan-1-2000
+- Parsers for date
+    - date: `ymd`, `mdy`, `dmy`, ...
+    - time: `hm`, `hms`, ...
+    - date & time: `ymd_hms`, `mdy_hm`, ...
+- order of letters determines how strings are parsed
+- separators are automatically determined, then assumed to be the same
+
+Example:
+```{r message=FALSE}
+ymd("2019/03/01")
+```
+
+
+## R demo...
+
+
+## Your Turn (5 minutes) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">
+<img src="images/green.png" width=20> Create date objects for tomorrow's date by typing the date in text format and converting it with one of the `lubridate` converter functions. </br>
+<img src="images/green.png" width=20> Try different formats of writing the date and compare the end results.</br>
+<img src="images/blue.png" width=20> Convert the string `"2020-03-30 13:20:52"` to the current date and time in a date time object. Check out `?ymd_hms`.  </br>
+<!-- <img src="images/black.png" width=20> How to take care of time zone? </br> -->
+</span>
+
+
+## Date time Comparisons 
+- Logical operators `>`, `<`, `<=`, etc are available to compare two dates/datetimes.
+```{r}
+now() >= mdy('01/01/20')
+now() < c(mdy('01/01/20'), mdy('12/31/20'))
+```
+
+
+## Accessor functions: Setting & Extracting info
+
+
+- accessor functions: `year`, `month`, `week`, `wday`, `mday`, `yday`, `hour`, `minute`, ...
+- accessor functions can also be used for setting elements of date and time, e.g. `hour(x) <- 12`
+
+Examples:
+
+```{r}
+month(now())
+wday(now(), label = TRUE)
+```
+
+
+##  Durations and Periods
+- To add or subtract time, use Duration or Period objects
+- Durations are absolute amount of time in terms of numbers of seconds (`dyear`, `dweeks`, ...)
+- Periods are differences in clock times in human sense (`year`, `weeks`, ...)
+- Durations and Periods can be different due to leap years or different lengths of month.
+
+```{r}
+d1 <- ymd('2020-01-01')
+d1 + dyears(1) # dyears(1) = 365.25 days
+d1 + years(1)  # years(1) = flip 1 year
+```
+
+
+## Intervals
+- Intervals have a *start* and an *end* date/time
+
+```{r}
+end_date <- now()
+# span is interval, years(1) is duration
+span <- interval(end_date - years(1), end_date)
+span
+(end_date - days(10)) %within% span
+```
+
+
+## Example: Stock data
+
+```{r, message=FALSE}
+str(stock) # date variable: allows date calculus
+```
+
+
+## R demo...
+
+
+## Example: Stock (cont'd)
+Visualize the number of trading days in each month.
+
+```{r, fig.height = 3.25}
+apple <- stock %>% filter(symbol == 'AAPL')
+ggplot(apple, aes(x=month(date, label=TRUE))) + geom_bar()
+```
+
+## Example: Stock (cont'd)
+
+What is the 1-month gain of Apple since July 01, 2020?
+
+```{r, fig.height = 3.25}
+start <- mdy('07/01/2020')
+end <- max(apple$date[apple$date <= start + months(1)]) # weeks but not dweeks
+weekdays(end)
+endPrice <- apple$price[apple$date == end]
+startPrice <- apple$price[apple$date == start]
+(endPrice - startPrice) / startPrice
+```
+
+## Your Turn (5 min) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">
+<img src="images/green.png" width=20> show a barchar of the days of week when the stock data is available. </br>
+<img src="images/blue.png" width=20> Find the number of trading days in each month from January to June in 2020. </br>
+<img src="images/black.png" width=20> Create a data data frame containing the weekly gain for each stock. The weekly gain is calculated as `(last price in the current week / last price in the previous week) - 1`. </br>
+
+</span>

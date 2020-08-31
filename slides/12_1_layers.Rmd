@@ -1,0 +1,123 @@
+---
+title: "DS 202 - Layers"
+author: "Xiongtao Dai"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+```
+
+## Layers in `ggplot2` {.shout}
+
+## Outline
+
+- grammar of graphics, again
+- layer specifications
+
+## Grammar of Graphics
+
+A graphical representation (plot) consists of:
+
+1. **mappings** (`aes`):  data variables are mapped to graphical elements
+2. **layers**:  geometric elements (`geoms`, such as points, lines, rectangles, text, ...) and statistical transformations (`stats`, are identity, counts, bins, ...)
+3. **scales**: map values in the data space to values in an aesthetic space (e.g. color, size, shape, but also position)
+4. **coordinate system** (`coord`): normally Cartesian, but pie charts use e.g. polar coordinates
+5. **facetting**: for small multiples (subsets) and their arrangement
+6. **theme**: fine-tune display items, such as font and its size, color of background, margins, ...
+
+## Previous example
+
+```{r, fig.width=9.5, fig.height = 3}
+data(nasa, package="GGally")
+nasa %>% filter(id=="1-1") %>%
+  ggplot(aes(x = date, y= temperature)) + geom_point()
+```
+
+## Adding a regression line
+
+- A regression line describe the linear relationship between the x- and y-variables.
+
+```{r, fig.width=9.5, fig.height = 3}
+nasa %>% filter(id=="1-1") %>%
+  ggplot(aes(x = date, y= temperature)) + geom_point() +
+  geom_smooth(method="lm")
+```
+
+## Adding a nonparametric regression line
+
+- A nonparametric regression line is flexible and does not need to take any predetermined shape. It describes the nonlinear relationship between the x- and y-variables.
+- `span=` controls the smoothness of the curve. The larger the smoother.
+
+```{r, fig.width=9.5, fig.height = 2.5}
+nasa %>% filter(id=="1-1") %>%
+  ggplot(aes(x = date, y= temperature)) + geom_point() +
+  geom_smooth(method="loess", span=1/10)
+```
+
+## Layers
+
+each layer has several parts, the two most important are:
+
+- mapping: using the `aes()` function, we specify mappings between variables and aesthetics of the chart
+- `data`: the dataset used in the layer 
+
+`ggplot` is the layer that sets the defaults for all layers, <br>
+`geom_XXX` creates a layer: for each aspect it either uses the default or has to specify its own
+
+## Default versus Layer Specification
+
+```{r, fig.width=9.5, fig.height = 3, message = FALSE}
+nasa %>% filter(id == '1-1') %>%
+  ggplot(aes(x=date, y=temperature, color=id)) + 
+  geom_point() + 
+  geom_smooth(method='lm')
+```
+
+##
+
+- Layer-specific aes. If an aethetic is specified in a layer, it is specific to that layer.
+```{r, fig.width=9.5, fig.height = 3, message = FALSE}
+nasa %>% filter(id == '1-1') %>%
+  ggplot(aes(x=date, y=temperature)) + 
+  geom_point() + 
+  geom_smooth(aes(color=id), method='lm')
+```
+
+## `aes()` vs options
+
+```{r, fig.width=9.5, fig.height = 3, message = FALSE}
+nasa %>% filter(id=="1-1") %>%
+  ggplot(aes(x = date, y= temperature)) + 
+  geom_point(color='blue')
+```
+
+## 
+- Putting `color='blue'` in `aes()` usually does not give you what you want.
+- It maps a factor of a single level `'blue'` to all color aethetics
+```{r, fig.width=9.5, fig.height = 3, message = FALSE}
+nasa %>% filter(id=="1-1") %>%
+  ggplot(aes(x = date, y= temperature)) + 
+  geom_point(aes(color='blue'))
+```
+
+
+## Your Turn (5 minutes) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+
+<span style="color:white">
+<img src="images/green.png" width=20> Load the `box` data from the package `classdata`, </br>
+<img src="images/green.png" width=20> Plot a time line for each movie: plot total gross by week that the movie is out. Remove outliers appropriatly. </br>
+<img src="images/blue.png" width=20> Label the three movies with the highest total gross. The labels should be in blue. </br>
+<img src="images/blue.png" width=20> Replot everything in blue.
+</br>
+</span>

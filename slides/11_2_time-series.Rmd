@@ -1,0 +1,266 @@
+---
+title: "DS 202 - Time Series"
+author: "Xiongtao Dai"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE, message=FALSE, warning=FALSE)
+library(tidyverse)
+library(lubridate)
+```
+
+## Visualizing time: time series {.shout}
+
+## Outline
+- Visualizing time series
+- Labelling data
+- Interactive exploration
+
+## Box office data
+
+- The `box` dataset contains weekly gross data for movies prior to 03/15/2020
+- We will visualize the trend of the weekly grosses
+- `Date` column is encoded as date objects and works with `ggplot2`
+
+```{r}
+library(tidyverse)
+library(classdata)
+str(box) 
+```
+
+<!-- ## Covid-19 data -->
+
+<!-- - New York Times publishes daily-updated Covid-19 data in the US on [Github](https://github.com/nytimes/covid-19-data) -->
+<!-- - Import the total number of cases and deaths in each county -->
+
+<!-- ```{r} -->
+<!-- library(tidyverse) -->
+<!-- covid <- read_csv('https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv') -->
+<!-- str(covid) -->
+<!-- ``` -->
+
+## Times series
+
+Let's take a look at Avengers: Endgame and Captain Marvel.
+
+```{r}
+avengers <- box %>% filter(Movie == 'Avengers: Endgame')
+marvel <- box %>% filter(Movie == 'Captain Marvel')
+```
+- for each observational unit we have multiple measurements:
+
+```{r, fig.width = 7, fig.height = 3}
+ggplot(avengers, aes(x = Date, y = Total.Gross)) + geom_point()
+```
+
+## Time series (2)
+
+- for each observational unit we have multiple measurements,
+- which we connect by a line:
+
+```{r, fig.width = 7, fig.height = 3}
+ggplot(avengers, aes(x = Date, y = Total.Gross)) + geom_line()
+```
+
+## Time series (3)
+
+- for each observational unit we have multiple measurements,
+- which we connect by a line.
+- Each observational unit forms a group, we only connect points within a group by a line.
+
+```{r, fig.width = 7, fig.height = 3}
+data <- bind_rows(avengers, marvel)
+ggplot(data, aes(x = Date, y = Total.Gross, group=Movie)) + geom_line()
+```
+
+## R demo...
+
+
+## Your Turn (5 mins) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+
+<span style="color:white">
+<img src="images/green.png" width=20> Load the `box` data from the `classdata` library.
+</br>
+<img src="images/green.png" width=20> Visualize the trend of total gross for `Spider-Man: Far From Home`.
+</br>
+<img src="images/blue.png" width=20> Plot separate lines in the same figure for each of the three movies, `Avengers: Endgame`, `Captain Marvel`, `Spider-Man: Far From Home`. Comment on the periods when the weekly gross increases the fastest.
+</br>
+<img src="images/green.png" width=20> Are there movies sharing the same name?
+</br>
+</span>
+
+<!-- ## Time series -->
+
+<!-- We will focues on the Story and the Johnson counties -->
+
+<!-- ```{r} -->
+<!-- story <- covid %>% filter(state == 'Iowa' & county == 'Story') -->
+<!-- johnson <- covid %>% filter(state == 'Iowa' & county == 'Johnson') -->
+<!-- ``` -->
+
+<!-- - for each observational unit we have multiple measurements: -->
+
+<!-- ```{r, fig.width = 7, fig.height = 3} -->
+<!-- ggplot(story, aes(x = date, y = cases)) + geom_point() -->
+<!-- ``` -->
+
+<!-- ## Time series (2) -->
+
+<!-- - for each observational unit we have multiple measurements, -->
+<!-- - which we connect by a line: -->
+
+<!-- ```{r, fig.width = 7, fig.height = 3} -->
+<!-- ggplot(story, aes(x = date, y = cases)) + geom_line() -->
+<!-- ``` -->
+
+<!-- ## Time series (3) -->
+
+<!-- - for each observational unit we have multiple measurements, -->
+<!-- - which we connect by a line. -->
+<!-- - Each observational unit forms a group, we only connect points within a group by a line. -->
+
+<!-- ```{r, fig.width = 7, fig.height = 3} -->
+<!-- data <- bind_rows(story, johnson) -->
+<!-- ggplot(data, aes(x = date, y = cases, group = county)) + geom_line() -->
+<!-- ``` -->
+
+
+<!-- ## R demo... -->
+
+
+<!-- ## Your Turn (5 mins) {.white} -->
+
+<!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
+
+
+<!-- <span style="color:white"> -->
+<!-- <img src="images/green.png" width=20> Load the covid-19 data from the NYT Github repo, -->
+<!-- </br> -->
+<!-- <img src="images/green.png" width=20> Visualize the trend of total cases for the Black Hawk county, where the University of Northern Iowa is located in. -->
+<!-- </br> -->
+<!-- <img src="images/blue.png" width=20> Plot separate lines in the same figure for each of the three counties, Story, Johnson, and Black Hawk. Comment on the periods when there may be an outbreak. -->
+<!-- </br> -->
+
+<!-- </span> -->
+
+
+## Improving time series plots
+
+- make the time-axis nicer by labelling it
+
+```{r, fig.width = 7, fig.height = 3}
+ggplot(avengers, aes(x = Date, y = Total.Gross)) + geom_line() +
+  scale_x_date(date_labels = ("%b %Y"))
+```
+
+
+## Improving time series plots (2)
+
+- Note there may be different movies sharing the same name! Use the `interaction` function to create an identifier by the movie name-distributor combination.
+- We would like to label some of the highest grossing movies
+
+```{r, fig.height=3}
+ggplot(box, aes(x = Date, y = Total.Gross, 
+                group = interaction(Movie, Distributor))) + geom_line()
+```
+
+<!-- ## Your Turn (5 mins) {.white} -->
+
+<!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
+
+<!-- <span style="color:white"> -->
+<!-- <img src="images/green.png" width=20> Load the `box` data from the package `classdata`, -->
+<!-- </br> -->
+<!-- <img src="images/green.png" width=20> For each movie and distributor, find the (1) highest total gross, (2) the last date (and week) the movie was shown in theaters, (3) the gross the movie made in the first week it was released. </br> -->
+<!-- <img src="images/blue.png" width=20> Find the movies with multiple distributors. Visualize their gross over time.  </br> -->
+
+<!-- </br> -->
+
+## Labelling outliers
+Summary statistics for the movies: 
+
+```{r}
+box_summary <- box %>% group_by(Movie, Distributor) %>%
+  summarize(
+    Date = max(Date),
+    Total.Gross = max(Total.Gross),
+  )
+```
+
+## Labelling outliers
+- `geom_text` needs aesthetics `x`, `y` and `label`
+
+```{r}
+ggplot(box, aes(x = Date, y = Total.Gross, 
+                group = Movie)) + geom_line() +
+    geom_text(aes(x = Date, y = Total.Gross, label=Movie), 
+              data = box_summary %>% filter(Total.Gross > 2.5))
+```
+
+## Labelling outliers - less overlap
+
+- `geom_text_repel` from the `ggrepel` package
+
+```{r}
+box %>% 
+  ggplot(aes(x = Date, y = Total.Gross, 
+             group = Movie)) + geom_line() +
+  ggrepel::geom_text_repel(aes(x = Date, y = Total.Gross, label=Movie), 
+            data = box_summary %>% filter(Total.Gross > 2.5))
+```
+<!--
+## Box office gross (3)
+
+
+```{r}
+box %>% filter(Week <= 5) %>%
+  mutate(Year = year(Date)) %>%
+  ggplot(aes(x = Week, y = Total.Gross, 
+             group = interaction(Movie, Distributor))) + geom_line() +
+  facet_grid(.~Year)
+```
+
+-->
+
+## R demo...
+
+
+## Interactive exploration
+
+- [plotly](https://plot.ly/r/) is a library for creating interactive plots. 
+- It adds interactivity to (any type of) existing ggplot with only one line of additional code.
+- Also available in Python, Matlab, Javascript, etc.
+
+
+## plotly
+```{r,message=FALSE,warning=FALSE}
+library(plotly)
+p <- box %>% ggplot(aes(x = Date, y = Total.Gross, group = Movie)) + geom_line() +
+    geom_text(aes(x = Date, y = Total.Gross, label=Movie), data = box_summary %>% filter(Total.Gross > 2.5))
+ggplotly(p) # Move curse onto the plot!
+```
+
+
+## R demo...
+
+
+## Your Turn (5 mins) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">
+<img src="images/blue.png" width=20> Visualize the box office grosses over time for the movies released in 2020. Label the curves. Did you find your favorite?
+</br>
+<img src="images/green.png" width=20> Use `plotly::ggplotly` to create an interactive plot, and explore in more detail.
+</span>
+
+

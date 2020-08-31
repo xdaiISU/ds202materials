@@ -1,197 +1,161 @@
-# Motivate loops
-
-### purrr 
-# p2--4
-
-# A first function
-f <- function(x) {
-  print(x)
-}
-f('hello world')
-f(1:5)
-
-mymean <- function(x) {
-  return(sum(x)/length(x)) # return is optional
-}
-# The output from the last line is automatically returned
-# Same as
-mymean <- function(x) {
-  sum(x)/length(x)
-}
-
-mymean(1:15)
-mymean(c(1:15, NA))
-
-mymean <- function(x, na.rm=FALSE) {
-  if (na.rm) {
-    x <- na.omit(x)
-  }
-  return(sum(x)/length(x))
-}
-
-mymean(1:15)
-mymean(c(1:15, NA), na.rm=TRUE)
-
-# 40'
+# Box office example
 
 library(tidyverse)
-library(rvest)
+library(classdata)
+str(box) 
 
-url <- 'https://www.the-numbers.com/box-office-chart/weekend/2020/03/13'
-html <- read_html(url)
-tables <- html %>% html_table(fill=TRUE)
-tab <- tables[[2]]
-names(tab)[1:2] <- c('Rank', 'Rank.Last.Week')
-tab <- tab %>% mutate(
-  Gross = parse_number(Gross),
-  Thr = parse_number(Thr)
-)
+avengers <- box %>% filter(Movie == 'Avengers: Endgame')
+marvel <- box %>% filter(Movie == 'Captain Marvel')
+ggplot(avengers, aes(x = Date, y = Total.Gross)) + geom_point()
+ggplot(avengers, aes(x = Date, y = Total.Gross)) + geom_line()
+data <- bind_rows(avengers, marvel)
+ggplot(data, aes(x = Date, y = Total.Gross)) + geom_line()
+ggplot(data, aes(x = Date, y = Total.Gross, group=Movie)) + geom_line()
+
+# Back to slides 
+
+# Format the x-axis. ?strptime
+ggplot(avengers, aes(x = Date, y = Total.Gross)) + geom_line() +
+  scale_x_date(date_labels = ("%b %Y"))
+
+dupMovie <- box %>%
+  filter(Week == 1) %>%
+  group_by(Movie) %>%
+  summarize(nDist = n()) %>%
+  filter(nDist > 1)
+# dup <- box %>%
+#   filter(Movie %in% dupMovie$Movie) %>%
+#   select(Movie, Distributor, Date) %>%
+#   arrange(Movie, Distributor, Date)
+
+interaction(c('a', 'a', 'b'), c(3, 4, 4))
+
+dup <- box %>% 
+  filter(Movie %in% dupMovie$Movie) %>%
+  arrange(Movie, Distributor, Date)
+ggplot(dup, 
+       aes(x=Date, y=Total.Gross, 
+           group=interaction(Movie, Distributor),
+           color=Movie)) +
+  geom_line()
+# interaction: Create a new factor
+# df <- data.frame(week = c(1:5, 6:10, 11:15), 
+#                  gross=c(1:5, 2:11), 
+#                  Movie=c(rep('Movie1', 10), rep('Movie2', 5)), 
+#                  Distributor=c(rep('Distributor1', 5), 
+#                                rep('Distributor2', 10)))
+
+# Movie2 has two different distributors
+# ggplot(df, aes(x=week, y=gross, group=Movie)) + geom_line()
+# # Group by both variables
+# ggplot(df, aes(x=week, y=gross, group=interaction(Movie, Distributor))) + geom_line()
 
 
-url <- "https://www.the-numbers.com/box-office-chart/weekend/2020/03/13"
+ggplot(box, aes(x=Date, y=Total.Gross, group=Movie)) + geom_line()
+ggplot(box, 
+       aes(x=Date, y=Total.Gross, 
+           group=interaction(Movie, Distributor))) +
+  geom_line()
 
-# Define an url first; then write func.
-boxoffice_scraper <- function(url) {
-  html <- read_html(url)
-  tables <- html %>% html_table(fill=TRUE)
-  tab <- tables[[2]]
-  names(tab)[1:2] <- c('Rank', 'Rank.Last.Week')
-  tab <- tab %>% mutate(
-    Gross = parse_number(Gross),
-    Thr = parse_number(Thr)
+# 20'
+
+# Your turn 25'
+
+
+box_summary <- box %>% group_by(Movie, Distributor) %>%
+  summarize(
+    Date = max(Date),
+    Total.Gross = max(Total.Gross),
   )
-  tab
-}
+box_summary %>% arrange(desc(Total.Gross)) %>% head
 
+# 30'
 
-box <- boxoffice_scraper("https://www.the-numbers.com/box-office-chart/weekend/2020/03/13")
-str(box)
+# Label the top grossing movies
+?geom_text # needs a label Aethetics
+dat <- data.frame(x=1:2, y=5:4, text=c('LabX', 'LabY'))
+ggplot(dat, aes(x=x, y=y)) + geom_point()
+ggplot(dat, aes(x=x, y=y, label=text)) + geom_text()
+ggplot(dat, aes(x=x, y=y, label=text)) + geom_text() + geom_point()
+ggplot(dat, aes(x=x, y=y, label=text)) + geom_text(hjust=0, vjust=0) + geom_point() # hjust=0, vjust=0: Put the lower-left corner at (x,y)
+ggplot(dat, aes(x=x, y=y, label=text)) + geom_text(hjust=0, vjust=0, angle=45) + geom_point() 
 
-## Your turn to follow up
+# Top grosser
+box %>% ggplot(aes(x=Date, y=Total.Gross, group=Movie)) + geom_line()
+box %>% ggplot(aes(x=Date, y=Total.Gross, group=Movie, label=Movie)) + geom_line() + geom_text() # not nice
 
-# Previous week. Use selectorGadget
-url <- "https://www.the-numbers.com/box-office-chart/weekend/2020/03/13"
-html <- read_html(url)
-html %>% html_nodes(".previous a")
-html %>% html_nodes(".previous a") %>% html_attr("href")
-newurl <- html %>% html_nodes(".previous a") %>% html_attr("href")
+box %>% ggplot(aes(x=Date, y=Total.Gross, group=Movie, label=Movie)) + geom_line() + 
+  geom_text(data=box_summary, aes(x=Date, y=Total.Gross,
+                                  label=Movie)) # nicer, still ineligible
 
-# Need to combine with base url
-# paste0: connect two character vectors
-paste0(c('a', 'b'), c('1', '2'))
-paste0('0', c('a', 'b'))
+# Show movies with gross > 2.5M
+box %>% ggplot(aes(x=Date, y=Total.Gross, group=Movie, label=Movie)) + geom_line() + 
+  geom_text(data=box_summary %>% filter(Total.Gross>2.5), aes(x=Date, y=Total.Gross,                                   label=Movie)) # much better
 
-paste0("https://www.the-numbers.com", newurl)
-paste0("https://www.the-numbers.com", newurl) %>%
-  boxoffice_scraper %>% 
-  str
+box %>% ggplot(aes(x=Date, y=Total.Gross, group=Movie, label=Movie)) + geom_line() + 
+  geom_text(data=box_summary %>% filter(Total.Gross>2.5), aes(x=Date, y=Total.Gross, label=Movie), vjust=0, hjust=0.3) # vjust=0: bottom of the text aligns with (x,y), to avoid overlap
 
-# slides
+# Automatically avoid overlap: ggrepel
+install.packages('ggrepel')
+library(ggrepel)
+ggplot(box, aes(x=Date, y=Total.Gross, group=Movie)) + 
+  geom_line() + 
+  ggrepel::geom_text_repel(
+    data=box_summary %>% filter(Total.Gross>2.5), 
+    aes(x=Date, y=Total.Gross, label=Movie))
 
-# Want to create a df from an URL
-# Get name of player, name of stat, value of stat
-# Write the inside first
+# Back to slides 
 
-url <- "http://www.baseball-reference.com/players/a/aardsda01.shtml"
-html <- read_html(url)
-names <- html %>% html_nodes("h4") %>% html_text()
-values <- html %>% html_nodes(".stats_pullout p") %>% html_text() 
-player <- html %>% html_nodes("h1") %>% html_text()
+## slide 13, plotly
+install.packages('plotly')
+library(plotly)
+p <- ggplot(box, 
+            aes(x=Date, 
+                y=Total.Gross, 
+                group=interaction(Movie, Distributor))) + geom_line()
+p
+ggplotly(p)
 
+# p1 <- ggplot(box, 
+#              aes(x=Date, 
+#                  y=Total.Gross, 
+#                  group=interaction(Movie, Distributor),
+#                  distributor=Distributor)) + geom_line()
+# ggplotly(p1)
 
-bb_scraper <- function(url) {
-  html <- read_html(url)
-  
-  names <- html %>% html_nodes("h4") %>% html_text()
-  values <- html %>% html_nodes(".stats_pullout p") %>% html_text() 
-  player <- html %>% html_nodes("h1") %>% html_text()
-  data.frame(player=player, 
-             statistics=names,  values=parse_number(values))
-}
+# top <- box_summary$Movie[box_summary$Total.Gross  > 2.5]
+# p2 <- ggplot(box, 
+#              aes(x=Date, 
+#                  y=Total.Gross, 
+#                  group=Movie,
+#                  distributor=Distributor)) + geom_line() + 
+#   geom_line(data=box %>% filter(Movie %in% top), color='red', size=1)
+# p2  
+# ggplotly(p2)
 
-bb_scraper("http://www.baseball-reference.com/players/a/aardsda01.shtml")
+# 55'
 
-url2 <- 'https://www.baseball-reference.com/players/a/aaronha01.shtml'
-bb_scraper(url2)
+# Your turn 
+mov20 <- box %>% 
+  group_by(Movie, Distributor) %>% 
+  summarize(releaseYear = min(year(Date))) %>% 
+  filter(releaseYear == 2020)
 
-# What about all links? http://www.baseball-reference.com/players/a/
+dat <- box %>% inner_join(mov20)
+p <- ggplot(dat, 
+            aes(x=Date, 
+                y=Total.Gross, 
+                group=Movie,
+                distributor=Distributor)) + 
+  geom_line()
+datSumm <- box_summary %>% 
+  inner_join(mov20)
+p1 <- p + 
+  geom_text(
+    data=datSumm, 
+    aes(x=Date, y=Total.Gross, label=Movie)) +
+  scale_y_log10()
+p1
+ggplotly(p1)
 
-# p15
-# Purrr: functional programming
-# map:  apply a function to all elements
-html <- read_html("http://www.baseball-reference.com/players/a/")
-links <- html %>% html_nodes("#div_players_ a") %>% html_attr("href")
-
-fullLinks <- paste0("http://www.baseball-reference.com", links)
-data <- map(fullLinks[1:3], bb_scraper)
-
-# Now need to combine. Do it over using tidyverse
-
-bb <- data.frame(links = fullLinks, 
-                 stringsAsFactors = FALSE) # factor
-# get data for the first few players:
-bb <- head(bb) %>% mutate(
-  data = purrr::map(links, .f = bb_scraper)
-)
-str(bb)
-dim(bb)
-
-# Nested data frame: draw
-bb1 <- bb %>% unnest(data)
-summary(bb1)
-
-# Your turn
-## ------------------------------------------------------------------------
-bb_scraper2 <- function(url) {
-  html <- read_html(url)
-  
-  names <- html %>% html_nodes("h4") %>% html_text()
-  values <- html %>% html_nodes(".stats_pullout p") %>% html_text() 
-  player <- html %>% html_nodes("h1") %>% html_text()
-  position <- html %>% html_nodes("h1+ p") %>% html_text()
-  names <- trimws(names)
-  player <- trimws(player)
-  position <- trimws(position)
-  data.frame(player=player, 
-             position=position,
-             statistics=names,  values=parse_number(values))
-}
-
-## ---- warning=FALSE------------------------------------------------------
-# Get all urls
-html <- read_html("http://www.baseball-reference.com/players/b/")
-links <- html %>% html_nodes("#div_players_ a") %>% html_attr("href")
-
-bb2 <- data.frame(links = paste0("http://www.baseball-reference.com", 
-                                 links[1:10]), 
-                  stringsAsFactors = FALSE)
-
-# get data for the first 10 players:
-bb2 <- bb2 %>% mutate(
-  data = purrr::map(links, .f = bb_scraper2)
-)
-bb2 <- bb2 %>% unnest(data)
-str(bb2)
-
-## Crawl One World: Extract all verbal description of the artist.
-url <- 'https://en.wikipedia.org/wiki/Together_at_Home'
-html <- read_html(url)
-links <- html %>% html_nodes('.column-width:nth-child(11) a') %>% html_attr(name='href')
-fullLinks <- paste0('https://en.wikipedia.org', links)
-
-l1 <- fullLinks[1]
-read_html(l1) %>% html_nodes('p') %>% .[2] %>% html_text()
-pars <- function(l) {
-  read_html(l) %>% 
-    html_nodes('p') %>% 
-    html_text()
-}
-df <- data.frame(fl=fullLinks[1:10], stringsAsFactors = FALSE) %>% 
-  mutate(data=map(fl, pars)) %>% 
-  unnest()
-
-df
-# Some weird paragraphs
-hist(nchar(df$data), breaks=200) # make wider
-abline(v=20)
-df1 <- df %>% filter(nchar(data) > 20)
+# 70'
