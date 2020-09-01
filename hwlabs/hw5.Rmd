@@ -1,0 +1,42 @@
+---
+title: 'Homework #5'
+author: "Your Name"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Liquor Sales in Iowa
+
+This dataset https://data.iowa.gov/Sales-Distribution/2019-Iowa-Liquor-Sales/38x4-vs5h contains the spirits purchase information of Iowa Class “E” liquor licensees by product and date of purchase for 2019. The dataset contains the orders of the liquors by retailer, e.g. Hyvee. 
+
+1. Understanding the dataset: Read the description for the Columns in this Dataset. We will come back here for answering the questions.
+
+2. The complete dataset is too large. Download and import the alcohol sales data for Ames only: 
+
+    a. Go to https://data.iowa.gov/Sales-Distribution/2019-Iowa-Liquor-Sales/38x4-vs5h
+    b. Click View Data -- Filter -- Filter -- Go advanced now
+    c. Add a New Filter Condition: City is Ames.
+    d. Export -- CSV -- Download
+    e. Use `readr::read_csv` to import.
+
+3. Data cleaning: 
+
+    a. Convert the Date column into a date object  
+    b. Extract the longitude and latitude from the Store Location column, creating two new columns
+    c. (Optional) You may want to rename a few columns for your convenience.
+
+
+4. First overview: Provide a visual breakdown of the liquor category (by `Category Name`). Include volume sold in the breakdown. Describe your figure. Which type of liquor is the most popular?
+
+5. Which day of the week has the most orders? Use a barchart to visualize the results. Explain the pattern and provide a reason why the pattern occurs.
+
+6. We would like to compare the liquor orders in each month. Create a complex time series plot of the volume sold in each day. Each month should be shown in a separate panel. Label the day of the week for the x-axis tick labels. Which months have more orders than the others?
+
+7. Create a single time series plot for the monthly volumes sold. Each liquor category should be shown using a separate line. Label the top 5 categories using text labels.
+
+8. Which categories are spring graduation party favorites? Find at least one category.
+
+Note: your submission is supposed to be fully reproducible, i.e. the TA and I will 'knit' your submission in RStudio. 
