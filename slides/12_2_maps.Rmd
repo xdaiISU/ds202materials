@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE, message=FALSE, warning=FALSE)
 library(tidyverse)
 library(lubridate)
 ```
@@ -71,47 +71,44 @@ iowa %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group=region))
 ## map data
 
 ```{r}
+library(tidyverse)
 states <- map_data("state")
 head(states)
 ```
 
-## Maps in code (1)
+## Maps in code
 
 
-```{r,  warning = FALSE, message=FALSE, fig.width=4, fig.height = 4}
+```{r,  warning = FALSE, message=FALSE, fig.width=5, fig.height = 4}
 states %>% ggplot(aes(x = long, y = lat)) + 
   geom_point()
 ```
 
-## Maps in code (2)
+## Maps with state outlines
 
 
-```{r,  warning = FALSE, message=FALSE, fig.width=4, fig.height = 4}
+```{r,  warning = FALSE, message=FALSE, fig.width=5, fig.height = 4}
 states %>% ggplot(aes(x = long, y = lat)) + 
   geom_path(aes(group = group))
 ```
 
-## Maps in code (3)
+## Maps within state regions
 
-```{r, warning = FALSE, message=FALSE, fig.width=3, fig.height = 3}
+```{r, warning = FALSE, message=FALSE, fig.width=5, fig.height = 4}
 states %>% ggplot(aes(x = long, y = lat)) + 
   geom_polygon(aes(group = group))
 ```
 
-## Maps in code (4)
-
-```{r, warning = FALSE, message=FALSE, fig.width=4, fig.height = 4}
-states %>% ggplot(aes(x = long, y = lat)) + 
-  geom_polygon(aes(group = group, fill=lat))
-```
-
-## Maps in code (5)
+## Scaling the maps correctly
 Make the x- and y-scales correspond to an actual map.
-```{r, warning = FALSE, message=FALSE, fig.width=4, fig.height = 4}
+```{r, warning = FALSE, message=FALSE, fig.width=5, fig.height = 4}
 states %>% ggplot(aes(x = long, y = lat, group=group)) + 
   geom_polygon() + 
   coord_map()
 ```
+
+
+
 
 
 ## Your Turn (10 mins) {.white}
@@ -134,48 +131,56 @@ US counties: ```counties <- map_data("county")```
 ## Choropleth maps
 
 - choropleth maps are thematic maps: areas are shaded in proportion to the values of a variable
-- join datasets: content and map
+- a toy choropleth map
+```{r, warning = FALSE, message=FALSE, fig.width=5, fig.height = 3}
+states %>% ggplot(aes(x = long, y = lat)) + 
+  geom_polygon(aes(group = group, fill=lat))
+```
 
 ## Join content and map 
 
+Meaningful choropleth maps often involve joining datasets: joining content with map
+
 Content:
 ```{r}
-data(fbi, package="classdata")
-fbi14 <- fbi %>% filter(Year == 2014)
-head(fbi14)
+covidRaw <- read_csv('https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv') 
+covid <- covidRaw %>%
+  filter(date == mdy('08/31/20')) %>%
+  group_by(state) %>%
+  summarize(totCases = sum(cases),
+            totDeaths = sum(deaths))
+str(covid)
 ```
 
 ## Join content and map
 
 Map:
 ```{r}
-head(states)
+str(states)
 ```
 
 ## Prepare for join
 
-- combine fbi and states by state name, but we need to make the spelling the same
-- for simplification, introduce new variable with all lower case letters
-- generally, content data is more important, but here we check out the missing states on the map: `anti_join`
+- combine `covid` and `states` by state name, but we need to convert the state names to lower cases
+- Check out which regions have missing values using `anti_join`
 
 ```{r}
-fbi14$region <- tolower(fbi14$State)
-nomatch1 <- fbi14 %>% anti_join(states, by="region")
+covid$region <- tolower(covid$state)
+nomatch1 <- covid %>% anti_join(states, by="region")
 # States for which we do not have map data
-unique(nomatch1$State)
+unique(nomatch1$state)
 
 
-nomatch2 <- states %>% anti_join(fbi14, by="region")
+nomatch2 <- states %>% anti_join(covid, by="region")
 # States for which we do not have crime data
-unique(nomatch2$State) # NULL
+unique(nomatch2$state) # NULL
 ```
 
 ## Join and Map
 
 ```{r}
-fbi.map <- fbi14 %>% left_join(states, by="region")
-fbi.map %>% filter(Type=="Burglary") %>% 
-  ggplot(aes(x = long, y = lat, fill=Count/Population*60000)) +
+covidMap <- covid %>% left_join(states, by="region")
+ggplot(covidMap, aes(x = long, y = lat, fill=totCases)) +
   geom_polygon(aes(group=group))
 ```
 
@@ -184,7 +189,7 @@ fbi.map %>% filter(Type=="Burglary") %>%
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
 <span style="color:white">
-<img src="images/green.png" width=20> Draw a choropleth map of the rate of motor vehicle thefts in 2012 across the US.
+<img src="images/green.png" width=20> Draw a choropleth map for the total number of deaths due to COVID-19 in each state
 </br>
 <img src="images/blue.png" width=20> `scale_fill_gradient` allows you to set a color scheme with two main colors. Read up on it and change the scheme in the first choropleth map.
 </br>
