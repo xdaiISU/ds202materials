@@ -34,16 +34,7 @@ library(classdata)
 str(box) 
 ```
 
-<!-- ## Covid-19 data -->
 
-<!-- - New York Times publishes daily-updated Covid-19 data in the US on [Github](https://github.com/nytimes/covid-19-data) -->
-<!-- - Import the total number of cases and deaths in each county -->
-
-<!-- ```{r} -->
-<!-- library(tidyverse) -->
-<!-- covid <- read_csv('https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv') -->
-<!-- str(covid) -->
-<!-- ``` -->
 
 ## Times series
 
