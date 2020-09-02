@@ -185,6 +185,10 @@ ggplot(covidMap, aes(x = long, y = lat, fill=totCases)) +
   geom_polygon(aes(group=group))
 ```
 
+
+## R demo...
+
+
 ## Your Turn {.white}
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
@@ -197,8 +201,6 @@ ggplot(covidMap, aes(x = long, y = lat, fill=totCases)) +
 <img src="images/black.png" width=20> Show all 50 states including Alaska and Hawaii. See the description for [`fiftystater`](https://github.com/wmurphyrd/fiftystater).
 </span>
 
-
-## R demo...
 
 
 ## Geographic data in layers

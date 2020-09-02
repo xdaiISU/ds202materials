@@ -6,7 +6,6 @@ library(ggplot2)
 # Show map first, and then show data frame
 iowa <- map_data("state") %>% filter(region=="iowa")
 iowa %>% ggplot(aes(x = long, y = lat)) + geom_point()
-iowa %>% ggplot(aes(x = long, y = lat)) + geom_point() + coord_map()# Some magic here. Map projection. Compare with coord_fixed()
 
 iowa <- map_data("state") %>% filter(region=="iowa")
 iowa %>% ggplot(aes(x = long, y = lat)) + geom_point() + geom_path()
@@ -18,6 +17,7 @@ iowa %>% ggplot(aes(x = long, y = lat)) + geom_polygon()
 # Now two states
 dat2 <- map_data("state") %>% filter(region %in% c("iowa", "florida"))
 str(dat2)
+dat2 %>% ggplot(aes(x = long, y = lat)) + geom_path()
 dat2 %>% ggplot(aes(x = long, y = lat)) + geom_path(aes(group=region))
 dat2 %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group=region))
 
@@ -25,23 +25,24 @@ dat2 %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group=region))
 states <- map_data("state")
 head(states)
 
-states %>% ggplot(aes(x = long, y = lat)) + geom_point()
+states %>% ggplot(aes(x = long, y = lat)) + geom_point() # some has more pts, some fewer: straightness of the state borders
 
 states %>% ggplot(aes(x = long, y = lat)) + geom_path(aes(group = group))
-states %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = group)) # group=region does not work
+states %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = group))
+states %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = region)) # group
+
+# state2 <- states %>% filter(region %in% c('washington', 'california'))
+# ggplot(state2, aes(x=long, y=lat, group=region)) + geom_polygon()
+# ggplot(state2, aes(x=long, y=lat, group=group)) + geom_polygon()
+# # The state of Washington has multiple groups, because the land areas are not connected.
+
+# Your turn
 
 # Color by latitude
 # Not what we want
 states %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = group, color=lat))
 # Use fill= instead
 states %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = group, fill=lat))
-
-state2 <- states %>% filter(region %in% c('washington', 'california'))
-ggplot(state2, aes(x=long, y=lat, group=region)) + geom_polygon()
-ggplot(state2, aes(x=long, y=lat, group=group)) + geom_polygon()
-# The state of Washington has multiple groups, because the land areas are not connected.
-
-# 45' 
 
 # Join map with extra information
 covidRaw <- read_csv('https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv') 
@@ -52,8 +53,13 @@ covid <- covidRaw %>%
             totDeaths = sum(deaths))
 str(covid)
 
+# Look at the columns to join
 # Joining without renaming will fail
+str(states)
+covid %>% left_join(states, by=c('state'='region'))
 covid$region <- tolower(covid$state)
+covidMap <- covid %>% left_join(states, by="region")
+str(covidMap)
 
 # See what is going on: What states cannot be joined
 nomatch1 <- covid %>% anti_join(states, by="region")
@@ -65,9 +71,10 @@ nomatch2 <- states %>% anti_join(covid, by="region")
 # States for which we do not have crime data
 unique(nomatch2$state) # NULL
 
-covidMap <- covid %>% left_join(states, by="region")
 ggplot(covidMap, aes(x = long, y = lat, fill=totCases)) +
   geom_polygon(aes(group=group))
+
+# Per capita rate of covid cases: need population
 
 # 70'
 # Your turn
