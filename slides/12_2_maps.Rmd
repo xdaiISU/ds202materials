@@ -22,6 +22,7 @@ library(lubridate)
 - what is a map
 - maps and map data in ggplot
 - drawing choropleth maps
+- layering on top of maps
 
 ## Maps are ...
 
@@ -53,14 +54,14 @@ iowa %>% ggplot(aes(x = long, y = lat)) + geom_point() + geom_path()
 <p class="double-flow">
 - use  `group` parameter to distinguish between different regions
 
-```{r, echo=FALSE, warning = FALSE, message=FALSE, fig.width=3, fig.height = 4}
+```{r, echo=FALSE, warning = FALSE, message=FALSE, fig.width=3, fig.height = 3}
 iowa <- map_data("state") %>% filter(region %in% c("iowa", "florida"))
 iowa %>% ggplot(aes(x = long, y = lat)) + geom_path(aes(group=region))
 ```
 </p><p class="double-flow">
 - are usually filled in
 
-```{r, echo=FALSE, warning = FALSE, message=FALSE, fig.width=3, fig.height = 4}
+```{r, echo=FALSE, warning = FALSE, message=FALSE, fig.width=3, fig.height = 3}
 iowa <- map_data("state") %>% filter(region %in% c("iowa", "florida"))
 iowa %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group=region))
 ```
@@ -108,10 +109,10 @@ states %>% ggplot(aes(x = long, y = lat, group=group)) +
 ```
 
 
+## R demo...
 
 
-
-## Your Turn (10 mins) {.white}
+## Your Turn {.white}
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
@@ -154,7 +155,7 @@ str(covid)
 
 ## Join content and map
 
-Map:
+Map data:
 ```{r}
 str(states)
 ```
@@ -184,7 +185,7 @@ ggplot(covidMap, aes(x = long, y = lat, fill=totCases)) +
   geom_polygon(aes(group=group))
 ```
 
-## Your Turn (5 minutes)  {.white}
+## Your Turn {.white}
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
@@ -196,10 +197,14 @@ ggplot(covidMap, aes(x = long, y = lat, fill=totCases)) +
 <img src="images/black.png" width=20> Show all 50 states including Alaska and Hawaii. See the description for [`fiftystater`](https://github.com/wmurphyrd/fiftystater).
 </span>
 
+
+## R demo...
+
+
 ## Geographic data in layers
 
 - For data collected with GPS coordinates we can use maps as background layers
-- e.g. campaign expenditures
+- e.g. traffic accidents
 - In that situation, we do not need to join the map information and the content data, but use layers with separate data sets of the form
 
 ```
@@ -209,9 +214,17 @@ map %>% ggplot(aes(x = long, y = lat)) +
 ```
 
 
+## Example: Label the state names
+```{r, fig.height=4, fig.width=5}
+stateName <- states %>% group_by(region) %>% summarize(long=mean(long), lat=mean(lat))
+states %>% ggplot(aes(x = long, y = lat)) + 
+  geom_polygon(aes(group = group)) +
+  geom_text(aes(label=region), color='white', data=stateName)
+```
+
 ## FARS data
 
-- US Department of transportation is keeping a record of every accident that results in a fatality in the FARS Data base (fatal accident report system, http://www.nhtsa.gov/FARS).
+- US Department of transportation is keeping a record of every accident that results in a fatality in the FARS Data base ([fatal accident report system](http://www.nhtsa.gov/FARS)).
 - FARS consists of 20+ tables consisting of various aspects of each accident
 Documentation at
 https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812602
@@ -227,6 +240,20 @@ names(acc)
 ```
 
 - Focus on `LATITUDE` and `LONGITUD`
+
+
+## Fatal Accidents in the US
+
+```{r, fig.width=6, fig.height=5}
+ggplot(states, aes(x=long, y=lat)) + geom_polygon(aes(group=group)) + 
+  geom_point(aes(x=LONGITUD, y=LATITUDE), data=acc %>% filter(YEAR == 2017), 
+             color='lightgreen', alpha=0.2, size=0.02) + 
+  xlim(-130, -60) + ylim(20, 50) + coord_map()
+```
+
+
+## R demo...
+
 
 ## Your Turn  {.white}
 

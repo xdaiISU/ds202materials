@@ -102,6 +102,7 @@
 <li>what is a map</li>
 <li>maps and map data in ggplot</li>
 <li>drawing choropleth maps</li>
+<li>layering on top of maps</li>
 </ul>
 </section>
 <section id="maps-are" class="slide level2">
@@ -140,8 +141,9 @@
 </section>
 <section id="map-data" class="slide level2">
 <h2>map data</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>states &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">head</span>(states)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>states &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">head</span>(states)</span></code></pre></div>
 <pre><code>##        long      lat group order  region subregion
 ## 1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;
 ## 2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;
@@ -176,8 +178,11 @@
 <span id="cb6-3"><a href="#cb6-3"></a><span class="st">  </span><span class="kw">coord_map</span>()</span></code></pre></div>
 <p><img src="12_2_maps_files/figure-revealjs/unnamed-chunk-9-1.png" width="480" /></p>
 </section>
-<section id="your-turn-10-mins" class="slide level2 white">
-<h2 class="white">Your Turn (10 mins)</h2>
+<section id="r-demo" class="slide level2">
+<h2>R demo…</h2>
+</section>
+<section id="your-turn" class="slide level2 white">
+<h2 class="white">Your Turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <p><span style="color:white"> <img src="images/blue.png" width=20> Use ggplot2 to plot the state of Washington and California only, applying <code>geom_polygon</code>. Compare the results for using the <code>group=region</code> and <code>group=group</code> mappings. Why are they different? </br> <img src="images/green.png" width=20> Use ggplot2 and pull out map data for all US counties: <code>counties &lt;- map_data("county")</code> </br> <img src="images/green.png" width=20> Draw a map of all counties (using both polygons &amp; path geom) </br> <img src="images/blue.png" width=20> Color all counties called “dallas” </br> </span></p>
 </section>
@@ -195,21 +200,21 @@
 <h2>Join content and map</h2>
 <p>Meaningful choropleth maps often involve joining datasets: joining content with map</p>
 <p>Content:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">data</span>(fbi, <span class="dt">package=</span><span class="st">&quot;classdata&quot;</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>fbi14 &lt;-<span class="st"> </span>fbi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Year <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>)</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="kw">str</span>(fbi14)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    416 obs. of  7 variables:
-##  $ State        : chr  &quot;Alabama&quot; &quot;Alaska&quot; &quot;Arizona&quot; &quot;Arkansas&quot; ...
-##  $ Abb          : chr  &quot;AL&quot; &quot;AK&quot; &quot;AZ&quot; &quot;AR&quot; ...
-##  $ Year         : int  2014 2014 2014 2014 2014 2014 2014 2014 2014 2014 ...
-##  $ Population   : int  4849377 736732 6731484 2966369 38802500 5355866 3596677 935614 658893 19893297 ...
-##  $ Type         : Factor w/ 8 levels &quot;Aggravated.assault&quot;,..: 6 6 6 6 6 6 6 6 6 6 ...
-##  $ Count        : int  276 41 319 165 1699 151 86 54 105 1149 ...
-##  $ Violent.crime: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>covidRaw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv&#39;</span>) </span>
+<span id="cb8-2"><a href="#cb8-2"></a>covid &lt;-<span class="st"> </span>covidRaw <span class="op">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw">filter</span>(date <span class="op">==</span><span class="st"> </span><span class="kw">mdy</span>(<span class="st">&#39;08/31/20&#39;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="st">  </span><span class="kw">group_by</span>(state) <span class="op">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">totCases =</span> <span class="kw">sum</span>(cases),</span>
+<span id="cb8-6"><a href="#cb8-6"></a>            <span class="dt">totDeaths =</span> <span class="kw">sum</span>(deaths))</span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="kw">str</span>(covid)</span></code></pre></div>
+<pre><code>## tibble [55 × 3] (S3: tbl_df/tbl/data.frame)
+##  $ state    : chr [1:55] &quot;Alabama&quot; &quot;Alaska&quot; &quot;Arizona&quot; &quot;Arkansas&quot; ...
+##  $ totCases : num [1:55] 126058 6075 201866 61224 712541 ...
+##  $ totDeaths: num [1:55] 2182 34 5031 797 13020 ...</code></pre>
 </section>
 <section id="join-content-and-map-1" class="slide level2">
 <h2>Join content and map</h2>
-<p>Map:</p>
+<p>Map data:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">str</span>(states)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    15537 obs. of  6 variables:
 ##  $ long     : num  -87.5 -87.5 -87.5 -87.5 -87.6 ...
@@ -222,47 +227,59 @@
 <section id="prepare-for-join" class="slide level2">
 <h2>Prepare for join</h2>
 <ul>
-<li>combine fbi and states by state name, but we need to convert the state names to lower cases</li>
+<li>combine <code>covid</code> and <code>states</code> by state name, but we need to convert the state names to lower cases</li>
 <li>Check out which regions have missing values using <code>anti_join</code></li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>fbi14<span class="op">$</span>region &lt;-<span class="st"> </span><span class="kw">tolower</span>(fbi14<span class="op">$</span>State)</span>
-<span id="cb12-2"><a href="#cb12-2"></a>nomatch1 &lt;-<span class="st"> </span>fbi14 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(states, <span class="dt">by=</span><span class="st">&quot;region&quot;</span>)</span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>covid<span class="op">$</span>region &lt;-<span class="st"> </span><span class="kw">tolower</span>(covid<span class="op">$</span>state)</span>
+<span id="cb12-2"><a href="#cb12-2"></a>nomatch1 &lt;-<span class="st"> </span>covid <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(states, <span class="dt">by=</span><span class="st">&quot;region&quot;</span>)</span>
 <span id="cb12-3"><a href="#cb12-3"></a><span class="co"># States for which we do not have map data</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="kw">unique</span>(nomatch1<span class="op">$</span>State)</span></code></pre></div>
-<pre><code>## [1] &quot;Alaska&quot;      &quot;Hawaii&quot;      &quot;Puerto Rico&quot;</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>nomatch2 &lt;-<span class="st"> </span>states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(fbi14, <span class="dt">by=</span><span class="st">&quot;region&quot;</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="kw">unique</span>(nomatch1<span class="op">$</span>state)</span></code></pre></div>
+<pre><code>## [1] &quot;Alaska&quot;                   &quot;Guam&quot;                    
+## [3] &quot;Hawaii&quot;                   &quot;Northern Mariana Islands&quot;
+## [5] &quot;Puerto Rico&quot;              &quot;Virgin Islands&quot;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>nomatch2 &lt;-<span class="st"> </span>states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(covid, <span class="dt">by=</span><span class="st">&quot;region&quot;</span>)</span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="co"># States for which we do not have crime data</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="kw">unique</span>(nomatch2<span class="op">$</span>State) <span class="co"># NULL</span></span></code></pre></div>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="kw">unique</span>(nomatch2<span class="op">$</span>state) <span class="co"># NULL</span></span></code></pre></div>
 <pre><code>## NULL</code></pre>
 </section>
 <section id="join-and-map" class="slide level2">
 <h2>Join and Map</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>fbi.map &lt;-<span class="st"> </span>fbi14 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(states, <span class="dt">by=</span><span class="st">&quot;region&quot;</span>)</span>
-<span id="cb16-2"><a href="#cb16-2"></a>fbi.map <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Type<span class="op">==</span><span class="st">&quot;Burglary&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">fill=</span>Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">60000</span>)) <span class="op">+</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">group=</span>group))</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>covidMap &lt;-<span class="st"> </span>covid <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(states, <span class="dt">by=</span><span class="st">&quot;region&quot;</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="kw">ggplot</span>(covidMap, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">fill=</span>totCases)) <span class="op">+</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">group=</span>group))</span></code></pre></div>
 <p><img src="12_2_maps_files/figure-revealjs/unnamed-chunk-14-1.png" width="768" /></p>
 </section>
-<section id="your-turn-5-minutes" class="slide level2 white">
-<h2 class="white">Your Turn (5 minutes)</h2>
+<section id="your-turn-1" class="slide level2 white">
+<h2 class="white">Your Turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white"> <img src="images/green.png" width=20> Draw a choropleth map of the rate of motor vehicle thefts in 2012 across the US. </br> <img src="images/blue.png" width=20> <code>scale_fill_gradient</code> allows you to set a color scheme with two main colors. Read up on it and change the scheme in the first choropleth map. </br> <img src="images/black.png" width=20> Show all 50 states including Alaska and Hawaii. See the description for <a href="https://github.com/wmurphyrd/fiftystater"><code>fiftystater</code></a>. </span></p>
+<p><span style="color:white"> <img src="images/green.png" width=20> Draw a choropleth map for the total number of deaths due to COVID-19 in each state </br> <img src="images/blue.png" width=20> <code>scale_fill_gradient</code> allows you to set a color scheme with two main colors. Read up on it and change the scheme in the first choropleth map. </br> <img src="images/black.png" width=20> Show all 50 states including Alaska and Hawaii. See the description for <a href="https://github.com/wmurphyrd/fiftystater"><code>fiftystater</code></a>. </span></p>
+</section>
+<section id="r-demo-1" class="slide level2">
+<h2>R demo…</h2>
 </section>
 <section id="geographic-data-in-layers" class="slide level2">
 <h2>Geographic data in layers</h2>
 <ul>
 <li>For data collected with GPS coordinates we can use maps as background layers</li>
-<li>e.g. campaign expenditures</li>
+<li>e.g. traffic accidents</li>
 <li>In that situation, we do not need to join the map information and the content data, but use layers with separate data sets of the form</li>
 </ul>
 <pre><code>map %&gt;% ggplot(aes(x = long, y = lat)) + 
   geom_polygon(aes(group = group)) +
   geom_point(aes(x=longitude, y = latitude), data = content) </code></pre>
 </section>
+<section id="example-label-the-state-names" class="slide level2">
+<h2>Example: Label the state names</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>stateName &lt;-<span class="st"> </span>states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(region) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>(<span class="dt">long=</span><span class="kw">mean</span>(long), <span class="dt">lat=</span><span class="kw">mean</span>(lat))</span>
+<span id="cb18-2"><a href="#cb18-2"></a>states <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">group =</span> group)) <span class="op">+</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>region), <span class="dt">color=</span><span class="st">&#39;white&#39;</span>, <span class="dt">data=</span>stateName)</span></code></pre></div>
+<p><img src="12_2_maps_files/figure-revealjs/unnamed-chunk-15-1.png" width="480" /></p>
+</section>
 <section id="fars-data" class="slide level2">
 <h2>FARS data</h2>
 <ul>
-<li>US Department of transportation is keeping a record of every accident that results in a fatality in the FARS Data base (fatal accident report system, <a href="http://www.nhtsa.gov/FARS" class="uri">http://www.nhtsa.gov/FARS</a>).</li>
+<li>US Department of transportation is keeping a record of every accident that results in a fatality in the FARS Data base (<a href="http://www.nhtsa.gov/FARS">fatal accident report system</a>).</li>
 <li>FARS consists of 20+ tables consisting of various aspects of each accident Documentation at <a href="https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812602" class="uri">https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812602</a></li>
 <li>two of the main tables are <code>accident</code>, and <code>person</code></li>
 </ul>
@@ -272,8 +289,8 @@
 <ul>
 <li>Data of all accidents are available at:</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>acc &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/fars2017/accident.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">names</span>(acc)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>acc &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/fars2017/accident.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="kw">names</span>(acc)</span></code></pre></div>
 <pre><code>##  [1] &quot;STATE&quot;      &quot;ST_CASE&quot;    &quot;VE_TOTAL&quot;   &quot;VE_FORMS&quot;   &quot;PVH_INVL&quot;  
 ##  [6] &quot;PEDS&quot;       &quot;PERNOTMVIT&quot; &quot;PERMVIT&quot;    &quot;PERSONS&quot;    &quot;COUNTY&quot;    
 ## [11] &quot;CITY&quot;       &quot;DAY&quot;        &quot;MONTH&quot;      &quot;YEAR&quot;       &quot;DAY_WEEK&quot;  
@@ -289,7 +306,18 @@
 <li>Focus on <code>LATITUDE</code> and <code>LONGITUD</code></li>
 </ul>
 </section>
-<section id="your-turn" class="slide level2 white">
+<section id="fatal-accidents-in-the-us" class="slide level2">
+<h2>Fatal Accidents in the US</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">ggplot</span>(states, <span class="kw">aes</span>(<span class="dt">x=</span>long, <span class="dt">y=</span>lat)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">group=</span>group)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>LONGITUD, <span class="dt">y=</span>LATITUDE), <span class="dt">data=</span>acc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(YEAR <span class="op">==</span><span class="st"> </span><span class="dv">2017</span>), </span>
+<span id="cb21-3"><a href="#cb21-3"></a>             <span class="dt">color=</span><span class="st">&#39;lightgreen&#39;</span>, <span class="dt">alpha=</span><span class="fl">0.2</span>, <span class="dt">size=</span><span class="fl">0.02</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">130</span>, <span class="dv">-60</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="dv">20</span>, <span class="dv">50</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_map</span>()</span></code></pre></div>
+<p><img src="12_2_maps_files/figure-revealjs/unnamed-chunk-17-1.png" width="576" /></p>
+</section>
+<section id="r-demo-2" class="slide level2">
+<h2>R demo…</h2>
+</section>
+<section id="your-turn-2" class="slide level2 white">
 <h2 class="white">Your Turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <p><span style="color:white"> <img src="images/blue.png" width=20> Use the accident data to plot the geographic location of all accidents in the US in 2017. Plot accidents on a map of the US (use the map of the US as first layer) </br> <img src="images/blue.png" width=20> Why would it be tricky to plot a choropleth map of the number of accidents by state? </br> </span></p>

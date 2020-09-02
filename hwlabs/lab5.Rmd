@@ -1,0 +1,71 @@
+---
+title: "DS 202 - lab #5: Drunk Driving and Fatal Accidents "
+author: "Xiongtao Dai"
+ratio: 16x10
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message=FALSE, cache=TRUE)
+```
+
+## Outline
+
+- Work in assigned pairs, as in Lab 4
+- Create a repository (one per team) & give access to your teammate
+- Explore the FARS traffic accident data and create maps
+- Create an R markdown file that contains all code to read the data, create the plots, and your answers.
+- Teammates will review and revise each other's work.
+- Submit!
+
+## Submission Requirements
+
+- A team member should create a GitHub repository called `ds202_lab5` which includes the group work.
+- Each team member should create at least one commit with message "Review and Revision".
+- The team will collaborate on `team.Rmd` to answer all the questions, which will be graded. Also include your individual exploration in either `individual1.Rmd` or `individual2.Rmd`.
+- The correct folder structure is as below. The folder `ds202_lab5` is a git repository.
+
+    ```
+    ds202_lab5
+    |-- individual1.Rmd
+    |-- individual2.Rmd
+    |-- team.Rmd
+    |-- *.html
+    |-- Data files if needed...
+    ```
+    
+## Data Background: FARS data
+
+- US Department of transportation is keeping a record of every accident that results in a fatality in the FARS Data base (fatal accident report system, http://www.nhtsa.gov/FARS).
+- FARS consists of 20+ tables consisting of various aspects of each accident
+- Use the User's manual to find what the columns stand for. The manual can be found  at
+https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812602
+- Two of the main tables we are going to look at are the accident and the person tables. These data are made available here: [`accident`](https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/fars2017/accident.csv), and [`person`](https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/fars2017/person.csv)
+- Load the two datasets. 
+
+    ```{r}
+    acc <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/fars2017/accident.csv", stringsAsFactors = FALSE)
+    # repeat for the person data
+    ```
+
+## Questions 
+
+1. Are there some days of the week where more accidents happen than the others (see FARS manual, use variable `DAY_WEEK`)?
+2. Create a data frame containing the persons who are fatally hurt in the accidents (look up variable `INJ_SEV`)
+3. Create a data frame containing the most dangerous vehicle make in each state. The number of persons fatally hit in the vehicle make is used to assess the (non-)safety of a make. Make sure to handle the missing values appropriately. (look up variable `MAKE`)
+4. Create a map, and label each state with the most dangerous vehicle. Discuss the definition of *the most dangerous* vehicle, and what you find from the map. (Hint: Read the description for the `STATE` and `COUNTY` columns in the FARS manual. The state & county codes are Geographic Locator Codes (GLCs) from  [the General Services Administration’s (GSA) publication](https://www.gsa.gov/reference/geographic-locator-codes/glcs-for-the-us-and-us-territories). Use `readxl::read_xlsx` to read in the GLCs.)
+5. Join the accident and person table (work out which variable(s) to use)
+6. Tally the number of accidents by day of the week (DAY_WEEK), hour of the day (HOUR) and gender (SEX). Visualize the results.
+7. Now plot a choropleth map of the number of deaths on a county level. 
+8. Is summer or winter more dangerous? Does this depend on states? Explore and explain.
+
+
+```{r,include=FALSE}
+library(tidyverse)
+acc=read.csv('fars2017/accident.csv')
+dri=read.csv('fars2017/person.csv') %>% filter(PER_TYP == 1)
+veh=read.csv('fars2017/vehicle.csv')
+intersect(names(acc), names(dri))
+a = acc %>% inner_join(dri)
+```
+
