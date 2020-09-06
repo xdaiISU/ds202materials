@@ -383,18 +383,18 @@ summary {
 
 <div id="tips-at-restaurants" class="section level2">
 <h2>Tips at Restaurants</h2>
-<p>In this homework we will use the <code>tips</code> data set. The dataset contains tip information and is collected by one waiter, who recorded each tip he received while working in one restaurant over the course of a season. This data set is part of the <code>reshape2</code> package. You can load the data set by executing the command:</p>
+<p>In this homework we will use the <code>tips</code> data set. The dataset contains tip information and is collected by a waiter, who recorded each tip he received while working in one restaurant over the course of a season. This data set is part of the <code>reshape2</code> package. You can load the data set by executing the command:</p>
 <pre class="r"><code>data(tips, package=&quot;reshape2&quot;)</code></pre>
-<p>If you do not have available the package <code>reshape2</code>, issue <code>install.packages(&#39;reshape2&#39;)</code> to install. See <code>?tips</code> for a description of all of the variables.</p>
+<p>If you do not have available the package <code>reshape2</code>, issue <code>install.packages(&#39;reshape2&#39;)</code> in the R console to install. See <code>?tips</code> for a description of all of the variables.</p>
 <p>Include at least one <code>ggplot</code> visualization in each of your answer, and describe what you find. <!-- **Submission instructions**: Create a folder named `ds202_hw3`, and name the RMarkDown file `hw3.Rmd`  which should include your solutions under this folder. For submission, create a GitHub repository named `ds202_hw3` under your GitHub account, and push both `hw3.Rmd` and the knitted `hw3.html` before the deadline. I will assume you use the same GitHub username as for your HW2 submission. The latest version of your homework appearing on GitHub before the deadline is graded. *It is crucial to follow the exact folder structure and file names*, so that your homework can be reproduced and graded by an automated script. This homework is **due on Feb 19** before class. --></p>
 <ol style="list-style-type: decimal">
 <li>Explore and explain what is the relationship between the total bill and tip amount. In your visualization, add a straight line with intercept at 0 and slope equal to 0.15, which stands for the amount of tip according to a 15% tip rate. Look at <code>?geom_abline</code>, and in particular the examples.</li>
 <li>Describe at least two types of anomalies in the previous plot. What do they mean?</li>
-<li>Visualize the number of customers the waiter has on each day of the week. Make sure the days are ordered from Thursday to Sunday. What pattern do you find?</li>
+<li>Visualize the number of customers the waiter has on each day of the week. Make sure the days are ordered sequentially from Thursday to Sunday. What pattern do you find?</li>
 <li>Introduce a variable <code>tiprate</code> into the data set which stands for the rate of tips. How does gender affect the distribution of tip rates?</li>
 <li>How do tip rates vary on different days of the week?</li>
-<li>How does smoking behavior and gender of the person who pays impact the relationship between tip and total bill? Find a visualization that incorporates all four variables. Interpret the result.</li>
-<li>Use ggplot2 to find a graphical summary of the relationship between day of the week and gender of the person paying the bill. What can you say about this relationship?</li>
+<li>How do smoking behavior and gender of the person who pays impact the relationship between tip and total bill? Find a visualization that incorporates all four variables. Interpret the result.</li>
+<li>Create a graphical summary of the relationship between day of the week and gender of the person paying the bill. What can you say about this relationship?</li>
 </ol>
 </div>
 
