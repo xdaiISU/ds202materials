@@ -1,108 +1,60 @@
+
+# Continuous 
 library(tidyverse)
-library(lubridate)
-
-library(ggplot2)
-
-# Show map first, and then show data frame
-iowa <- map_data("state") %>% filter(region=="iowa")
-iowa %>% ggplot(aes(x = long, y = lat)) + geom_point()
-
-iowa <- map_data("state") %>% filter(region=="iowa")
-iowa %>% ggplot(aes(x = long, y = lat)) + geom_point() + geom_path()
-# What if we use geom_line?
-
-# Fills the ares
-iowa %>% ggplot(aes(x = long, y = lat)) + geom_polygon() 
-
-# Now two states
-dat2 <- map_data("state") %>% filter(region %in% c("iowa", "florida"))
-str(dat2)
-dat2 %>% ggplot(aes(x = long, y = lat)) + geom_path()
-dat2 %>% ggplot(aes(x = long, y = lat)) + geom_path(aes(group=region))
-dat2 %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group=region))
-
-## Now all states
-states <- map_data("state")
-head(states)
-
-states %>% ggplot(aes(x = long, y = lat)) + geom_point() # some has more pts, some fewer: straightness of the state borders
-
-states %>% ggplot(aes(x = long, y = lat)) + geom_path(aes(group = group))
-states %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = group))
-states %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = region)) # group
-
-# state2 <- states %>% filter(region %in% c('washington', 'california'))
-# ggplot(state2, aes(x=long, y=lat, group=region)) + geom_polygon()
-# ggplot(state2, aes(x=long, y=lat, group=group)) + geom_polygon()
-# # The state of Washington has multiple groups, because the land areas are not connected.
-
-# Your turn
-
-# Color by latitude
-# Not what we want
-states %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = group, color=lat))
-# Use fill= instead
-states %>% ggplot(aes(x = long, y = lat)) + geom_polygon(aes(group = group, fill=lat))
-
-# Join map with extra information
-covidRaw <- read_csv('https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv') 
-covid <- covidRaw %>%
-  filter(date == mdy('08/31/20')) %>%
-  group_by(state) %>%
-  summarize(totCases = sum(cases),
-            totDeaths = sum(deaths))
-str(covid)
-
-# Look at the columns to join
-# Joining without renaming will fail
-str(states)
-covid %>% left_join(states, by=c('state'='region'))
-covid$region <- tolower(covid$state)
-covidMap <- covid %>% left_join(states, by="region")
-str(covidMap)
-
-# See what is going on: What states cannot be joined
-nomatch1 <- covid %>% anti_join(states, by="region")
-# States for which we do not have map data
-unique(nomatch1$state)
+p1 <- mpg %>% filter(year == 2008) %>%
+  ggplot(aes(x = cty, y = hwy, color = cyl)) +
+  geom_point(position='jitter')
+p1 + scale_color_gradient() # same
+?scale_color_gradient
+p1 + scale_color_gradient(low='#56B1F7', high='#132B43')
+p1 + scale_color_gradient(trans='log10') # color scale in log
 
 
-nomatch2 <- states %>% anti_join(covid, by="region")
-# States for which we do not have crime data
-unique(nomatch2$state) # NULL
+# gradient2: midpoint = 0 by default
+?scale_color_gradient2
+p1 + scale_color_gradient2()
+p1 + scale_color_gradient2(midpoint=6) 
+p1 + scale_color_gradient2(midpoint=6, low=scales::muted('blue'), high=scales::muted('red')) 
 
-ggplot(covidMap, aes(x = long, y = lat, fill=totCases)) +
-  geom_polygon(aes(group=group))
+# Hexidecimal code: '#RRGGBB'. Each range from 0 to F (F=15). FF = 15 * 16 + 15
+rgb(0, 255, 0, maxColorValue = 255) # green
+p1 + scale_color_gradient2(midpoint=6, low='#00FF00', high='#0000FF') 
 
-# Per capita rate of covid cases: need population
+# ## Your turn 1
+# data(diamonds)
+# ggplot(diamonds, aes(x=carat, y=price, color=price)) + geom_point() + scale_color_gradient(low='black', high='lightblue')
+# ggplot(diamonds, aes(x=carat, y=price, color=price)) + geom_point() + scale_color_gradient2(low='black', mid='green', high='red', midpoint = 10000)
 
-# 70'
-# Your turn
-  
-# Layers
-stateName <- states %>% group_by(region) %>% summarize(long=mean(long), lat=mean(lat))
+# Discrete
+p2 <- mpg %>% filter(year == 2008) %>%
+  ggplot(aes(x = cty, y = hwy, color = factor(cyl))) +
+  geom_point(position='jitter')
+p2 + scale_color_discrete()
+cols <- c("4" = "blue", "5"="yellow", "6" = "darkgreen", "8" = "red")
+p2 + scale_colour_manual(values = cols)
+
+library(RColorBrewer)
+display.brewer.all()
+
+p2 <- mpg %>% filter(year == 2008) %>%
+  ggplot(aes(x = cty, y = hwy, color = factor(cyl))) +
+  geom_point()
+p2 + scale_color_brewer(palette='Set1') # better, since the colors can be named, and darker
+
+# ## Your turn 2
+# ggplot(diamonds, aes(x=carat, y=price, color=clarity)) + geom_point() + scale_color_brewer(palette='Blues')
+
+## Brewer color schemes - Continuous
+#For continuous variables, use `*_color_distiller`:
+states <- map_data('state')
 states %>% ggplot(aes(x = long, y = lat)) + 
-  geom_polygon(aes(group = group)) +
-  geom_text(aes(label=region), color='white', data=stateName)
+  geom_polygon(aes(group = group, fill=lat)) + 
+  scale_fill_distiller(palette='OrRd', direction=1) # Note direction
 
+# # Your turn
+# ggplot(diamonds, aes(x=carat, y=price, color=depth)) + geom_point() + scale_color_distiller(palette='Blues')
 
-# Introduce FARS: A very large database, containing 
-acc <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/fars2017/accident.csv", stringsAsFactors = FALSE)
-names(acc)
-
-ggplot(states, aes(x=long, y=lat)) + geom_polygon(aes(group=group))
-ggplot(states, aes(x=long, y=lat)) + geom_polygon(aes(group=group)) + geom_point(aes(x=LONGITUD, y=LATITUDE), data=acc %>% filter(YEAR == 2017), color='white')
-ggplot(states, aes(x=long, y=lat)) + geom_polygon(aes(group=group)) + geom_point(aes(x=LONGITUD, y=LATITUDE), data=acc %>% filter(YEAR == 2017), color='white', size=0.2) + xlim(-130, -60) + ylim(20, 50)
-
-ggplot(states, aes(x=long, y=lat)) + geom_polygon(aes(group=group)) + geom_point(aes(x=LONGITUD, y=LATITUDE), data=acc %>% filter(YEAR == 2017), color='lightgreen', alpha=0.2, size=0.02) + xlim(-130, -60) + ylim(20, 50) + coord_map()
-
-# No state name
-# Useful in lab
-# No state name. Have only state code available.
-stateDeath <- acc %>% group_by(STATE) %>% summarize(n=n())
-str(stateDeath)
-
-maps::state.fips # join with this
-
-
-
+mpg %>% ggplot(aes(x = manufacturer)) + geom_bar() +
+  theme(axis.text.x = element_text(angle=45))
+mpg %>% ggplot(aes(x = manufacturer)) + geom_bar() +
+  theme(axis.text.x = element_text(angle=45, vjust=1, hjust=1))
