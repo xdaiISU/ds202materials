@@ -33,14 +33,11 @@ By now, over 2300 different chocolate bars have been rated.
 
 Flavors of Cacao Rating System:
 
-- 5 = Elite (Transcending beyond the ordinary limits)
-- 4 = Premium (Superior flavor development, character and style)
-- 3 = Satisfactory (3.0) to praiseworthy (3.75) (well made with special qualities)
-- 2 = Disappointing (Passable but contains at least one significant flaw)
-- 1 = Unpleasant (mostly unpalatable)
-
-
-
+- 4.0 - 5.0   = Outstanding
+- 3.5 - 3.9   = Highly Recommended
+- 3.0 - 3.49 = Recommended
+- 2.0 - 2.9   = Disappointing
+- 1.0 - 1.9   = Unpleasant
 
 ### Reading the data
 
@@ -107,4 +104,5 @@ ds202_lab2
 - You can start from Invididual 1 adding and pushing `team.Rmd`, and then Individual 2 `git pull`
 - Before you make changes to existing files or `git push`, remember to `git pull` first
 - Coorindate with your teammate to avoid merge conflict
+- Do ask for help on Piazza if you come across problems
 - All three files `individual1.Rmd`, `individual2.Rmd`, `team.Rmd` and their knitted html files are required. Both teammates must modify `team.Rmd` (check this is done using `git log team.Rmd` in `bash`).
