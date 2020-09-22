@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Submission Requirements
 
 - A team member should create a GitHub repository called `ds202_lab3` which includes the group work.
-- Each team member should create at least one commit with message "Review and Revision".
+- Each team member should create at least one commit with message "Review and Revision", which include changes on the analysis of your partner's.
 - The team will collaborate on `team.Rmd` to answer all the questions, and also include your individual exploration in either `individual1.Rmd` or `individual2.Rmd`. **Only the report generated from `team.Rmd` will be graded.**
 - Include the data you used extracted from the General Social Survey website.
 - The correct folder structure is as below. The folder `ds202_lab3` is a git repository.
