@@ -22,8 +22,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - A team member should create a GitHub repository called `ds202_lab3` which includes the group work.
 - Each team member should create at least one commit with message "Review and Revision".
-- The team will collaborate on `team.Rmd` to answer all the questions, and also include your individual exploration in either `individual1.Rmd` or `individual2.Rmd`. Only the report generated from `team.Rmd` will be graded. 
-- Include the data you used, extracted from the General Social Survey website.
+- The team will collaborate on `team.Rmd` to answer all the questions, and also include your individual exploration in either `individual1.Rmd` or `individual2.Rmd`. **Only the report generated from `team.Rmd` will be graded.**
+- Include the data you used extracted from the General Social Survey website.
 - The correct folder structure is as below. The folder `ds202_lab3` is a git repository.
 
     ```
@@ -43,7 +43,7 @@ There is a data explorer which let you to interactively explore and extract the 
 
 ## Part zero: Exploring the GSS data
 
-You can search for information you are interested in under in Keyword search box. Try "happiness". If you do not find desired result, click the dropdown arrow, and select "All" to search in all avaiable information, not just the variable names. We will focus on variables that have a long span of availablility over the years. Discuss interesting findings in your study group.
+You can search for information you are interested in under in Keyword search box. Try "happiness". If you do not find desired result, click the dropdown arrow, and select "All" to search in all avaiable information and not just the variable names. We will focus on variables that have a long span of availablility over the years. Discuss interesting findings in your study group.
 
 We will be exploring variables related to 
 
@@ -79,12 +79,12 @@ We will be exploring variables related to
 
 Use `ggplot2` to create the plots, and `dplyr` to manipulate the data frame as much as possible.  You may want to rename the columns of the data frame for your convenience using `rename` in `dplyr`.
 
-1. Find the average years of education for the respondents with each political party affiliation. Arrange your output in a meaningful order. Describe any pattern you find.
-2. Create a single data frame containing records for the better educated respondents in each political party affiliation. A "better educated" respondent is someone who has more years of education than the median within the same party affiliation. Print the structure of the data frame.
+1. Find the average years of education for the respondents with each political party affiliation. Arrange your output in a meaningful order and print. Describe any patterns you find.
+2. Create a single data frame containing records for the better educated respondents in each political party affiliation. A "better educated" respondent is someone who has strictly more years of education than the median in the same party affiliation. Print the structure of the data frame.
 
-  For each investigation below, create at least one appropriate visualization. Write a paragraph to describe your findings and the variables you used.
+  For each of the investigation below, create at least one numerical summary and one appropriate visualization. Write a paragraph to describe your findings and the variables you used.
 
-3. How is the happiness of a respondent related to his/her marriage status?
+3. How is the happiness of a respondent related to his/her marriage status? Define that a person is happy if the response to question is "Very happy" or "Pretty happy".
 4. Does party affiliation affect the relationship you found in the last question?
 5. How is marrital status related to the education of a respondent? What are possible reasons accounting for the patterns you see?
 6. Explore two more interesting questions, and answer those questions using the GSS data. 

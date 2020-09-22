@@ -396,8 +396,8 @@ summary {
 <ul>
 <li><p>A team member should create a GitHub repository called <code>ds202_lab3</code> which includes the group work.</p></li>
 <li><p>Each team member should create at least one commit with message “Review and Revision”.</p></li>
-<li><p>The team will collaborate on <code>team.Rmd</code> to answer all the questions, and also include your individual exploration in either <code>individual1.Rmd</code> or <code>individual2.Rmd</code>. Only the report generated from <code>team.Rmd</code> will be graded.</p></li>
-<li><p>Include the data you used, extracted from the General Social Survey website.</p></li>
+<li><p>The team will collaborate on <code>team.Rmd</code> to answer all the questions, and also include your individual exploration in either <code>individual1.Rmd</code> or <code>individual2.Rmd</code>. <strong>Only the report generated from <code>team.Rmd</code> will be graded.</strong></p></li>
+<li><p>Include the data you used extracted from the General Social Survey website.</p></li>
 <li><p>The correct folder structure is as below. The folder <code>ds202_lab3</code> is a git repository.</p>
 <pre><code>ds202_lab3
 |-- individual1.Rmd
@@ -414,7 +414,7 @@ summary {
 </div>
 <div id="part-zero-exploring-the-gss-data" class="section level2">
 <h2>Part zero: Exploring the GSS data</h2>
-<p>You can search for information you are interested in under in Keyword search box. Try “happiness”. If you do not find desired result, click the dropdown arrow, and select “All” to search in all avaiable information, not just the variable names. We will focus on variables that have a long span of availablility over the years. Discuss interesting findings in your study group.</p>
+<p>You can search for information you are interested in under in Keyword search box. Try “happiness”. If you do not find desired result, click the dropdown arrow, and select “All” to search in all avaiable information and not just the variable names. We will focus on variables that have a long span of availablility over the years. Discuss interesting findings in your study group.</p>
 <p>We will be exploring variables related to</p>
 <ul>
 <li><strong>Happiness</strong></li>
@@ -452,12 +452,12 @@ dat &lt;- readxl::read_xls(&#39;PATH_TO_EXL/GSS.xls&#39;)</code></pre>
 <h2>Part two: Exploration</h2>
 <p>Use <code>ggplot2</code> to create the plots, and <code>dplyr</code> to manipulate the data frame as much as possible. You may want to rename the columns of the data frame for your convenience using <code>rename</code> in <code>dplyr</code>.</p>
 <ol style="list-style-type: decimal">
-<li>Find the average years of education for the respondents with each political party affiliation. Arrange your output in a meaningful order. Describe any pattern you find.</li>
-<li>Create a single data frame containing records for the better educated respondents in each political party affiliation. A “better educated” respondent is someone who has more years of education than the median within the same party affiliation. Print the structure of the data frame.</li>
+<li>Find the average years of education for the respondents with each political party affiliation. Arrange your output in a meaningful order and print. Describe any patterns you find.</li>
+<li>Create a single data frame containing records for the better educated respondents in each political party affiliation. A “better educated” respondent is someone who has strictly more years of education than the median in the same party affiliation. Print the structure of the data frame.</li>
 </ol>
-<p>For each investigation below, create at least one appropriate visualization. Write a paragraph to describe your findings and the variables you used.</p>
+<p>For each of the investigation below, create at least one numerical summary and one appropriate visualization. Write a paragraph to describe your findings and the variables you used.</p>
 <ol start="3" style="list-style-type: decimal">
-<li>How is the happiness of a respondent related to his/her marriage status?</li>
+<li>How is the happiness of a respondent related to his/her marriage status? Define that a person is happy if the response to question is “Very happy” or “Pretty happy”.</li>
 <li>Does party affiliation affect the relationship you found in the last question?</li>
 <li>How is marrital status related to the education of a respondent? What are possible reasons accounting for the patterns you see?</li>
 <li>Explore two more interesting questions, and answer those questions using the GSS data.</li>
