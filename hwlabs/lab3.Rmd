@@ -57,7 +57,7 @@ We will be exploring variables related to
 
 1. Go to https://gssdataexplorer.norc.org/
 2. Click Search variable
-3. Search "happy"; click add to cart; go back. Repeat for "marital status", "educ", "respondent sex", "political party affiliation", and other variables (you decide)
+3. Search "happy"; click add to cart; go back. Repeat for "marital status", "educ", "respondents sex", "political party affiliation", and other variables (you decide)
 4. After you finished adding the variables, click Actions -- Save to Project
 5. Register an account
 6. Click Default Project
