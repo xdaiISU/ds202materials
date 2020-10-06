@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message=FALSE, cache=TRUE)
 
 ## Outline
 
-- Work in assigned pairs, as in Lab 3
+- Optionally, work in assigned pairs
 - Create a repository (one per team) & give access to your teammate
 - Explore the Cyclone football data. Use `dplyr` to manipulate data frames and `tidyr` to tidy data up. 
 - Create an R markdown file that contains all code to read the data, create the plots, and your answers.
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message=FALSE, cache=TRUE)
 
 - A team member should create a GitHub repository called `ds202_lab4` which includes the group work.
 - Each team member should create at least one commit with message "Review and Revision".
-- The team will collaborate on `team.Rmd` to answer all the questions, which will be graded. Also include your individual exploration in either `individual1.Rmd` or `individual2.Rmd`.
+- The team will collaborate on `team.Rmd` to answer all the questions, which will be graded. Also include your individual exploration in either `individual1.Rmd` or `individual2.Rmd`. **Even if you are working alone, you must include a team.Rmd file which contains your report to be graded**.
 - The correct folder structure is as below. The folder `ds202_lab4` is a git repository.
 
     ```
@@ -87,7 +87,7 @@ a <- bio %>% separate(Hometown, c('City', 'State'), sep = ', ')
 ## Part three: Joining data frames
 
 1. Find from which states do the ISU players come. Create an appropriate summary.
-2. Is there a relationship between the player statistics and their positions?
+<!-- 2. Is there a relationship between the player statistics and their positions? -->
 3. How does the performance of quarterback Brock Purdy relate to the performance of the ISU team?
 4. Which ISU player(s) made big progress over the last year? Compare the 2019 and the 2018 data [here](../slides/cyclonesFootball2018.xlsx). 
 
