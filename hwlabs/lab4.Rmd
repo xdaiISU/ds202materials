@@ -86,7 +86,7 @@ a <- bio %>% separate(Hometown, c('City', 'State'), sep = ', ')
 
 ## Part three: Joining data frames
 
-1. Find from which states do the ISU players come. Create an appropriate summary.
+1. Find which states do the ISU defensive and offensive players come from. Create an appropriate summary.
 <!-- 2. Is there a relationship between the player statistics and their positions? -->
 3. How does the performance of quarterback Brock Purdy relate to the performance of the ISU team?
 4. Which ISU player(s) made big progress over the last year? Compare the 2019 and the 2018 data [here](../slides/cyclonesFootball2018.xlsx). 
