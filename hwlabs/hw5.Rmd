@@ -39,4 +39,4 @@ This dataset https://data.iowa.gov/Sales-Distribution/2019-Iowa-Liquor-Sales/38x
 
 8. Which categories are spring graduation party favorites? Find at least one category.
 
-Note: your submission is supposed to be fully reproducible, i.e. the TA and I will 'knit' your submission in RStudio. 
+Note: your submission is supposed to be fully reproducible. 
