@@ -11,6 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 This homework is more or less a tutorial that helps you set up the coding environment used in this course, and familiarizes you with the format of the assignment submission. 
 As a pre-requisite of this homework, first install R, and then the RStudio (the free version of Rstudio Desktop). 
 
+Please respond to all questions. If the question asks you to do something on your laptop and you have finished that, just say "Done". 
+
 1. Create a folder named `ds202_hw1`, and **either** create an RMarkDown file `hw1.Rmd` under this folder **or** move the provided template into this folder. `hw1.Rmd` will include your solutions. The file and folder names are *case-sensitive*, which means `hw1.Rmd` and `HW1.rmd` are different. *It is crucial to follow the exact folder structure and file names* in this course, so that your homework can be reproduced. The correct folder structure is
 
     ```
@@ -19,7 +21,7 @@ As a pre-requisite of this homework, first install R, and then the RStudio (the 
     |-- hw1.html (generated after knitting)
     ```
     
-    Answer: Done? (Note that the start of your answer on the next line must be indented. Don't remove the leading spaces.)
+    Answer: Done? (Note that the start of your answer on the next line must be indented. In other words, don't remove the leading spaces.)
 
 2. Write your name in the YAML of your homework `Rmd` file.
 

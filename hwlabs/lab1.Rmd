@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Overview 
 
-In this lab, you and your teammate will collaborate on a GitHub repository. Part I will be finished individually. When we come to part II, you will form pairs within your study group. If your study group has an odd number of students you can work in a team of 3 students, and will rotate your roles. 
+In this lab, you and your teammate will collaborate on a GitHub repository. Part I will be finished individually. When we come to part II, you will form pairs (recommended) or team of 3 students within your study group. If your lab team has 3 students, then rotate your roles in Part II.
 
 ## Part I: Working with Git and GitHub
 
@@ -131,7 +131,7 @@ You have completed a cycle of collaboration. Congratulations! **Now the Owner an
 
 ## Submission
 
-Submission: Each student should submit the HTTPS URL of their own repository on Canvas. In the submission note, include the full name and github username of the partner who made changes to your repo.
+**Submission instruction**: Each student should submit the HTTPS URL of their own repository on Canvas. In the submission note, include the full name and github username of the partner who made changes to your repo.
 
 ## Grading
 You will be graded based on your own repository. Since it includes your Partner's changes, make sure to help out your partner and check the teamwork. 
