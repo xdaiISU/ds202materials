@@ -58,7 +58,7 @@ Typical data science project:
 * __Free__ to use, __open source__ so you can see what code is doing to your data
 * __Powerful__ for data analysis
     * With the right tools, get more work done, faster.
-* __Extensible__: Over 16000 user contributed add-on packages currently on CRAN! Bioconductor has more than 1800 packages. Many researchers provide R packages through github.
+* __Extensible__: Almost 17000 user contributed add-on packages currently on CRAN! Bioconductor has almost 2000 packages. Many researchers provide R packages through github.
 * __Flexible__
     * Not a question of _can_, but _how_.
 
@@ -85,18 +85,18 @@ you will acquire solid skills towards a real-world data analytic pipeline. This 
 
 ## In a typical week, you will ...
 
-- study recorded lecture videos by Monday;
-- finish individual quiz by Monday; 
-- attempt an identical group quiz in class on Tuesday;
-- during Tuesday's meeting, participate in demonstrations, group case studies, and lab activities
-- work on weekly assignment in Thursday's meeting
-- hand in your assignment by the next Monday.
+- study recorded lecture videos by class time on Monday;
+- finish individual quiz by class time on Monday; 
+- attempt an identical group quiz in class on Monday;
+- during Monday's meeting, participate in demonstrations, group case studies, and lab activities;
+- work on weekly assignment in Wednesday's meeting;
+- hand in your assignment by the same Friday.
 
 ## Getting Help
 
 There's lots of ways to get help in case you are stuck:
 
-1. Ask the instructor and the TA during Thursday's class
+1. Ask the instructor and the TA during Wednesday's class
 2. Ask a groupmate
 3. Post on Piazza
 4. Attend remote office hours
@@ -104,7 +104,11 @@ There's lots of ways to get help in case you are stuck:
 
 ## Piazza
 
-[Piazza](https://piazza.com/iastate/fall2020/ds202) will be used as the class' online forum, which is assessible within Canvas. 
+[Piazza](https://piazza.com/iastate/spring2021/ds202) will be used as the class' online forum, which is assessible within Canvas. 
+
+##
+
+<img src="images/Piazza.png" alt="Piazza" height=600 />
 
 ## Asking a good question
 
@@ -130,8 +134,6 @@ Have a look at:
 - **Travel data**, e.g. US flights
 - **Environmental Data**: Pollution, Fuel Economy, CO2 Emissions
 - **Societal Data**:  Social indicators, Economy, ...
-- **I'd like to know what data you are interested in!** 
-
 
 <!-- Anything else you can think of? -->
 
@@ -184,3 +186,23 @@ The full syllabus can be found on Canvas.
 <!-- - <font color="white">Using this chart, can you find evidence for the AIDS epidemic in Africa? The civil war in Nigeria? The earth quake in Haiti?</font> -->
 <!-- - <font color="white">What is the worldwide income distribution in 2015? How does the actual income distribution in 2015 compare to the projection from the World Bank made in 2003 (8:25 in the video)? What accounts for the difference? -->
 <!-- </font> -->
+
+
+## Let's form study groups {.shout}
+
+## Distributing talents
+- Who have 3+ years of work experience? 
+- Who have international experience? 
+- Who have 3+ years of programming experience? 
+- Who are non-engineering and non-science students? 
+- Science students?
+- Engineering students?
+
+## Introduce yourself to the groupmates (6 minutes)
+
+Next up, break into groups and introduce yourselves. Please include the following points:
+
+- name
+- major
+- what do you want to do after graduation
+- why are you taking this class

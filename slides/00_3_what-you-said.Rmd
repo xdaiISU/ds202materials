@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
-## Let form study groups {.shout}
+## Let's form study groups {.shout}
 
 ## Distributing talents
 - Who have 3+ years of work experience? 
