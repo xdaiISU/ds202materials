@@ -17,8 +17,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, cache = FALSE)
 
 ## Outline
 
-- Pair up with a partner in your study group
-- Create a repository (one per team) & give access to your teammate
+- Optionally, team up with at most two partners in your study group
+- Create a repository (one per team) & give access to your teammate(s)
 - Explore data on chocolate ratings
 - Create R markdown files that contain code to read the data and create the plots
 - Submit!
@@ -55,19 +55,19 @@ str(choco)
 We will be exploring what aspects of the chocolates may affect taste. Before setting off to the exploration, answer the following questions.
 
 1. How are the ratings distributed? Create both a histogram and a boxplot and describe them. Don't forget to mention outliers, if there are any.
-2. How does the number of ratings depend on the year? Draw a bar chart of the number of reports.
-3. Do ratings depend on the cacao percentage of a chocolate bar? Create both numerical and graphical summaries, and explain. 
+2. How does the number of ratings depend on the location of the company? Draw a bar chart of the number of reports.
+3. Do ratings depend on the cacao percentage of a chocolate bar? Create both numerical and graphical summaries, and explain. [Hint: Think about why the scatterplot is *not* a very good choice for visualization here.]
 
   Now, we are ready to explore.
 
-4. How do different characteristics of the chocolate compare? To elaborate, which characteristics tend to be more favorable and which ones are not?  Create both numerical and graphical summaries, and explain. 
-5. Brainstorm *two* analyses you would like to perform with your teammate. Describe in plain language what comparisons are you making. Create suitable numerical and graphical summaries for your analyses. Describe the results.
+4. How do different bean origins compare in terms of the flavor of chocolates? Are beans from some places better than the other? Create both numerical and graphical summaries, and explain. 
+5. Brainstorm *two* analyses you would like to perform (with your teammates). Describe in plain language what comparisons are you making. Create suitable numerical and graphical summaries for your analyses. Describe the results.
 
 ## Collaboration Workflow
 
 ### Overview
 1. Discuss with your teammate plans for the analyses.
-1. Coordinate with your teammate and decide among you who is Individual 1 and Individual 2. Accordingly, create an RMarkdown file named `individual1.Rmd` or `individual2.Rmd` to include your own exploration of the dataset.
+1. Assuming you are in a team of 2 students, coordinate with your teammate and decide among you who is Individual 1 and Individual 2. Accordingly, create an RMarkdown file named `individual1.Rmd` or `individual2.Rmd` to include your own exploration of the dataset. If you are in a team of 3, then the third teammate should use `indivisual3.Rmd`.
 2. When you and your teammate are done with your own exploration and analysis, collaborate on a `team.Rmd` file which includes the final analysis. 
 
 ### Recap: Collaborating on a GitHub repository
@@ -84,6 +84,8 @@ When the above is finished, **Individual 2:**
 1. Clone the remote repo of Individual 1's.
 2. Add `individual2.Rmd` and `individual2.html` to the local repo, and push.
 
+(Repeat if there is a third teammate)
+
 ### Working on the `team.Rmd`
 1. One of the teammates will make a draft `team.Rmd`, include the file in a git commit, and then push to the remote. 
 2. The other teammate will pull, make additions and modifications to `team.Rmd`, create a commit, and then push.
@@ -96,6 +98,7 @@ The git repo of your team should be named ds202_lab2. Use the same folder struct
 ds202_lab2
 |-- individual1.Rmd
 |-- individual2.Rmd
+|-- (individual3.Rmd)
 |-- team.Rmd
 |-- *.html files
 ```
@@ -105,4 +108,4 @@ ds202_lab2
 - Before you make changes to existing files or `git push`, remember to `git pull` first
 - Coorindate with your teammate to avoid merge conflict
 - Do ask for help on Piazza if you come across problems
-- All three files `individual1.Rmd`, `individual2.Rmd`, `team.Rmd` and their knitted html files are required. Both teammates must modify `team.Rmd` (check this is done using `git log team.Rmd` in `bash`).
+- If you work in a team, then all `Rmd` and the knitted `html` files for the individuals and the team are required. Both teammates must modify `team.Rmd` (check this is done using `git log team.Rmd` in `bash`).
