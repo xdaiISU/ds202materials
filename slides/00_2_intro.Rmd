@@ -17,6 +17,11 @@ Welcome to<br>DS 202
 
 ## Course overview {.shout}
 
+## for your data science career...
+
+- DS 202 is the second class for Data Science major/minor/certificate
+- You will learn very important skills to deal with data. These skills will be repeatedly used in your data science career!
+
 ## What is this course about?
 
 * Data Acquisition
@@ -47,10 +52,11 @@ Typical data science project:
 
 <img src="https://r4ds.had.co.nz/diagrams/data-science.png" alt="typical cycle of a data science project" />
 
+## ... we will be using R for that! {.shout}
+
+
 ## A map created by R
 <img src="images/mostDeath.jpg" alt="covid deaths" width=100% />
-
-## ... we will be using R for that! {.shout}
 
 ## R is ...
 
@@ -198,9 +204,9 @@ The full syllabus can be found on Canvas.
 - Science students?
 - Engineering students?
 
-## Introduce yourself to the groupmates (6 minutes)
+## Introduce yourself to the groupmates
 
-Next up, break into groups and introduce yourselves. Please include the following points:
+Next up, break into groups and introduce yourselves. Consider including the following points:
 
 - name
 - major
