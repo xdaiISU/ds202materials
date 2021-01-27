@@ -13,24 +13,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
-## Let's form study groups {.shout}
-
-## Distributing talents
-- Who have 3+ years of work experience? 
-- Who have international experience? 
-- Who have 3+ years of programming experience? 
-- Who are non-engineering and non-science students? 
-- Science students?
-- Engineering students?
-
-## Introduce yourself to the groupmates (6 minutes)
-
-Next up, break into groups and introduce yourselves. Please include the following points:
-
-- name
-- major
-- what do you want to do after graduation
-- why are you taking this class
 
 ## First group activity {.shout}
 
