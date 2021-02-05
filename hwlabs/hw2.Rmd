@@ -26,7 +26,7 @@ a0
 ## R commands
 1. A student's exam grades in a class were 95, 65, 70, and 87. The course policy was to drop the lowest exam grade. Find the average exam grade after dropping the lowest. Store the answer in a variable named `ave` and print.
 2. Create a vector of numbers (with length 21) to show whether the years of 2000, 2001, ..., 2020 are leap years. An entry of the vector should be `1` if the corresponding year is a leap year, and `0` otherwise. A year is a leap year here if it is divisible by 4. Store the answer in a variable named `leap` and print.
-3. Calculate the BMI of Chris and Mary, who are siblings. Chris is 1.7 meters tall and 80 kilograms in weight; Mary is 1.65 meters tall and 49 kilograms in weight. The formula for BMI is `BMI = weight^2 (in kg) / height (in meter)`. Store the answers in a vector of length 2 named `bmi` and print.
+3. Calculate the BMI of Chris and Mary, who are siblings. Chris is 1.7 meters tall and 80 kilograms in weight; Mary is 1.65 meters tall and 49 kilograms in weight. The formula for BMI is `BMI = weight (in kg) / height^2 (in meter)`. Store the answers in a vector of length 2 named `bmi` and print.
 
 ## Cars and mileage
 For this part we will use the `mpg` data set, you can access the data by first installing (using `install.packages('ggplot2')`) and then loading the package `ggplot2` (using `library(ggplot2)`) into your R session. The `mpg` data includes information about fuel economy of popular car models
