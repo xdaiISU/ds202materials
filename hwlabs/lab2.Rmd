@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, cache = FALSE)
 
 ## Outline
 
-- Optionally, team up with at most two partners in your study group
+- Optionally, team up with at most two partners from your study group
 - Create a repository (one per team) & give access to your teammate(s)
 - Explore data on chocolate ratings
 - Create R markdown files that contain code to read the data and create the plots
@@ -97,7 +97,7 @@ The git repo of your team should be named ds202_lab2. Use the same folder struct
 ```
 ds202_lab2
 |-- individual1.Rmd
-|-- individual2.Rmd
+|-- (individual2.Rmd)
 |-- (individual3.Rmd)
 |-- team.Rmd
 |-- *.html files
@@ -107,5 +107,5 @@ ds202_lab2
 - You can start from Invididual 1 adding and pushing `team.Rmd`, and then Individual 2 `git pull`
 - Before you make changes to existing files or `git push`, remember to `git pull` first
 - Coorindate with your teammate to avoid merge conflict
-- Do ask for help on Piazza if you come across problems
-- If you work in a team, then all `Rmd` and the knitted `html` files for the individuals and the team are required. Both teammates must modify `team.Rmd` (check this is done using `git log team.Rmd` in `bash`).
+- Ask for help on Piazza if you come across problems
+- If you work in a team, then all `Rmd` and the knitted `html` files for the individuals and the team are required. All teammates must modify `team.Rmd` (you can check this is done using `git log team.Rmd` in `bash`).

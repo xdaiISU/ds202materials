@@ -9,8 +9,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Outline
 
-- Work in assigned pairs, as in Lab 2
-- Create a repository (one per team) & give access to your teammate
+- Optionally, team up with at most two partners from your study group
+- Create a repository (one per team) & give access to your teammate(s)
 - For a refreshment of git & github, review the procedures for collaboration for Lab 2.
 - Explore what leads to happiness using data from the General Social Survey
 - Create an R markdown file that contains all code to read the data, create the plots, and your answers.
@@ -22,17 +22,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - A team member should create a GitHub repository called `ds202_lab3` which includes the group work.
 - Each team member should create at least one commit with message "Review and Revision", which include changes on the analysis of your partner's.
-- The team will collaborate on `team.Rmd` to answer all the questions, and also include your individual exploration in either `individual1.Rmd` or `individual2.Rmd`. **Only the report generated from `team.Rmd` will be graded.**
-- Include the data you used extracted from the General Social Survey website.
+- The team will collaborate on `team.Rmd` to answer all the questions (for the final report), and also include your individual exploration in `individual1.Rmd`, `individual2.Rmd`, or `indivisual3.Rmd` ("your scratch file"). **Only the report generated from `team.Rmd` will be graded.**
+- Include the data you used in your repository.
 - The correct folder structure is as below. The folder `ds202_lab3` is a git repository.
 
     ```
     ds202_lab3
     |-- individual1.Rmd
-    |-- individual2.Rmd
+    |-- (individual2.Rmd)
+    |-- (individual3.Rmd)
     |-- team.Rmd
     |-- *.html
-    |-- Data files...
+    |-- Data files
     ```
 
 ## Background
@@ -43,7 +44,7 @@ There is a data explorer which let you to interactively explore and extract the 
 
 ## Part zero: Exploring the GSS data
 
-You can search for information you are interested in under in Keyword search box. Try "happiness". If you do not find desired result, click the dropdown arrow, and select "All" to search in all avaiable information and not just the variable names. We will focus on variables that have a long span of availablility over the years. Discuss interesting findings in your study group.
+You can search for information you are interested in under in Keyword search box. Try "happiness". If you do not find desired result, click the dropdown arrow, and select "All" to search in all avaiable information and not just the variable names. We will focus on variables that have a long span of availablility over the years. Discuss on the interesting findings within your study group.
 
 We will be exploring variables related to 
 
@@ -79,8 +80,8 @@ We will be exploring variables related to
 
 Use `ggplot2` to create the plots, and `dplyr` to manipulate the data frame as much as possible.  You may want to rename the columns of the data frame for your convenience using `rename` in `dplyr`.
 
-1. Find the average years of education for the respondents with each political party affiliation. Arrange your output in a meaningful order and print. Describe any patterns you find.
-2. Create a single data frame containing records for the better educated respondents in each political party affiliation. A "better educated" respondent is someone who has strictly more years of education than the median in the same party affiliation. Print the structure of the data frame.
+1. Find the average years of education for the respondents with each marital status. Arrange your output in a meaningful order and print. Describe any patterns you find.
+2. Create a single data frame containing records for the better educated respondents with each marital status. A "better educated" respondent is someone who has strictly more years of education than the average among those with the same marital status. Print the structure of the data frame.
 
   For each of the investigation below, create at least one numerical summary and one appropriate visualization. Write a paragraph to describe your findings and the variables you used.
 
