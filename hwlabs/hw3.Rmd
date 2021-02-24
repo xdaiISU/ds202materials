@@ -24,7 +24,7 @@ data(ames)
 ```
 See `?ames` for the description on the dataset.
 
-Include at least one `ggplot` visualization in each of your answer, and describe what you find.
+Include at least one `ggplot` visualization in each of your answer except for Question 2, and describe what you find.
 <!-- **Submission instructions**: Create a folder named `ds202_hw3`, and name the RMarkDown file `hw3.Rmd`  which should include your solutions under this folder. For submission, create a GitHub repository named `ds202_hw3` under your GitHub account, and push both `hw3.Rmd` and the knitted `hw3.html` before the deadline. I will assume you use the same GitHub username as for your HW2 submission. The latest version of your homework appearing on GitHub before the deadline is graded. *It is crucial to follow the exact folder structure and file names*, so that your homework can be reproduced and graded by an automated script. This homework is **due on Feb 19** before class. -->
 
 1. Explore and explain what is the relationship between the sale price (y) and living area size (x). In your visualization, add a straight line with intercept at 20000 and slope equal to 100. Look at `?geom_abline`, and in particular the examples. Remark on any patterns you find and the straight line.
