@@ -21,7 +21,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Submission Requirements
 
 - A team member should create a GitHub repository called `ds202_lab3` which includes the group work.
-- Each team member should create at least one commit with message "Review and Revision", which include changes on the analysis of your partner's.
 - The team will collaborate on `team.Rmd` to answer all the questions (for the final report), and also include your individual exploration in `individual1.Rmd`, `individual2.Rmd`, or `indivisual3.Rmd` ("your scratch file"). **Only the report generated from `team.Rmd` will be graded.**
 - Include the data you used in your repository.
 - The correct folder structure is as below. The folder `ds202_lab3` is a git repository.
@@ -35,40 +34,42 @@ knitr::opts_chunk$set(echo = TRUE)
     |-- *.html
     |-- Data files
     ```
+- **From this lab forward, if you team up, each team member should create at least one commit with message "Review and Revision", which include revisions on the analysis of your partner's.**
 
 ## Background
 
-The General Social Survey (GSS) has been run by NORC since 1972 to keep track of current opinions across the United States. 
+The General Social Survey (GSS) has been run by NORC since 1972 to keep track of current opinions across the United States. One of the central question is what kind of persons tend to be happier than the others.
 
 There is a data explorer which let you to interactively explore and extract the data here https://gssdataexplorer.norc.org/
 
 ## Part zero: Exploring the GSS data
 
-You can search for information you are interested in under in Keyword search box. Try "happiness". If you do not find desired result, click the dropdown arrow, and select "All" to search in all avaiable information and not just the variable names. We will focus on variables that have a long span of availablility over the years. Discuss on the interesting findings within your study group.
+You can search for information you are interested in under in Keyword search box. Try "happiness". If you do not find desired result, click View all Results at the bottom of the pop up menu. 
+<!-- Discuss on the interesting findings within your study group. -->
 
 We will be exploring variables related to 
 
 - **Happiness**
-- **Family (marital status)**
-- **Education**
-- **Political affilation**
-- Many other possible topics, such as Work (hours) and Belief -- it is up to you
+- **Marital status**
+- **Ecudation**
+- **Political party affilation**
+- Many other possible topics, such as work hours and belief -- it is up to you
 
 ## Part one: Extracting and loading data
 
 1. Go to https://gssdataexplorer.norc.org/
 2. Click Search variable
-3. Search "happy"; click add to cart; go back. Repeat for "marital status", "educ", "respondents sex", "political party affiliation", and other variables (you decide)
+3. Search "happy"; click add to cart; go back. Repeat for "marital status", "highest year of school completed", "respondents sex", "political party affiliation", and other variables (you decide)
 4. After you finished adding the variables, click Actions -- Save to Project
 5. Register an account
 6. Click Default Project
 7. Click Actions -- Extract data
-8.  a. Name your extract (e.g. `extract1`) -- click NEXT; 
+8.  a. Name your extract (e.g., extract1) -- click NEXT; 
     b. ADD ALL variables -- click NEXT; 
     c. click NEXT; 
-    d. **Check Excel Workbook (data + metadata), and leave all others unchecked**; 
+    d. **Check Excel Workbook (data + metadata) and  Excel Workbook (metadata only), and leave all others unchecked**; 
     e. CREATE EXTRACT
-9. Wait for the extract to be ready, and then download an archive file. 
+9. Wait for the extract to be ready in a few minutes, and then download an archive file. 
 10. Extract the archive file (ending with .tar.gz). Windows users: You may need [7-Zip](https://www.7-zip.org/)
 11. Load the Excel file into R, using 
   ```
