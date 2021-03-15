@@ -37,7 +37,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message=FALSE, cache=FALSE)
     ```
 
 ## Background
-An excerpt of the individual player data of the Cyclone football team is extracted from the ISU Athletics website and is available here as an Excel file: [2020 data file](../slides/cyclonesFootball2020.xlsx).
+An excerpt of the individual player data of the Cyclone football team is extracted from the ISU Athletics website and is available here as an Excel file: [2020 data file](https://github.com/xdaiISU/ds202materials/raw/master/slides/cyclonesFootball2020.xlsx).
+<!-- [2020 data file](../slides/cyclonesFootball2020.xlsx). -->
 
 I appreciate that some of you are probably quite new to college football, the same as I was just a few years ago. In this assignment, you will learn a little bit about the background of football so as to do data science. An actual data scientist at work constantly needs to acquire new knowledge about the business and other fields, so this lab is sort of a little practice in this aspect.
 
@@ -46,7 +47,7 @@ I appreciate that some of you are probably quite new to college football, the sa
 
 - Some abbreviations for the column names can be found in the Glossaries sheet in the Excel file.
 - [Iowa State University Athelete](https://cyclones.com/index.aspx)
-- [A Beginner's Guide to American Football](https://www.youtube.com/watch?v=3t6hM5tRlfA) for the rules of American football.
+- [A Beginner's Guide to American Football](https://www.youtube.com/watch?v=3t6hM5tRlfA) for a 1-minute introduction to the rules of American football.
 
 ## Loading Data
 
@@ -66,21 +67,21 @@ bio <- read_excel('../slides/cyclonesFootball2020.xlsx', sheet='Biography')
 Although the three Excel sheets are loaded into R, they are not useful before some cleaning. Manipulate the three imported data frames, so that in the cleaned dataset: 
 
 1. The player names and opponent names are factors.
-2. All offensive and defensive statistics are numerical. The `Weight` column in biogrpahy is also numeric. (Optional: Learn to mutate multiple columns simultaneously using the `?across` function in `dplyr`)
+2. All offensive and defensive statistics are numerical. The `Weight` column in biogrpahy is also numeric. (Optional: Read `?across` and learn to mutate multiple columns simultaneously using the `across` function in `dplyr`)
 3. Change the `Height` column in biography into numeric. (Hint: Use a unit that works well)
 
-By cleaning the three data frames in R, at the end of this step you should have the following three clean data frames: `defClean`, `offClean`, and `bioClean`. Print the structures of these data frames.
+By cleaning the three data frames in R, at the end of this step you should have the following three clean data frames: `defClean`, `offClean`, and `bioClean`. Print the structures of these data frames using `str()`.
 
 ## Part two: Tidying
 For the following questions, work on the cleaned data frames `defClean`, `offClean`, and `bioClean`.
 
 1. Reformat the `offClean` data frame into a tidy format using `pivot_longer`. The type of statistic (Receiving_REC for the number of receivings, Receiving_YDS for receiving yards) is added as a new key column named `stat`. 
-2. Comment on the distributions of the offensive statistics. Explain the patterns you see.
-3. Did ISU have better offense against Oregon or Oklahoma? Answer this question by creating a scatterplot with x- and y-axes being the receiving yards (for each player). A large number of receiving yards indicates good offense. 
+2. Show on the distributions of the offensive statistics. The distribution of each offensive statsitic should be shown in a separate facet. Explain the patterns you see.
+3. Did ISU have better offense against Oregon or Oklahoma? Answer this question by creating a scatterplot with the x- and y-axes being the receiving yards of the ISU players against these two opponents. A large number of receiving yards indicates good offense. 
 
   Now turn our attention to the player biography.
 
-4. Separate the `Hometown` column into two columns, namely, the city and the state. Print the first few rows of these two columns. (Hint: look at the `sep=` argument of `separate`)
+4. Separate the `Hometown` column into two columns, namely, the city and the state where the player comes from. Print the first few rows of these two columns. (Hint: look at the `sep=` argument of `separate`)
 5. How many players are there from each state?
 ```{r,echo=FALSE,results='hide',message=FALSE}
 library(tidyverse)
@@ -89,7 +90,7 @@ a <- bio %>% separate(Hometown, c('City', 'State'), sep = ', ')
 
 ## Part three: Joining data frames
 
-1. Find which states do the ISU players (both defensive and offensive) come from. Create an appropriate summary.
+1. Find which states do the ISU players (both defensive and offensive) come from. Create an appropriate numerical or graphical summary.
 <!-- 2. Is there a relationship between the player statistics and their positions? -->
 3. How does the performance of quarterback Brock Purdy relate to the performance of the ISU team?
 4. Which ISU player(s) made the biggest progress over the last year? Compare the player-level statistics (i.e. averages and totals for each player) using both the 2020 and the 2019 data [here](../slides/cyclonesFootball2019.xlsx). 
@@ -98,5 +99,5 @@ Choose for yourself the player statistics to investigate.
 
 ## Tips
 - You may want to find one or more suitable statistics to quantify the performance of a player.
-- If you team up, agree on a method to clean the dataset with your teammate. Teammates can then work on the same cleaned version for downstream analysis.
+- If you team up, agree on a method to clean the dataset with your teammate(s). The team can then work on the same cleaned version for downstream analysis.
 - Plan ahead to prevent merge conflict: Teammates should work on different sections of `team.Rmd`. If they need to modify the same section, do it in turn rather than at the same time. 

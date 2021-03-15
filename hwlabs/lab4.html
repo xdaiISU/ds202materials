@@ -420,13 +420,13 @@ summary {
 </div>
 <div id="background" class="section level2">
 <h2>Background</h2>
-<p>An excerpt of the individual player data of the Cyclone football team is extracted from the ISU Athletics website and is available here as an Excel file: <a href="../slides/cyclonesFootball2020.xlsx">2020 data file</a>.</p>
+<p>An excerpt of the individual player data of the Cyclone football team is extracted from the ISU Athletics website and is available here as an Excel file: <a href="https://github.com/xdaiISU/ds202materials/raw/master/slides/cyclonesFootball2020.xlsx">2020 data file</a>. <!-- [2020 data file](../slides/cyclonesFootball2020.xlsx). --></p>
 <p>I appreciate that some of you are probably quite new to college football, the same as I was just a few years ago. In this assignment, you will learn a little bit about the background of football so as to do data science. An actual data scientist at work constantly needs to acquire new knowledge about the business and other fields, so this lab is sort of a little practice in this aspect.</p>
 <p><strong>References:</strong></p>
 <ul>
 <li>Some abbreviations for the column names can be found in the Glossaries sheet in the Excel file.</li>
 <li><a href="https://cyclones.com/index.aspx">Iowa State University Athelete</a></li>
-<li><a href="https://www.youtube.com/watch?v=3t6hM5tRlfA">A Beginner’s Guide to American Football</a> for the rules of American football.</li>
+<li><a href="https://www.youtube.com/watch?v=3t6hM5tRlfA">A Beginner’s Guide to American Football</a> for a 1-minute introduction to the rules of American football.</li>
 </ul>
 </div>
 <div id="loading-data" class="section level2">
@@ -453,29 +453,29 @@ str(defense)</code></pre>
 <p>Although the three Excel sheets are loaded into R, they are not useful before some cleaning. Manipulate the three imported data frames, so that in the cleaned dataset:</p>
 <ol style="list-style-type: decimal">
 <li>The player names and opponent names are factors.</li>
-<li>All offensive and defensive statistics are numerical. The <code>Weight</code> column in biogrpahy is also numeric. (Optional: Learn to mutate multiple columns simultaneously using the <code>?across</code> function in <code>dplyr</code>)</li>
+<li>All offensive and defensive statistics are numerical. The <code>Weight</code> column in biogrpahy is also numeric. (Optional: Read <code>?across</code> and learn to mutate multiple columns simultaneously using the <code>across</code> function in <code>dplyr</code>)</li>
 <li>Change the <code>Height</code> column in biography into numeric. (Hint: Use a unit that works well)</li>
 </ol>
-<p>By cleaning the three data frames in R, at the end of this step you should have the following three clean data frames: <code>defClean</code>, <code>offClean</code>, and <code>bioClean</code>. Print the structures of these data frames.</p>
+<p>By cleaning the three data frames in R, at the end of this step you should have the following three clean data frames: <code>defClean</code>, <code>offClean</code>, and <code>bioClean</code>. Print the structures of these data frames using <code>str()</code>.</p>
 </div>
 <div id="part-two-tidying" class="section level2">
 <h2>Part two: Tidying</h2>
 <p>For the following questions, work on the cleaned data frames <code>defClean</code>, <code>offClean</code>, and <code>bioClean</code>.</p>
 <ol style="list-style-type: decimal">
 <li>Reformat the <code>offClean</code> data frame into a tidy format using <code>pivot_longer</code>. The type of statistic (Receiving_REC for the number of receivings, Receiving_YDS for receiving yards) is added as a new key column named <code>stat</code>.</li>
-<li>Comment on the distributions of the offensive statistics. Explain the patterns you see.</li>
-<li>Did ISU have better offense against Oregon or Oklahoma? Answer this question by creating a scatterplot with x- and y-axes being the receiving yards (for each player). A large number of receiving yards indicates good offense.</li>
+<li>Show on the distributions of the offensive statistics. The distribution of each offensive statsitic should be shown in a separate facet. Explain the patterns you see.</li>
+<li>Did ISU have better offense against Oregon or Oklahoma? Answer this question by creating a scatterplot with the x- and y-axes being the receiving yards of the ISU players against these two opponents. A large number of receiving yards indicates good offense.</li>
 </ol>
 <p>Now turn our attention to the player biography.</p>
 <ol start="4" style="list-style-type: decimal">
-<li>Separate the <code>Hometown</code> column into two columns, namely, the city and the state. Print the first few rows of these two columns. (Hint: look at the <code>sep=</code> argument of <code>separate</code>)</li>
+<li>Separate the <code>Hometown</code> column into two columns, namely, the city and the state where the player comes from. Print the first few rows of these two columns. (Hint: look at the <code>sep=</code> argument of <code>separate</code>)</li>
 <li>How many players are there from each state?</li>
 </ol>
 </div>
 <div id="part-three-joining-data-frames" class="section level2">
 <h2>Part three: Joining data frames</h2>
 <ol style="list-style-type: decimal">
-<li>Find which states do the ISU players (both defensive and offensive) come from. Create an appropriate summary. <!-- 2. Is there a relationship between the player statistics and their positions? --></li>
+<li>Find which states do the ISU players (both defensive and offensive) come from. Create an appropriate numerical or graphical summary. <!-- 2. Is there a relationship between the player statistics and their positions? --></li>
 <li>How does the performance of quarterback Brock Purdy relate to the performance of the ISU team?</li>
 <li>Which ISU player(s) made the biggest progress over the last year? Compare the player-level statistics (i.e. averages and totals for each player) using both the 2020 and the 2019 data <a href="../slides/cyclonesFootball2019.xlsx">here</a>. Choose for yourself the player statistics to investigate.</li>
 </ol>
@@ -484,7 +484,7 @@ str(defense)</code></pre>
 <h2>Tips</h2>
 <ul>
 <li>You may want to find one or more suitable statistics to quantify the performance of a player.</li>
-<li>If you team up, agree on a method to clean the dataset with your teammate. Teammates can then work on the same cleaned version for downstream analysis.</li>
+<li>If you team up, agree on a method to clean the dataset with your teammate(s). The team can then work on the same cleaned version for downstream analysis.</li>
 <li>Plan ahead to prevent merge conflict: Teammates should work on different sections of <code>team.Rmd</code>. If they need to modify the same section, do it in turn rather than at the same time.</li>
 </ul>
 </div>
