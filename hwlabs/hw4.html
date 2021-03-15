@@ -395,7 +395,7 @@ summary {
 <p>For all of the questions in this homework, use <code>dplyr</code> functions, joins, and the pipe <code>%&gt;%</code> as much as possible.</p>
 <ol style="list-style-type: decimal">
 <li><p>Find if each flight number is being used only once in each day. There should be one row/record per flight number. (Hint: You may need the <code>any()</code> function).</p></li>
-<li><p>Add the location of the origin and destination (i.e. the <code>lat</code> and <code>lon</code>) to <code>flights</code>. Retain only columns for the airport code, airport name, longitude, and latitude. Name the columns in a user-friendly manner.</p></li>
+<li><p>Add the location of <em>both</em> the origin <em>and</em> destination (i.e. the <code>lat</code> and <code>lon</code>) to <code>flights</code>. Retain only columns for the airport code, airport name, longitude, and latitude. Name the columns in a user-friendly manner.</p></li>
 <li><p>Create appropriate numerical and/or graphical summaries to investigate how visibility condition makes it more likely to see a delay. Make sure to also investigate the flight delays with missing visibility values. (Hint: use <code>left_join</code>)</p></li>
 <li><p>Which 5 destination airports have the most severe arrival delay? The severity of delay is defined as the proportion of arriving flights that have no less than 30 minutes arrival delay. Create a data frame containing their airport name, code, and the severity of delay.</p></li>
 <li><p>What happened on June 13, 2013? Look at the delay severity by airport on that day, and then use Google to cross-reference with the weather.</p></li>

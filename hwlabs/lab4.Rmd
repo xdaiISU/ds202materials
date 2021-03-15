@@ -1,5 +1,5 @@
 ---
-title: "DS 202 - lab #4: Joining and Tidying"
+title: "DS 202 - lab #4: Joining and Tidying ISU Football Data"
 author: "Xiongtao Dai"
 ratio: 16x10
 output: html_document

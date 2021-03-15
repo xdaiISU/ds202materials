@@ -15,7 +15,7 @@ For all of the questions in this homework, use `dplyr` functions, joins, and the
 
 1. Find if each flight number is being used only once in each day. There should be one row/record per flight number. (Hint: You may need the `any()` function).
 
-2. Add the location of the origin and destination (i.e. the `lat` and `lon`) to `flights`. Retain only columns for the airport code, airport name, longitude, and latitude. Name the columns in a user-friendly manner.
+2. Add the location of *both* the origin *and* destination (i.e. the `lat` and `lon`) to `flights`. Retain only columns for the airport code, airport name, longitude, and latitude. Name the columns in a user-friendly manner.
 
 3. Create appropriate numerical and/or graphical summaries to investigate how visibility condition makes it more likely to see a delay. Make sure to also investigate the flight delays with missing visibility values. (Hint: use `left_join`)
 
