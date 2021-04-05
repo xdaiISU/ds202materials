@@ -1,6 +1,5 @@
 ---
 title: "DS 202 - lab #5: Drunk Driving and Fatal Accidents "
-author: "Xiongtao Dai"
 ratio: 16x10
 output: html_document
 ---
@@ -11,8 +10,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message=FALSE, cache=TRUE)
 
 ## Outline
 
-- Work in assigned pairs, as in Lab 4
-- Create a repository (one per team) & give access to your teammate
+- Optionally, form a team of up to 3 students within your study group.
+- Create a repository (one per team) & give access to your teammate(s).
 - Explore the FARS traffic accident data and create maps
 - Create an R markdown file that contains all code to read the data, create the plots, and your answers.
 - Teammates will review and revise each other's work.
@@ -21,8 +20,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message=FALSE, cache=TRUE)
 ## Submission Requirements
 
 - A team member should create a GitHub repository called `ds202_lab5` which includes the group work.
-- Each team member should create at least one commit with message "Review and Revision".
-- The team will collaborate on `team.Rmd` to answer all the questions, which will be graded. Also include your individual exploration in either `individual1.Rmd` or `individual2.Rmd`.
+- Each team member should create at least one commit with message "Review and Revision", if you team up.
+- The team will collaborate on `team.Rmd` to answer all the questions, which will produce `team.html`, the only file that will graded. Also include your individual exploration in either `individual1.Rmd`, `individual2.Rmd`, or `individual3.Rmd`. **Even if you are working alone, you must include a team.Rmd file which contains your report to be graded**.
 - The correct folder structure is as below. The folder `ds202_lab5` is a git repository.
 
     ```
@@ -55,8 +54,8 @@ https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812602
 3. Create a data frame containing the most dangerous vehicle make in each state. The number of persons fatally hit in the vehicle make is used to assess the (non-)safety of a make. Make sure to handle the missing values appropriately. (look up variable `MAKE`)
 4. Create a map, and label each state with the most dangerous vehicle. Discuss the definition of *the most dangerous* vehicle, and what you find from the map. (Hint: Read the description for the `STATE` and `COUNTY` columns in the FARS manual. The state & county codes are Geographic Locator Codes (GLCs) from  [the General Services Administration’s (GSA) publication](https://www.gsa.gov/reference/geographic-locator-codes/glcs-for-the-us-and-us-territories). Use `readxl::read_xlsx` to read in the GLCs.)
 5. Join the accident and person table (work out which variable(s) to use)
-6. Tally the number of accidents by day of the week (DAY_WEEK), hour of the day (HOUR) and gender (SEX). Visualize the results.
-7. Now plot a choropleth map of the number of deaths on a county level. 
+6. Tally the number of accidents by day of the week (DAY_WEEK), hour of the day (HOUR) and gender (SEX). Visualize the results and explain what you find.
+7. Now plot a choropleth map of the number of deaths on a county level. Also explain what you find.
 8. Is summer or winter more dangerous? Does this depend on states? Explore and explain.
 
 
