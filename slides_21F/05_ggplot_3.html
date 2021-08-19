@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202: Using ggplot to Perform Exploratory Analysis</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="05_ggplot_3_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="05_ggplot_3_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="05_ggplot_3_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="05_ggplot_3_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="05_ggplot_3_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+    <style type="text/css">
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
+   div.sourceCode { margin: 1em 0; }
+   pre.sourceCode { margin: 0; }
+   @media screen {
+   div.sourceCode { overflow: auto; }
+   }
+   @media print {
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+   }
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
+       position: relative; left: -1em; text-align: right; vertical-align: baseline;
+       border: none; display: inline-block;
+       -webkit-touch-callout: none; -webkit-user-select: none;
+       -khtml-user-select: none; -moz-user-select: none;
+       -ms-user-select: none; user-select: none;
+       padding: 0 4px; width: 4em;
+       color: #aaaaaa;
+     }
+   pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+   div.sourceCode
+     {   }
+   @media screen {
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+   }
+   code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code span.at { color: #7d9029; } /* Attribute */
+   code span.bn { color: #40a070; } /* BaseN */
+   code span.bu { } /* BuiltIn */
+   code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code span.ch { color: #4070a0; } /* Char */
+   code span.cn { color: #880000; } /* Constant */
+   code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code span.dt { color: #902000; } /* DataType */
+   code span.dv { color: #40a070; } /* DecVal */
+   code span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code span.ex { } /* Extension */
+   code span.fl { color: #40a070; } /* Float */
+   code span.fu { color: #06287e; } /* Function */
+   code span.im { } /* Import */
+   code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code span.op { color: #666666; } /* Operator */
+   code span.ot { color: #007020; } /* Other */
+   code span.pp { color: #bc7a00; } /* Preprocessor */
+   code span.sc { color: #4070a0; } /* SpecialChar */
+   code span.ss { color: #bb6688; } /* SpecialString */
+   code span.st { color: #4070a0; } /* String */
+   code span.va { color: #19177c; } /* Variable */
+   code span.vs { color: #4070a0; } /* VerbatimString */
+   code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  
+  
+      <script src="05_ggplot_3_files/header-attrs-2.3/header-attrs.js"></script>
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202: Using ggplot to Perform Exploratory Analysis</h1>
+    <p>Xiongtao Dai</p>
+  </header>
+
+  
+  
+<section id="ggplot-for-exploratory-analysis" class="slide level2 shout">
+<h2 class="shout">ggplot for Exploratory Analysis</h2>
+</section>
+<section id="choosing-plots-for-answers" class="slide level2">
+<h2>Choosing plots for answers</h2>
+<ol type="1">
+<li>Explore how one variable is distributed: <em>barchart, boxplot, or histogram</em></li>
+<li>Explore how two variables are related:
+<ul>
+<li>two numerical variables: <em>scatterplot or line plot</em></li>
+<li>one numerical variable and one categorical: <em>side-by-side barchart, boxplot, or histograms</em></li>
+<li>two categorical variables: <em>side-by-side barchart</em></li>
+</ul></li>
+<li>Explore how more variables are related: <em>facetting, color &amp; other aesthetics</em></li>
+</ol>
+</section>
+<section id="univariate-plots" class="slide level2 shout">
+<h2 class="shout">Univariate plots</h2>
+</section>
+<section id="boxplots" class="slide level2">
+<h2>Boxplots</h2>
+<p><code>geom_boxplot</code> in ggplot2 needs <code>y</code> aethetics</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(classdata)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>fbi2018 &lt;-<span class="st"> </span>fbi[fbi<span class="op">$</span>Year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span>, ]</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">ggplot</span>(fbi2018, <span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">log10</span>(Count))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-1-1.png" width="336" /></p>
+</section>
+<section id="histograms" class="slide level2">
+<h2>Histograms</h2>
+<ul>
+<li>A histogram needs <code>x</code> aethetics</li>
+<li>Optionally, the binwidth can be set using <code>geom_histogram(binwidth=...)</code></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>bw &lt;-<span class="st"> </span><span class="dv">5000</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">ggplot</span>(fbiwide, <span class="kw">aes</span>(<span class="dt">x =</span> Motor.vehicle.theft)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>bw) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste0</span>(<span class="st">&quot;binwidth = &quot;</span>, bw))</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-2-1.png" width="384" /></p>
+</section>
+<section id="changing-bandwidth-in-a-histogram" class="slide level2">
+<h2>Changing bandwidth in a histogram</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>bw &lt;-<span class="st"> </span><span class="dv">1000</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">ggplot</span>(fbiwide, <span class="kw">aes</span>(<span class="dt">x =</span> Motor.vehicle.theft)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span>bw) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste0</span>(<span class="st">&quot;binwidth = &quot;</span>, bw))</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-3-1.png" width="384" /></p>
+</section>
+<section id="histograms-1" class="slide level2">
+<h2>Histograms</h2>
+<p>What do we look for?</p>
+<ul>
+<li>Shape of the distribution</li>
+<li>Symmetry/Skewness</li>
+<li>Modes, Groups (big pattern: where is the bulk of the data?)</li>
+<li>Gaps &amp; Outliers (deviation from the big pattern: where are the other points?)</li>
+</ul>
+<!-- For the histogram, always choose the binwidth consciously -->
+</section>
+<section id="boxplot-vs-histogram" class="slide level2">
+<h2>Boxplot vs Histogram</h2>
+<ul>
+<li><strong>Pros for Boxplot:</strong>
+<ul>
+<li>Quick and compact</li>
+<li>Easy comparisons across multiple treatments (side by side boxplots)</li>
+<li>Highlights outliers</li>
+</ul></li>
+<li><strong>Pros for Histogram:</strong>
+<ul>
+<li>Displays all information of the distribution (shape, skewness, etc.)</li>
+<li>Shows all modes and gaps in the data</li>
+</ul></li>
+</ul>
+</section>
+<section id="barchart" class="slide level2">
+<h2>Barchart</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">ggplot</span>(fbi2018[fbi2018<span class="op">$</span>Type <span class="op">==</span><span class="st"> &#39;Burglary&#39;</span>, ], <span class="kw">aes</span>(<span class="dt">x =</span> State, <span class="dt">weight=</span>Population)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">ggplot</span>(fbi2018, <span class="kw">aes</span>(<span class="dt">x =</span> Type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-4-2.png" width="672" /></p>
+</section>
+<section id="barchart-1" class="slide level2">
+<h2>Barchart</h2>
+<ul>
+<li>Barchart is for showing the counts of a categorical variable or the data values of a continuous variable</li>
+<li>If the x-labels overlap, one can switch the x- and y-axes using <code>coord_flip()</code></li>
+<li>The bars need to be ordered consciously</li>
+</ul>
+</section>
+<section id="two-continuous-variables" class="slide level2 shout">
+<h2 class="shout">Two continuous variables</h2>
+</section>
+<section id="scatterplot" class="slide level2">
+<h2>Scatterplot</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>iowa &lt;-<span class="st"> </span>fbiwide[fbiwide<span class="op">$</span>State <span class="op">==</span><span class="st"> &#39;Iowa&#39;</span>, ]</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">ggplot</span>(iowa, <span class="kw">aes</span>(<span class="dt">x=</span>Robbery, <span class="dt">y=</span>Murder)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-5-1.png" width="336" /></p>
+</section>
+<section id="revision---interpreting-scatterplots" class="slide level2">
+<h2>Revision - Interpreting Scatterplots</h2>
+<ul>
+<li>Big patterns
+<ul>
+<li>Form and direction</li>
+<li>Strength</li>
+</ul></li>
+<li>Small patterns</li>
+<li>Deviations from the pattern
+<ul>
+<li>Outliers</li>
+</ul></li>
+</ul>
+</section>
+<section id="one-discrete-and-one-continous-variable" class="slide level2 shout">
+<h2 class="shout">One discrete and one continous variable</h2>
+</section>
+<section id="side-by-side-boxplots" class="slide level2">
+<h2>Side-by-side Boxplots</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">ggplot</span>(fbi2018, <span class="kw">aes</span>(<span class="dt">x =</span> Type, <span class="dt">y =</span> <span class="kw">log10</span>(Count))) <span class="op">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-6-1.png" width="576" /></p>
+</section>
+<section id="side-by-side-boxplots-1" class="slide level2">
+<h2>Side-by-side Boxplots</h2>
+<ul>
+<li>are used for group comparisons and outlier identifications</li>
+<li>usually only make sense in form of side-by-side boxplots.</li>
+<li><code>geom_boxplot</code> in ggplot2 needs <code>y</code> variable, and optionally an <code>x</code> (<code>y</code> is numerical, <code>x</code> is categorical)</li>
+</ul>
+<!-- ```{r, echo=FALSE, warning=FALSE, fig.width = 8, fig.height = 5} -->
+<!-- ggplot(data = fbi, aes(x = Type, y = log10(Count))) + geom_boxplot() + coord_flip() -->
+<!-- ``` -->
+</section>
+<section id="side-by-side-histogram" class="slide level2">
+<h2>Side-by-side Histogram</h2>
+<p>Side-by-side histogram works well comparing a small number of distributions</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>dat &lt;-<span class="st"> </span>fbi2018[fbi2018<span class="op">$</span>Type <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Burglary&#39;</span>, <span class="st">&#39;Larceny.theft&#39;</span>), ]</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">log10</span>(Count), <span class="dt">fill=</span>Type)) <span class="op">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">position=</span><span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-7-1.png" width="672" /></p>
+</section>
+<section id="stacked-barcharts" class="slide level2">
+<h2>Stacked barcharts</h2>
+<p>One discrete (State) vs one continuous (Count)</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>neigh &lt;-<span class="st"> </span>fbi2018[fbi2018<span class="op">$</span>State <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Iowa&#39;</span>, <span class="st">&#39;Nebraska&#39;</span>), ]</span>
+<span id="cb9-2"><a href="#cb9-2"></a>dat1 &lt;-<span class="st">  </span>neigh[neigh<span class="op">$</span>Type <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Larceny.theft&#39;</span>, <span class="st">&#39;Burglary&#39;</span>), ]</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="kw">ggplot</span>(dat1, <span class="kw">aes</span>(<span class="dt">x =</span> Type, <span class="dt">weight=</span>Count, <span class="dt">fill=</span>State)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-8-1.png" width="576" /></p>
+</section>
+<section id="two-discrete-variables" class="slide level2 shout">
+<h2 class="shout">Two discrete variables</h2>
+</section>
+<section id="example-survival-on-the-titanic" class="slide level2">
+<h2>Example: Survival on the titanic</h2>
+<p>The object <code>titanic</code> is a table of a break down of survival of passengers and crew on board the titanic by gender and age.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">str</span>(titanic)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    2201 obs. of  4 variables:
+##  $ Class   : Factor w/ 4 levels &quot;1st&quot;,&quot;2nd&quot;,&quot;3rd&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ Sex     : Factor w/ 2 levels &quot;Male&quot;,&quot;Female&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Age     : Factor w/ 2 levels &quot;Child&quot;,&quot;Adult&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Survived: Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+</section>
+<section id="stacked-barcharts-1" class="slide level2">
+<h2>Stacked barcharts</h2>
+<p>Two discrete variables (Survival vs Sex)</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">fill=</span>Survived)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-10-1.png" width="576" /></p>
+</section>
+<section id="stacked-barcharts-with-proportions" class="slide level2">
+<h2>Stacked barcharts with proportions</h2>
+<p>Use <code>geom_bar(position='fill')</code> to make each bar display proportions summing up to 1</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">fill=</span>Survived)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position=</span><span class="st">&#39;fill&#39;</span>)</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-11-1.png" width="576" /></p>
+</section>
+<section id="two-different-barcharts" class="slide level2">
+<h2>Two different barcharts</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x=</span>Survived, <span class="dt">fill=</span>Sex)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position=</span><span class="st">&#39;fill&#39;</span>)</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-12-1.png" width="576" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">fill=</span>Survived)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position=</span><span class="st">&#39;fill&#39;</span>)</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-13-1.png" width="576" /></p>
+</section>
+<section id="displaying-four-discrete-variables" class="slide level2">
+<h2>Displaying four discrete variables</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">ggplot</span>(titanic, <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">fill=</span>Survived)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position=</span><span class="st">&#39;fill&#39;</span>) <span class="op">+</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="st">  </span><span class="kw">facet_grid</span>(Age<span class="op">~</span>Class)</span></code></pre></div>
+<p><img src="05_ggplot_3_files/figure-revealjs/unnamed-chunk-14-1.png" width="768" /></p>
+<!-- There are stacked histograms but they are not good -->
+<!-- ## Stacked Histogram -->
+<!-- ```{r, warning=FALSE, fig.width=6} -->
+<!-- ggplot(dat, aes(x = log10(Count), fill=Type)) + -->
+<!--   geom_histogram(position='stack') -->
+<!-- ``` -->
+<!-- ## Your turn {.white} -->
+<!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
+<!-- <span style="color:white"> Use the `fbi` data from the package `classdata` for this your turn. </span><br/> -->
+<!-- <img src="images/blue.png" width=20> Use a log transformation on y and compare results.</font><br/> -->
+<!-- <span style="color:white"> <img src="images/blue.png" width=20> Compare rates of robberies by state, i.e. adjust robberies by the state population. Then plot side-by-side boxplots. </font> -->
+</section>
+<section id="your-turn" class="slide level2 white">
+<h2 class="white">Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000> <span style="color:white">Use the <code>fbi</code> dataset and <code>ggplot2</code> package to answer the following questions. </span></br></p>
+<p><span style="color:white"><img src="images/green.png" width=20> Compare the distribution of the number of robberies in all states: Using ggplot2, display a side-by-side boxplot of the number of robberies by state. What does each data point stand for? </br> <span style="color:white"><img src="images/blue.png" width=20> How does the distribution of the number of thefts (over the states) compare with that of burglary? Visualize using a side-by-side histogram. </br> <span style="color:white"><img src="images/green.png" width=20> Visualize the number of violent crimes in all states and all years using a barchart. Make the height of the bars dependent on the number of reports (use <code>aes(..., weight=)</code>). </br> <img src="images/green.png" width=20> Color bars by <code>Type</code>. </font></br></p>
+</section>
+<section id="your-turn-1" class="slide level2 white">
+<h2 class="white">Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000> <span style="color:white">Use the <code>titanic</code> dataset and <code>ggplot2</code> package to answer the following questions. </span></br></p>
+<!-- <span style="color:white">For this your turn use the `titanic` object from the `classdata` package. (you might have to update the package using the command `devtools::install_github("xdaiISU/classdata")`) </span> -->
+<p><span style="color:white"><img src="images/green.png" width=20> Draw a barchart and show the number (not proportion) of passengers in each class. </span></br> <span style="color:white"><img src="images/green.png" width=20> Map survival to fill color in the barchart of Class. Interpret.</span></br> <span style="color:white"><img src="images/green.png" width=20> In the previous barchart, show proportions instead by changing the <code>position</code> parameter to <code>"fill"</code>. Interpret.</span></br></p>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="05_ggplot_3_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

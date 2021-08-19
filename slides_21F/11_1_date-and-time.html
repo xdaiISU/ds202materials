@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202 - Date and Time</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="11_1_date-and-time_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="11_1_date-and-time_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="11_1_date-and-time_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="11_1_date-and-time_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="11_1_date-and-time_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+    <style type="text/css">
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
+   div.sourceCode { margin: 1em 0; }
+   pre.sourceCode { margin: 0; }
+   @media screen {
+   div.sourceCode { overflow: auto; }
+   }
+   @media print {
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+   }
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
+       position: relative; left: -1em; text-align: right; vertical-align: baseline;
+       border: none; display: inline-block;
+       -webkit-touch-callout: none; -webkit-user-select: none;
+       -khtml-user-select: none; -moz-user-select: none;
+       -ms-user-select: none; user-select: none;
+       padding: 0 4px; width: 4em;
+       color: #aaaaaa;
+     }
+   pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+   div.sourceCode
+     {   }
+   @media screen {
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+   }
+   code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code span.at { color: #7d9029; } /* Attribute */
+   code span.bn { color: #40a070; } /* BaseN */
+   code span.bu { } /* BuiltIn */
+   code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code span.ch { color: #4070a0; } /* Char */
+   code span.cn { color: #880000; } /* Constant */
+   code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code span.dt { color: #902000; } /* DataType */
+   code span.dv { color: #40a070; } /* DecVal */
+   code span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code span.ex { } /* Extension */
+   code span.fl { color: #40a070; } /* Float */
+   code span.fu { color: #06287e; } /* Function */
+   code span.im { } /* Import */
+   code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code span.op { color: #666666; } /* Operator */
+   code span.ot { color: #007020; } /* Other */
+   code span.pp { color: #bc7a00; } /* Preprocessor */
+   code span.sc { color: #4070a0; } /* SpecialChar */
+   code span.ss { color: #bb6688; } /* SpecialString */
+   code span.st { color: #4070a0; } /* String */
+   code span.va { color: #19177c; } /* Variable */
+   code span.vs { color: #4070a0; } /* VerbatimString */
+   code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  
+  
+      <script src="11_1_date-and-time_files/header-attrs-2.3/header-attrs.js"></script>
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202 - Date and Time</h1>
+    <p>Xiongtao Dai</p>
+  </header>
+
+  
+  
+<section id="working-with-date-and-time" class="slide level2 shout">
+<h2 class="shout">Working with date and time</h2>
+</section>
+<section id="outline" class="slide level2">
+<h2>Outline</h2>
+<ul>
+<li>Parse a string into a date object</li>
+<li>Operate on a date object</li>
+<li>Access different parts of a date</li>
+</ul>
+</section>
+<section id="preparation" class="slide level2">
+<h2>Preparation</h2>
+<p>We will update the <code>classdata</code> library, and then load the required packages.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&#39;xdaiISU/classdata&#39;</span>, <span class="dt">force=</span><span class="ot">TRUE</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(classdata)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">library</span>(lubridate)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+</section>
+<section id="lubridate-package" class="slide level2">
+<h2><code>lubridate</code> package</h2>
+<ul>
+<li>package for working with dates and times</li>
+<li>defines different classes of time: instants, intervals, durations &amp; periods</li>
+<li>defines converter and accessor functions, enables time calculus</li>
+</ul>
+</section>
+<section id="date-objects" class="slide level2">
+<h2>Date objects</h2>
+<p>Dates in raw data are often in the form of character vectors.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>a &lt;-<span class="st"> &quot;03-01-2019&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">str</span>(a)</span></code></pre></div>
+<pre><code>##  chr &quot;03-01-2019&quot;</code></pre>
+<p>In order for R to understand, we need to parse it (convert from chr to date)</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">library</span>(lubridate)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">mdy</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;2019-03-01&quot;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">str</span>(<span class="kw">mdy</span>(a))</span></code></pre></div>
+<pre><code>##  Date[1:1], format: &quot;2019-03-01&quot;</code></pre>
+</section>
+<section id="converter-functions-and-instants-in-time" class="slide level2">
+<h2>Converter functions and instants in time</h2>
+<ul>
+<li>time instants: one (absolute) moment in time, e.g. now, Jan-1-2000</li>
+<li>Parsers for date
+<ul>
+<li>date: <code>ymd</code>, <code>mdy</code>, <code>dmy</code>, …</li>
+<li>time: <code>hm</code>, <code>hms</code>, …</li>
+<li>date &amp; time: <code>ymd_hms</code>, <code>mdy_hm</code>, …</li>
+</ul></li>
+<li>order of letters determines how strings are parsed</li>
+<li>separators are automatically determined, then assumed to be the same</li>
+</ul>
+<p>Example:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2019/03/01&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2019-03-01&quot;</code></pre>
+</section>
+<section id="r-demo" class="slide level2">
+<h2>R demo…</h2>
+</section>
+<section id="your-turn-5-minutes" class="slide level2 white">
+<h2 class="white">Your Turn (5 minutes)</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white"> <img src="images/green.png" width=20> Create date objects for tomorrow’s date by typing the date in text format and converting it with one of the <code>lubridate</code> converter functions. </br> <img src="images/green.png" width=20> Try different formats of writing the date and compare the end results.</br> <img src="images/blue.png" width=20> Convert the string <code>"2020-03-30 13:20:52"</code> to the current date and time in a date time object. Check out <code>?ymd_hms</code>. </br> <!-- <img src="images/black.png" width=20> How to take care of time zone? </br> --> </span></p>
+</section>
+<section id="date-time-comparisons" class="slide level2">
+<h2>Date time Comparisons</h2>
+<ul>
+<li>Logical operators <code>&gt;</code>, <code>&lt;</code>, <code>&lt;=</code>, etc are available to compare two dates/datetimes.</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">now</span>() <span class="op">&gt;=</span><span class="st"> </span><span class="kw">mdy</span>(<span class="st">&#39;01/01/20&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">now</span>() <span class="op">&lt;</span><span class="st"> </span><span class="kw">c</span>(<span class="kw">mdy</span>(<span class="st">&#39;01/01/20&#39;</span>), <span class="kw">mdy</span>(<span class="st">&#39;12/31/20&#39;</span>))</span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE</code></pre>
+</section>
+<section id="accessor-functions-setting-extracting-info" class="slide level2">
+<h2>Accessor functions: Setting &amp; Extracting info</h2>
+<ul>
+<li>accessor functions: <code>year</code>, <code>month</code>, <code>week</code>, <code>wday</code>, <code>mday</code>, <code>yday</code>, <code>hour</code>, <code>minute</code>, …</li>
+<li>accessor functions can also be used for setting elements of date and time, e.g. <code>hour(x) &lt;- 12</code></li>
+</ul>
+<p>Examples:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">month</span>(<span class="kw">now</span>())</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">wday</span>(<span class="kw">now</span>(), <span class="dt">label =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] Sat
+## Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</code></pre>
+</section>
+<section id="durations-and-periods" class="slide level2">
+<h2>Durations and Periods</h2>
+<ul>
+<li>To add or subtract time, use Duration or Period objects</li>
+<li>Durations are absolute amount of time in terms of numbers of seconds (<code>dyear</code>, <code>dweeks</code>, …)</li>
+<li>Periods are differences in clock times in human sense (<code>year</code>, <code>weeks</code>, …)</li>
+<li>Durations and Periods can be different due to leap years or different lengths of month.</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>d1 &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="st">&#39;2020-01-01&#39;</span>)</span>
+<span id="cb18-2"><a href="#cb18-2"></a>d1 <span class="op">+</span><span class="st"> </span><span class="kw">dyears</span>(<span class="dv">1</span>) <span class="co"># dyears(1) = 365.25 days</span></span></code></pre></div>
+<pre><code>## [1] &quot;2020-12-31 06:00:00 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>d1 <span class="op">+</span><span class="st"> </span><span class="kw">years</span>(<span class="dv">1</span>)  <span class="co"># years(1) = flip 1 year</span></span></code></pre></div>
+<pre><code>## [1] &quot;2021-01-01&quot;</code></pre>
+</section>
+<section id="intervals" class="slide level2">
+<h2>Intervals</h2>
+<ul>
+<li>Intervals have a <em>start</em> and an <em>end</em> date/time</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>end_date &lt;-<span class="st"> </span><span class="kw">now</span>()</span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="co"># span is interval, years(1) is duration</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>span &lt;-<span class="st"> </span><span class="kw">interval</span>(end_date <span class="op">-</span><span class="st"> </span><span class="kw">years</span>(<span class="dv">1</span>), end_date)</span>
+<span id="cb22-4"><a href="#cb22-4"></a>span</span></code></pre></div>
+<pre><code>## [1] 2019-08-29 16:32:50 CDT--2020-08-29 16:32:50 CDT</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>(end_date <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">10</span>)) <span class="op">%within%</span><span class="st"> </span>span</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</section>
+<section id="example-stock-data" class="slide level2">
+<h2>Example: Stock data</h2>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">str</span>(stock) <span class="co"># date variable: allows date calculus</span></span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    501 obs. of  4 variables:
+##  $ date  : Date, format: &quot;2020-01-02&quot; &quot;2020-01-03&quot; ...
+##  $ symbol: Factor w/ 3 levels &quot;AAPL&quot;,&quot;GOOG&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ price : num  300 297 300 298 303 ...
+##  $ volume: num  33870100 36580700 29596800 27218000 33019800 ...</code></pre>
+</section>
+<section id="r-demo-1" class="slide level2">
+<h2>R demo…</h2>
+</section>
+<section id="example-stock-contd" class="slide level2">
+<h2>Example: Stock (cont’d)</h2>
+<p>Visualize the number of trading days in each month.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>apple &lt;-<span class="st"> </span>stock <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(symbol <span class="op">==</span><span class="st"> &#39;AAPL&#39;</span>)</span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="kw">ggplot</span>(apple, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">month</span>(date, <span class="dt">label=</span><span class="ot">TRUE</span>))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</span></code></pre></div>
+<p><img src="11_1_date-and-time_files/figure-revealjs/unnamed-chunk-11-1.png" width="768" /></p>
+</section>
+<section id="example-stock-contd-1" class="slide level2">
+<h2>Example: Stock (cont’d)</h2>
+<p>What is the 1-month gain of Apple since July 01, 2020?</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>start &lt;-<span class="st"> </span><span class="kw">mdy</span>(<span class="st">&#39;07/01/2020&#39;</span>)</span>
+<span id="cb29-2"><a href="#cb29-2"></a>end &lt;-<span class="st"> </span><span class="kw">max</span>(apple<span class="op">$</span>date[apple<span class="op">$</span>date <span class="op">&lt;=</span><span class="st"> </span>start <span class="op">+</span><span class="st"> </span><span class="kw">months</span>(<span class="dv">1</span>)]) <span class="co"># weeks but not dweeks</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="kw">weekdays</span>(end)</span></code></pre></div>
+<pre><code>## [1] &quot;Friday&quot;</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>endPrice &lt;-<span class="st"> </span>apple<span class="op">$</span>price[apple<span class="op">$</span>date <span class="op">==</span><span class="st"> </span>end]</span>
+<span id="cb31-2"><a href="#cb31-2"></a>startPrice &lt;-<span class="st"> </span>apple<span class="op">$</span>price[apple<span class="op">$</span>date <span class="op">==</span><span class="st"> </span>start]</span>
+<span id="cb31-3"><a href="#cb31-3"></a>(endPrice <span class="op">-</span><span class="st"> </span>startPrice) <span class="op">/</span><span class="st"> </span>startPrice</span></code></pre></div>
+<pre><code>## [1] 0.1673396</code></pre>
+</section>
+<section id="your-turn-5-min" class="slide level2 white">
+<h2 class="white">Your Turn (5 min)</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white"> <img src="images/green.png" width=20> show a barchar of the days of week when the stock data is available. </br> <img src="images/blue.png" width=20> Find the number of trading days in each month from January to June in 2020. </br> <img src="images/black.png" width=20> Create a data data frame containing the weekly gain for each stock. The weekly gain is calculated as <code>(last price in the current week / last price in the previous week) - 1</code>. </br></p>
+<p></span></p>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="11_1_date-and-time_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202 - bash and git</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="02_1_git_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="02_1_git_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="02_1_git_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="02_1_git_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="02_1_git_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+  
+  
+      <script src="02_1_git_files/header-attrs-2.3/header-attrs.js"></script>
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202 - bash and git</h1>
+    <p>Xiongtao Dai</p>
+  </header>
+
+  
+  
+<section id="bash-and-git" class="slide level2 shout">
+<h2 class="shout">Bash and Git</h2>
+</section>
+<section id="mess-in-the-code" class="slide level2">
+<h2>Mess in the code</h2>
+<center>
+<img src="images/yelp1.png" width=600>
+</center>
+</section>
+<section id="mess-in-the-code-1" class="slide level2">
+<h2>Mess in the code</h2>
+<p><strong>Yelp’s application update:</strong></p>
+<center>
+<img src="images/yelp2.png" width=900>
+</center>
+</section>
+<section id="what-is-git" class="slide level2">
+<h2>What is Git?</h2>
+<ul>
+<li><code>git</code> is a <em>version control system</em> that is created to help developers track changes in source codes and manage collaborative projects. <code>git</code> tracks the evolution of a folder containing code files and subfolders. <!-- The tracked folder is called a **repository** or **repo**.  --></li>
+<li><code>git</code> helps us
+<ul>
+<li><em>make records</em> of the code files, creating snapshots</li>
+<li><em>compare</em> snapshots to locate changes or bugs</li>
+<li><em>rollback</em> to previous versions of files as necessary</li>
+<li>store <em>master</em> and multiple versions of files, no more <code>paper_final_final_I_really_mean_it.docx</code></li>
+<li><em>merge</em> versions and <em>resolve conflicts</em> that arise from collaboration</li>
+</ul></li>
+</ul>
+</section>
+<section id="bash-command-line." class="slide level2">
+<h2><code>bash</code> Command-Line.</h2>
+<ul>
+<li>To use <code>git</code>, we will be accessing the command-line tools in <code>bash</code></li>
+<li>We can access <code>bash</code> in the Terminal tab in RStudio. Homework 1 instructs you how to set this up</li>
+<li><code>bash</code> command line is a text-based interface to your operating system</li>
+<li>The most important <code>bash</code> commands are:
+<ul>
+<li><code>pwd</code>, present working directory. All relative paths are relative to the present working directory.</li>
+<li><code>ls</code>, list files; <code>ls -a</code>, list all files including hidden ones</li>
+<li><code>cd</code>, change directory</li>
+</ul></li>
+<li>Other important commands: <code>mkdir</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>open</code></li>
+</ul>
+</section>
+<section id="bash-demonstration" class="slide level2">
+<h2><code>bash</code> Demonstration…</h2>
+</section>
+<section id="bash-your-turn" class="slide level2 white">
+<h2 class="white">Bash: Your Turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000> <!-- **<span style="color:white"> Exploring bash command line </span>** --></p>
+<!-- <span style="color:white"> If you are on Windows, you need to install [Git for Windows](https://gitforwindows.org/) and configure RStudio to use Git bash as the shell for the Terminal. See Homework 1 question 4. </span> -->
+<ol start="2" type="1">
+<li><span style="color:white"><img src="images/green.png" width=20> In RStudio, click the Terminal tab (right to the Console tab).</span></li>
+<li><span style="color:white"><img src="images/green.png" width=20> Find the present working directory?</span></li>
+<li><span style="color:white"><img src="images/green.png" width=20> Create a new directory named <code>example1</code>, and then <code>cd</code> into this directory. </span></li>
+<li><span style="color:white"><img src="images/blue.png" width=20> Create an RMarkDown file named ‘tmp.Rmd’ in RStudio and knit it. Move it into <code>example1</code> in Bash. Also move the generated html file.</span></li>
+<li><span style="color:white"><img src="images/green.png" width=20> Use <code>open</code> to view the content of the html file in Bash.</span></li>
+</ol>
+</section>
+<section id="git" class="slide level2">
+<h2>Git</h2>
+<p>Terminology from <a href="https://help.github.com/articles/github-glossary/">github glossary</a></p>
+<ul>
+<li><strong>Repository:</strong> the basic element of <code>git</code> - like a project’s folder. A repository contains all of the project files, and their <strong>revision history</strong>.</li>
+<li><strong>Commit:</strong> A checkpoint, i.e., snapshot of the codes files at a time point. Every time you commit, git creates a unique ID that allows you to keep record of what changes were made when and by whom.</li>
+</ul>
+<p><code>git</code> commands important to us: <code>git init</code>, <code>git status</code>, <code>git log</code>, <code>git add</code>, <code>git commit</code>, <code>git diff</code>.</p>
+<p>Caution: <code>git</code> works well with text files but not binary files</p>
+<!-- ## Looking ahead ...  -->
+<!-- In this class we will use git & github for  -->
+<!-- - homework and lab assignments, and -->
+<!-- - the projects. -->
+</section>
+<section id="git-demonstration" class="slide level2">
+<h2><code>git</code> Demonstration…</h2>
+</section>
+<section id="your-turn-making-git-commits" class="slide level2 white">
+<h2 class="white">Your turn: Making git commits</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<ol type="1">
+<li><span style="color:white"> <img src="images/green.png" width=20> Make <code>example1</code> your current directory. </span></li>
+<li><span style="color:white"><img src="images/green.png" width=20> Initiate the current directory as a Git repository (<code>git init</code>). What does <code>git status</code> show? </span></li>
+<li><span style="color:white"><img src="images/green.png" width=20> Ask Git to track the RMarkDown file and create a commit (<code>git add fileName</code>, and then <code>git commit -m 'Your Message Here'</code>).</span></li>
+<li><span style="color:white"><img src="images/green.png" width=20> Repeat part 3 for the html file.</span></li>
+<li><span style="color:white"><img src="images/blue.png" width=20> Look at the repo status (<code>git status</code>) and repo history (<code>git log</code>)</span></li>
+</ol>
+<!-- ## Resources -->
+<!-- **A great tutorial written by Nick Ulle:** -->
+<!-- - Bash & Git guide: https://github.com/2016-ucdavis-sts98/notes/blob/master/git_guide.pdf -->
+<!-- **More extensive resources:** -->
+<!-- - Data Carpentry's tutorials: https://software-carpentry.org/lessons/ -->
+<!-- - Scott Chacon and Ben Straub's *Pro Git*: https://git-scm.com/book/en/v2 -->
+<!-- - Reproducible Science Curriculum intitative: https://github.com/Reproducible-Science-Curriculum -->
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="02_1_git_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>

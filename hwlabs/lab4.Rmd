@@ -76,7 +76,7 @@ By cleaning the three data frames in R, at the end of this step you should have 
 For the following questions, work on the cleaned data frames `defClean`, `offClean`, and `bioClean`.
 
 1. Reformat the `offClean` data frame into a tidy format using `pivot_longer`. The type of statistic (Receiving_REC for the number of receivings, Receiving_YDS for receiving yards, etc) is added as a new key column named `stat`. 
-2. Show on the distributions of the offensive statistics. The distribution of each offensive statsitic should be shown in a separate facet. Explain the patterns you see.
+2. Show the distributions of the offensive statistics. The distribution of each offensive statsitic should be shown in a separate facet. Explain the patterns you see.
 3. Did ISU have better offense against Oregon or Oklahoma? Answer this question by creating a scatterplot with the x- and y-axes being the receiving yards of the ISU players against these two opponents. A large number of receiving yards indicates good offense. 
 
   Now turn our attention to the player biography.

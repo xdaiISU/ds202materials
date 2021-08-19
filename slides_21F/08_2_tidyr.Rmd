@@ -1,0 +1,163 @@
+---
+title: "DS 202 - More tidying"
+author: "Xiongtao Dai"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message =FALSE, cache=TRUE)
+library(tidyverse)
+```
+
+## Separating, uniting, and missing values {.shout}
+
+## Outline
+
+- `tidyr` functions: `separate`, `unite`
+- missing values
+- mini-case study on Iowa Campaign Expenditure
+
+## Sources of Messiness
+
+1. Column headers are values, not variable names.<br>
+e.g. *treatmenta, treatmentb* <br>
+2. Multiple variables are stored in one column.<br>
+e.g. *"Fall 2015", "Spring 2016"* or <br>
+*"1301 8th St SE, Orange City, Iowa 51041
+(42.99755, -96.04149)"*
+3. Missing values
+
+## Separate and unite {.shout}
+
+
+## Separating and uniting columns
+
+- `separate(data, col, into, sep = "[^[:alnum:]]+")`:
+separate one column into multiple columns. The default separator (the symbol standing between two fields) is one or more non-alphanumeric characters.
+- `unite(data, col, ..., sep = "_")`:
+combine  multiple columns into one. 
+
+## separate
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+df <- data.frame(x = c('Brown, Mary', 'White, Tom'))
+df
+df %>% separate(x, into = c("Last", "First"))
+```
+
+## unite
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+df1 <- data.frame(First = c("Mary", "Tom"), Last = c("Brown", "White"))
+df1
+df1 %>% unite(Full, First, Last, sep=' ')
+```
+
+
+## Working with missing values {.shout}
+
+
+## Missing values in R
+
+- `NA` is the special code for "not available"
+- R consistently handles mising values. Eg. we get 
+```{r}
+NA + 1
+```
+
+```{r}
+NA | TRUE
+```
+- Caution: Direct testing for missing values is resulting in an `NA`:
+```{r}
+x <- c(1, NA)
+x == NA
+```
+<!-- - `NaN` is the code for "not a number", e.g. in 0/0 -->
+
+
+## Essential functions 
+
+- Use function `is.na` for testing `NA`s
+```{r}
+x <- c(1, NA)
+is.na(x)
+```
+- `complete.cases(data)` test the existence of `NA`s in the rows of data frames
+- `drop_na(data, col1, ...)` drops the rows if `NA`s exist in `col1` or additional columns
+
+## Handling missing values
+
+There are a few principles to handle missing values. 
+
+- Errors in the dataset should be removed
+- If uncertain whether missing values are due to errors, perform analysis with as little distortion to the data as possible
+- Performing a sensitivity analysis is a good idea: One version with missing values, and the other without. Compare the results.
+
+## Mini case study {.shout}
+
+<!-- ## Your Turn {.white} -->
+
+<!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
+
+<!-- <span style="color:white">The Iowa Data Portal is a wealth of information on and about the State of Iowa. </span> -->
+
+<!-- <span style="color:white">The website -->
+<!-- [Campaign Expenditures](https://data.iowa.gov/Government/Campaign-Expenditures/3adi-mht4/data) provides data on campaign expenditures. The code below reads dataset into an R session.</span> -->
+
+
+<!-- ``` -->
+<!-- url <- "https://data.iowa.gov/api/views/3adi-mht4/rows.csv" -->
+<!-- campaign <- readr::read_csv(url) -->
+<!-- ``` -->
+
+<!-- <span style="color:white"> -->
+<!-- <img src="images/green.png" width=20> Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of the columns may have type (2) of messiness?</br> -->
+
+## Campaign Expenditures Data
+
+The Iowa Data Portal is a wealth of information on and about the State of Iowa. The website
+[Campaign Expenditures](https://data.iowa.gov/Government/Campaign-Expenditures/3adi-mht4/data) provides data on campaign expenditures. The code below reads dataset into an R session. 
+
+
+```
+url <- "https://data.iowa.gov/api/views/3adi-mht4/rows.csv"
+campaign <- readr::read_csv(url)
+```
+
+There are **some issues** with the data:
+
+- zip code are a combination of 5-digit and 9-digit zip code (`separate`)
+- Names are separated into the first and the last names
+- many `NA` values
+- `Date` is text, in the format of Month/Day/Year 
+<!-- - expenditure amount is a textual expression, not a number (Messy different) -->
+
+## R demo...
+
+## Your Turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+
+<!-- - <span style="color:white">Check the help for the function `parse_number` in the `readr` package and use it on the campaign expenditure data.</span> -->
+<span style="color:white">
+<img src="images/green.png" width=20> Use `separate` to split the date variable into year, month and day.</br>
+<img src="images/green.png" width=20> Use `separate` again to extract the 5-digit zip code and potential 4-digit addon code</br>
+<img src="images/green.png" width=20> Use `unite` to combine the names into a `Last, First` format</br>
+<img src="images/green.png" width=20> Retain the records with a missing Receiving Organization Name</br>
+
+</span>
+
+<!-- ## Reading -->
+
+<!-- - R for Data Science, [tidyr](https://r4ds.had.co.nz/tidy-data.html) -->
+<!-- - R functions to deal with strings, and regular expressions: [stringr](https://r4ds.had.co.nz/strings.html) -->
+

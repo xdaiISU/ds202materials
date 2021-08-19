@@ -1,0 +1,104 @@
+---
+title: "Principles of Graphics"
+author: "Xiongtao Dai"
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE)
+library(tidyverse)
+```
+
+## Principles of Graphics {.shout}
+
+## Outline
+
+- Great graphics
+- Some principles for great graphics
+
+## Great Graphics {.shout}
+
+## [Top Dogs](https://informationisbeautiful.net/visualizations/best-in-show-whats-the-top-data-dog/)
+<img src='https://infobeautiful4.s3.amazonaws.com/2014/11/IIB_Best-In-Show_1276x2.png'/ width=100%>
+
+
+<!-- ## Your Turn (5 Minutes)  {.white} -->
+
+<!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
+
+<!-- - <span style="color:white">What does the x-axis (data score) consist of? -->
+<!-- </span> -->
+<!-- - <span style="color:white">What information is being showed, through what plot elements? -->
+<!-- </span> -->
+<!-- - <span style="color:white">Do you like the visualization or not? Why is it good (or bad)? -->
+<!-- </span> -->
+<!-- - <span style="color:white">How could you reproduce it in ggplot2? (HW6) -->
+<!-- </span> -->
+
+## [French invasion of Russia](https://en.wikipedia.org/wiki/Charles_Joseph_Minard#/media/File:Minard_Update.png)
+
+<img src='https://upload.wikimedia.org/wikipedia/commons/e/e2/Minard_Update.png'/ width=100%>
+[Charles Joseph Minard](https://en.wikipedia.org/wiki/Charles_Joseph_Minard) (original), DkEgy (translator)
+
+<!-- ## Your Turn (3 Minutes)  {.white} -->
+
+<!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
+
+<!-- - <span style="color:white">What graph elements are used, and what information do they display? -->
+<!-- </span> -->
+
+## Principle of proportional ink {.shout}
+
+
+
+## Example: Proportional ink
+The principle of proportional ink: If used to represent numerical values, the sizes of shaded areas, the width of a line, or the length of a line should be proportional to the data values they represent. (Edward  Tufte)
+
+<div class="row">
+  <div style="float: left;  width: 50%;">Bad: <img src='http://serialmentor.com/dataviz/proportional_ink_files/figure-html/hawaii-income-bars-bad-1.png'/ width=90%></div>
+  <div style="float: left;  width: 50%;">Good: <img src='http://serialmentor.com/dataviz/proportional_ink_files/figure-html/hawaii-income-bars-good-1.png'/ width=90%></div>
+</div> 
+(Wilke 2019, Fundamentals of Data Visualization)
+
+## Lie factor (Tufte)
+
+<center> <img src='https://infovis-wiki.net/w/images/e/ea/Lie_factor_formel.jpg' width=65%> </center>
+
+Bad: 
+<img src='https://benjaminleroy.github.io/pages/blog/public/post/2018-05-16-review-of-tufte-s-the-visual-display-of-quantitative-information_files/figure-html/fuel-1.png' width=100%> 
+
+## Principle of Color Schemes {.shout}
+
+## Color schemes
+Using an appropriate color scheme to represent information is crucial. In the language of [ColorBrewer](http://colorbrewer2.org) (Cynthia Brewer):
+
+- **Sequential** color scheme for representing *ordered* data 
+-  **Diverging** color scheme for *ordered* data with a meaningful center point (which is often the zero)
+- **Qualitative** color scheme for *unordered* categorical data 
+
+## Sequantial color scheme
+<img src='images/sequential.png' width=100%>
+
+## Diverging color scheme
+<img src='images/diverging.png' width=100%>
+
+## Qualitative color scheme
+<img src='images/qualitative.png' width=100%>
+
+## Other Principles
+- Avoid overlap
+- Use meaningful ordering (e.g. for bar charts)
+- Avoid rainbow color on maps: Order information is unclear
+
+<img src='http://serialmentor.com/dataviz/pitfalls_of_color_use_files/figure-html/map-Texas-rainbow-1.png' width=45%>
+(Wilke 2019)
+
+## References
+
+- Fundamentals of Data Visualization, Claus O. Wilke, http://serialmentor.com/dataviz/
+- Data visualizations, Michael Friendly, http://www.datavis.ca/index.php
