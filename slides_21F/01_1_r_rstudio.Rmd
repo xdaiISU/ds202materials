@@ -15,11 +15,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R and RStudio {.shout}
 
 ## R is ...
-
 * __Free__ to use
 * __Flexible__: Not a question of _can_, but _how_
 * __Powerful__: With the right tools, get more work done, faster
-* __Extensible__: Over 16000 user contributed add-on packages currently on CRAN!
+* __Extensible__: Over 18000 user contributed add-on packages currently on CRAN!
 
 ```{r, include=FALSE, cache=TRUE, message=FALSE}
 library(XML)

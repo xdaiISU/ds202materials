@@ -48,6 +48,7 @@ Please respond to all questions. If the question asks you to do something on you
         a. Install [Git for Windows](https://gitforwindows.org/). In the coming weeks we will use the Git Bash (but not the Git GUI). 
         b. After installation, set up Rstudio to use Git bash as the shell for the Terminal: Open RStudio, click Tools--Global Options--Terminal; under **Shells**, select Git Bash; click OK. 
         c. In the main menu of RStudio: click Tools--Terminal--New Terminal. If you have a `$` before your prompt, then you should be good to go.
+        d. If you don't see a `$` before your prompt, try restarting RStudio.
     - If you are on Linux or macOS, Git has probably been installed by default, so you do not need to install anything. Just click the Terminal tab (above the R Console).
 
     Answer: Done?
@@ -65,7 +66,7 @@ Please respond to all questions. If the question asks you to do something on you
 
     ```
     git config --global user.name "your first and last name"
-    git config --global user.email "yourEmail"
+    git config --global user.email "your email"
     ```
 
     Answer: Done?
