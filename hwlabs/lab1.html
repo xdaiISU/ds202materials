@@ -391,13 +391,13 @@ summary {
 
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>In this lab, you and your teammate will collaborate on a GitHub repository. Part I will be finished individually. When we come to part II, you will form pairs (recommended) or team of 3 students within your study group. If your lab team has 3 students, then rotate your roles in Part II.</p>
+<p>This lab has two parts. Part I will be finished individually. Part II involves collaboration. Follow the appropriate direction depending on whether you are working individually or (optionally) in a team of two students.</p>
 </div>
 <div id="part-i-working-with-git-and-github" class="section level2">
 <h2>Part I: Working with Git and GitHub</h2>
 <div id="creating-your-local-git-repo" class="section level3">
 <h3>Creating Your Local Git repo</h3>
-<p>In Homework one, you were asked to put the homework files in the <code>ds202_hw1</code> directory. Now make the directory a local Git repo. <!-- You will need the following commands (in Terminal): `git init`, `git add`, and `git commit`.  --></p>
+<p>In HW1, you were asked to put the homework files in the <code>ds202_hw1</code> directory. Now make the directory a local Git repo. <!-- You will need the following commands (in Terminal): `git init`, `git add`, and `git commit`.  --></p>
 <ol style="list-style-type: decimal">
 <li>Initialize the directory <code>ds202_hw1</code> as a git repository. In <code>bash</code> (in the Terminal tab in RStudio),
 <ol style="list-style-type: lower-roman">
@@ -405,14 +405,14 @@ summary {
 <li><code>git status</code> should show report <code>Not a git repository</code></li>
 <li>Run <code>git init</code></li>
 </ol></li>
-<li>Create a commit which includes the RMarkDown file <code>hw1.Rmd</code> and the output <code>hw1.html</code>. Use a meaningful commit message.
+<li>Create a commit which includes the RMarkDown file <code>hw1_FirstName_LastName.Rmd</code> and the output <code>hw1_FirstName_LastName.html</code>. Use a meaningful commit message.
 <ol style="list-style-type: lower-roman">
-<li>Stage the files using <code>git add hw1.Rmd hw1.html</code></li>
+<li>Stage the files using <code>git add hw1_FirstName_LastName.Rmd hw1_FirstName_LastName.html</code></li>
 <li>Commit the files with a message `git commit -m ‘Your Message Here’</li>
 </ol></li>
 <li>Check that <code>git</code> is doing what you want it to do
 <ol style="list-style-type: lower-roman">
-<li>Use <code>git status</code> to make sure <code>hw1.Rmd</code> and <code>hw1.html</code> are not untracked, and</li>
+<li>Use <code>git status</code> to make sure <code>hw1_FirstName_LastName.Rmd</code> and <code>hw1_FirstName_LastName.html</code> are not untracked, and</li>
 <li><code>git log</code> to make sure a commit is made.</li>
 </ol></li>
 </ol>
@@ -420,7 +420,7 @@ summary {
 </div>
 <div id="pushing-homework-to-a-remote-repository" class="section level3">
 <h3>Pushing Homework to a Remote Repository</h3>
-<p><strong>Step 1, create a remote repository on Github</strong>. Follow along the instructions below and perform these steps:</p>
+<p><strong>Step 1, create a remote repository on Github</strong>. Perform these steps:</p>
 <ol style="list-style-type: decimal">
 <li>Log in your account on <a href="https://github.com">Github</a></li>
 <li>Create a new Github repository, click <span style="background:limegreen; color:white">New</span> button.</li>
@@ -447,27 +447,69 @@ summary {
 </ol>
 <ul>
 <li><code>git remote add origin https://github.com/yourGitHubUsername/ds202_hw1.git</code> tells git that a remote repository can be found on the URL you specify; name the remote <code>origin</code></li>
-<li><code>git push -u origin master</code> tells <code>git</code> to push your local changes; <code>-u origin master</code> means the local branch <code>master</code> should track future changes in the same branch on the remote <code>origin</code>.</li>
+<li><code>git branch -M main</code> renames your current branch to <code>main</code></li>
+<li><code>git push -u origin main</code> tells <code>git</code> to push your local changes; <code>-u origin main</code> means the local branch <code>main</code> should track future changes in the same branch on the remote <code>origin</code>.</li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
-<li>Succeeded? Refresh the webpage for your repo on GitHub and see the changes.</li>
+<li>Succeeded? Refresh the Github repo webpage and see the changes.</li>
 </ol>
 </div>
 </div>
 <div id="part-ii-collaborating-on-a-repository" class="section level2">
 <h2>Part II: Collaborating on a Repository</h2>
-<p>Now you will collaborate on and make change to a partner’s repo. Form pairs within your study group. One of you is the Owner of a repo, and the other is the Partner who collaborates on the same repo. You will rotate roles and complete Part II again when you are done.</p>
+<p>Now you will collaborate on GitHub repo. Follow the appropriate directions to finish Part II:</p>
+<ul>
+<li>If you work individually, the instructor will be your partner, who has set up a GitHub repository for you to work on. You are going to add files and push to the repository the instructor set up.</li>
+<li>If you form a pair, one of you is the Owner of a repo, and the other is the Partner who collaborates on the same repo. You will rotate roles and complete Part II again when you are done.</li>
+</ul>
+<div id="if-you-work-individually" class="section level3">
+<h3>If you work individually</h3>
+<p><strong>Step 1</strong>: Visit the remote repo you will be collaborating on: <a href="https://github.com/xdaiISU/ds202_lab1" class="uri">https://github.com/xdaiISU/ds202_lab1</a></p>
+<ol style="list-style-type: decimal">
+<li><p>Make sure you can see all the files, including a README file.</p></li>
+<li><p>You may have to check the mailbox for your GitHub account email. The instructor should have send you an invitation to work on the repo if you provided the instructor your GitHub user name in HW1 (if not, let the instructor know). Now accept the invitation.</p></li>
+</ol>
+<p><strong>Step 2</strong>: You will make a local clone of the instructor’s remote repo and add changes.</p>
+<ol style="list-style-type: decimal">
+<li><p>Clone the instructor’s repo:</p>
+<ol style="list-style-type: lower-roman">
+<li><p>On GitHub, find the repo URL by clicking <span style="background:limegreen; color:white"> Code</span> button. Make sure you are cloning with HTTPS, so that the url starts with <code>https://</code>. if not, click <span style="color:#0366d6">HTTPS</span>. Now copy the URL.</p></li>
+<li><p>In <code>bash</code>, <code>cd</code> into a <strong>non-git directory</strong> to store the Owner’s repo. Check that <code>git status</code> should report “Not a git repository”.</p></li>
+<li><p>In <code>bash</code>, issue</p>
+<pre><code>git clone URL ds202_hw1_instructor</code></pre>
+<p>with the URL being the copied URL. We are making a new local directory named <code>ds202_hw1_instructor</code></p></li>
+<li><p><code>cd</code> into the cloned folder.</p></li>
+</ol>
+<p>So far, you have a local copy of the instructor’s repo, and in bash the working directory is the cloned repo.</p></li>
+<li><p>Create a new Rmd file in the repo, and name it <code>FirstName_LastName.Rmd</code> accordingly.</p></li>
+<li><p>Modify <code>FirstName_LastName.Rmd</code> to include the following information. Knit it when finished.</p>
+<ul>
+<li>Your full name and GitHub username.</li>
+<li>What did the instructor do in the first two commits? What are the commit IDs?</li>
+<li>Knit the instructor’s <code>hw1.Rmd</code>. Are you able to do so without error? If you cannot, what errors did you counter?</li>
+<li>Also include an error/difficulty you encountered, or a tip for making Git/GitHub easier.</li>
+</ul></li>
+<li><p>Add <code>FirstName_LastName.Rmd</code> and <code>FirstName_LastName.html</code> to the local git repo and make a new commit (you need <code>git add</code> and <code>git commit -m &#39;...&#39;</code>).</p></li>
+<li><p>Pull updates (if any) from GitHub, and then push your changes to the remote repo (of the instructor’s), using</p></li>
+</ol>
+<pre><code>git pull
+git push</code></pre>
+<p><strong>Step 3</strong>: To finish the collaboration, check if your repo is updated on GitHub. Look at the commit history and see what you did in your commit.</p>
+</div>
+<div id="if-you-form-a-pair" class="section level3">
+<h3>If you form a pair</h3>
 <p><strong>Step 1</strong>: Locate the remote repo you will be collaborating on.</p>
 <ol style="list-style-type: decimal">
 <li>Owner: Share the url of your repo with the Partner.</li>
 <li>Partner: Visit the url, and make sure you can see all the files (have read access). Tell the Owner what did he/she do in the most recent commit. Tell the Owner your username.</li>
 <li>Owner: Give the Partner push (write) access to your repo. On the webpage of the repo, click Settings – Collaborators – type in the Partner’s username – click Add collaborator</li>
+<li>Partner: You may have to check the mailbox for your GitHub account email. There would be an invitation to work on the repo. Now accept the invitation.</li>
 </ol>
 <p><strong>Step 2</strong>: The Partner will make a local clone of the Owner’s remote repo and add changes.</p>
 <ol style="list-style-type: decimal">
 <li><p>Partner: Clone the Owner’s repo:</p>
 <ol style="list-style-type: lower-roman">
-<li><p>On GitHub, find the repo URL by clicking <span style="background:limegreen; color:white"> Code</span> button. Make sure you are cloning with HTTPS, so that the url starts with <code>https://</code>. if not, click <span style="color:#0366d6"> Use HTTPS</span>. Now copy the URL.</p></li>
+<li><p>On GitHub, find the repo URL by clicking <span style="background:limegreen; color:white"> Code</span> button. Make sure you are cloning with HTTPS, so that the url starts with <code>https://</code>. if not, click <span style="color:#0366d6">HTTPS</span>. Now copy the URL.</p></li>
 <li><p>In <code>bash</code>, <code>cd</code> into a <strong>non-git directory</strong> to store the Owner’s repo. Check that <code>git status</code> should report “Not a git repository”.</p></li>
 <li><p>In <code>bash</code>, issue</p>
 <pre><code>git clone URL ds202_hw1_owner</code></pre>
@@ -480,7 +522,7 @@ summary {
 <ul>
 <li>Your (the Partner’s) full name and GitHub username.</li>
 <li>What did the Owner do in the most recent commit? What is the commit ID?</li>
-<li>Knit the Owner’s <code>hw1.Rmd</code>. Are you able to do so without error? If you cannot, what errors did you counter?</li>
+<li>Knit the Owner’s <code>hw1_FirstName_LastName.Rmd</code>. Are you able to do so without error? If you cannot, what errors did you counter?</li>
 <li>Also include an error/difficulty you encountered, or a tip for making Git/GitHub easier.</li>
 </ul></li>
 <li><p>Partner: Add <code>partner.Rmd</code> and <code>partner.html</code> to the local git repo and make a new commit (you need <code>git add</code> and <code>git commit -m &#39;...&#39;</code>).</p></li>
@@ -495,22 +537,19 @@ git push</code></pre>
 <li><p>Owner: View the Partner’s change on your local repo using <code>git diff</code>.</p></li>
 </ol>
 <p>You have completed a cycle of collaboration. Congratulations! <strong>Now the Owner and Partner switch role and repeat Part II.</strong></p>
+<!-- ## Summary for Collaboration on GitHub -->
+<!-- 1. The Owner pushes his/her local repo  to a  remote repo on GitHub, and gives the Partner access to the remote. -->
+<!-- 2. The Partner clones (or pull from) the Owner's GitHub repo, makes local changes, commits, and then pushes. -->
+<!-- 3. The Owner updates his/her local repo by `git pull` in order to obtain the changes made by the Partner.  -->
 </div>
-<div id="summary-for-collaboration-on-github" class="section level2">
-<h2>Summary for Collaboration on GitHub</h2>
-<ol style="list-style-type: decimal">
-<li>The Owner pushes his/her local repo to a remote repo on GitHub, and gives the Partner access to the remote.</li>
-<li>The Partner clones (or pull from) the Owner’s GitHub repo, makes local changes, commits, and then pushes.</li>
-<li>The Owner updates his/her local repo by <code>git pull</code> in order to obtain the changes made by the Partner.</li>
-</ol>
 </div>
 <div id="submission" class="section level2">
 <h2>Submission</h2>
-<p><strong>Submission instruction</strong>: Each student should submit the HTTPS URL of their own repository on Canvas. In the submission note, include the full name and github username of the partner who made changes to your repo.</p>
+<p><strong>Submission instruction</strong>: Each student should submit the HTTPS URL of their own repository on Canvas. If you work in a team, in the submission note, include the full name and github username of the partner who made changes to your repo.</p>
 </div>
 <div id="grading" class="section level2">
 <h2>Grading</h2>
-<p>You will be graded based on your own repository. Since it includes your Partner’s changes, make sure to help out your partner and check the teamwork.</p>
+<p>You will be graded based on your own repository and your collaborative work.</p>
 </div>
 
 

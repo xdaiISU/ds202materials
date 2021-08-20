@@ -43,7 +43,7 @@ knitr::opts_chunk$set(echo = TRUE)
     - *merge* versions and *resolve conflicts* that arise from collaboration
 
 
-## `bash` Command-Line.
+## `bash` Command-Line
 
 - To use `git`, we will be accessing the command-line tools in `bash`
 - We can access `bash` in the Terminal tab in RStudio. Homework 1 instructs you how to set this up
@@ -64,7 +64,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <!-- <span style="color:white"> If you are on Windows, you need to install [Git for Windows](https://gitforwindows.org/) and configure RStudio to use Git bash as the shell for the Terminal. See Homework 1 question 4. </span> -->
 
 2. <span style="color:white"><img src="images/green.png" width=20> In RStudio, click the Terminal tab (right to the Console tab).</span>
-3. <span style="color:white"><img src="images/green.png" width=20> Find the present working directory?</span>
+3. <span style="color:white"><img src="images/green.png" width=20> Find the present working directory.</span>
 4. <span style="color:white"><img src="images/green.png" width=20> Create a new directory named `example1`, and then `cd` into this directory. </span>
 5. <span style="color:white"><img src="images/blue.png" width=20> Create an RMarkDown file named 'tmp.Rmd' in RStudio and knit it. Move it into `example1` in Bash. Also move the generated html file.</span>
 6. <span style="color:white"><img src="images/green.png" width=20> Use `open` to view the content of the html file in Bash.</span>

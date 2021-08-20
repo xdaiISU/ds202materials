@@ -53,6 +53,18 @@ If you need **private** repos, checkout [GitHub for Education](https://education
 
 <!-- ![123](https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png) -->
 
+## Your turn: Explore a former collaboration  {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white"> A former collaborative lab: https://github.com/tessamendoza/ds202_lab3  </span>
+
+1. <span style="color:white"> Start from the oldest commit, and browse through a few commits. What does each commit do?
+ </span>
+1. <span style="color:white"> Look at the commits of the two teammates. How did each teammate contribute toward the team report (team.Rmd)? </span>
+1. <span style="color:white"> How did git & github help the team to finish the final project? 
+ </span>
+
 ## More `git` commands
 
 - `git remote`: Set up remotes to be used for a local git repo

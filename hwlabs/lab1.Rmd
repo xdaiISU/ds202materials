@@ -10,30 +10,32 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Overview 
 
-In this lab, you and your teammate will collaborate on a GitHub repository. Part I will be finished individually. When we come to part II, you will form pairs (recommended) or team of 3 students within your study group. If your lab team has 3 students, then rotate your roles in Part II.
+This lab has two parts.
+Part I will be finished individually. 
+Part II involves collaboration. Follow the appropriate direction depending on whether you are working individually or (optionally) in a team of two students.
 
 ## Part I: Working with Git and GitHub
 
 ### Creating Your Local Git repo
-In Homework one, you were asked to put the homework files in the `ds202_hw1` directory. Now make the directory a local Git repo. 
+In HW1, you were asked to put the homework files in the `ds202_hw1` directory. Now make the directory a local Git repo. 
 <!-- You will need the following commands (in Terminal): `git init`, `git add`, and `git commit`.  -->
 
 1. Initialize the directory `ds202_hw1` as a git repository. In `bash` (in the Terminal tab in RStudio),
     i) `cd` into that folder (If you have done this correctly, `pwd` will show something like `/Users/xdai/ds202_hw1`; the last part of the path must be `ds202_hw1`)
     ii) `git status` should show report `Not a git repository`
     iii) Run `git init`
-2. Create a commit which includes the RMarkDown file `hw1.Rmd` and the output `hw1.html`. Use a meaningful commit message.
-    i) Stage the files using `git add hw1.Rmd hw1.html`
+2. Create a commit which includes the RMarkDown file `hw1_FirstName_LastName.Rmd` and the output `hw1_FirstName_LastName.html`. Use a meaningful commit message.
+    i) Stage the files using `git add hw1_FirstName_LastName.Rmd hw1_FirstName_LastName.html`
     ii) Commit the files with a message `git commit -m 'Your Message Here'
 3. Check that `git` is doing what you want it to do
-    i) Use `git status` to make sure `hw1.Rmd` and `hw1.html` are not untracked, and 
+    i) Use `git status` to make sure `hw1_FirstName_LastName.Rmd` and `hw1_FirstName_LastName.html` are not untracked, and 
     ii) `git log` to make sure a commit is made.
     
 So far, you have a local Git repo (sitting on your laptop/desktop) containing your HW1! </span>
 
 ### Pushing Homework to a Remote Repository
 
-**Step 1, create a remote repository on Github**. Follow along the instructions below and perform these steps:
+**Step 1, create a remote repository on Github**. Perform these steps:
 
 1. Log in your account on [Github](https://github.com)
 2. Create a new Github repository, click <span style="background:limegreen; color:white">New</span> button.
@@ -63,25 +65,77 @@ So far,
     Here, 
 
 - `git remote add origin https://github.com/yourGitHubUsername/ds202_hw1.git` tells git that a remote repository can be found on the URL you specify; name the remote `origin`
-- `git push -u origin master` tells `git` to push your local changes; `-u origin master` means the local branch `master` should track future changes in the same branch on the remote `origin`.
+- `git branch -M main` renames your current branch to `main`
+- `git push -u origin main` tells `git` to push your local changes; `-u origin main` means the local branch `main` should track future changes in the same branch on the remote `origin`.
 
-4. Succeeded? Refresh the webpage for your repo on GitHub and see the changes.
+4. Succeeded? Refresh the Github repo webpage and see the changes.
 
 
 ## Part II: Collaborating on a Repository
 
-Now you will collaborate on and make change to a partner's repo. Form pairs within your study group. One of you is the Owner of a repo, and the other is the Partner who collaborates on the same repo. You will rotate roles and complete Part II again when you are done. 
+Now you will collaborate on GitHub repo. 
+Follow the appropriate directions to finish Part II:
+
+- If you work individually, the instructor will be your partner, who has set up a GitHub repository for you to work on. You are going to add files and push to the repository the instructor set up.
+- If you form a pair, one of you is the Owner of a repo, and the other is the Partner who collaborates on the same repo. You will rotate roles and complete Part II again when you are done. 
+
+### If you work individually 
+
+**Step 1**: Visit the remote repo you will be collaborating on: https://github.com/xdaiISU/ds202_lab1
+
+1. Make sure you can see all the files, including a README file.
+
+2. You may have to check the mailbox for your GitHub account email. The instructor should have send you an invitation to work on the repo if you provided the instructor your GitHub user name in HW1 (if not, let the instructor know). Now accept the invitation.
+
+
+**Step 2**: You will make a local clone of the instructor's remote repo and add changes.
+
+1. Clone the instructor's repo:
+    i) On GitHub, find the repo URL by clicking <span style="background:limegreen; color:white"> Code</span>  button. Make sure you are cloning with HTTPS, so that the url starts with `https://`. if not, click <span style="color:#0366d6">HTTPS</span>. Now copy the URL.
+    i) In  `bash`, `cd` into a **non-git directory** to store the Owner's repo. Check that `git status` should report "Not a git repository".
+    i) In `bash`, issue 
+    
+        ```
+        git clone URL ds202_hw1_instructor
+        ```
+      
+        with the URL being the copied URL. We are making a new local directory named `ds202_hw1_instructor`
+    i) `cd` into the cloned folder.
+    
+    So far, you have a local copy of the instructor's repo, and in bash the working directory is the cloned repo.
+    
+2. Create a new Rmd file in the repo, and name it `FirstName_LastName.Rmd` accordingly. 
+
+3. Modify `FirstName_LastName.Rmd` to include the following information. Knit it when finished.
+
+    - Your full name and GitHub username. 
+    - What did the instructor do in the first two commits? What are the commit IDs?
+    - Knit the instructor's `hw1.Rmd`. Are you able to do so without error? If you cannot, what errors did you counter?
+    - Also include an error/difficulty you encountered, or a tip for making Git/GitHub easier.
+
+4. Add `FirstName_LastName.Rmd` and `FirstName_LastName.html` to the local git repo and make a new commit (you need `git add` and `git commit -m '...'`).  
+
+5. Pull updates (if any) from GitHub, and then push your changes to the remote repo (of the instructor's), using 
+  ```
+  git pull
+  git push
+  ```
+
+**Step 3**: To finish the collaboration, check if your repo is updated on GitHub. Look at the commit history and see what you did in your commit.
+
+### If you form a pair
 
 **Step 1**: Locate the remote repo you will be collaborating on. 
 
 1. Owner: Share the url of your repo with the Partner.
 2. Partner: Visit the url, and make sure you can see all the files (have read access). Tell the Owner what did he/she do in the most recent commit. Tell the Owner your username. 
 3. Owner: Give the Partner push (write) access to your repo. On the webpage of the repo, click Settings -- Collaborators -- type in the Partner's username -- click Add collaborator
+4. Partner: You may have to check the mailbox for your GitHub account email. There would be an invitation to work on the repo. Now accept the invitation.
 
 **Step 2**: The Partner will make a local clone of the Owner's remote repo and add changes.
 
 1. Partner: Clone the Owner's repo:
-    i) On GitHub, find the repo URL by clicking <span style="background:limegreen; color:white"> Code</span>  button. Make sure you are cloning with HTTPS, so that the url starts with `https://`. if not, click <span style="color:#0366d6"> Use HTTPS</span>. Now copy the URL.
+    i) On GitHub, find the repo URL by clicking <span style="background:limegreen; color:white"> Code</span>  button. Make sure you are cloning with HTTPS, so that the url starts with `https://`. if not, click <span style="color:#0366d6">HTTPS</span>. Now copy the URL.
     i) In  `bash`, `cd` into a **non-git directory** to store the Owner's repo. Check that `git status` should report "Not a git repository".
     i) In `bash`, issue 
     
@@ -100,7 +154,7 @@ Now you will collaborate on and make change to a partner's repo. Form pairs with
 
     - Your (the Partner's) full name and GitHub username. 
     - What did the Owner do in the most recent commit? What is the commit ID?
-    - Knit the Owner's `hw1.Rmd`. Are you able to do so without error? If you cannot, what errors did you counter?
+    - Knit the Owner's `hw1_FirstName_LastName.Rmd`. Are you able to do so without error? If you cannot, what errors did you counter?
     - Also include an error/difficulty you encountered, or a tip for making Git/GitHub easier.
 
 4. Partner: Add `partner.Rmd` and `partner.html` to the local git repo and make a new commit (you need `git add` and `git commit -m '...'`).  
@@ -124,14 +178,14 @@ Now you will collaborate on and make change to a partner's repo. Form pairs with
 
 You have completed a cycle of collaboration. Congratulations! **Now the Owner and Partner switch role and repeat Part II.** 
 
-## Summary for Collaboration on GitHub
-1. The Owner pushes his/her local repo  to a  remote repo on GitHub, and gives the Partner access to the remote.
-2. The Partner clones (or pull from) the Owner's GitHub repo, makes local changes, commits, and then pushes.
-3. The Owner updates his/her local repo by `git pull` in order to obtain the changes made by the Partner. 
+<!-- ## Summary for Collaboration on GitHub -->
+<!-- 1. The Owner pushes his/her local repo  to a  remote repo on GitHub, and gives the Partner access to the remote. -->
+<!-- 2. The Partner clones (or pull from) the Owner's GitHub repo, makes local changes, commits, and then pushes. -->
+<!-- 3. The Owner updates his/her local repo by `git pull` in order to obtain the changes made by the Partner.  -->
 
 ## Submission
 
-**Submission instruction**: Each student should submit the HTTPS URL of their own repository on Canvas. In the submission note, include the full name and github username of the partner who made changes to your repo.
+**Submission instruction**: Each student should submit the HTTPS URL of their own repository on Canvas. If you work in a team, in the submission note, include the full name and github username of the partner who made changes to your repo.
 
 ## Grading
-You will be graded based on your own repository. Since it includes your Partner's changes, make sure to help out your partner and check the teamwork. 
+You will be graded based on your own repository and your collaborative work.
