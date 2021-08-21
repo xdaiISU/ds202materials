@@ -24,15 +24,18 @@ a0
 ```
 
 ## R commands
-1. A student's exam grades in a class were 95, 65, 70, and 87. The course policy was to drop the lowest exam grade. Find the average exam grade after dropping the lowest. Store the answer in a variable named `ave` and print.
-2. Create a vector of numbers (with length 21) to show whether the years of 2000, 2001, ..., 2020 are leap years. An entry of the vector should be `1` if the corresponding year is a leap year, and `0` otherwise. A year is a leap year here if it is divisible by 4. Store the answer in a variable named `leap` and print.
-3. Calculate the BMI of Chris and Mary, who are siblings. Chris is 1.7 meters tall and 80 kilograms in weight; Mary is 1.65 meters tall and 49 kilograms in weight. The formula for BMI is `BMI = weight (in kg) / height^2 (in meter)`. Store the answers in a vector of length 2 named `bmi` and print.
+1. An Olympic diving athelete's scores given by 6 referees were 9.3, 8.7, 9.5, 10, 9, and 8.9. The final score for that dive is the average of the scores after crossing out the highest and lowest scores. Find the final score for that dive. Store the answer in a variable named `ave` and print.
+2. Create a vector of numbers (with length 21) to show whether the years of 2000, 2001, ..., 2020 has Olympic Games. An entry of the vector should be `1` if the corresponding year has Olympic Games, and `0` otherwise. Note that Olympic Games take place every two years (there are both summer and winter Olympic Games), and that 2020 does not have Olympic Games. Store the answer in a variable named `olympic` and print.
+3. Calculate the BMI of Chris and Mary, who are siblings. Chris is 1.8 meters tall and 70 kilograms in weight; Mary is 1.65 meters tall and 49 kilograms in weight. The formula for BMI is `BMI = weight (in kg) / height^2 (in meter)`. Store the answers in a vector of length 2 named `bmi` and print.
 
 ## Cars and mileage
-For this part we will use the `mpg` data set, you can access the data by first installing (using `install.packages('ggplot2')`) and then loading the package `ggplot2` (using `library(ggplot2)`) into your R session. The `mpg` data includes information about fuel economy of popular car models
-for the years 1999 and 2008 as collected by the US Environmental Protection Agency. An answer should include a short paragraph of text for the explanation to a (human) reader, together with appropriate R code, outputs, and graphs.
+For this part we will use the `mpg` data set, you can access the data by loading the package `ggplot2` using `library(ggplot2)`. If you don't have `ggplot` installed, installed it using `install.packages('ggplot2')`. The `mpg` data includes information about fuel economy of popular car models
+for the years 1999 and 2008 as collected by the US Environmental Protection Agency. An answer should include a short paragraph of text for the explanation understandable to a reader outside of class, together with appropriate R code, outputs, and graphs.
 
-1. What are the 5 most fuel-efficient models in terms of highway mileage? Storage the data frame (with 5 rows) containing all information of these five cars in a variable named `best5` and print. (Hint: Here are a few things you are free to define. E.g., which variable to use to characterize "fuel economy", and what is a "model". Please state your definitions.)
-2. How many different SUV models are included in this dataset? Storage the answer in a variable named `numSUV` and print.
+1. What are the 5 least fuel-efficient models in terms of highway mileage? Storage the data frame containing all information of these five models in a variable named `worst5` and print. (Hint: Here are a few things you are free to define. E.g., which variable to use to characterize "fuel economy", and what is a "model". Please state your definitions.)
+2. How many different midsize models are included in this dataset? Storage the answer in a variable named `nummidsize` and print.
 3. Create a scatterplot of `hwy` and `cty` and describe the relationship. Why are there so few points visible? Explain your findings.
-4. Which manufacturer produces cars with higher fuel efficiency, Chevrolet or Honda? Use graphs *and* summary statistics to answer this question. Explain your findings.
+4. Which manufacturer produces cars with higher fuel efficiency, Dodge or Toyota? Use graphs *and* summary statistics to answer this question. Explain your findings.
+
+## Check before submission
+Check that you did not include `View()` or `install.packages()` commands in your final `Rmd` file. These commands will prevent RStudio from compiling your file. 

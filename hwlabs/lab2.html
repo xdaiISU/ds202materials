@@ -396,8 +396,8 @@ summary {
 <div id="outline" class="section level2">
 <h2>Outline</h2>
 <ul>
-<li>Optionally, team up with at most two partners from your study group</li>
-<li>Create a repository (one per team) &amp; give access to your teammate(s)</li>
+<li>You can finish this lab either individually or (optionally) in a team of two students.</li>
+<li>Create a repository (one per team) &amp; give access to your teammate (if you team up)</li>
 <li>Explore data on chocolate ratings</li>
 <li>Create R markdown files that contain code to read the data and create the plots</li>
 <li>Submit!</li>
@@ -405,7 +405,7 @@ summary {
 </div>
 <div id="background" class="section level2">
 <h2>Background</h2>
-<p>Brady Brelinski, Founding Member of the Manhattan Chocolate Society, obviously likes chocolate. He has assembled a database of ratings for plain dark chocolate bars: <a href="http://flavorsofcacao.com/chocolate_database.html">Flavors of chocolate</a>. By now, over 2300 different chocolate bars have been rated.</p>
+<p>Brady Brelinski, Founding Member of the Manhattan Chocolate Society, obviously likes chocolate. He has assembled a database of ratings for plain dark chocolate bars: <a href="http://flavorsofcacao.com/chocolate_database.html">Flavors of chocolate</a>. By now, over 2400 different chocolate bars have been rated.</p>
 <div id="meaning-of-ratings" class="section level3">
 <h3>Meaning of ratings</h3>
 <p>Flavors of Cacao Rating System:</p>
@@ -417,50 +417,59 @@ summary {
 <li>1.0 - 1.9 = Unpleasant</li>
 </ul>
 </div>
-<div id="reading-the-data" class="section level3">
-<h3>Reading the data</h3>
-<p>The file <code>choco.csv</code> at <a href="https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv" class="uri">https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv</a> is a web scrap from the chocolate flavor data base.</p>
+<div id="reading-in-the-data" class="section level3">
+<h3>Reading in the data</h3>
+<p>The <code>choco</code> dataset in the <code>classdata</code> library is a web scrap from the chocolate flavor data base.</p>
 <p>You can load the data into your session using the command below:</p>
-<pre class="r"><code>choco &lt;- read.csv(&quot;https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv&quot;) 
+<pre class="r"><code>library(classdata)
+data(choco)
 str(choco) </code></pre>
-<pre><code>## &#39;data.frame&#39;:    2312 obs. of  13 variables:
-##  $ REF                 : int  2454 2458 2454 797 797 1015 1019 1011 1019 1011 ...
-##  $ Company             : chr  &quot;5150&quot; &quot;5150&quot; &quot;5150&quot; &quot;A. Morin&quot; ...
-##  $ Location            : chr  &quot;U.S.A.&quot; &quot;U.S.A.&quot; &quot;U.S.A.&quot; &quot;France&quot; ...
-##  $ Date                : int  2019 2019 2019 2012 2012 2013 2013 2013 2013 2013 ...
-##  $ Bean_Origin         : chr  &quot;Madagascar&quot; &quot;Dominican Republic&quot; &quot;Tanzania&quot; &quot;Peru&quot; ...
-##  $ Specific_Bean_Origin: chr  &quot;Bejofo Estate, batch 1&quot; &quot;Zorzal, batch 1&quot; &quot;Kokoa Kamili, batch 1&quot; &quot;Peru&quot; ...
-##  $ Cocoa_Percent       : num  76 76 76 63 70 70 63 70 70 70 ...
-##  $ Ingredients         : chr  &quot;3- B,S,C&quot; &quot;3- B,S,C&quot; &quot;3- B,S,C&quot; &quot;4- B,S,C,L&quot; ...
-##  $ Characteristics1    : chr  &quot;cocoa&quot; &quot;cocoa&quot; &quot;rich cocoa&quot; &quot;fruity&quot; ...
-##  $ Characteristics2    : chr  &quot;blackberry&quot; &quot;vegetal&quot; &quot;fatty&quot; &quot;melon&quot; ...
-##  $ Characteristics3    : chr  &quot;full body&quot; &quot;savory&quot; &quot;bready&quot; &quot;roasty&quot; ...
-##  $ Characteristics4    : chr  NA NA NA NA ...
-##  $ Rating              : num  3.75 3.5 3.25 3.75 3.5 4 4 3.75 3.5 3.25 ...</code></pre>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    2452 obs. of  13 variables:
+##  $ REF               : num  2454 2458 2454 2542 2546 ...
+##  $ Company           : chr  &quot;5150&quot; &quot;5150&quot; &quot;5150&quot; &quot;5150&quot; ...
+##  $ Location          : chr  &quot;U.S.A.&quot; &quot;U.S.A.&quot; &quot;U.S.A.&quot; &quot;U.S.A.&quot; ...
+##  $ ReviewDate        : num  2019 2019 2019 2021 2021 ...
+##  $ CountryBeanOrigin : chr  &quot;Tanzania&quot; &quot;Dominican Republic&quot; &quot;Madagascar&quot; &quot;Fiji&quot; ...
+##  $ SpecificBeanOrigin: chr  &quot;Kokoa Kamili, batch 1&quot; &quot;Zorzal, batch 1&quot; &quot;Bejofo Estate, batch 1&quot; &quot;Matasawalevu, batch 1&quot; ...
+##  $ Ingredients       : chr  &quot;3- B,S,C&quot; &quot;3- B,S,C&quot; &quot;3- B,S,C&quot; &quot;3- B,S,C&quot; ...
+##  $ Characteristics1  : chr  &quot;rich cocoa&quot; &quot;cocoa&quot; &quot;cocoa&quot; &quot;chewy&quot; ...
+##  $ Characteristics2  : chr  &quot;fatty&quot; &quot;vegetal&quot; &quot;blackberry&quot; &quot;off&quot; ...
+##  $ Characteristics3  : chr  &quot;bready&quot; &quot;savory&quot; &quot;full body&quot; &quot;rubbery&quot; ...
+##  $ Characteristics4  : chr  NA NA NA NA ...
+##  $ Rating            : num  3.25 3.5 3.75 3 3 3.25 3.5 3.5 3.75 2.75 ...
+##  $ CocoaPercent      : num  76 76 76 68 72 80 68 70 63 70 ...</code></pre>
+<p>Also check out <code>?choco</code> for the help documentation. If you don’t have <code>classdata</code> installed, install it using <code>devtools::install_github(&#39;xdaiISU/classdata&#39;)</code></p>
 </div>
 </div>
 <div id="searching-for-the-best-chocolates" class="section level2">
 <h2>Searching for the Best Chocolates</h2>
 <p>We will be exploring what aspects of the chocolates may affect taste. Before setting off to the exploration, answer the following questions.</p>
 <ol style="list-style-type: decimal">
-<li>How are the ratings distributed? Create both a histogram and a boxplot and describe them. Don’t forget to mention outliers, if there are any.</li>
-<li>How does the number of ratings depend on the location of the company? Draw a bar chart of the number of reports.</li>
+<li>How are the cocoa percent distributed? Create both a histogram and a boxplot and describe them. Don’t forget to mention outliers, if there are any.</li>
+<li>How does the number of ratings depend on the country of bean origin? Draw a bar chart of the number of ratings by bean origin. [Hint: If your graph is too dense and the labels are not legible, show fewer bean origins.]</li>
 <li>Do ratings depend on the cacao percentage of a chocolate bar? Create both numerical and graphical summaries, and explain. [Hint: Think about why the scatterplot is <em>not</em> a very good choice for visualization here.]</li>
 </ol>
 <p>Now, we are ready to explore.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>How do different bean origins compare in terms of the flavor of chocolates? Are beans from some places better than the other? Create both numerical and graphical summaries, and explain.</li>
-<li>Brainstorm <em>two</em> analyses you would like to perform (with your teammates). Describe in plain language what comparisons are you making. Create suitable numerical and graphical summaries for your analyses. Describe the results.</li>
+<li>If you work on this lab by yourself, brainstorm <em>two</em> analyses you would like to perform. If you work with a teammate, brainstorm at least <em>three</em> analyses with your teammate. Describe in plain language what comparisons are you making. Create suitable numerical and graphical summaries for your analyses. Describe the results.</li>
 </ol>
 </div>
-<div id="collaboration-workflow" class="section level2">
-<h2>Collaboration Workflow</h2>
+<div id="workflow-if-you-work-individually" class="section level2">
+<h2>Workflow if You Work Individually</h2>
+<ol style="list-style-type: decimal">
+<li>Log into github, and create a repository called <code>ds202_lab2</code></li>
+<li>Push <code>individual1.Rmd</code> and <code>individual1.html</code> to the remote. Review the steps to push to GitHub used in Lab 1 if you need to.</li>
+</ol>
+</div>
+<div id="workflow-if-you-work-with-a-teammate" class="section level2">
+<h2>Workflow if You Work with a Teammate</h2>
 <div id="overview" class="section level3">
 <h3>Overview</h3>
 <ol style="list-style-type: decimal">
-<li><strong>Discuss with your teammate plans for the analyses.</strong></li>
-<li><strong>Include your own analysis in an individual file.</strong> This file is the “scratch file”, which should include all your own exploration and analysis, even if you would not show those results in your final report. Name your own file as either <code>individual1.Rmd</code>, <code>individual2.Rmd</code>, or <code>individual3.Rmd</code> after coordinating with your teammate(s), if you have.</li>
-<li><strong>After you have decided the exploration/analysis to show in your report, collaborate on a single <code>team.Rmd</code> file which includes the final analysis.</strong> Only the <code>team.Rmd</code> and the knitted <code>team.html</code> files will be graded, even if you are working on this lab by yourself.</li>
+<li>Discuss with your teammate plans for the analyses.</li>
+<li>Include your own analysis in an individual file. This file is the “scratch file”, which should include all your own exploration and analysis, even if you would not show those results in your final report. Name your own file as either <code>individual1.Rmd</code> or <code>individual2.Rmd</code> after coordinating with your teammate.</li>
+<li>After you have decided the exploration/analysis to show in your report, collaborate on a single <code>team.Rmd</code> file which includes the final analysis. Only the <code>team.Rmd</code> and the knitted <code>team.html</code> files will be graded, even if you are working on this lab by yourself.</li>
 </ol>
 </div>
 <div id="recap-collaborating-on-a-github-repository" class="section level3">
@@ -473,11 +482,10 @@ str(choco) </code></pre>
 </ol>
 <p>When the above is finished, <strong>Individual 2:</strong></p>
 <ol style="list-style-type: decimal">
-<li>Log into GitHub and accept the invitation to work on the team repo.</li>
+<li>Check your mailbox and accept the invitation to work on the team repo.</li>
 <li>Clone the remote repo of Individual 1’s.</li>
 <li>Add <code>individual2.Rmd</code> and <code>individual2.html</code> to the local repo, and push.</li>
 </ol>
-<p>(Repeat if there is a third teammate)</p>
 </div>
 <div id="working-on-the-team.rmd" class="section level3">
 <h3>Working on the <code>team.Rmd</code></h3>
@@ -487,26 +495,25 @@ str(choco) </code></pre>
 <li>Repeat as necessary.</li>
 </ol>
 </div>
-<div id="repo-structure" class="section level3">
-<h3>Repo structure</h3>
-<p>The git repo of your team should be named ds202_lab2. Use the same folder structure and file names as follows:</p>
-<pre><code>ds202_lab2
-|-- individual1.Rmd
-|-- (individual2.Rmd)
-|-- (individual3.Rmd)
-|-- team.Rmd
-|-- *.html files</code></pre>
-</div>
-<div id="tips" class="section level3">
-<h3>Tips:</h3>
+<div id="tips-if-you-collaborate" class="section level3">
+<h3>Tips if You Collaborate:</h3>
 <ul>
 <li>You can start from Invididual 1 adding and pushing <code>team.Rmd</code>, and then Individual 2 <code>git pull</code></li>
 <li>Before you make changes to existing files or <code>git push</code>, remember to <code>git pull</code> first</li>
 <li>Coorindate with your teammate to avoid merge conflict</li>
 <li>Ask for help on Piazza if you come across problems</li>
-<li>If you work in a team, then all <code>Rmd</code> and the knitted <code>html</code> files for the individuals and the team are required. All teammates must modify <code>team.Rmd</code> (you can check this is done using <code>git log team.Rmd</code> in <code>bash</code>).</li>
+<li>If you work in a team, then all <code>Rmd</code> and the knitted <code>html</code> files for the individuals and the team are required.</li>
 </ul>
 </div>
+</div>
+<div id="repo-structure-requirement-for-everyone" class="section level2">
+<h2>Repo Structure Requirement (for Everyone)</h2>
+<p>The git repo should be named ds202_lab2. Use the same folder structure and file names as follows. Files in parentheses are needed only if you work with a partner.</p>
+<pre><code>ds202_lab2
+|-- individual1.Rmd
+|-- (individual2.Rmd)
+|-- (team.Rmd)
+|-- *.html files</code></pre>
 </div>
 
 

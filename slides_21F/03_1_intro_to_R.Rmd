@@ -43,9 +43,6 @@ Other summary statistics:<br>
 Summaries of two variables:<br>
 ```cov, cor ```
 
-## R demo...
-
-
 ## Getting help within R
 
 If you want to know what a specific command is doing:
@@ -55,6 +52,9 @@ If you want to know what a specific command is doing:
 # Use the backtick ` to enclose an operator
 ?`%%`
 ```
+
+## R demo...
+
 
 ## Your Turn {.white}
 
@@ -171,4 +171,4 @@ x[, "variable"]
 ## (Optional) R Reference Card
 
 - Download the R Reference Card from http://cran.r-project.org/doc/contrib/Short-refcard.pdf
-- Open/Print it so that you can glance at it while working
+- Open/print it so that you can glance at it while working

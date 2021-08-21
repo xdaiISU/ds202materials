@@ -96,6 +96,18 @@ you will acquire solid skills towards a real-world data analytic pipeline. This 
 - communication of your findings in a reproducible form as report
 
 
+## Course logistics
+
+- Please wear a mask in class
+- And please be vaccinated if you can
+- Bring your laptop to the lecture
+
+## Getting help
+
+- In class: Raise your hand. If you need help with your code, use the [office hour Zoom link](https://iastate.zoom.us/j/93009772568?pwd=aWlWWHN0SmN2U011K3BiejhFK3E4Zz09) and share your screen.
+- Office hour: Office hour will be held on Zoom [here](https://iastate.zoom.us/j/93009772568?pwd=aWlWWHN0SmN2U011K3BiejhFK3E4Zz09). During my office hour, I will physically be on the turf south of the Parks Library.
+- We will also use Piazza for other course-related Q & A 
+
 ## Piazza
 
 [Piazza](https://piazza.com/iastate/fall2021/ds202) will be used as the class' online forum, which is assessible within Canvas. 
