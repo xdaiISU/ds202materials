@@ -39,7 +39,7 @@ ggplot(fbi2018, aes(y = log10(Count))) + geom_boxplot()
 
 ## Histograms
 - A histogram needs `x` aethetics
-- Optionally, the binwidth can be set using `geom_histogram(binwidth=...)`
+- Optionally, set the binwidth using `geom_histogram(binwidth=...)`
 
 ```{r, fig.width=4, fig.height=3}
 bw <- 5000
@@ -48,7 +48,7 @@ ggplot(fbiwide, aes(x = Motor.vehicle.theft)) +
     ggtitle(paste0("binwidth = ", bw))
 ```
 
-## Changing bandwidth in a histogram
+## Changing binwidth in a histogram
 
 ```{r, fig.width=4, fig.height=3}
 bw <- 1000
@@ -130,7 +130,7 @@ ggplot(fbi2018, aes(x = Type, y = log10(Count))) +
 
 
 ## Side-by-side Histogram
-Side-by-side histogram works well comparing a small number of distributions
+Side-by-side histogram works well comparing a small number of distributions. Note: Use the `fill=` aesthetics, but not `color=`
 ```{r, warning=FALSE, fig.width=7, fig.height=3}
 dat <- fbi2018[fbi2018$Type %in% c('Burglary', 'Larceny.theft'), ]
 ggplot(dat, aes(x = log10(Count), fill=Type)) +
@@ -145,6 +145,16 @@ dat1 <-  neigh[neigh$Type %in% c('Larceny.theft', 'Burglary'), ]
 ggplot(dat1, aes(x = Type, weight=Count, fill=State)) + 
   geom_bar()
 ```
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+<span style="color:white">Use the `fbi` dataset and `ggplot2` package to answer the following questions. </span></br>
+
+<span style="color:white"><img src="images/green.png" width=20> Compare the distribution of the number of robberies in all states: Using ggplot2, display a side-by-side boxplot of the number of robberies by state. What does each data point stand for? </br>
+<span style="color:white"><img src="images/blue.png" width=20> How does the distribution of the number of thefts (over the states) compare with that of burglary? Visualize using a side-by-side histogram. </br>
+<span style="color:white"><img src="images/green.png" width=20> Visualize the number of violent crimes in 2018. The x-axis should show the state and the height of the bars should show the number of reports (use `aes(..., weight=)`). </br>
+<img src="images/green.png" width=20> Continuing the last question, now color bars by `Type`. </font></br>
 
 
 ## Two discrete variables {.shout}
@@ -205,16 +215,6 @@ ggplot(titanic, aes(x=Sex, fill=Survived)) +
 <!-- <span style="color:white"> Use the `fbi` data from the package `classdata` for this your turn. </span><br/> -->
 <!-- <img src="images/blue.png" width=20> Use a log transformation on y and compare results.</font><br/> -->
 <!-- <span style="color:white"> <img src="images/blue.png" width=20> Compare rates of robberies by state, i.e. adjust robberies by the state population. Then plot side-by-side boxplots. </font> -->
-
-## Your turn {.white}
-
-<img class="cover" src="images/blue.jpeg" alt="" width=2000>
-<span style="color:white">Use the `fbi` dataset and `ggplot2` package to answer the following questions. </span></br>
-
-<span style="color:white"><img src="images/green.png" width=20> Compare the distribution of the number of robberies in all states: Using ggplot2, display a side-by-side boxplot of the number of robberies by state. What does each data point stand for? </br>
-<span style="color:white"><img src="images/blue.png" width=20> How does the distribution of the number of thefts (over the states) compare with that of burglary? Visualize using a side-by-side histogram. </br>
-<span style="color:white"><img src="images/green.png" width=20> Visualize the number of violent crimes in all states and all years using a barchart. Make the height of the bars dependent on the number of reports (use `aes(..., weight=)`). </br>
-<img src="images/green.png" width=20> Color bars by `Type`. </font></br>
 
 
 ## Your turn {.white}

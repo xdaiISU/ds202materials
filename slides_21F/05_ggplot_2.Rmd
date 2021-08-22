@@ -24,7 +24,7 @@ A graphical representation (plot) consists of:
 1. <span style="color:gray"> **mappings** (`aes`):  data variables are mapped to graphical elements (x- and y-coordinate, color, shape, ...)
 2. <span style="color:gray"> **layers**:  geometric elements (`geoms`, such as points, lines, rectangles, text, ...) and position adjustments (e.g. jitter points, side-by-side histograms)
 3. <span style="color:gray"> **scales**: the mapping from data space to values in an aesthetic space (e.g. axis transformation; low value--blue, high value--red)
-4. **coordinate system** (`coord`): normally Cartesian, but pie charts use e.g. polar coordinates
+4. **coordinate system** (`coord`): normally Cartesian, but pie charts use polar coordinates
 5. **facetting**: for small multiples (subsets) and their arrangement
 6. **theme**: fine-tune display items, such as font and its size, ...
 
@@ -33,8 +33,8 @@ A graphical representation (plot) consists of:
 Some coordinate systems we will commonly use:
 
 - `coord_cartesian(xlim=c(0, 5), ylim=...)`: Cartesian coordinate, `xlim` and `ylim` crop the displayed region
-- `coord_flip`: Flipping x- and y-axis
-- `coord_map`: Later, for making maps
+- `coord_flip`: Flip x- and y-axis
+- `coord_map`: Useful later for making maps
 
 ## Crime rates in 2018
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=9, fig.height=7, out.width='100%'}

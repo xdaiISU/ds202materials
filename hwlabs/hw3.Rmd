@@ -29,8 +29,8 @@ Include at least one `ggplot` visualization in each of your answer except for Qu
 
 1. Explore and explain what is the relationship between the sale price (y) and living area size (x). In your visualization, add a straight line with intercept at 20000 and slope equal to 100. Look at `?geom_abline`, and in particular the examples. Remark on any patterns you find and the straight line.
 2. Describe at least two types of anomalies in the previous plot. What do they mean?
-3. Visualize the number of sales for each type of building in a barchart. Make sure the building types are ordered from the most to the least common. What do you find?
+3. Visualize the number of sales by the overall condition. Make sure the conditions are ordered from the best to the worst. What do you find?
 4. Introduce a variable `houseAge` into the data set which stands for the age of the house at the time when it was sold. How does the age of the house affect the sale price? 
-5. Were there more sales of older houses or newer houses? Choose an appropriate graph type.
+5. Were there more sales of nice houses or poor houses? Make sure to state your criterion for a house to be "nice" or otherwise "poor". Choose an appropriate graph type.
 6. How do the neighborhood and the slope of property affect the relationship between sale price and year built? Focus on the neighborhoods of Brookside, Clear Creek, College Creek, and Somerset only. Find a visualization that incorporates all four variables. Interpret the result.
-7. Create a side-by-side histogram showing the overall conditions for the different types of buildings. Comment on the result.
+7. Create a side-by-side histogram showing the sales price for the different types of buildings. Comment on the result.

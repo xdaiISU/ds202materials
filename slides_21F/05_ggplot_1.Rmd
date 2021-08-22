@@ -110,7 +110,7 @@ The `ggplot` function has the basic syntax:
 `ggplot(data, mappings) + geom_type(options)`
 
 - data: dataset to be used
-- mappings: determines which variables are used for the x- and y-axis, color, linetype, etc. Done with `aes()`
+- mappings: determines which variables are used for the x- and y-axis, color, linetype, etc. Done with `aes()`, which stands for aesthetic mappings
 - type: determines type of the plot, e.g. `point`, `line`, `bar`
 - options: there are so, so many options!
 
