@@ -9,8 +9,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Outline
 
-- Optionally, team up with at most two partners from your study group
-- Create a repository (one per team) & give access to your teammate(s)
+- Optionally, team up with another student
+- Create a repository (one per team) & give access to your teammate
 - For a refreshment of git & github, review the procedures for collaboration for Lab 2.
 - Explore what leads to happiness using data from the General Social Survey
 - Create an R markdown file that contains all code to read the data, create the plots, and your answers.
@@ -21,7 +21,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Submission Requirements
 
 - A team member should create a GitHub repository called `ds202_lab3` which includes the group work.
-- The team will collaborate on `team.Rmd` to answer all the questions (for the final report), and also include your individual exploration in `individual1.Rmd`, `individual2.Rmd`, or `indivisual3.Rmd` ("your scratch file"). **Only the report generated from `team.Rmd` will be graded.**
+- If you finish the lab individually, you only need to include your answers in `individual1.Rmd`
+- If you collaborate, the team will work on `team.Rmd` to answer all the questions (for the final report). Also include your individual exploration in `individual1.Rmd` or `individual2.Rmd`, which will be your "scratch files". *Only the report generated from `team.Rmd` will be graded.*
 - Include the data you used in your repository.
 - The correct folder structure is as below. The folder `ds202_lab3` is a git repository.
 
@@ -29,12 +30,11 @@ knitr::opts_chunk$set(echo = TRUE)
     ds202_lab3
     |-- individual1.Rmd
     |-- (individual2.Rmd)
-    |-- (individual3.Rmd)
-    |-- team.Rmd
+    |-- (team.Rmd)
     |-- *.html
     |-- Data files
     ```
-- **From this lab forward, if you team up, each team member should create at least one commit with message "Review and Revision", which include revisions on the analysis of your partner's.**
+- From this lab forward, if you team up, each team member should create at least one commit with message "Review and Revision", which include revisions on the analysis of your partner's.
 
 ## Background
 
@@ -89,7 +89,7 @@ Use `ggplot2` to create the plots, and `dplyr` to manipulate the data frame as m
 3. How is the happiness of a respondent related to his/her marriage status? Define that a person is happy if the response to question is "Very happy" or "Pretty happy".
 4. Does party affiliation affect the relationship you found in the last question?
 5. How is marrital status related to the education of a respondent? What are possible reasons accounting for the patterns you see?
-6. Explore two more interesting questions, and answer those questions using the GSS data. 
+6. Finish this only if you work with a partner: Explore two more interesting questions, and answer those questions using the GSS data. 
 
 The team's exploration will be evaluated according to the  general interest and the depth of the exploration.
 

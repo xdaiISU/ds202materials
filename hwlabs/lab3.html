@@ -392,8 +392,8 @@ summary {
 <div id="outline" class="section level2">
 <h2>Outline</h2>
 <ul>
-<li>Optionally, team up with at most two partners from your study group</li>
-<li>Create a repository (one per team) &amp; give access to your teammate(s)</li>
+<li>Optionally, team up with another student</li>
+<li>Create a repository (one per team) &amp; give access to your teammate</li>
 <li>For a refreshment of git &amp; github, review the procedures for collaboration for Lab 2.</li>
 <li>Explore what leads to happiness using data from the General Social Survey</li>
 <li>Create an R markdown file that contains all code to read the data, create the plots, and your answers.</li>
@@ -405,17 +405,17 @@ summary {
 <h2>Submission Requirements</h2>
 <ul>
 <li><p>A team member should create a GitHub repository called <code>ds202_lab3</code> which includes the group work.</p></li>
-<li><p>The team will collaborate on <code>team.Rmd</code> to answer all the questions (for the final report), and also include your individual exploration in <code>individual1.Rmd</code>, <code>individual2.Rmd</code>, or <code>indivisual3.Rmd</code> (“your scratch file”). <strong>Only the report generated from <code>team.Rmd</code> will be graded.</strong></p></li>
+<li><p>If you finish the lab individually, you only need to include your answers in <code>individual1.Rmd</code></p></li>
+<li><p>If you collaborate, the team will work on <code>team.Rmd</code> to answer all the questions (for the final report). Also include your individual exploration in <code>individual1.Rmd</code> or <code>individual2.Rmd</code>, which will be your “scratch files”. <em>Only the report generated from <code>team.Rmd</code> will be graded.</em></p></li>
 <li><p>Include the data you used in your repository.</p></li>
 <li><p>The correct folder structure is as below. The folder <code>ds202_lab3</code> is a git repository.</p>
 <pre><code>ds202_lab3
 |-- individual1.Rmd
 |-- (individual2.Rmd)
-|-- (individual3.Rmd)
-|-- team.Rmd
+|-- (team.Rmd)
 |-- *.html
 |-- Data files</code></pre></li>
-<li><p><strong>From this lab forward, if you team up, each team member should create at least one commit with message “Review and Revision”, which include revisions on the analysis of your partner’s.</strong></p></li>
+<li><p>From this lab forward, if you team up, each team member should create at least one commit with message “Review and Revision”, which include revisions on the analysis of your partner’s.</p></li>
 </ul>
 </div>
 <div id="background" class="section level2">
@@ -430,9 +430,9 @@ summary {
 <ul>
 <li><strong>Happiness</strong></li>
 <li><strong>Marital status</strong></li>
-<li><strong>Highest year of school completed</strong></li>
-<li><strong>Political affilation</strong></li>
-<li>Many other possible topics, such as Work (hours) and Belief – it is up to you</li>
+<li><strong>Ecudation</strong></li>
+<li><strong>Political party affilation</strong></li>
+<li>Many other possible topics, such as work hours and belief – it is up to you</li>
 </ul>
 </div>
 <div id="part-one-extracting-and-loading-data" class="section level2">
@@ -440,19 +440,19 @@ summary {
 <ol style="list-style-type: decimal">
 <li>Go to <a href="https://gssdataexplorer.norc.org/" class="uri">https://gssdataexplorer.norc.org/</a></li>
 <li>Click Search variable</li>
-<li>Search “happy”; click add to cart; go back. Repeat for “marital status”, “educ”, “respondents sex”, “political party affiliation”, and other variables (you decide)</li>
+<li>Search “happy”; click add to cart; go back. Repeat for “marital status”, “highest year of school completed”, “respondents sex”, “political party affiliation”, and other variables (you decide)</li>
 <li>After you finished adding the variables, click Actions – Save to Project</li>
 <li>Register an account</li>
 <li>Click Default Project</li>
 <li>Click Actions – Extract data</li>
 <li><ol style="list-style-type: lower-alpha">
-<li>Name your extract (e.g. <code>extract1</code>) – click NEXT;</li>
+<li>Name your extract (e.g., extract1) – click NEXT;</li>
 <li>ADD ALL variables – click NEXT;</li>
 <li>click NEXT;</li>
-<li><strong>Check Excel Workbook (data + metadata), and leave all others unchecked</strong>;</li>
+<li><strong>Check Excel Workbook (data + metadata) and Excel Workbook (metadata only), and leave all others unchecked</strong>;</li>
 <li>CREATE EXTRACT</li>
 </ol></li>
-<li>Wait for the extract to be ready, and then download an archive file.</li>
+<li>Wait for the extract to be ready in a few minutes, and then download an archive file.</li>
 <li>Extract the archive file (ending with .tar.gz). Windows users: You may need <a href="https://www.7-zip.org/">7-Zip</a></li>
 <li>Load the Excel file into R, using</li>
 </ol>
@@ -471,7 +471,7 @@ dat &lt;- readxl::read_xls(&#39;PATH_TO_EXL/GSS.xls&#39;)</code></pre>
 <li>How is the happiness of a respondent related to his/her marriage status? Define that a person is happy if the response to question is “Very happy” or “Pretty happy”.</li>
 <li>Does party affiliation affect the relationship you found in the last question?</li>
 <li>How is marrital status related to the education of a respondent? What are possible reasons accounting for the patterns you see?</li>
-<li>Explore two more interesting questions, and answer those questions using the GSS data.</li>
+<li>Finish this only if you work with a partner: Explore two more interesting questions, and answer those questions using the GSS data.</li>
 </ol>
 <p>The team’s exploration will be evaluated according to the general interest and the depth of the exploration.</p>
 </div>

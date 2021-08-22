@@ -28,26 +28,26 @@ knitr::opts_chunk$set(warning = FALSE, message=FALSE)
 `tidyverse` is a package bundling several other R packages:
 
 - `ggplot2`, `dplyr`, `tidyr`, `purrr`, ...
-- share common data representations and API, i.e. work well together
+- share common data representations and API (application programming interface), i.e. work well together
 - see https://github.com/hadley/tidyverse for more information
 
 ## `dplyr`
 - `dplyr` is a database-like package for operating and performing calculation on data frames. 
-- produce numerical summaries
-- join data frames and combine information from different sources
-- convenient and neat syntax
+- can produce numerical summaries
+- can join data frames and combine information from different sources
+- has convenient and neat syntax
 
 ## `dplyr` 
 
 There are a couple of primary `dplyr` *verbs*, representing distinct data analysis tasks:
 
-- `select`: Select particular columns of a data frame
-- `filter`: Select specified rows of a data frame, produce subsets
-- `mutate`: Add new or change existing columns of the data frame (as functions of existing columns)
+- `select`: Select particular *columns* of a data frame
+- `filter`: Select specified *rows* of a data frame, produce a subset
+- `mutate`: Add new or change existing columns of the data frame
 
 ## Common structure
 
-Functions in `tidyverse` have `data` as their first element
+Functions in `tidyverse` have `data` as their first argument. E.g.,
 
 
 `ggplot(fbi, aes(x = Year, y = Count)) + geom_point()`
@@ -71,7 +71,6 @@ Functions in `tidyverse` have `data` as their first element
 <img src="images/green.png" width=20> Continue the last part: Now create a data frame containing data in 2017 for all states except for Iowa.</br>
 <img src="images/green.png" width=20> Continue the last part: Now introduce a column which is the number of crimes per thousand residents into the previous data frame.</br>
 <img src="images/green.png" width=20> Continue the last part: Drop the population and crime count columns. </br>
-<img src="images/blue.png" width=20> What is the population of each state in 2017? Remove redundant information. Check out `?distinct`.
 </span>
 
 ## The pipe operator `%>%`
@@ -97,21 +96,22 @@ Consequences:
 
 <span style="color:white">
 <img src="images/green.png" width=20> 1. Create a data frame containing the state abbreviation, year, population, crime type, and crime count. 2. Include data in 2017 for all states except for Iowa. 3. Introduce a column which is the number of crimes per thousand residence into the previous data frame. 4. Lastly, drop the population and crime count columns. </br>
-<img src="images/blue.png" width=20> What is the population of each state in 2017? Remove redundant information. Check out `?distinct`. </span>
 
 ## More `dplyr` **verbs**
 
+- `distinct`: Select only unique rows from a data frame
 - `arrange`: Reorder the rows of a data frame
 - `summarize`: Create collapsed summaries of a data frame
 - `group_by`: Do something for each group level
 
 ## R demo...
 
-## Your turn: summarize, group_by, and arrange. {.white}
+## Your turn: distinct, summarize, group_by, and arrange. {.white}
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
 <span style="color:white">
+<img src="images/blue.png" width=20> What is the population of each state in 2017? Remove redundant information using `distinct`. </br>
 <img src="images/green.png" width=20> Find the crime rate for each year and each type of crime. </br>
 <img src="images/green.png" width=20> Arrange your finding by the crime rate from high to low.</br>
 <img src="images/blue.png" width=20> Look at just burglary. How does the crime rate compare with the all-time high within each state? </span>
@@ -165,6 +165,15 @@ fbi %>%
   filter(Type=="Murder.and.nonnegligent.Manslaughter") %>%
   ggplot(aes(x = Year, y = Count)) + 
     geom_point()
+```
+
+## `distinct`
+`distinct` selects only unique/distinct rows from a data frame. You can determine uniqueness using all combination of columns or a subset of them
+
+
+```{r, message=FALSE}
+fbi %>% 
+  distinct(Year, State, Population) %>% head()
 ```
 
 ## `arrange`

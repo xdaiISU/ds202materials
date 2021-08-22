@@ -80,7 +80,7 @@
   </style>
   
   
-      <script src="06_2_dplyr-examples_files/header-attrs-2.3/header-attrs.js"></script>
+      <script src="06_2_dplyr-examples_files/header-attrs-2.6/header-attrs.js"></script>
   
 </head>
 
@@ -102,40 +102,40 @@
 <section id="outline" class="slide level2">
 <h2>Outline</h2>
 <ul>
-<li>Case study: Analyzing 2019 Cyclone football data with <code>dplyr</code></li>
+<li>Case study: Analyzing 2020 Cyclone football data with <code>dplyr</code></li>
 <li>working with <code>dplyr</code> verbs</li>
 </ul>
 </section>
-<section id="the-2019-cyclone-football-data" class="slide level2">
-<h2>The 2019 Cyclone football data</h2>
+<section id="the-2020-cyclone-football-data" class="slide level2">
+<h2>The 2020 Cyclone football data</h2>
 <ul>
 <li>Iowa State University Athelete hosts some statistics for the Cyclone football team for the last season <a href="https://cyclones.com/cumestats.aspx?path=football">here</a>.</li>
 <li>When using dataset on the internet, always check whether you have the permission to do so!</li>
-<li>An excerpt of the individual player data is available from our course website. Dowload the <a href="cyclonesFootball2019.xlsx">excel file</a> and put the file next to your Rmd file. Look at what does the file contain.</li>
+<li>An excerpt of the individual player data is available from our course website. Dowload the <a href="cyclonesFootball2020.xlsx">excel file</a> and put the file next to your Rmd file. Look at what does the file contain.</li>
 </ul>
 </section>
 <section id="loading-data" class="slide level2">
 <h2>Loading data</h2>
 <p>The following command is going to load the per-game defense data into your R session:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(readxl)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>defense &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&#39;cyclonesFootball2019.xlsx&#39;</span>, <span class="dt">sheet=</span><span class="st">&#39;Defensive&#39;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>defense &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&#39;cyclonesFootball2020.xlsx&#39;</span>, <span class="dt">sheet=</span><span class="st">&#39;Defensive&#39;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="kw">str</span>(defense)</span></code></pre></div>
-<pre><code>## tibble [502 × 11] (S3: tbl_df/tbl/data.frame)
-##  $ Name             : chr [1:502] &quot;White, Lawrence&quot; &quot;White, Lawrence&quot; &quot;White, Lawrence&quot; &quot;White, Lawrence&quot; ...
-##  $ Opponent_Opponent: chr [1:502] &quot;UNI&quot; &quot;Iowa&quot; &quot;ULM&quot; &quot;Baylor&quot; ...
-##  $ Tackles_Solo     : chr [1:502] &quot;4&quot; &quot;4&quot; &quot;3&quot; &quot;4&quot; ...
-##  $ Tackles_ASST     : chr [1:502] &quot;4&quot; &quot;7&quot; &quot;5&quot; &quot;2&quot; ...
-##  $ Tackles_TFL      : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Tackles_Sack     : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Turnover_FF      : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Turnover_FR      : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Turnover_INT     : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; ...
-##  $ Pass_QBH         : chr [1:502] &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Pass_PB          : chr [1:502] &quot;1&quot; &quot;2&quot; &quot;0&quot; &quot;0&quot; ...</code></pre>
+<pre><code>## tibble [372 × 11] (S3: tbl_df/tbl/data.frame)
+##  $ Name             : chr [1:372] &quot;Rose, Mike&quot; &quot;Rose, Mike&quot; &quot;Rose, Mike&quot; &quot;Rose, Mike&quot; ...
+##  $ Opponent_Opponent: chr [1:372] &quot;Louisiana&quot; &quot;TCU&quot; &quot;Oklahoma&quot; &quot;Texas Tech&quot; ...
+##  $ Tackles_Solo     : chr [1:372] &quot;2&quot; &quot;6&quot; &quot;6&quot; &quot;3&quot; ...
+##  $ Tackles_ASST     : chr [1:372] &quot;4&quot; &quot;4&quot; &quot;5&quot; &quot;0&quot; ...
+##  $ Tackles_TFL      : chr [1:372] &quot;1.0&quot; &quot;0&quot; &quot;1.5&quot; &quot;1.0&quot; ...
+##  $ Tackles_Sack     : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;0.5&quot; &quot;0&quot; ...
+##  $ Turnover_FF      : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
+##  $ Turnover_FR      : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
+##  $ Turnover_INT     : chr [1:372] &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; ...
+##  $ Pass_QBH         : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; ...
+##  $ Pass_PB          : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...</code></pre>
 <!-- You can find a codebook with explanations for each of the variables at https://gssdataexplorer.norc.org/ -->
 <!-- ## Your turn: What is in the dataset? {.white} -->
 <!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
-<!-- <span style="color:white">For this your turn import the "Defensive" sheet from  `cyclonesFootball2019.xlsx` into R and name the data frame `defense`. What does each column stand for? </span> -->
+<!-- <span style="color:white">For this your turn import the "Defensive" sheet from  `cyclonesFootball2020.xlsx` into R and name the data frame `defense`. What does each column stand for? </span> -->
 </section>
 <section id="r-demo" class="slide level2">
 <h2>R demo…</h2>
@@ -143,7 +143,7 @@
 <section id="your-turn-group_by-and-summarize" class="slide level2 white">
 <h2 class="white">Your turn: group_by and summarize</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">For this your turn use the <code>defense</code> data from the <code>cyclonesFootball2019.xlsx</code> </span></p>
+<p><span style="color:white">For this your turn use the <code>defense</code> data from the <code>cyclonesFootball2020.xlsx</code> </span></p>
 <p><span style="color:white"> <img src="images/green.png" width=20> What is the total number of tackle assists per game?</br> <img src="images/green.png" width=20> Which two ISU players have the highest average number of tackle assists? </br> <img src="images/green.png" width=20> Is our defense more successful against U of Iowa or TCU? Filter data first and compare total number of solo tackles. </br> <img src="images/green.png" width=20> What is the relationship between the ability of solo tackles and tackles assists? </br> <img src="images/green.png" width=20> Find a plot that shows the differences for each one of the above summaries.</br></p>
 </section>
 <section id="brief-summaries" class="slide level2 shout">
@@ -162,18 +162,18 @@
 <span id="cb3-4"><a href="#cb3-4"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Tackles_Solo =</span> <span class="kw">as.numeric</span>(Tackles_Solo),</span>
 <span id="cb3-5"><a href="#cb3-5"></a>           <span class="dt">Tackles_ASST =</span> <span class="kw">as.numeric</span>(Tackles_ASST)) </span>
 <span id="cb3-6"><a href="#cb3-6"></a><span class="kw">str</span>(defense)</span></code></pre></div>
-<pre><code>## tibble [502 × 11] (S3: tbl_df/tbl/data.frame)
-##  $ Name             : chr [1:502] &quot;White, Lawrence&quot; &quot;White, Lawrence&quot; &quot;White, Lawrence&quot; &quot;White, Lawrence&quot; ...
-##  $ Opponent_Opponent: chr [1:502] &quot;UNI&quot; &quot;Iowa&quot; &quot;ULM&quot; &quot;Baylor&quot; ...
-##  $ Tackles_Solo     : num [1:502] 4 4 3 4 3 1 7 3 6 5 ...
-##  $ Tackles_ASST     : num [1:502] 4 7 5 2 2 1 1 2 1 5 ...
-##  $ Tackles_TFL      : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Tackles_Sack     : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Turnover_FF      : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Turnover_FR      : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Turnover_INT     : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; ...
-##  $ Pass_QBH         : chr [1:502] &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Pass_PB          : chr [1:502] &quot;1&quot; &quot;2&quot; &quot;0&quot; &quot;0&quot; ...</code></pre>
+<pre><code>## tibble [372 × 11] (S3: tbl_df/tbl/data.frame)
+##  $ Name             : chr [1:372] &quot;Rose, Mike&quot; &quot;Rose, Mike&quot; &quot;Rose, Mike&quot; &quot;Rose, Mike&quot; ...
+##  $ Opponent_Opponent: chr [1:372] &quot;Louisiana&quot; &quot;TCU&quot; &quot;Oklahoma&quot; &quot;Texas Tech&quot; ...
+##  $ Tackles_Solo     : num [1:372] 2 6 6 3 7 4 7 4 4 2 ...
+##  $ Tackles_ASST     : num [1:372] 4 4 5 0 3 1 4 3 9 3 ...
+##  $ Tackles_TFL      : chr [1:372] &quot;1.0&quot; &quot;0&quot; &quot;1.5&quot; &quot;1.0&quot; ...
+##  $ Tackles_Sack     : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;0.5&quot; &quot;0&quot; ...
+##  $ Turnover_FF      : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
+##  $ Turnover_FR      : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
+##  $ Turnover_INT     : chr [1:372] &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; ...
+##  $ Pass_QBH         : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; ...
+##  $ Pass_PB          : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...</code></pre>
 </section>
 <section id="more-cleaning" class="slide level2">
 <h2>More cleaning</h2>
@@ -192,7 +192,8 @@
 </section>
 <section id="the-variable-tackles_solo" class="slide level2">
 <h2>The variable <code>Tackles_Solo</code></h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>defense <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Tackles_Solo)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>defense <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Tackles_Solo)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="06_2_dplyr-examples_files/figure-revealjs/unnamed-chunk-5-1.png" width="480" /></p>
 </section>
 <section id="summarizing-dataset" class="slide level2">
@@ -202,28 +203,26 @@
 <pre><code>## # A tibble: 1 x 2
 ##       n  solo
 ##   &lt;int&gt; &lt;dbl&gt;
-## 1   502   483</code></pre>
+## 1   372   336</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>defense <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="st">  </span><span class="kw">group_by</span>(Opponent) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">solo =</span> <span class="kw">sum</span>(Tackles_Solo)) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb9-4"><a href="#cb9-4"></a><span class="st">  </span><span class="kw">arrange</span>(solo) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb9-5"><a href="#cb9-5"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 3 x 3
-##   Opponent           n  solo
-##   &lt;fct&gt;          &lt;int&gt; &lt;dbl&gt;
-## 1 Texas             37    28
-## 2 Iowa              38    30
-## 3 Oklahoma State    39    32</code></pre>
+##   Opponent      n  solo
+##   &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;
+## 1 Texas        30    17
+## 2 Oregon       27    19
+## 3 Louisiana    31    21</code></pre>
 </section>
 <section id="summarizing-tackles" class="slide level2">
 <h2>Summarizing Tackles</h2>
 <p>The total number of solo tackles in each game</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>soloPerGame &lt;-<span class="st"> </span>defense <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="st">  </span><span class="kw">group_by</span>(Opponent) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">solo =</span> <span class="kw">sum</span>(Tackles_Solo))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">ggplot</span>(soloPerGame, <span class="kw">aes</span>(<span class="dt">x=</span>Opponent, <span class="dt">weight=</span>solo)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>soloPerGame &lt;-<span class="st"> </span>defense <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">group_by</span>(Opponent) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">solo =</span> <span class="kw">sum</span>(Tackles_Solo))</span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="kw">ggplot</span>(soloPerGame, <span class="kw">aes</span>(<span class="dt">x=</span>Opponent, <span class="dt">weight=</span>solo)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</span></code></pre></div>
 <p><img src="06_2_dplyr-examples_files/figure-revealjs/unnamed-chunk-7-1.png" width="480" /></p>
 </section>
 <section id="helper-function" class="slide level2">
@@ -231,15 +230,14 @@
 <ul>
 <li>Counting players appeared in each game: <code>n()</code> provides the number of rows of a subset:</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>defense <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="st">  </span><span class="kw">group_by</span>(Opponent) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">solo =</span> <span class="kw">sum</span>(Tackles_Solo)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="st">  </span>str</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre><code>## tibble [13 × 3] (S3: tbl_df/tbl/data.frame)
-##  $ Opponent: Factor w/ 13 levels &quot;UNI&quot;,&quot;Baylor&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
-##  $ n       : int [1:13] 37 39 38 40 39 39 37 39 39 37 ...
-##  $ solo    : num [1:13] 37 37 30 43 45 37 39 32 35 28 ...</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>defense <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="st">  </span><span class="kw">group_by</span>(Opponent) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">solo =</span> <span class="kw">sum</span>(Tackles_Solo)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="st">  </span>str</span></code></pre></div>
+<pre><code>## tibble [11 × 3] (S3: tbl_df/tbl/data.frame)
+##  $ Opponent: Factor w/ 12 levels &quot;UNI&quot;,&quot;Baylor&quot;,..: 2 3 4 5 6 7 8 9 10 11 ...
+##  $ n       : int [1:11] 30 35 33 31 63 30 27 30 30 31 ...
+##  $ solo    : num [1:11] 35 35 22 21 51 42 19 42 17 27 ...</code></pre>
 <!-- ## Your turn: asking questions {.white} -->
 <!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
 <!-- <span style="color:white"> -->

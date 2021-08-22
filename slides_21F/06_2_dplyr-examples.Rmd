@@ -21,21 +21,21 @@ knitr::opts_chunk$set(warning=FALSE)
 
 ## Outline
 
-- Case study: Analyzing 2019 Cyclone football data with `dplyr`
+- Case study: Analyzing 2020 Cyclone football data with `dplyr`
 - working with `dplyr` verbs
 
-## The 2019 Cyclone football data
+## The 2020 Cyclone football data
 
 - Iowa State University Athelete hosts some statistics for the Cyclone football team for the last season [here](https://cyclones.com/cumestats.aspx?path=football). 
 - When using dataset on the internet, always check whether you have the permission to do so!
-- An excerpt of the individual player data is available from our course website. Dowload the [excel file](cyclonesFootball2019.xlsx) and put the file next to your Rmd file. Look at what does the file contain. 
+- An excerpt of the individual player data is available from our course website. Dowload the [excel file](cyclonesFootball2020.xlsx) and put the file next to your Rmd file. Look at what does the file contain. 
 
 ## Loading data
 The following command is going to load the per-game defense data into your R session:
 
 ```{r, message=FALSE}
 library(readxl)
-defense <- read_excel('cyclonesFootball2019.xlsx', sheet='Defensive')
+defense <- read_excel('cyclonesFootball2020.xlsx', sheet='Defensive')
 str(defense)
 ```
 
@@ -45,7 +45,7 @@ str(defense)
 
 <!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
 
-<!-- <span style="color:white">For this your turn import the "Defensive" sheet from  `cyclonesFootball2019.xlsx` into R and name the data frame `defense`. What does each column stand for? </span> -->
+<!-- <span style="color:white">For this your turn import the "Defensive" sheet from  `cyclonesFootball2020.xlsx` into R and name the data frame `defense`. What does each column stand for? </span> -->
 
 ## R demo...
 
@@ -54,7 +54,7 @@ str(defense)
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
-<span style="color:white">For this your turn use the `defense` data from the `cyclonesFootball2019.xlsx` </span>
+<span style="color:white">For this your turn use the `defense` data from the `cyclonesFootball2020.xlsx` </span>
 
 <span style="color:white">
 <img src="images/green.png" width=20> What is the total number of tackle assists per game?</br>
@@ -99,12 +99,13 @@ defense <- defense %>%
 ## The variable `Tackles_Solo`
 
 ```{r, warning=FALSE, fig.width=5, fig.height=4.5}
-defense %>% ggplot(aes(x = Tackles_Solo)) + geom_histogram(binwidth = 1)
+defense %>% ggplot(aes(x = Tackles_Solo)) + 
+  geom_histogram(binwidth = 1)
 ```
 
 
 ## Summarizing dataset
-```{r, warning=FALSE}
+```{r, warning=FALSE, message=FALSE}
 defense %>% 
   summarize(n = n(), solo = sum(Tackles_Solo))
 defense %>% 
@@ -118,7 +119,7 @@ defense %>%
 
 The total number of solo tackles in each game
 
-```{r, warning=FALSE, fig.width=5, fig.height=4}
+```{r, warning=FALSE, fig.width=5, fig.height=4, message=FALSE}
 soloPerGame <- defense %>% 
   group_by(Opponent) %>% 
   summarize(solo = sum(Tackles_Solo))
@@ -129,7 +130,7 @@ ggplot(soloPerGame, aes(x=Opponent, weight=solo)) + geom_bar() + coord_flip()
 ## Helper function
 
 - Counting players appeared in each game: `n()` provides the number of rows of a subset:
-```{r}
+```{r, message=FALSE}
 defense %>% 
   group_by(Opponent) %>% 
   summarize(n = n(), solo = sum(Tackles_Solo)) %>% 
