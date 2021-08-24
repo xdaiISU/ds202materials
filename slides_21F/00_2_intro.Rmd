@@ -22,6 +22,13 @@ Welcome to<br>DS 202
 - DS 202 is the second class for Data Science major/minor/certificate
 - You will learn very important skills to deal with data. These skills will be repeatedly used in your data science career!
 - You will learn R
+- You will learn exploratory data analysis
+
+## What is exploratory data analysis?
+
+Typical data science project:
+
+<img src="https://r4ds.had.co.nz/diagrams/data-science.png" alt="typical cycle of a data science project" />
 
 ## What is this course about?
 
@@ -46,12 +53,6 @@ Welcome to<br>DS 202
 * Collaborating on an Analysis
 * Reproducibility/Repeatability of Findings
     
-
-## What is exploratory data analysis?
-
-Typical data science project:
-
-<img src="https://r4ds.had.co.nz/diagrams/data-science.png" alt="typical cycle of a data science project" />
 
 ## ... we will be using R for that! {.shout}
 
@@ -98,9 +99,9 @@ you will acquire solid skills towards a real-world data analytic pipeline. This 
 
 ## Course logistics
 
-- Please wear a mask in class
-- And please be vaccinated if you can
 - Bring your laptop to the lecture
+- Please wear a mask in class,
+- and be vaccinated if you can
 
 ## Getting help
 
@@ -148,12 +149,15 @@ https://forms.gle/oWABftKzyfy2Skdp7
 
 ## Syllabus
 
-The full syllabus can be found on [Canvas](https://canvas.iastate.edu/courses/85495/pages/syllabus-and-course-schedule?module_item_id=3912529).
+The [full syllabus](https://canvas.iastate.edu/courses/85495/pages/syllabus-and-course-schedule?module_item_id=3912529) can be found on Canvas, where you can also find a course schedule.
 
+
+## Final project
+[Project requirements](https://canvas.iastate.edu/courses/85495/pages/final-project-requirements?module_item_id=3912643) can be found on Canvas
 
 ## An example of Exploratory Data Analysis: mind the gap!
 
-[GapMinder at TED 2006](https://www.youtube.com/watch?v=hVimVzgtD6w) presented by Hans Rosling (1948 - 2017)
+[GapMinder at TED 2006](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen#t-363463) presented by Hans Rosling (1948 - 2017)
 
 - preconceived notions are problematic
 - up-to-date data helps us learn about the world
