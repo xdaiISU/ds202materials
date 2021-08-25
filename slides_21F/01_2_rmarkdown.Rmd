@@ -28,7 +28,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <!-- 
 - LaTeX gives you much greater control, but it is restricted to pdf and has a much greater learning curve.
 -->
-- **Markdown** is becoming a **standard** on the web. Many websites will generate HTML from Markdown (e.g. GitHub, Stack Overflow, reddit, ...).
+- **Markdown** is becoming a **standard** on the web. Many websites will generate HTML from Markdown (e.g. GitHub, Piazza, Stack Overflow, reddit, ...).
 
 ## Markdown is easy
 
@@ -77,7 +77,7 @@ Have a look at RStudio's [cheat sheets](https://www.rstudio.com/resources/cheats
 
 - **It's simple.** Focus on writing
 <!-- , rather than debugging silly errors. -->
-- **It's flexible.** Markdown was created to simplify writing HTML, but thanks to pandoc, Markdown converts to many different formats such as pdf and Word!
+- **It's flexible.** Markdown was created to simplify HTML writing, but thanks to pandoc, Markdown converts to many different formats such as pdf and Word!
 - **It's dynamic.** Get a new dataset? Regenerate your report without copy/paste hell!
 - **Encourages transparency.** Collaborators (including your future self) will thank you for integrating your analysis & report.
 - **Enables interactivity/reactivity.** Allow your audience to explore the analysis (rather than passively reading it).

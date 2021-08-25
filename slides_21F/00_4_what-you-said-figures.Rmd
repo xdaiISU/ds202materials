@@ -13,7 +13,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-topics <- read.csv("data/topics202_20S.csv", stringsAsFactors = FALSE)
+topics <- read.csv("data/topics202_21F.csv", stringsAsFactors = FALSE)
 topics <- topics %>% 
     setNames(gsub('Topics.of.Interest..', '', names(topics), fixed=TRUE)) %>% 
     select(-Timestamp)

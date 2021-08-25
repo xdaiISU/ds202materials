@@ -7,7 +7,6 @@ output:
     self_contained: false
     katex: true
     theme: ribbon
-    incremental: true
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -19,7 +18,7 @@ library(tidyverse)
 
 ## ... this is what the survey tells us
 
-<img src="images/topics.png" width=720>
+<img src="images/topics_21F.png" width=720>
 
 ... there's three more of these charts ... which topic is the best?
 
@@ -28,7 +27,7 @@ library(tidyverse)
 This is what the raw data looks like 
 
 ```{r, echo=FALSE}
-topics <- read.csv("data/topics202_20S.csv", stringsAsFactors = FALSE)
+topics <- read.csv("data/topics202_21F.csv", stringsAsFactors = FALSE)
 topics <- topics %>% 
     setNames(gsub('Topics.of.Interest..', '', names(topics), fixed=TRUE)) %>% 
     select(-Timestamp)
