@@ -18,6 +18,7 @@
    pre > code.sourceCode { white-space: pre; position: relative; }
    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
    pre > code.sourceCode > span:empty { height: 1.2em; }
+   .sourceCode { overflow: visible; }
    code.sourceCode > span { color: inherit; text-decoration: inherit; }
    div.sourceCode { margin: 1em 0; }
    pre.sourceCode { margin: 0; }
@@ -80,7 +81,7 @@
   </style>
   
   
-      <script src="07_joins_files/header-attrs-2.3/header-attrs.js"></script>
+      <script src="07_joins_files/header-attrs-2.10/header-attrs.js"></script>
   
 </head>
 
@@ -111,9 +112,9 @@
 <section id="joins---more-specific-idea" class="slide level2">
 <h2>Joins - more specific idea</h2>
 <ul>
-<li>Data sets are joined along values of variables.</li>
-<li><strong>Mutating joins</strong> add new variables to one data frame from matching observations in another. <code>dplyr</code> offers <code>inner_join</code>, <code>left_join</code>, <code>right_join</code>, and <code>full_join</code></li>
-<li><strong>Filtering joins</strong> filter observations from one data frame based on whether or not they match an observation in the other table. <code>dplyr</code> offers <code>semi-join</code> and <code>anti-join</code></li>
+<li>Data sets are joined along the values of a few variables.</li>
+<li><strong>Mutating joins</strong> add new variables to one data frame from matching observations in another. E.g., <code>inner_join</code>, <code>left_join</code>, <code>right_join</code>, and <code>full_join</code></li>
+<li><strong>Filtering joins</strong> filter observations from one data frame based on whether or not they match an observation in the other table. E.g., <code>semi-join</code> and <code>anti-join</code></li>
 </ul>
 </section>
 <section id="mutating-joins" class="slide level2 shout">
@@ -121,9 +122,9 @@
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">trt =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="dt">rep=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>)), <span class="dt">value =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb1-3"><a href="#cb1-3"></a>df1</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">trt =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="at">rep=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>)), <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df1</span></code></pre></div>
 <pre><code>##   id trt value
 ## 1  1   A     5
 ## 2  2   B     3
@@ -131,8 +132,8 @@
 ## 4  4   A     1
 ## 5  5   B     2
 ## 6  6   C     3</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="dt">stress=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="dt">bpm =</span> <span class="kw">c</span>(<span class="dv">65</span>, <span class="dv">125</span>, <span class="dv">74</span>, <span class="dv">136</span>, <span class="dv">48</span>))</span>
-<span id="cb3-2"><a href="#cb3-2"></a>df2</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="at">stress=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">bpm =</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">125</span>, <span class="dv">74</span>, <span class="dv">136</span>, <span class="dv">48</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
 <pre><code>##   id stress bpm
 ## 1  4      0  65
 ## 2  4      1 125
@@ -144,9 +145,9 @@
 <h2>Inner join</h2>
 <ul>
 <li>Only matches from both data sets are kept</li>
-<li>if multiple records are joinnable, all will be joined and included in the result. This is a common behavior of mutating join functions</li>
+<li>If multiple records are joinnable, all will be joined and included in the result. This is a common behavior of mutating join functions</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">inner_join</span>(df1, df2, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(df1, df2, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
 <pre><code>##   id trt value stress bpm
 ## 1  4   A     1      0  65
 ## 2  4   A     1      1 125
@@ -157,10 +158,10 @@
 <h2>Left join</h2>
 <ul>
 <li><code>left_join</code>: all elements in the <em>left</em> dataset are kept, no matter whether they are joined to the right data set</li>
-<li>non-matches are filled in by <code>NA</code></li>
-<li><code>right_join</code> works symmetric</li>
+<li>non-matches are filled in with <code>NA</code>s</li>
+<li><code>right_join</code> works symmetrically</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">left_join</span>(df1, df2, <span class="dt">by=</span><span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(df1, df2, <span class="at">by=</span><span class="st">&quot;id&quot;</span>)</span></code></pre></div>
 <pre><code>##   id trt value stress bpm
 ## 1  1   A     5     NA  NA
 ## 2  2   B     3     NA  NA
@@ -174,9 +175,9 @@
 <section id="full-join" class="slide level2">
 <h2>Full join</h2>
 <ul>
-<li>all ids are kept, missings are filled in with <code>NA</code></li>
+<li>all records from the left and right data frames are kept, missings are filled in with <code>NA</code>s</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">full_join</span>(df1, df2, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(df1, df2, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
 <pre><code>##   id  trt value stress bpm
 ## 1  1    A     5     NA  NA
 ## 2  2    B     3     NA  NA
@@ -197,7 +198,7 @@
 <li>a convenient function in <code>dplyr</code></li>
 <li><code>semi_join(x, y)</code> <strong>keeps</strong> all observations in <code>x</code> that have a match in <code>y</code></li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">semi_join</span>(df1, df2)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semi_join</span>(df1, df2)</span></code></pre></div>
 <pre><code>##   id trt value
 ## 1  4   A     1
 ## 2  5   B     2</code></pre>
@@ -208,13 +209,13 @@
 <li><code>anti_join(x, y)</code> <strong>drops</strong> all observations in <code>x</code> that have a match in <code>y</code></li>
 <li>careful, not symmetric!</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">anti_join</span>(df1, df2, <span class="dt">by=</span><span class="st">&quot;id&quot;</span>) <span class="co"># no values for id in df2</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anti_join</span>(df1, df2, <span class="at">by=</span><span class="st">&quot;id&quot;</span>) <span class="co"># no values for id in df2</span></span></code></pre></div>
 <pre><code>##   id trt value
 ## 1  1   A     5
 ## 2  2   B     3
 ## 3  3   C     7
 ## 4  6   C     3</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">anti_join</span>(df2, df1, <span class="dt">by=</span><span class="st">&quot;id&quot;</span>) <span class="co"># no values for id in df1</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anti_join</span>(df2, df1, <span class="at">by=</span><span class="st">&quot;id&quot;</span>) <span class="co"># no values for id in df1</span></span></code></pre></div>
 <pre><code>##   id stress bpm
 ## 1  7      0  48</code></pre>
 </section>
@@ -227,25 +228,25 @@
 <li>always make sure to check data before and after a join</li>
 </ul>
 </section>
-<section id="the-2019-cyclone-football-data" class="slide level2">
-<h2>The 2019 Cyclone football data</h2>
-<p>An excerpt of the Cyclone football player data is available in this <a href="cyclonesFootball2019.xlsx">excel file</a>. The following command loads the defense data into your R session:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="kw">library</span>(readxl)</span>
-<span id="cb17-3"><a href="#cb17-3"></a>defense &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&#39;cyclonesFootball2019.xlsx&#39;</span>, <span class="dt">sheet=</span><span class="st">&#39;Defensive&#39;</span>)</span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="kw">str</span>(defense)</span></code></pre></div>
-<pre><code>## tibble [502 × 11] (S3: tbl_df/tbl/data.frame)
-##  $ Name             : chr [1:502] &quot;White, Lawrence&quot; &quot;White, Lawrence&quot; &quot;White, Lawrence&quot; &quot;White, Lawrence&quot; ...
-##  $ Opponent_Opponent: chr [1:502] &quot;UNI&quot; &quot;Iowa&quot; &quot;ULM&quot; &quot;Baylor&quot; ...
-##  $ Tackles_Solo     : chr [1:502] &quot;4&quot; &quot;4&quot; &quot;3&quot; &quot;4&quot; ...
-##  $ Tackles_ASST     : chr [1:502] &quot;4&quot; &quot;7&quot; &quot;5&quot; &quot;2&quot; ...
-##  $ Tackles_TFL      : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Tackles_Sack     : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Turnover_FF      : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Turnover_FR      : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Turnover_INT     : chr [1:502] &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; ...
-##  $ Pass_QBH         : chr [1:502] &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
-##  $ Pass_PB          : chr [1:502] &quot;1&quot; &quot;2&quot; &quot;0&quot; &quot;0&quot; ...</code></pre>
+<section id="the-2020-cyclone-football-data" class="slide level2">
+<h2>The 2020 Cyclone football data</h2>
+<p>An excerpt of the Cyclone football player data is available in this <a href="data/cyclonesFootball2020.xlsx">excel file</a>. The following command loads the defense data into your R session:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>defense <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;data/cyclonesFootball2020.xlsx&#39;</span>, <span class="at">sheet=</span><span class="st">&#39;Defensive&#39;</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(defense)</span></code></pre></div>
+<pre><code>## tibble [372 × 11] (S3: tbl_df/tbl/data.frame)
+##  $ Name             : chr [1:372] &quot;Rose, Mike&quot; &quot;Rose, Mike&quot; &quot;Rose, Mike&quot; &quot;Rose, Mike&quot; ...
+##  $ Opponent_Opponent: chr [1:372] &quot;Louisiana&quot; &quot;TCU&quot; &quot;Oklahoma&quot; &quot;Texas Tech&quot; ...
+##  $ Tackles_Solo     : chr [1:372] &quot;2&quot; &quot;6&quot; &quot;6&quot; &quot;3&quot; ...
+##  $ Tackles_ASST     : chr [1:372] &quot;4&quot; &quot;4&quot; &quot;5&quot; &quot;0&quot; ...
+##  $ Tackles_TFL      : chr [1:372] &quot;1.0&quot; &quot;0&quot; &quot;1.5&quot; &quot;1.0&quot; ...
+##  $ Tackles_Sack     : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;0.5&quot; &quot;0&quot; ...
+##  $ Turnover_FF      : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
+##  $ Turnover_FR      : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
+##  $ Turnover_INT     : chr [1:372] &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; ...
+##  $ Pass_QBH         : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; ...
+##  $ Pass_PB          : chr [1:372] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...</code></pre>
 </section>
 <section id="r-demo" class="slide level2">
 <h2>R demo…</h2>
@@ -254,7 +255,7 @@
 <h2 class="white">Your turn (10 mins)</h2>
 <p><img src="images/blue.jpeg" width="1200" class="cover"></p>
 <p><span style="color:white">For this your turn use the Cyclone football data.</p>
-<p><span style="color:white"> <img src="images/green.png" width=20> Load the <code>defense</code> and <code>offense</code> data from cyclonesFootball2019.xlsx. </br> <img src="images/green.png" width=20> Join (relevant pieces of) the <code>defense</code> data set and the <code>offense</code> data, so that the defensive and offensive statistics for each player in each game are on the same row. Which column(s) should you join? </br> <img src="images/green.png" width=20> Find the players who contributed to both defence and offence.</br> <img src="images/blue.png" width=20> Among the offensive players, who plays the best defense?</br></span></p>
+<p><span style="color:white"> <img src="images/green.png" width=20> Load the <code>defense</code> and <code>offense</code> data from cyclonesFootball2020.xlsx. </br> <img src="images/green.png" width=20> Join (relevant pieces of) the <code>defense</code> data and the <code>offense</code> data, so that the defensive and offensive statistics for each player in each game are on the same row. Which column(s) should you join? </br> <img src="images/green.png" width=20> Find the (unique) players who contributed to both defence and offence.</br> <img src="images/blue.png" width=20> Among the offensive players, who plays the best defense?</br></span></p>
 </section>
 
   <!--
