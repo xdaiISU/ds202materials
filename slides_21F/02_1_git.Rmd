@@ -56,6 +56,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## `bash` Demonstration...
 
+## Summary of Absolute and Relative Paths
+
+- An *absolute path* is the location of a file on the hard disk. An absolute path always starts with an `/`. E.g., `/` (the root folder), `/Users/xdai`, `/c/My Documents`
+    - Avoid absolute path in your code because they make the code non-reproducible
+- A *relative path* is the location of a file relative to the current working directory ("where you are"). E.g., 
+    - `.` (current directory), 
+    - `..` (parent directory), 
+    - `demo.R` (`demo.R` in the current directory), and 
+    - `../demo.R` (`demo.R` in the parent directory)
+
 ## Bash: Your Turn   {.white}
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
@@ -67,7 +77,7 @@ knitr::opts_chunk$set(echo = TRUE)
 3. <span style="color:white"><img src="images/green.png" width=20> Find the present working directory.</span>
 4. <span style="color:white"><img src="images/green.png" width=20> Create a new directory named `example1`, and then `cd` into this directory. </span>
 5. <span style="color:white"><img src="images/blue.png" width=20> Create an RMarkDown file named 'tmp.Rmd' in RStudio and knit it. Move it into `example1` in Bash. Also move the generated html file.</span>
-6. <span style="color:white"><img src="images/green.png" width=20> Use `open` to view the content of the html file in Bash.</span>
+6. <span style="color:white"><img src="images/green.png" width=20> Use `open` to view the content of the html file.</span>
 
 ## Git 
 

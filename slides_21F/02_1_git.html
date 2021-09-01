@@ -59,8 +59,8 @@
 </ul></li>
 </ul>
 </section>
-<section id="bash-command-line." class="slide level2">
-<h2><code>bash</code> Command-Line.</h2>
+<section id="bash-command-line" class="slide level2">
+<h2><code>bash</code> Command-Line</h2>
 <ul>
 <li>To use <code>git</code>, we will be accessing the command-line tools in <code>bash</code></li>
 <li>We can access <code>bash</code> in the Terminal tab in RStudio. Homework 1 instructs you how to set this up</li>
@@ -77,16 +77,32 @@
 <section id="bash-demonstration" class="slide level2">
 <h2><code>bash</code> Demonstration…</h2>
 </section>
+<section id="summary-of-absolute-and-relative-paths" class="slide level2">
+<h2>Summary of Absolute and Relative Paths</h2>
+<ul>
+<li>An <em>absolute path</em> is the location of a file on the hard disk. An absolute path always starts with an <code>/</code>. E.g., <code>/</code> (the root folder), <code>/Users/xdai</code>, <code>/c/My Documents</code>
+<ul>
+<li>Avoid absolute path in your code because they make the code non-reproducible</li>
+</ul></li>
+<li>A <em>relative path</em> is the location of a file relative to the current working directory (“where you are”). E.g.,
+<ul>
+<li><code>.</code> (current directory),</li>
+<li><code>..</code> (parent directory),</li>
+<li><code>demo.R</code> (<code>demo.R</code> in the current directory), and</li>
+<li><code>../demo.R</code> (<code>demo.R</code> in the parent directory)</li>
+</ul></li>
+</ul>
+</section>
 <section id="bash-your-turn" class="slide level2 white">
 <h2 class="white">Bash: Your Turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000> <!-- **<span style="color:white"> Exploring bash command line </span>** --></p>
 <!-- <span style="color:white"> If you are on Windows, you need to install [Git for Windows](https://gitforwindows.org/) and configure RStudio to use Git bash as the shell for the Terminal. See Homework 1 question 4. </span> -->
 <ol start="2" type="1">
 <li><span style="color:white"><img src="images/green.png" width=20> In RStudio, click the Terminal tab (right to the Console tab).</span></li>
-<li><span style="color:white"><img src="images/green.png" width=20> Find the present working directory?</span></li>
+<li><span style="color:white"><img src="images/green.png" width=20> Find the present working directory.</span></li>
 <li><span style="color:white"><img src="images/green.png" width=20> Create a new directory named <code>example1</code>, and then <code>cd</code> into this directory. </span></li>
 <li><span style="color:white"><img src="images/blue.png" width=20> Create an RMarkDown file named ‘tmp.Rmd’ in RStudio and knit it. Move it into <code>example1</code> in Bash. Also move the generated html file.</span></li>
-<li><span style="color:white"><img src="images/green.png" width=20> Use <code>open</code> to view the content of the html file in Bash.</span></li>
+<li><span style="color:white"><img src="images/green.png" width=20> Use <code>open</code> to view the content of the html file.</span></li>
 </ol>
 </section>
 <section id="git" class="slide level2">

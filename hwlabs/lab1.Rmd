@@ -67,6 +67,7 @@ So far,
 - `git remote add origin https://github.com/yourGitHubUsername/ds202_hw1.git` tells git that a remote repository can be found on the URL you specify; name the remote `origin`
 - `git branch -M main` renames your current branch to `main`
 - `git push -u origin main` tells `git` to push your local changes; `-u origin main` means the local branch `main` should track future changes in the same branch on the remote `origin`.
+- In order to sucessfully push, you will need to authenticate. For security reasons, password may not work anymore for GitHub, so you will need to create a temporary password. Follow the guide in [creating a personal access token (PAT)](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 
 4. Succeeded? Refresh the Github repo webpage and see the changes.
 
@@ -116,10 +117,13 @@ Follow the appropriate directions to finish Part II:
 4. Add `FirstName_LastName.Rmd` and `FirstName_LastName.html` to the local git repo and make a new commit (you need `git add` and `git commit -m '...'`).  
 
 5. Pull updates (if any) from GitHub, and then push your changes to the remote repo (of the instructor's), using 
-  ```
-  git pull
-  git push
-  ```
+    
+    ```
+    git pull
+    git push
+    ```
+  
+    Note that again you need to authenticate, similar to when you pushed to your own GitHub repo.
 
 **Step 3**: To finish the collaboration, check if your repo is updated on GitHub. Look at the commit history and see what you did in your commit.
 
@@ -160,10 +164,13 @@ Follow the appropriate directions to finish Part II:
 4. Partner: Add `partner.Rmd` and `partner.html` to the local git repo and make a new commit (you need `git add` and `git commit -m '...'`).  
 
 5. Partner: Pull updates (if any) from GitHub, and then push your changes to the remote repo (of the Owner's), using 
-  ```
-  git pull
-  git push
-  ```
+
+    ```
+    git pull
+    git push
+    ```
+    
+    Note that again you need to authenticate, similar to when you pushed to your own GitHub repo.
 
 **Step 3**: To finish the collaboration,
 

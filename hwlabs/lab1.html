@@ -449,6 +449,7 @@ summary {
 <li><code>git remote add origin https://github.com/yourGitHubUsername/ds202_hw1.git</code> tells git that a remote repository can be found on the URL you specify; name the remote <code>origin</code></li>
 <li><code>git branch -M main</code> renames your current branch to <code>main</code></li>
 <li><code>git push -u origin main</code> tells <code>git</code> to push your local changes; <code>-u origin main</code> means the local branch <code>main</code> should track future changes in the same branch on the remote <code>origin</code>.</li>
+<li>In order to sucessfully push, you will need to authenticate. For security reasons, password may not work anymore for GitHub, so you will need to create a temporary password. Follow the guide in <a href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token">creating a personal access token (PAT)</a>.</li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
 <li>Succeeded? Refresh the Github repo webpage and see the changes.</li>
@@ -490,10 +491,11 @@ summary {
 <li>Also include an error/difficulty you encountered, or a tip for making Git/GitHub easier.</li>
 </ul></li>
 <li><p>Add <code>FirstName_LastName.Rmd</code> and <code>FirstName_LastName.html</code> to the local git repo and make a new commit (you need <code>git add</code> and <code>git commit -m &#39;...&#39;</code>).</p></li>
-<li><p>Pull updates (if any) from GitHub, and then push your changes to the remote repo (of the instructor’s), using</p></li>
-</ol>
+<li><p>Pull updates (if any) from GitHub, and then push your changes to the remote repo (of the instructor’s), using</p>
 <pre><code>git pull
 git push</code></pre>
+<p>Note that again you need to authenticate, similar to when you pushed to your own GitHub repo.</p></li>
+</ol>
 <p><strong>Step 3</strong>: To finish the collaboration, check if your repo is updated on GitHub. Look at the commit history and see what you did in your commit.</p>
 </div>
 <div id="if-you-form-a-pair" class="section level3">
@@ -526,10 +528,11 @@ git push</code></pre>
 <li>Also include an error/difficulty you encountered, or a tip for making Git/GitHub easier.</li>
 </ul></li>
 <li><p>Partner: Add <code>partner.Rmd</code> and <code>partner.html</code> to the local git repo and make a new commit (you need <code>git add</code> and <code>git commit -m &#39;...&#39;</code>).</p></li>
-<li><p>Partner: Pull updates (if any) from GitHub, and then push your changes to the remote repo (of the Owner’s), using</p></li>
-</ol>
+<li><p>Partner: Pull updates (if any) from GitHub, and then push your changes to the remote repo (of the Owner’s), using</p>
 <pre><code>git pull
 git push</code></pre>
+<p>Note that again you need to authenticate, similar to when you pushed to your own GitHub repo.</p></li>
+</ol>
 <p><strong>Step 3</strong>: To finish the collaboration,</p>
 <ol style="list-style-type: decimal">
 <li><p>Owner: See if your repo is updated on GitHub.</p></li>
