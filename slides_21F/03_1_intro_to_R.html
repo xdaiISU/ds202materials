@@ -108,6 +108,24 @@
 <li>A first glimpse at data</li>
 </ul>
 </section>
+<section id="r-data-types" class="slide level2">
+<h2>R Data Types</h2>
+<ul>
+<li>Numeric variables, e.g. <code>3</code>, <code>pi</code>, <code>1:5</code></li>
+<li>Character variables, e.g. <code>hello world</code>, <code>c('cat', 'dog')</code></li>
+<li>Logical variables, e.g. <code>TRUE</code>, <code>FALSE</code>, <code>c(FALSE, TRUE)</code></li>
+</ul>
+<p>Here, <code>c()</code> is the function for creating a vector (combine/concatenate)</p>
+</section>
+<section id="functions-for-building-a-vector" class="slide level2">
+<h2>Functions for Building a Vector</h2>
+<ul>
+<li><code>c()</code>, for combining elements and vectors</li>
+<li><code>seq()</code>, for creating a sequence of numbers</li>
+<li><code>rep()</code>, for repeating a vector</li>
+</ul>
+<p>More details in the demo</p>
+</section>
 <section id="r-syntax-examples" class="slide level2">
 <h2>R Syntax Examples</h2>
 <table>
@@ -165,9 +183,9 @@
 <h2 class="white">Your Turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <ul>
-<li><span style="color:white"><img src="images/green.png" width=20> Introduce vector <span class="math inline">\(x\)</span> defined as <span class="math inline">\(x = (4, 1, 3, 9)\)</span></span></li>
-<li><span style="color:white"><img src="images/green.png" width=20> Create character vector <span class="math inline">\(y\)</span> to contain <code>c</code>, <code>b</code>, and <code>a</code> in three entries</span></li>
-<li><span style="color:white"><img src="images/blue.png" width=20> Calculate the Euclidean distance between the two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, defined as <span class="math display">\[
+<li><span style="color:white"><img src="images/green.png" width=20> Introduce vector <span class="math inline">\(x\)</span> defined as <span class="math inline">\(x = (4, 1, 3, 9)\)</span> and <span class="math inline">\(y\)</span> defined as <span class="math inline">\(y = (1, 2, 3, 4)\)</span></span></li>
+<li><span style="color:white"><img src="images/green.png" width=20> Create character vector <span class="math inline">\(z\)</span> containing <code>c</code>, <code>b</code>, and <code>a</code> in its three entries</span></li>
+<li><span style="color:white"><img src="images/blue.png" width=20> Use vectorized calculation the Euclidean distance between the two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, defined as <span class="math display">\[
 d = \sqrt{\sum_{i=1}^4 (x_i - y_i)^2}
 \]</span></span></li>
 <li><span style="color:white"><img src="images/blue.png" width=20> What does a negative index do? (Hint: Try <code>x[-1]</code>)</span></li>
@@ -217,7 +235,7 @@ d = \sqrt{\sum_{i=1}^4 (x_i - y_i)^2}
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <p><img src="images/green.png" width=20> <span style="color:white">Install the package <code>classdata</code> on your machine <br> <img src="images/green.png" width=20> <span style="color:white">Make the package active in your current R session:</p>
 <pre><code>library(classdata)</code></pre>
-<p><img src="images/green.png" width=20> <span style="color:white">Check the R help on the dataset <code>cities</code><br> <img src="images/green.png" width=20> <span style="color:white">Use the object browser to view the data frame by issuing <code>View(cities)</code>.<br> <img src="images/green.png" width=20> <span style="color:white">What happens if you just type in the name of the dataset?</p>
+<p><img src="images/green.png" width=20> <span style="color:white">Check the R help on the dataset <code>cities</code><br> <img src="images/green.png" width=20> <span style="color:white">Use the object browser to view the data frame by issuing <code>View(cities)</code>.<br> <img src="images/green.png" width=20> <span style="color:white">What happens if you just type the name of the dataset into the R console?</p>
 </section>
 <section id="inspecting-objects" class="slide level2">
 <h2>Inspecting objects</h2>
@@ -225,6 +243,7 @@ d = \sqrt{\sum_{i=1}^4 (x_i - y_i)^2}
 <ul>
 <li><code>class(x)</code></li>
 <li><code>dim(x)</code></li>
+<li><code>length(x)</code></li>
 <li><code>str(x)</code></li>
 <li><code>head(x)</code></li>
 <li><code>tail(x)</code></li>
@@ -243,7 +262,10 @@ x[rows, columns]
 x[1:5, 2:3]
 x[c(1,5,6), c(&quot;State&quot;,&quot;Year&quot;)]
 x[, &quot;variable&quot;]</code></pre>
-<p><code>rows</code> and <code>columns</code> are vectors of indices.</p>
+<ul>
+<li><code>rows</code> and <code>columns</code> each can be a vector of integer position indices or a vector of <code>TRUE</code>s and <code>FALSE</code>s</li>
+<li>You can also specify the columns using a character vector containing the column names. This is the <em>preferred</em> way of specifying the columns</li>
+</ul>
 <!-- <font color="darkblue">Try these commands out for yourself on the `cities` data.</font> -->
 </section>
 <section id="r-demo-2" class="slide level2">
