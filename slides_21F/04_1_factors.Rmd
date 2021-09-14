@@ -69,7 +69,7 @@ boxplot(fbi$Count ~ fbi$Type)
 
 ## Additional notes
 
-- Often times text variables are stored in factors during input by default, e.g. by `read.csv`
+- Often times text variables are stored in factors during input by default
 - Numeric variables and factors are treated differently in R, and they have to be converted manually
 
 ## Your turn {.white}
