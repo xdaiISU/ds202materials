@@ -80,7 +80,7 @@
   </style>
   
   
-      <script src="04_2_logical_files/header-attrs-2.3/header-attrs.js"></script>
+      <script src="04_2_logical_files/header-attrs-2.6/header-attrs.js"></script>
   
 </head>
 
@@ -148,7 +148,7 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Round the population to nearest thousands</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>fbi<span class="op">$</span>Population &lt;-<span class="st"> </span><span class="kw">signif</span>(fbi<span class="op">$</span>Population, <span class="dv">3</span>)</span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="kw">str</span>(fbi<span class="op">$</span>Population)</span></code></pre></div>
-<pre><code>##  num [1:23256] 3300000 3360000 3350000 3410000 3460000 3520000 3540000 3570000 3530000 3440000 ...</code></pre>
+<pre><code>##  num [1:23672] 3300000 3360000 3350000 3410000 3460000 3520000 3540000 3570000 3530000 3440000 ...</code></pre>
 <p>If that column exists before, it is being over-written/updated</p>
 </section>
 <section id="r-demo-1" class="slide level2">
@@ -157,7 +157,7 @@
 <section id="your-turn-1" class="slide level2 white">
 <h2 class="white">Your turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000> <span style="color:white">Work on the <code>fbi</code> dataset </span></p>
-<p><span style="color:white"><img src="images/green.png" width=20> Get a subset of all crimes in Iowa in 2009 and 2010. How many rows do you have?</span><br/> <span style="color:white"><img src="images/blue.png" width=20> Get a subset of all violent crimes in 2009 for Iowa and 3 of its neighboring states. Visualize the crime rate for one type of crime. (Hint: Take out the crime rate, name it according to the state, and use <code>barplot</code>)</span><br/> <span style="color:white"><img src="images/blue.png" width=20> Change the state name of California to “the Golden State”</span><br/> <span style="color:white"><img src="images/black.png" width=20> Get a subset of the data that includes number of homicides for the last five years. Find the rate of homicides, extract all states that have a rate of greater than 90% of the rates across all states, and plot (Hint: <code>?quantile</code>).</span></p>
+<p><span style="color:white"><img src="images/green.png" width=20> Get a subset of all crimes in Iowa in 2009 and 2010. How many rows do you have?</span><br/> <span style="color:white"><img src="images/blue.png" width=20> Get a subset of all violent crimes in 2009 for Iowa and 3 of its neighboring states. Visualize the crime rate for one type of crime. (Hint: Take out the crime rate, name it according to the state, and use <code>barplot</code>)</span><br/> <span style="color:white"><img src="images/blue.png" width=20> Change the state name of California to “the Golden State”</span><br/> <span style="color:white"><img src="images/black.png" width=20> Get a subset of the data that includes number of murders for the last five years. Find the murder rates, extract all states that have a rate of greater than 90% of the rates across all states, and plot (Hint: <code>?quantile</code>).</span></p>
 </section>
 
   <!--
