@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(fig.width=3.5, fig.height=3.5, warning = FALSE, message=FALSE, cache=TRUE)
 ```
 
-## ggplot for Exploratory Analysis {.shout}
+## `ggplot` for Exploratory Analysis {.shout}
 
 
 ## Choosing plots for answers
