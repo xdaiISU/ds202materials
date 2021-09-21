@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DS 202: Logical variables and Filters</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="04_2_logical_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="04_2_logical_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="04_2_logical_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="04_2_logical_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="04_2_logical_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+    <style type="text/css">
+   pre > code.sourceCode { white-space: pre; position: relative; }
+   pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+   pre > code.sourceCode > span:empty { height: 1.2em; }
+   code.sourceCode > span { color: inherit; text-decoration: inherit; }
+   div.sourceCode { margin: 1em 0; }
+   pre.sourceCode { margin: 0; }
+   @media screen {
+   div.sourceCode { overflow: auto; }
+   }
+   @media print {
+   pre > code.sourceCode { white-space: pre-wrap; }
+   pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+   }
+   pre.numberSource code
+     { counter-reset: source-line 0; }
+   pre.numberSource code > span
+     { position: relative; left: -4em; counter-increment: source-line; }
+   pre.numberSource code > span > a:first-child::before
+     { content: counter(source-line);
+       position: relative; left: -1em; text-align: right; vertical-align: baseline;
+       border: none; display: inline-block;
+       -webkit-touch-callout: none; -webkit-user-select: none;
+       -khtml-user-select: none; -moz-user-select: none;
+       -ms-user-select: none; user-select: none;
+       padding: 0 4px; width: 4em;
+       color: #aaaaaa;
+     }
+   pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+   div.sourceCode
+     {   }
+   @media screen {
+   pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+   }
+   code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code span.at { color: #7d9029; } /* Attribute */
+   code span.bn { color: #40a070; } /* BaseN */
+   code span.bu { } /* BuiltIn */
+   code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code span.ch { color: #4070a0; } /* Char */
+   code span.cn { color: #880000; } /* Constant */
+   code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code span.dt { color: #902000; } /* DataType */
+   code span.dv { color: #40a070; } /* DecVal */
+   code span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code span.ex { } /* Extension */
+   code span.fl { color: #40a070; } /* Float */
+   code span.fu { color: #06287e; } /* Function */
+   code span.im { } /* Import */
+   code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code span.op { color: #666666; } /* Operator */
+   code span.ot { color: #007020; } /* Other */
+   code span.pp { color: #bc7a00; } /* Preprocessor */
+   code span.sc { color: #4070a0; } /* SpecialChar */
+   code span.ss { color: #bb6688; } /* SpecialString */
+   code span.st { color: #4070a0; } /* String */
+   code span.va { color: #19177c; } /* Variable */
+   code span.vs { color: #4070a0; } /* VerbatimString */
+   code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  
+  
+      <script src="04_2_logical_files/header-attrs-2.3/header-attrs.js"></script>
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>DS 202: Logical variables and Filters</h1>
+    <p>Xiongtao Dai</p>
+  </header>
+
+  
+  
+<section id="logical-variables" class="slide level2 shout">
+<h2 class="shout">Logical variables</h2>
+</section>
+<section id="logical-vectors" class="slide level2">
+<h2>Logical vectors</h2>
+<ul>
+<li>Vectors consisting of values <code>TRUE</code> and <code>FALSE</code></li>
+<li><code>&amp;</code> and <code>|</code> are the logical <em>and</em> and <em>or</em></li>
+<li><code>!</code> is the logical negation</li>
+<li><code>&lt;, &gt;, ==, !=, &lt;=, &gt;=</code> are comparison operators that returns a logical vector</li>
+<li>use parentheses <code>()</code> when linking expressions to avoid mis-interpretation</li>
+<li><code>x %in% c(1, 3, 5)</code> tells whether each element of <code>x</code> is one of <code>c(1, 3, 5)</code></li>
+<li><code>ifelse</code> assigns values in a vector according to a logical variable</li>
+</ul>
+</section>
+<section id="logical-operations" class="slide level2">
+<h2>Logical Operations</h2>
+<p><img class="cover" src="images/logical.png" alt="" width=2000></p>
+</section>
+<section id="r-demo" class="slide level2">
+<h2>R demo…</h2>
+</section>
+<section id="your-turn" class="slide level2 white">
+<h2 class="white">Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white"> Define a vector: <code>a &lt;- c(1, 15, 3, 20, 5, 8, 9, 10, 1, 3)</code></p>
+<p><span style="color:white"> Create logical vectors to indicate which entries in <code>a</code> are: </span></p>
+<p><span style="color:white"><img src="images/green.png" width=20> less than 20</span><br/> <span style="color:white"><img src="images/green.png" width=20> squared value is either at least 100 or less than 10</span><br/> <span style="color:white"><img src="images/green.png" width=20> equals 1 or 3 or 5</span><br/> <span style="color:white"><img src="images/blue.png" width=20> even. Hint: have a look at the help for the operator <code>%%</code></span></p>
+<!-- <span style="color:white">  <img src="images/dblack.png" width=20><span style="color:white"> (Expers only) What is the difference between `|` and `||`? (Likewise, `&` and `&&`) </span> -->
+</section>
+<section id="subsetting-data-frames" class="slide level2">
+<h2>Subsetting Data Frames</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(classdata)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>Iowa2009 &lt;-<span class="st"> </span>fbi[fbi<span class="op">$</span>State <span class="op">==</span><span class="st"> &#39;Iowa&#39;</span> <span class="op">&amp;</span><span class="st"> </span>fbi<span class="op">$</span>Year <span class="op">==</span><span class="st"> </span><span class="dv">2009</span>, ] </span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">str</span>(Iowa2009)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    8 obs. of  7 variables:
+##  $ State        : chr  &quot;Iowa&quot; &quot;Iowa&quot; &quot;Iowa&quot; &quot;Iowa&quot; ...
+##  $ Abb          : chr  &quot;IA&quot; &quot;IA&quot; &quot;IA&quot; &quot;IA&quot; ...
+##  $ Year         : int  2009 2009 2009 2009 2009 2009 2009 2009
+##  $ Population   : int  3007856 3007856 3007856 3007856 3007856 3007856 3007856 3007856
+##  $ Type         : Factor w/ 8 levels &quot;Aggravated.assault&quot;,..: 6 4 7 8 1 2 3 5
+##  $ Count        : int  38 890 NA 1201 6356 16419 49757 3904
+##  $ Violent.crime: logi  TRUE TRUE TRUE TRUE TRUE FALSE ...</code></pre>
+<p>Other useful functions for subsetting data frames are <code>subset</code> and <code>dplyr::filter</code> (later)</p>
+</section>
+<section id="updating-elements-in-a-data-set" class="slide level2">
+<h2>Updating elements in a data set</h2>
+<p>Data sets and their parts can be used as the left hand side (LHS) of an assignment:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>fbi<span class="op">$</span>State[fbi<span class="op">$</span>State <span class="op">==</span><span class="st"> &#39;Iowa&#39;</span>] &lt;-<span class="st"> &#39;Our State&#39;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">unique</span>(fbi<span class="op">$</span>State)[<span class="dv">10</span><span class="op">:</span><span class="dv">20</span>]</span></code></pre></div>
+<pre><code>##  [1] &quot;Florida&quot;   &quot;Georgia&quot;   &quot;Hawaii&quot;    &quot;Idaho&quot;     &quot;Illinois&quot;  &quot;Indiana&quot;  
+##  [7] &quot;Our State&quot; &quot;Kansas&quot;    &quot;Kentucky&quot;  &quot;Louisiana&quot; &quot;Maine&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Round the population to nearest thousands</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>fbi<span class="op">$</span>Population &lt;-<span class="st"> </span><span class="kw">signif</span>(fbi<span class="op">$</span>Population, <span class="dv">3</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">str</span>(fbi<span class="op">$</span>Population)</span></code></pre></div>
+<pre><code>##  num [1:23256] 3300000 3360000 3350000 3410000 3460000 3520000 3540000 3570000 3530000 3440000 ...</code></pre>
+<p>If that column exists before, it is being over-written/updated</p>
+</section>
+<section id="r-demo-1" class="slide level2">
+<h2>R demo…</h2>
+</section>
+<section id="your-turn-1" class="slide level2 white">
+<h2 class="white">Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000> <span style="color:white">Work on the <code>fbi</code> dataset </span></p>
+<p><span style="color:white"><img src="images/green.png" width=20> Get a subset of all crimes in Iowa in 2009 and 2010. How many rows do you have?</span><br/> <span style="color:white"><img src="images/blue.png" width=20> Get a subset of all violent crimes in 2009 for Iowa and 3 of its neighboring states. Visualize the crime rate for one type of crime. (Hint: Take out the crime rate, name it according to the state, and use <code>barplot</code>)</span><br/> <span style="color:white"><img src="images/blue.png" width=20> Change the state name of California to “the Golden State”</span><br/> <span style="color:white"><img src="images/black.png" width=20> Get a subset of the data that includes number of homicides for the last five years. Find the rate of homicides, extract all states that have a rate of greater than 90% of the rates across all states, and plot (Hint: <code>?quantile</code>).</span></p>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="04_2_logical_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>
