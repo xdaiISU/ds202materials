@@ -87,5 +87,5 @@ ggplot(aes(x = Year, y = Murder), data=fbiwide) + geom_line() +
 
 <span style="color:white"><img src="images/green.png" width=20> Plot the number of car thefts by year for each state (facet by state). What year had the most theft?</font><br/>
 <span style="color:white"><img src="images/green.png" width=20> The numbers are dominated by the number of thefts in California, New York, and Texas. Use a log-scale for the y-axis. Does that help?</font><br/>
-<span style="color:white"><img src="images/blue.png" width=20> Another approach to fix the domination by CA, TX and NY: Read up on the parameters in `facet_wrap` to find a way to give each panel its own scale. Comment on the difference in the results.</font>
+<span style="color:white"><img src="images/blue.png" width=20> Another approach to fix the domination by CA, TX and NY: Read up on the `scale=` parameter in `facet_wrap` to find a way to give each panel its own scale. Comment on the difference in the results.</font>
 

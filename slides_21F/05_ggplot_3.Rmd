@@ -71,7 +71,7 @@ What do we look for?
 ## Boxplot vs Histogram
 
 - **Pros for Boxplot:**
-    - Quick and compact
+    - Compact
     - Easy comparisons across multiple treatments (side by side boxplots)
     - Highlights outliers
 - **Pros for Histogram:**
