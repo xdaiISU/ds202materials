@@ -26,7 +26,7 @@ knitr::opts_chunk$set(warning=FALSE)
 
 ## The 2020 Cyclone football data
 
-- Iowa State University Athelete hosts some statistics for the Cyclone football team for the last season [here](https://cyclones.com/cumestats.aspx?path=football). 
+- Iowa State University Athelete hosts some statistics for the Cyclone football team for the current season [here](https://cyclones.com/cumestats.aspx?path=football). 
 - When using dataset on the internet, always check whether you have the permission to do so!
 - An excerpt of the individual player data is available from our course website. Dowload the [excel file](cyclonesFootball2020.xlsx) and put the file next to your Rmd file. Look at what does the file contain. 
 

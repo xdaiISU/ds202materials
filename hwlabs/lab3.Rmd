@@ -88,10 +88,11 @@ Use `ggplot2` to create the plots, and `dplyr` to manipulate the data frame as m
 
 3. How is the happiness of a respondent related to his/her marriage status? Define that a person is happy if the response to question is "Very happy" or "Pretty happy".
 4. Does party affiliation affect the relationship you found in the last question?
-5. How is marrital status related to the education of a respondent? What are possible reasons accounting for the patterns you see?
-6. Finish this question only if you work with a partner: Explore two more interesting questions, and answer those questions using the GSS data. 
+<!-- 5. How is marrital status related to the education of a respondent? What are possible reasons accounting for the patterns you see? -->
+5. Explore an interesting question (not covered by the previous questions), and answer the question using the GSS data. 
+6. Finish this question only if you work with a partner: Explore one more interesting question, and answer the question using the GSS data. 
 
-    The team's exploration will be evaluated according to the  general interest and the depth of the exploration.
+    *Your exploration will be evaluated according to the  general interest and the depth of the exploration.*
 
 ## Tips and Resources 
 <!-- - Decide a common version of the dataset to work on -->
