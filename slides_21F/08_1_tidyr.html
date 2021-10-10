@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DS 202 - pivoting tables with tidyr</title>
+  <title>DS 202 - tidying data with tidyr</title>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,21 +80,21 @@
   </style>
   
   
-      <script src="08_1_tidyr_files/header-attrs-2.3/header-attrs.js"></script>
+      <script src="08_1_tidyr_files/header-attrs-2.6/header-attrs.js"></script>
   
 </head>
 
 <body class="shower list">
 
   <header class="caption">
-    <h1>DS 202 - pivoting tables with tidyr</h1>
+    <h1>DS 202 - tidying data with tidyr</h1>
     <p>Xiongtao Dai</p>
   </header>
 
   
   
-<section id="pivoting-data-frames-with-the-tidyr-package" class="slide level2 shout">
-<h2 class="shout">Pivoting Data Frames with the <code>tidyr</code> package</h2>
+<section id="tidying-data-frames-with-the-tidyr-package" class="slide level2 shout">
+<h2 class="shout">Tidying Data Frames with the <code>tidyr</code> package</h2>
 </section>
 <section id="what-is-tidy-data" class="slide level2">
 <h2>What is tidy data?</h2>
@@ -117,7 +117,10 @@
 <li><code>tidyr</code>: <code>pivot_wider</code> and <code>pivot_longer</code> <!-- - `tidyr`: `separate`, `drop_na` --></li>
 </ul>
 </section>
-<section id="sources-of-messiness" class="slide level2">
+<section id="sources-of-messiness" class="slide level2 shout">
+<h2 class="shout">Sources of Messiness</h2>
+</section>
+<section id="sources-of-messiness-1" class="slide level2">
 <h2>Sources of Messiness</h2>
 <ol type="1">
 <li>Column headers are values, not variable names.<br> e.g. <em>treatmenta, treatmentb</em> <br></li>
@@ -125,8 +128,8 @@
 <li>Missing values</li>
 </ol>
 </section>
-<section id="pivoting" class="slide level2 shout">
-<h2 class="shout">Pivoting</h2>
+<section id="solving-the-1st-form-of-messiness-pivoting" class="slide level2 shout">
+<h2 class="shout">Solving the 1st form of messiness: Pivoting</h2>
 </section>
 <section id="data-is-usually-in-a-spreadsheet-format-but" class="slide level2">
 <h2>Data is usually in a spreadsheet format, but …</h2>
@@ -186,7 +189,7 @@
 <p>Only two functions are needed for pivoting data:</p>
 <ul>
 <li><code>pivot_longer(data, cols, names_to, values_to, ...)</code>: take multiple columns and collapse into key-value pairs <br></li>
-<li><code>pivot_wider (data, id_cols, names_from, values_from, ...)</code>: pivot_wider a key-value pair across multiple columns.</li>
+<li><code>pivot_wider(data, id_cols, names_from, values_from, ...)</code>: pivot a key-value pair across multiple columns.</li>
 <li>What key-value pair to use is often dependent on the analysis to be done.</li>
 </ul>
 </section>

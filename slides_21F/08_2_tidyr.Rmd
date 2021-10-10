@@ -32,7 +32,7 @@ e.g. *"Fall 2015", "Spring 2016"* or <br>
 (42.99755, -96.04149)"*
 3. Missing values
 
-## Separate and unite {.shout}
+## Solving the 2nd form of messiness: Separate and unite {.shout}
 
 
 ## Separating and uniting columns
@@ -61,7 +61,7 @@ df1 %>% unite(Full, First, Last, sep=' ')
 ```
 
 
-## Working with missing values {.shout}
+## 3rd form of messiness: Working with missing values {.shout}
 
 
 ## Missing values in R

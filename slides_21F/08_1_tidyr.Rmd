@@ -1,5 +1,5 @@
 ---
-title: "DS 202 - pivoting tables with tidyr"
+title: "DS 202 - tidying data with tidyr"
 author: "Xiongtao Dai"
 ratio: 16x10
 output:
@@ -15,7 +15,7 @@ library(tidyverse)
 data(french_fries, package="reshape2")
 ```
 
-## Pivoting Data Frames with the `tidyr` package {.shout}
+## Tidying Data Frames with the `tidyr` package {.shout}
 
 ## What is tidy data?
 
@@ -39,6 +39,8 @@ data(french_fries, package="reshape2")
 - `tidyr`: `pivot_wider` and `pivot_longer`
 <!-- - `tidyr`: `separate`, `drop_na` -->
 
+## Sources of Messiness {.shout}
+
 ## Sources of Messiness
 
 1. Column headers are values, not variable names.<br>
@@ -49,7 +51,7 @@ e.g. *"Fall 2015", "Spring 2016"* or <br>
 (42.99755, -96.04149)"*
 3. Missing values
 
-## Pivoting {.shout}
+## Solving the 1st form of messiness: Pivoting {.shout}
 
 ## Data is usually in a spreadsheet format, but ...
 
@@ -99,7 +101,7 @@ One way of telling whether a data set is tidy is to check that all keys for a va
 Only two functions are needed for pivoting data:
 
 - `pivot_longer(data, cols, names_to, values_to, ...)`: take multiple columns and collapse into key-value pairs <br>
-- `pivot_wider (data, id_cols, names_from, values_from, ...)`: pivot_wider a key-value pair across multiple columns.
+- `pivot_wider(data, id_cols, names_from, values_from, ...)`: pivot a key-value pair across multiple columns.
 - What key-value pair to use is often dependent on the analysis to be done.
 
 
