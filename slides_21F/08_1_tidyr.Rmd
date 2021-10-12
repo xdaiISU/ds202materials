@@ -27,14 +27,14 @@ data(french_fries, package="reshape2")
 -- Hadley Wickham
 
 
-- Resource: follow along tidyr vignette 
+- Resource: tidyr vignette 
 `vignette("tidy-data", package="tidyr")`
 <!-- - vignette is a version of the [tidy data paper](https://www.jstatsoft.org/article/view/v059i10) -->
 - "tidy" means it will suit most (but not all) purposes for downstream analysis
 
 ## Outline
 
-- Different sources of messiness
+- Three sources of messiness
 - Key-Value pairs
 - `tidyr`: `pivot_wider` and `pivot_longer`
 <!-- - `tidyr`: `separate`, `drop_na` -->
@@ -67,9 +67,9 @@ Option #2
 read.csv("data/preg2.csv")
 ```
 
-Neither #1 nor #2 are "clean" versions of the data: observed information is part of the data structure; some implicit information is assumed
+Neither #1 nor #2 are "tidy" versions of the data: observed information is part of the column names; some implicit information is assumed
 
-## Clean version of the example
+## Tidy version of the example
 
 ```{r echo = FALSE}
 preg2 <- read.csv("data/preg2.csv")
@@ -111,24 +111,25 @@ Only two functions are needed for pivoting data:
 ```{r,message=FALSE}
 library(reshape2)
 library(dplyr)
-library(tidyr)
 data(french_fries, package="reshape2")
+french_fries <- as_tibble(french_fries)
 ```
 
 - data from sensory experiment conducted at Iowa State University in 2004
 - investigators were interested in comparing effects of three different fryer oils on taste of fries
 
 ```{r}
-french_fries %>% head()
+french_fries
 ```
 
 
 ## pivot_longer 
 
 ```{r}
+library(tidyr)
 ffm <- french_fries %>% 
   pivot_longer(potato:painty, names_to = 'scale', values_to='score')
-head(ffm)
+ffm
 ```
 
 ## pivot_wider
@@ -222,5 +223,5 @@ dat %>%
 
 <span style="color:white">
 <img src="images/green.png" width=20> Use `pivot_longer` from the `tidyr` package to combine the variables for the different types of crimes into one variable. Call the key-value pair "Type" and "Incidences". Compute a crime rate</br>
-<img src="images/blue.png" width=20> Consider the crime rates for Iowa and Minnesota only. Use `pivot_wider` to create incidence columns for each of these states. Plot crime rates in Iowa against those in Minnesota, and color by the type of crime. Hint: you need to exclude some variables when pivoting. 
+<img src="images/blue.png" width=20> Consider the burglary crime rates for Iowa and Minnesota. Use `pivot_wider` to create incidence columns for each of these states. Plot crime rates in Iowa against those in Minnesota (each point stands for one year). Hint: you need to exclude some variables when pivoting. 
 </span>
