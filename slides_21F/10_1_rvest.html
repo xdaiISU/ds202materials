@@ -80,7 +80,7 @@
   </style>
   
   
-      <script src="10_1_rvest_files/header-attrs-2.3/header-attrs.js"></script>
+      <script src="10_1_rvest_files/header-attrs-2.11/header-attrs.js"></script>
   
 </head>
 
@@ -99,6 +99,7 @@
 <section id="outline" class="slide level2">
 <h2>Outline</h2>
 <ul>
+<li>Why to scrape? Consider the <a href="https://www.the-numbers.com/box-office-chart/weekend/2021/10/22">box office data</a></li>
 <li>Lists in R</li>
 <li>html format</li>
 <li>scraping html</li>
@@ -137,7 +138,7 @@
 </section>
 <section id="list-operations" class="slide level2">
 <h2>List operations…</h2>
-<p><img src="images/listSalt.png" width="100%" alt=""></p>
+<p><img src="images/listSalt.png" width="100%" alt=""> Courtesy Hadley Wickham</p>
 </section>
 <section id="r-demo" class="slide level2">
 <h2>R demo…</h2>
@@ -157,7 +158,7 @@
 <section id="the-rvest-package" class="slide level2">
 <h2>The <code>rvest</code> package</h2>
 <p><code>rvest</code>: A package for making web scraping simpler.</p>
-<p>We want to crawl top demostic movie info from <a href="https://www.the-numbers.com/box-office-chart/weekend/2020/03/13" class="uri">https://www.the-numbers.com/box-office-chart/weekend/2020/03/13</a> before the COVID-19 freeze.</p>
+<p>We want to crawl top demostic movie info from <a href="https://www.the-numbers.com/box-office-chart/weekend/2021/10/22" class="uri">https://www.the-numbers.com/box-office-chart/weekend/2021/10/22</a>.</p>
 </section>
 <section id="r-demo-1" class="slide level2">
 <h2>R demo…</h2>
@@ -166,13 +167,13 @@
 <h2>Get a <em>table</em> from an online source</h2>
 <p><code>read_html</code> gets <em>all</em> the information from a URL</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">library</span>(rvest)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>url &lt;-<span class="st"> &quot;https://www.the-numbers.com/box-office-chart/weekend/2020/03/13&quot;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>url &lt;-<span class="st"> &quot;https://www.the-numbers.com/box-office-chart/weekend/2021/10/22&quot;</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a>html &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)</span>
 <span id="cb7-4"><a href="#cb7-4"></a>html</span></code></pre></div>
 <pre><code>## {html_document}
 ## &lt;html xmlns:og=&quot;http://ogp.me/ns#&quot; xmlns:fb=&quot;http://www.facebook.com/2008/fbml&quot;&gt;
 ## [1] &lt;head&gt;\n&lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;&lt;script asyn ...
-## [2] &lt;body&gt;\n\r\n&lt;script&gt;\r\n  window.fbAsyncInit = function() {\r\n    FB.ini ...</code></pre>
+## [2] &lt;body&gt;\n&lt;div id=&quot;wrap&quot;&gt;\r\n&lt;div id=&quot;header&quot;&gt;\r\n&lt;a href=&quot;/&quot;&gt;&lt;img src=&quot;/im ...</code></pre>
 </section>
 <section id="get-a-table-from-an-online-source-1" class="slide level2">
 <h2>Get a <em>table</em> from an online source</h2>
@@ -190,37 +191,37 @@
 ##  $ :&#39;data.frame&#39;:    1 obs. of  3 variables:
 ##   ..$ X1: chr &quot;← Previous Chart&quot;
 ##   ..$ X2: chr &quot;Chart Index&quot;
-##   ..$ X3: chr &quot;Next Chart →&quot;
-##  $ :&#39;data.frame&#39;:    79 obs. of  11 variables:
-##   ..$           : int [1:79] 1 2 3 4 5 6 7 8 9 10 ...
-##   ..$           : chr [1:79] &quot;(1)&quot; &quot;N&quot; &quot;N&quot; &quot;(2)&quot; ...
-##   ..$ Movie     : chr [1:79] &quot;Onward&quot; &quot;Bloodshot&quot; &quot;I Still Believe&quot; &quot;The Invisible Man&quot; ...
-##   ..$ Distr     : chr [1:79] &quot;Walt Disney&quot; &quot;Sony Pict…&quot; &quot;Lionsgate&quot; &quot;Universal&quot; ...
-##   ..$ Gross     : chr [1:79] &quot;$10,601,952&quot; &quot;$9,176,695&quot; &quot;$9,103,614&quot; &quot;$5,890,805&quot; ...
-##   ..$ %LW       : chr [1:79] &quot;-73%&quot; &quot;&quot; &quot;&quot; &quot;-61%&quot; ...
-##   ..$ Thr       : chr [1:79] &quot;4,310&quot; &quot;2,861&quot; &quot;3,250&quot; &quot;3,636&quot; ...
-##   ..$ ThrChng   : chr [1:79] &quot;n/c&quot; &quot;&quot; &quot;&quot; &quot;+26&quot; ...
-##   ..$ PerThr    : chr [1:79] &quot;$2,460&quot; &quot;$3,208&quot; &quot;$2,801&quot; &quot;$1,620&quot; ...
-##   ..$ TotalGross: chr [1:79] &quot;$60,360,639&quot; &quot;$9,176,695&quot; &quot;$9,103,614&quot; &quot;$64,310,490&quot; ...
-##   ..$ W         : chr [1:79] &quot;2&quot; &quot;1&quot; &quot;1&quot; &quot;3&quot; ...</code></pre>
+##   ..$ X3: logi NA
+##  $ :&#39;data.frame&#39;:    38 obs. of  11 variables:
+##   ..$           : chr [1:38] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##   ..$           : chr [1:38] &quot;N&quot; &quot;(1)&quot; &quot;(2)&quot; &quot;(3)&quot; ...
+##   ..$ Movie     : chr [1:38] &quot;Dune&quot; &quot;Halloween Kills&quot; &quot;No Time to Die&quot; &quot;Venom: Let There be C…&quot; ...
+##   ..$ Distr     : chr [1:38] &quot;Warner Bros.&quot; &quot;Universal&quot; &quot;United Ar…&quot; &quot;Sony Pict…&quot; ...
+##   ..$ Gross     : chr [1:38] &quot;$41,011,174&quot; &quot;$14,450,215&quot; &quot;$12,202,368&quot; &quot;$9,301,908&quot; ...
+##   ..$ %LW       : chr [1:38] &quot;&quot; &quot;-71%&quot; &quot;-49%&quot; &quot;-44%&quot; ...
+##   ..$ Thr       : chr [1:38] &quot;4,125&quot; &quot;3,727&quot; &quot;3,807&quot; &quot;3,513&quot; ...
+##   ..$ ThrChng   : chr [1:38] &quot;&quot; &quot;+22&quot; &quot;-600&quot; &quot;-500&quot; ...
+##   ..$ PerThr    : chr [1:38] &quot;$9,942&quot; &quot;$3,877&quot; &quot;$3,205&quot; &quot;$2,648&quot; ...
+##   ..$ TotalGross: chr [1:38] &quot;$41,011,174&quot; &quot;$73,055,060&quot; &quot;$120,357,453&quot; &quot;$182,031,539&quot; ...
+##   ..$ W         : chr [1:38] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</code></pre>
 </section>
 <section id="contents-of-a-list-cont" class="slide level2">
 <h2>Contents of a list (cont)</h2>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">head</span>(tables[[<span class="dv">2</span>]])</span></code></pre></div>
-<pre><code>##                      Movie       Distr       Gross  %LW   Thr ThrChng PerThr
-## 1 1 (1)             Onward Walt Disney $10,601,952 -73% 4,310     n/c $2,460
-## 2 2   N          Bloodshot  Sony Pict…  $9,176,695      2,861         $3,208
-## 3 3   N    I Still Believe   Lionsgate  $9,103,614      3,250         $2,801
-## 4 4 (2)  The Invisible Man   Universal  $5,890,805 -61% 3,636     +26 $1,620
-## 5 5   N           The Hunt   Universal  $5,304,455      3,028         $1,752
-## 6 6 (4) Sonic The Hedgehog  Paramount…  $2,522,584 -67% 3,041    -676   $830
-##     TotalGross W
-## 1  $60,360,639 2
-## 2   $9,176,695 1
-## 3   $9,103,614 1
-## 4  $64,310,490 3
-## 5   $5,304,455 1
-## 6 $145,753,912 5</code></pre>
+<pre><code>##                          Movie        Distr       Gross  %LW   Thr ThrChng
+## 1 1   N                   Dune Warner Bros. $41,011,174      4,125        
+## 2 2 (1)        Halloween Kills    Universal $14,450,215 -71% 3,727     +22
+## 3 3 (2)         No Time to Die   United Ar… $12,202,368 -49% 3,807    -600
+## 4 4 (3) Venom: Let There be C…   Sony Pict…  $9,301,908 -44% 3,513    -500
+## 5 5   N       Ron’s Gone Wrong   20th Cent…  $7,300,225      3,560        
+## 6 6 (4)    The Addams Family 2   United Ar…  $4,495,736 -36% 2,907    -700
+##   PerThr   TotalGross W
+## 1 $9,942  $41,011,174 1
+## 2 $3,877  $73,055,060 2
+## 3 $3,205 $120,357,453 3
+## 4 $2,648 $182,031,539 4
+## 5 $2,051   $7,300,225 1
+## 6 $1,547  $48,474,713 4</code></pre>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
@@ -231,24 +232,24 @@
 <span id="cb17-4"><a href="#cb17-4"></a>  <span class="dt">Thr =</span> <span class="kw">parse_number</span>(Thr)</span>
 <span id="cb17-5"><a href="#cb17-5"></a>)</span>
 <span id="cb17-6"><a href="#cb17-6"></a><span class="kw">str</span>(box)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    79 obs. of  11 variables:
-##  $ Rank          : int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ Rank.Last.Week: chr  &quot;(1)&quot; &quot;N&quot; &quot;N&quot; &quot;(2)&quot; ...
-##  $ Movie         : chr  &quot;Onward&quot; &quot;Bloodshot&quot; &quot;I Still Believe&quot; &quot;The Invisible Man&quot; ...
-##  $ Distr         : chr  &quot;Walt Disney&quot; &quot;Sony Pict…&quot; &quot;Lionsgate&quot; &quot;Universal&quot; ...
-##  $ Gross         : num  10601952 9176695 9103614 5890805 5304455 ...
-##  $ %LW           : chr  &quot;-73%&quot; &quot;&quot; &quot;&quot; &quot;-61%&quot; ...
-##  $ Thr           : num  4310 2861 3250 3636 3028 ...
-##  $ ThrChng       : chr  &quot;n/c&quot; &quot;&quot; &quot;&quot; &quot;+26&quot; ...
-##  $ PerThr        : chr  &quot;$2,460&quot; &quot;$3,208&quot; &quot;$2,801&quot; &quot;$1,620&quot; ...
-##  $ TotalGross    : chr  &quot;$60,360,639&quot; &quot;$9,176,695&quot; &quot;$9,103,614&quot; &quot;$64,310,490&quot; ...
-##  $ W             : chr  &quot;2&quot; &quot;1&quot; &quot;1&quot; &quot;3&quot; ...</code></pre>
+<pre><code>## &#39;data.frame&#39;:    38 obs. of  11 variables:
+##  $ Rank          : chr  &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##  $ Rank.Last.Week: chr  &quot;N&quot; &quot;(1)&quot; &quot;(2)&quot; &quot;(3)&quot; ...
+##  $ Movie         : chr  &quot;Dune&quot; &quot;Halloween Kills&quot; &quot;No Time to Die&quot; &quot;Venom: Let There be C…&quot; ...
+##  $ Distr         : chr  &quot;Warner Bros.&quot; &quot;Universal&quot; &quot;United Ar…&quot; &quot;Sony Pict…&quot; ...
+##  $ Gross         : num  41011174 14450215 12202368 9301908 7300225 ...
+##  $ %LW           : chr  &quot;&quot; &quot;-71%&quot; &quot;-49%&quot; &quot;-44%&quot; ...
+##  $ Thr           : num  4125 3727 3807 3513 3560 ...
+##  $ ThrChng       : chr  &quot;&quot; &quot;+22&quot; &quot;-600&quot; &quot;-500&quot; ...
+##  $ PerThr        : chr  &quot;$9,942&quot; &quot;$3,877&quot; &quot;$3,205&quot; &quot;$2,648&quot; ...
+##  $ TotalGross    : chr  &quot;$41,011,174&quot; &quot;$73,055,060&quot; &quot;$120,357,453&quot; &quot;$182,031,539&quot; ...
+##  $ W             : chr  &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</code></pre>
 </section>
 <section id="your-turn-5-mins" class="slide level2 white">
 <h2 class="white">Your Turn (5 mins)</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at <a href="https://www.the-numbers.com/box-office-chart/weekend/2020/03/13" class="uri">https://www.the-numbers.com/box-office-chart/weekend/2020/03/13</a> </span></p>
-<p><span style="color:white"> <img src="images/green.png" width=20> Pick the week that you were last in the cinema. Use <code>rvest</code> to download the box office gross in that week. </br> <img src="images/green.png" width=20> Clean up the data. Remove rows not corresponding to movies, and name all the variables (numbers should be numbers). </br> </span></p>
+<p><span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at <a href="https://www.the-numbers.com/box-office-chart/weekend/2021/10/22" class="uri">https://www.the-numbers.com/box-office-chart/weekend/2021/10/22</a> </span></p>
+<p><span style="color:white"> <img src="images/green.png" width=20> Pick the week before the last. Use <code>rvest</code> to download the box office gross in that week. </br> <img src="images/green.png" width=20> Clean up the data. Remove rows not corresponding to movies, and name all the variables (numbers should be numbers). </br> </span></p>
 <!-- ## Your Turn (5 Minutes)  {.white} -->
 <!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->
 <!-- <span style="color:white"> -->
@@ -288,7 +289,7 @@
 <span id="cb19-3"><a href="#cb19-3"></a>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span></code></pre></div>
 <pre><code>## {xml_nodeset (6)}
 ## [1] &lt;a href=&quot;/players/a/aardsda01.shtml&quot;&gt;David Aardsma&lt;/a&gt;
-## [2] &lt;a href=&quot;/players/a/aaronha01.shtml&quot;&gt;Hank Aaron&lt;/a&gt;
+## [2] &lt;a href=&quot;/players/a/aaronha01.shtml&quot;&gt;Henry Aaron&lt;/a&gt;
 ## [3] &lt;a href=&quot;/players/a/aaronto01.shtml&quot;&gt;Tommie Aaron&lt;/a&gt;
 ## [4] &lt;a href=&quot;/players/a/aasedo01.shtml&quot;&gt;Don Aase&lt;/a&gt;
 ## [5] &lt;a href=&quot;/players/a/abadan01.shtml&quot;&gt;Andy Abad&lt;/a&gt;
@@ -296,14 +297,19 @@
 </section>
 <section id="extract-contents" class="slide level2">
 <h2>Extract contents</h2>
-<p>We want to get access to pieces of the links. <code>&lt;tagName attrName=attrContent&gt;Text Contents&lt;/tagName&gt;</code></p>
+<p>We want to get access to pieces of the links.</p>
+<p><code>&lt;tagName attrName=attrContent&gt;Text Contents&lt;/tagName&gt;</code></p>
+<p>E.g.: <code>&lt;a href="/players/a/aardsda01.shtml" class=""&gt;David Aardsma&lt;/a&gt;</code></p>
 <ul>
 <li><code>html_text</code> allows us to get text out,</li>
-<li><code>html_attr</code> let us access an attribute of a html node,</li>
+<li><code>html_attr</code> let us access a specific attribute of a html node,</li>
 <li><code>html_attrs</code> extracts all attributes of an html node:</li>
 </ul>
+</section>
+<section id="extract-contents-1" class="slide level2">
+<h2>Extract contents</h2>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;David Aardsma&quot; &quot;Hank Aaron&quot;    &quot;Tommie Aaron&quot;  &quot;Don Aase&quot;     
+<pre><code>## [1] &quot;David Aardsma&quot; &quot;Henry Aaron&quot;   &quot;Tommie Aaron&quot;  &quot;Don Aase&quot;     
 ## [5] &quot;Andy Abad&quot;     &quot;Fernando Abad&quot;</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_attr</span>(<span class="dt">name=</span><span class="st">&quot;href&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;/players/a/aardsda01.shtml&quot; &quot;/players/a/aaronha01.shtml&quot;
@@ -328,14 +334,13 @@
 <span id="cb25-3"><a href="#cb25-3"></a><span class="co"># good first start, but not good for further processing</span></span>
 <span id="cb25-4"><a href="#cb25-4"></a>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.stats_pullout&quot;</span>)</span></code></pre></div>
 <pre><code>## {xml_nodeset (1)}
-## [1] &lt;div class=&quot;stats_pullout&quot;&gt;\n&lt;div&gt;&lt;div&gt;\n&lt;h4&gt;SUMMARY&lt;/h4&gt;\n\n&lt;p&gt;&lt;strong&gt;C ...</code></pre>
+## [1] &lt;div class=&quot;stats_pullout&quot;&gt;\n&lt;div&gt;&lt;div&gt;\n&lt;span&gt;&lt;strong&gt;SUMMARY&lt;/strong&gt;&lt;/ ...</code></pre>
 </section>
 <section id="your-turn---solution-2" class="slide level2">
 <h2>Your Turn - Solution (2)</h2>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># better: pull out individual vectors</span></span>
 <span id="cb27-2"><a href="#cb27-2"></a>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h4&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span></code></pre></div>
-<pre><code>##  [1] &quot;SUMMARY&quot; &quot;WAR&quot;     &quot;W&quot;       &quot;L&quot;       &quot;ERA&quot;     &quot;G&quot;       &quot;GS&quot;     
-##  [8] &quot;SV&quot;      &quot;IP&quot;      &quot;SO&quot;      &quot;WHIP&quot;</code></pre>
+<pre><code>## character(0)</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.stats_pullout p&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>() </span></code></pre></div>
 <pre><code>##  [1] &quot;Career&quot; &quot;1.8&quot;    &quot;16&quot;     &quot;18&quot;     &quot;4.27&quot;   &quot;331&quot;    &quot;0&quot;      &quot;69&quot;    
 ##  [9] &quot;337.0&quot;  &quot;340&quot;    &quot;1.421&quot;</code></pre>

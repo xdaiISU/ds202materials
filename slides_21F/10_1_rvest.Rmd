@@ -16,6 +16,7 @@ library(tidyverse)
 ## Web Scraping with R {.shout}
 
 ## Outline
+- Why to scrape? Consider the [box office data](https://www.the-numbers.com/box-office-chart/weekend/2021/10/22)
 - Lists in R
 - html format
 - scraping html
@@ -45,6 +46,7 @@ l[[2]] # `[[ ]]` extract an element
 
 ## List operations...
 <img src="images/listSalt.png" width="100%" alt="">
+Courtesy Hadley Wickham
 
 ## R demo...
 
@@ -65,7 +67,7 @@ l[[2]] # `[[ ]]` extract an element
 
 `rvest`: A package for making web scraping simpler.
 
-We want to crawl top demostic movie info from https://www.the-numbers.com/box-office-chart/weekend/2020/03/13 before the COVID-19 freeze. 
+We want to crawl top demostic movie info from https://www.the-numbers.com/box-office-chart/weekend/2021/10/22. 
 
 ## R demo...
 
@@ -75,7 +77,7 @@ We want to crawl top demostic movie info from https://www.the-numbers.com/box-of
 
 ```{r warning = FALSE, message = FALSE}
 library(rvest)
-url <- "https://www.the-numbers.com/box-office-chart/weekend/2020/03/13"
+url <- "https://www.the-numbers.com/box-office-chart/weekend/2021/10/22"
 html <- read_html(url)
 html
 ```
@@ -118,11 +120,11 @@ str(box)
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
-<span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at https://www.the-numbers.com/box-office-chart/weekend/2020/03/13
+<span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at https://www.the-numbers.com/box-office-chart/weekend/2021/10/22
 </span>
 
 <span style="color:white">
-<img src="images/green.png" width=20> Pick the week that you were last in the cinema. Use `rvest` to download the box office gross in that week.
+<img src="images/green.png" width=20> Pick the week before the last. Use `rvest` to download the box office gross in that week.
 </br>
 <img src="images/green.png" width=20> Clean up the data. Remove rows not corresponding to movies, and name all the variables (numbers should be numbers).
 </br>
@@ -173,13 +175,17 @@ html %>% html_nodes("#div_players_ a") %>% head()
 
 ## Extract contents
 
-We want to get access to pieces of the links. `<tagName attrName=attrContent>Text Contents</tagName>`
+We want to get access to pieces of the links. 
 
+`<tagName attrName=attrContent>Text Contents</tagName>`
+
+E.g.: `<a href="/players/a/aardsda01.shtml" class="">David Aardsma</a>`
 
 - `html_text` allows us to get text out, 
-- `html_attr` let us access an attribute of a html node, 
+- `html_attr` let us access a specific attribute of a html node, 
 - `html_attrs` extracts all attributes of an html node:
 
+## Extract contents
 
 ```{r}
 html %>% html_nodes("#div_players_ a") %>% html_text() %>% head()
