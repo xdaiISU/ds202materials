@@ -82,13 +82,13 @@ For the following questions, work on the cleaned data frames `defClean`, `offCle
 
   Now turn our attention to the player biography.
 
-4. Separate the `Hometown` column into two columns, namely, the city and the state where the player comes from. Print the first few rows of these two columns. (Hint: look at the `sep=` argument of `separate`)
-5. How many players are there from each state?
+5. Separate the `Hometown` column into two columns, namely, the city and the state where the player comes from. Print the first few rows of these two columns. (Hint: look at the `sep=` argument of `separate`)
+6. How many players are there from each state?
 ```{r,echo=FALSE,results='hide',message=FALSE}
 library(tidyverse)
 a <- bio %>% separate(Hometown, c('City', 'State'), sep = ', ')
 ```
-6. How does the performance of quarterback Brock Purdy relate to the performance of the ISU team? Comment on both the defense and offense.
+7. How does the performance of quarterback Brock Purdy relate to the performance of the ISU team? Comment on both the defense and offense.
 
 
 <!-- ## Part three: Joining data frames -->
