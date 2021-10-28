@@ -80,7 +80,7 @@
   </style>
   
   
-      <script src="10_2_purrr_files/header-attrs-2.3/header-attrs.js"></script>
+      <script src="10_2_purrr_files/header-attrs-2.11/header-attrs.js"></script>
   
 </head>
 
@@ -152,10 +152,10 @@
 <section id="r-demo" class="slide level2">
 <h2>R demo…</h2>
 </section>
-<section id="your-turn" class="slide level2 white">
-<h2 class="white">Your Turn</h2>
+<section id="case-study" class="slide level2 white">
+<h2 class="white">Case Study</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at <a href="https://www.the-numbers.com/box-office-chart/weekend/2020/03/13" class="uri">https://www.the-numbers.com/box-office-chart/weekend/2020/03/13</a> </span></p>
+<p><span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at <a href="https://www.the-numbers.com/box-office-chart/weekend/2021/10/22" class="uri">https://www.the-numbers.com/box-office-chart/weekend/2021/10/22</a> </span></p>
 <p><span style="color:white"> <img src="images/green.png" width=20> Use <code>rvest</code> to download the box office gross in that week. </br> <img src="images/blue.png" width=20> Write a function that uses the url as input argument, scrapes the data, cleans it up, and returns the cleaned data. </span></p>
 </section>
 <section id="your-turn---solution" class="slide level2">
@@ -163,7 +163,7 @@
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">library</span>(tidyverse)</span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="kw">library</span>(rvest)</span>
 <span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a>url &lt;-<span class="st"> &quot;https://www.the-numbers.com/box-office-chart/weekend/2020/03/13&quot;</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>url &lt;-<span class="st"> &quot;https://www.the-numbers.com/box-office-chart/weekend/2021/10/22&quot;</span></span>
 <span id="cb10-5"><a href="#cb10-5"></a></span>
 <span id="cb10-6"><a href="#cb10-6"></a>boxoffice_scraper &lt;-<span class="st"> </span><span class="cf">function</span>(url) {</span>
 <span id="cb10-7"><a href="#cb10-7"></a>  html &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)</span>
@@ -179,36 +179,39 @@
 </section>
 <section id="now-try-it-out" class="slide level2">
 <h2>Now try it out</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>box &lt;-<span class="st"> </span><span class="kw">boxoffice_scraper</span>(<span class="st">&quot;https://www.the-numbers.com/box-office-chart/weekend/2020/03/13&quot;</span>)</span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>box &lt;-<span class="st"> </span><span class="kw">boxoffice_scraper</span>(<span class="st">&quot;https://www.the-numbers.com/box-office-chart/weekend/2021/10/22&quot;</span>)</span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="kw">head</span>(box)</span></code></pre></div>
-<pre><code>##   Rank Rank.Last.Week              Movie       Distr    Gross  %LW  Thr ThrChng
-## 1    1            (1)             Onward Walt Disney 10601952 -73% 4310     n/c
-## 2    2              N          Bloodshot  Sony Pict…  9176695      2861        
-## 3    3              N    I Still Believe   Lionsgate  9103614      3250        
-## 4    4            (2)  The Invisible Man   Universal  5890805 -61% 3636     +26
-## 5    5              N           The Hunt   Universal  5304455      3028        
-## 6    6            (4) Sonic The Hedgehog  Paramount…  2522584 -67% 3041    -676
-##   PerThr   TotalGross W
-## 1 $2,460  $60,360,639 2
-## 2 $3,208   $9,176,695 1
-## 3 $2,801   $9,103,614 1
-## 4 $1,620  $64,310,490 3
-## 5 $1,752   $5,304,455 1
-## 6   $830 $145,753,912 5</code></pre>
+<pre><code>##   Rank Rank.Last.Week                  Movie        Distr    Gross  %LW  Thr
+## 1    1              N                   Dune Warner Bros. 41011174      4125
+## 2    2            (1)        Halloween Kills    Universal 14450215 -71% 3727
+## 3    3            (2)         No Time to Die   United Ar… 12202368 -49% 3807
+## 4    4            (3) Venom: Let There be C…   Sony Pict…  9301908 -44% 3513
+## 5    5              N       Ron’s Gone Wrong   20th Cent…  7300225      3560
+## 6    6            (4)    The Addams Family 2   United Ar…  4495736 -36% 2907
+##   ThrChng PerThr   TotalGross W
+## 1         $9,942  $41,011,174 1
+## 2     +22 $3,877  $73,055,060 2
+## 3    -600 $3,205 $120,357,453 3
+## 4    -500 $2,648 $182,031,539 4
+## 5         $2,051   $7,300,225 1
+## 6    -700 $1,547  $48,474,713 4</code></pre>
 </section>
 <section id="previous-week-grosses" class="slide level2">
 <h2>Previous week grosses</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>url &lt;-<span class="st"> &quot;https://www.the-numbers.com/box-office-chart/weekend/2020/03/13&quot;</span></span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>url &lt;-<span class="st"> &quot;https://www.the-numbers.com/box-office-chart/weekend/2021/10/22&quot;</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a>html &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)</span>
 <span id="cb13-3"><a href="#cb13-3"></a>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.previous a&quot;</span>)</span></code></pre></div>
 <pre><code>## {xml_nodeset (1)}
-## [1] &lt;a href=&quot;/box-office-chart/weekend/2020/03/06&quot;&gt;← Previous Chart&lt;/a&gt;</code></pre>
+## [1] &lt;a href=&quot;/box-office-chart/weekend/2021/10/15&quot;&gt;← Previous Chart&lt;/a&gt;</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.previous a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;/box-office-chart/weekend/2020/03/06&quot;</code></pre>
+<pre><code>## [1] &quot;/box-office-chart/weekend/2021/10/15&quot;</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>newurl &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.previous a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>)</span>
 <span id="cb17-2"><a href="#cb17-2"></a></span>
 <span id="cb17-3"><a href="#cb17-3"></a>newhtml &lt;-<span class="st"> </span><span class="kw">read_html</span>(<span class="kw">paste0</span>(<span class="st">&quot;https://www.the-numbers.com/&quot;</span>, newurl))</span></code></pre></div>
 <p>… could repeatedly use this to scrape all previous week grosses.</p>
+</section>
+<section id="r-demo-1" class="slide level2">
+<h2>R demo…</h2>
 </section>
 <section id="always-scrape-responsibly" class="slide level2 shout">
 <h2 class="shout">Always scrape responsibly!</h2>
@@ -220,9 +223,9 @@
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>bb_scraper &lt;-<span class="st"> </span><span class="cf">function</span>(url) {</span>
 <span id="cb18-2"><a href="#cb18-2"></a>  html &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)</span>
 <span id="cb18-3"><a href="#cb18-3"></a></span>
-<span id="cb18-4"><a href="#cb18-4"></a>  names &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h4&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
+<span id="cb18-4"><a href="#cb18-4"></a>  names &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;#info span strong&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
 <span id="cb18-5"><a href="#cb18-5"></a>  values &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.stats_pullout p&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>() </span>
-<span id="cb18-6"><a href="#cb18-6"></a>  player &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
+<span id="cb18-6"><a href="#cb18-6"></a>  player &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h1 span&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
 <span id="cb18-7"><a href="#cb18-7"></a>  <span class="kw">data.frame</span>(<span class="dt">player=</span>player, </span>
 <span id="cb18-8"><a href="#cb18-8"></a>             <span class="dt">statistics=</span>names,  <span class="dt">values=</span><span class="kw">parse_number</span>(values))</span>
 <span id="cb18-9"><a href="#cb18-9"></a>}</span></code></pre></div>
@@ -260,19 +263,19 @@
 <span id="cb22-3"><a href="#cb22-3"></a>links &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://www.baseball-reference.com&quot;</span>, links)</span>
 <span id="cb22-4"><a href="#cb22-4"></a></span>
 <span id="cb22-5"><a href="#cb22-5"></a><span class="co"># get data for the first few players:</span></span>
-<span id="cb22-6"><a href="#cb22-6"></a>data &lt;-<span class="st"> </span><span class="kw">map</span>(<span class="kw">head</span>(links), <span class="dt">.f=</span>bb_scraper) <span class="op">%&gt;%</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>data &lt;-<span class="st"> </span><span class="kw">map</span>(links[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">.f=</span>bb_scraper) <span class="op">%&gt;%</span></span>
 <span id="cb22-7"><a href="#cb22-7"></a><span class="st">  </span><span class="kw">bind_rows</span>()</span>
 <span id="cb22-8"><a href="#cb22-8"></a><span class="kw">summary</span>(data)</span></code></pre></div>
-<pre><code>##                   player            statistics     values         
-##  \n\t\tDavid Aardsma\n\t\t\t:11   SUMMARY: 6   Min.   :   -8.000  
-##  \n\t\tHank Aaron\n\t\t\t   :13   WAR    : 6   1st Qu.:    0.571  
-##  \n\t\tTommie Aaron\n\t\t\t :13   ERA    : 3   Median :   11.000  
-##  \n\t\tDon Aase\n\t\t\t     :11   G      : 3   Mean   :  425.037  
-##  \n\t\tAndy Abad\n\t\t\t    :13   GS     : 3   3rd Qu.:  200.750  
-##  \n\t\tFernando Abad\n\t\t\t:11   IP     : 3   Max.   :12364.000  
-##                                   (Other):48   NA&#39;s   :6</code></pre>
+<pre><code>##     player           statistics            values         
+##  Length:61          Length:61          Min.   :   -8.000  
+##  Class :character   Class :character   1st Qu.:    0.333  
+##  Mode  :character   Mode  :character   Median :   14.000  
+##                                        Mean   :  482.233  
+##                                        3rd Qu.:  170.250  
+##                                        Max.   :12364.000  
+##                                        NA&#39;s   :5</code></pre>
 </section>
-<section id="r-demo-1" class="slide level2">
+<section id="r-demo-2" class="slide level2">
 <h2>R demo…</h2>
 </section>
 <section id="your-turn-5-minutes" class="slide level2 white">
@@ -286,17 +289,15 @@
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>bb_scraper2 &lt;-<span class="st"> </span><span class="cf">function</span>(url) {</span>
 <span id="cb24-2"><a href="#cb24-2"></a>  html &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)</span>
 <span id="cb24-3"><a href="#cb24-3"></a></span>
-<span id="cb24-4"><a href="#cb24-4"></a>  names &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h4&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
+<span id="cb24-4"><a href="#cb24-4"></a>  names &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;#info span strong&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
 <span id="cb24-5"><a href="#cb24-5"></a>  values &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.stats_pullout p&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>() </span>
-<span id="cb24-6"><a href="#cb24-6"></a>  player &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
-<span id="cb24-7"><a href="#cb24-7"></a>  position &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h1+ p&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
-<span id="cb24-8"><a href="#cb24-8"></a>  names &lt;-<span class="st"> </span><span class="kw">trimws</span>(names)</span>
-<span id="cb24-9"><a href="#cb24-9"></a>  player &lt;-<span class="st"> </span><span class="kw">trimws</span>(player)</span>
-<span id="cb24-10"><a href="#cb24-10"></a>  position &lt;-<span class="st"> </span><span class="kw">trimws</span>(position)</span>
-<span id="cb24-11"><a href="#cb24-11"></a>  <span class="kw">data.frame</span>(<span class="dt">player=</span>player, </span>
-<span id="cb24-12"><a href="#cb24-12"></a>             <span class="dt">position=</span>position,</span>
-<span id="cb24-13"><a href="#cb24-13"></a>             <span class="dt">statistics=</span>names,  <span class="dt">values=</span><span class="kw">parse_number</span>(values))</span>
-<span id="cb24-14"><a href="#cb24-14"></a>}</span></code></pre></div>
+<span id="cb24-6"><a href="#cb24-6"></a>  player &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;h1 span&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</span>
+<span id="cb24-7"><a href="#cb24-7"></a>  names &lt;-<span class="st"> </span><span class="kw">trimws</span>(names)</span>
+<span id="cb24-8"><a href="#cb24-8"></a>  player &lt;-<span class="st"> </span><span class="kw">trimws</span>(player)</span>
+<span id="cb24-9"><a href="#cb24-9"></a>  <span class="kw">data.frame</span>(<span class="dt">player=</span>player, </span>
+<span id="cb24-10"><a href="#cb24-10"></a>             <span class="dt">statistics=</span>names,  </span>
+<span id="cb24-11"><a href="#cb24-11"></a>             <span class="dt">values=</span><span class="kw">parse_number</span>(values))</span>
+<span id="cb24-12"><a href="#cb24-12"></a>}</span></code></pre></div>
 </section>
 <section id="your-turn-solutions-cont." class="slide level2">
 <h2>Your turn solutions cont.</h2>
@@ -305,14 +306,13 @@
 <span id="cb25-3"><a href="#cb25-3"></a>links &lt;-<span class="st"> </span>html <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;#div_players_ a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>)</span>
 <span id="cb25-4"><a href="#cb25-4"></a>links &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://www.baseball-reference.com&quot;</span>, links) </span>
 <span id="cb25-5"><a href="#cb25-5"></a></span>
-<span id="cb25-6"><a href="#cb25-6"></a><span class="co"># get data for the first 10 players:</span></span>
-<span id="cb25-7"><a href="#cb25-7"></a>bb2 &lt;-<span class="st"> </span><span class="kw">map</span>(links[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], bb_scraper2) <span class="op">%&gt;%</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="co"># get data for the first 5 players:</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a>bb2 &lt;-<span class="st"> </span><span class="kw">map</span>(links[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], bb_scraper2) <span class="op">%&gt;%</span></span>
 <span id="cb25-8"><a href="#cb25-8"></a><span class="st">  </span><span class="kw">bind_rows</span>()</span>
 <span id="cb25-9"><a href="#cb25-9"></a><span class="kw">str</span>(bb2)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    120 obs. of  4 variables:
-##  $ player    : Factor w/ 10 levels &quot;Charlie Babb&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ position  : Factor w/ 7 levels &quot;Positions:\n    Shortstop, First Baseman and Third Baseman&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ statistics: Factor w/ 22 levels &quot;AB&quot;,&quot;BA&quot;,&quot;H&quot;,..: 12 13 1 3 4 2 8 9 10 5 ...
+<pre><code>## &#39;data.frame&#39;:    61 obs. of  3 variables:
+##  $ player    : chr  &quot;Charlie Babb&quot; &quot;Charlie Babb&quot; &quot;Charlie Babb&quot; &quot;Charlie Babb&quot; ...
+##  $ statistics: chr  &quot;SUMMARY&quot; &quot;WAR&quot; &quot;AB&quot; &quot;H&quot; ...
 ##  $ values    : num  NA 4 1180 287 0 0.243 144 116 66 0.339 ...</code></pre>
 <!-- ## Your Turn {.white} -->
 <!-- <img class="cover" src="images/blue.jpeg" alt="" width=2000> -->

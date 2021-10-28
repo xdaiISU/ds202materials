@@ -229,7 +229,7 @@ html %>% html_nodes(".stats_pullout")
 
 ```{r}
 # better: pull out individual vectors
-html %>% html_nodes("h4") %>% html_text()
+html %>% html_nodes("span strong") %>% html_text()
 html %>% html_nodes(".stats_pullout p") %>% html_text() 
 ```
 

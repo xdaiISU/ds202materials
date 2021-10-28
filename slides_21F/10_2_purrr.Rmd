@@ -68,11 +68,11 @@ mymean(c(1:15, NA), na.rm=TRUE)
 ## R demo...
 
 
-## Your Turn {.white}
+## Case Study {.white}
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
-<span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at https://www.the-numbers.com/box-office-chart/weekend/2020/03/13
+<span style="color:white">Connect to the The-Numbers website for weekly boxoffice gross at https://www.the-numbers.com/box-office-chart/weekend/2021/10/22
 </span>
 
 <span style="color:white">
@@ -87,7 +87,7 @@ mymean(c(1:15, NA), na.rm=TRUE)
 library(tidyverse)
 library(rvest)
 
-url <- "https://www.the-numbers.com/box-office-chart/weekend/2020/03/13"
+url <- "https://www.the-numbers.com/box-office-chart/weekend/2021/10/22"
 
 boxoffice_scraper <- function(url) {
   html <- read_html(url)
@@ -105,7 +105,7 @@ boxoffice_scraper <- function(url) {
 ## Now try it out
 
 ```{r, cache =TRUE, message=FALSE}
-box <- boxoffice_scraper("https://www.the-numbers.com/box-office-chart/weekend/2020/03/13")
+box <- boxoffice_scraper("https://www.the-numbers.com/box-office-chart/weekend/2021/10/22")
 head(box)
 ```
 
@@ -113,7 +113,7 @@ head(box)
 ## Previous week grosses
 
 ```{r, message= FALSE}
-url <- "https://www.the-numbers.com/box-office-chart/weekend/2020/03/13"
+url <- "https://www.the-numbers.com/box-office-chart/weekend/2021/10/22"
 html <- read_html(url)
 html %>% html_nodes(".previous a")
 html %>% html_nodes(".previous a") %>% html_attr("href")
@@ -122,6 +122,8 @@ newurl <- html %>% html_nodes(".previous a") %>% html_attr("href")
 newhtml <- read_html(paste0("https://www.the-numbers.com/", newurl))
 ```
 ... could repeatedly use this to scrape all previous week grosses.
+
+## R demo...
 
 ## Always scrape responsibly! {.shout}
 
@@ -136,9 +138,9 @@ Write a function that returns a dataset:
 bb_scraper <- function(url) {
   html <- read_html(url)
 
-  names <- html %>% html_nodes("h4") %>% html_text()
+  names <- html %>% html_nodes("#info span strong") %>% html_text()
   values <- html %>% html_nodes(".stats_pullout p") %>% html_text() 
-  player <- html %>% html_nodes("h1") %>% html_text()
+  player <- html %>% html_nodes("h1 span") %>% html_text()
   data.frame(player=player, 
              statistics=names,  values=parse_number(values))
 }
@@ -148,7 +150,6 @@ bb_scraper <- function(url) {
 ```{r, warning=FALSE}
 bb_scraper("http://www.baseball-reference.com/players/a/aardsda01.shtml")
 ```
-
 
 ## Loops in R
 
@@ -172,7 +173,7 @@ links <- html %>% html_nodes("#div_players_ a") %>% html_attr("href")
 links <- paste0("http://www.baseball-reference.com", links)
 
 # get data for the first few players:
-data <- map(head(links), .f=bb_scraper) %>%
+data <- map(links[1:5], .f=bb_scraper) %>%
   bind_rows()
 summary(data)
 ```
@@ -202,16 +203,14 @@ summary(data)
 bb_scraper2 <- function(url) {
   html <- read_html(url)
 
-  names <- html %>% html_nodes("h4") %>% html_text()
+  names <- html %>% html_nodes("#info span strong") %>% html_text()
   values <- html %>% html_nodes(".stats_pullout p") %>% html_text() 
-  player <- html %>% html_nodes("h1") %>% html_text()
-  position <- html %>% html_nodes("h1+ p") %>% html_text()
+  player <- html %>% html_nodes("h1 span") %>% html_text()
   names <- trimws(names)
   player <- trimws(player)
-  position <- trimws(position)
   data.frame(player=player, 
-             position=position,
-             statistics=names,  values=parse_number(values))
+             statistics=names,  
+             values=parse_number(values))
 }
 ```
 
@@ -222,8 +221,8 @@ html <- read_html("http://www.baseball-reference.com/players/b/")
 links <- html %>% html_nodes("#div_players_ a") %>% html_attr("href")
 links <- paste0("http://www.baseball-reference.com", links) 
 
-# get data for the first 10 players:
-bb2 <- map(links[1:10], bb_scraper2) %>%
+# get data for the first 5 players:
+bb2 <- map(links[1:5], bb_scraper2) %>%
   bind_rows()
 str(bb2)
 ```
