@@ -123,9 +123,9 @@
 <section id="date-objects" class="slide level2">
 <h2>Date objects</h2>
 <p>Dates in raw data are often in the form of character vectors.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>a &lt;-<span class="st"> &quot;03-01-2019&quot;</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>a &lt;-<span class="st"> &quot;03-01-2021&quot;</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw">str</span>(a)</span></code></pre></div>
-<pre><code>##  chr &quot;03-01-2019&quot;</code></pre>
+<pre><code>##  chr &quot;03-01-2021&quot;</code></pre>
 <p>In order for R to understand, we need to parse it (convert from chr to date)</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">library</span>(lubridate)</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="kw">mdy</span>(a)</span></code></pre></div>
@@ -147,8 +147,8 @@
 <li>separators are automatically determined, then assumed to be the same</li>
 </ul>
 <p>Example:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2019/03/01&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;2019-03-01&quot;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2021/03/01&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2021-03-01&quot;</code></pre>
 </section>
 <section id="r-demo" class="slide level2">
 <h2>R demo…</h2>
@@ -242,7 +242,7 @@
 <section id="your-turn-5-min" class="slide level2 white">
 <h2 class="white">Your Turn (5 min)</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white"> <img src="images/green.png" width=20> show a barchar of the days of week when the stock data is available. </br> <img src="images/blue.png" width=20> Find the number of trading days in each month from January to June in 2020. </br> <img src="images/black.png" width=20> Create a data data frame containing the weekly gain for each stock. The weekly gain is calculated as <code>(last price in the current week / last price in the previous week) - 1</code>. </br></p>
+<p><span style="color:white"> <img src="images/green.png" width=20> Use a barchart to show the number of trading days (i.e., days when the stock data is available) falling on each day of week. </br> <img src="images/blue.png" width=20> Find the number of trading days in each month from January to June in 2020. </br> <img src="images/black.png" width=20> Create a data data frame containing the weekly gain for each stock. The weekly gain is calculated as <code>(last price in the current week / last price in the previous week) - 1</code>. </br></p>
 <p></span></p>
 </section>
 

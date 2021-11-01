@@ -47,7 +47,7 @@ library(tidyverse)
 ## Date objects
 Dates in raw data are often in the form of character vectors. 
 ```{r}
-a <- "03-01-2019"
+a <- "03-01-2021"
 str(a)
 ```
 
@@ -70,7 +70,7 @@ str(mdy(a))
 
 Example:
 ```{r message=FALSE}
-ymd("2019/03/01")
+ymd("2021/03/01")
 ```
 
 
