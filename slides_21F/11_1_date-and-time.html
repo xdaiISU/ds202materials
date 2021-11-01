@@ -80,7 +80,7 @@
   </style>
   
   
-      <script src="11_1_date-and-time_files/header-attrs-2.3/header-attrs.js"></script>
+      <script src="11_1_date-and-time_files/header-attrs-2.11/header-attrs.js"></script>
   
 </head>
 
@@ -156,16 +156,16 @@
 <section id="your-turn-5-minutes" class="slide level2 white">
 <h2 class="white">Your Turn (5 minutes)</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white"> <img src="images/green.png" width=20> Create date objects for tomorrow’s date by typing the date in text format and converting it with one of the <code>lubridate</code> converter functions. </br> <img src="images/green.png" width=20> Try different formats of writing the date and compare the end results.</br> <img src="images/blue.png" width=20> Convert the string <code>"2020-03-30 13:20:52"</code> to the current date and time in a date time object. Check out <code>?ymd_hms</code>. </br> <!-- <img src="images/black.png" width=20> How to take care of time zone? </br> --> </span></p>
+<p><span style="color:white"> <img src="images/green.png" width=20> Create date objects for tomorrow’s date by typing the date in text format and converting it with one of the <code>lubridate</code> converter functions. </br> <img src="images/green.png" width=20> Try different formats of writing the date and compare the end results.</br> <img src="images/blue.png" width=20> Convert the string <code>"2021-11-11 11:00:00"</code> to the current date and time in a date time object. Check out <code>?ymd_hms</code>. </br> <!-- <img src="images/black.png" width=20> How to take care of time zone? </br> --> </span></p>
 </section>
 <section id="date-time-comparisons" class="slide level2">
 <h2>Date time Comparisons</h2>
 <ul>
 <li>Logical operators <code>&gt;</code>, <code>&lt;</code>, <code>&lt;=</code>, etc are available to compare two dates/datetimes.</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">now</span>() <span class="op">&gt;=</span><span class="st"> </span><span class="kw">mdy</span>(<span class="st">&#39;01/01/20&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">now</span>() <span class="op">&gt;=</span><span class="st"> </span><span class="kw">mdy</span>(<span class="st">&#39;01/01/21&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">now</span>() <span class="op">&lt;</span><span class="st"> </span><span class="kw">c</span>(<span class="kw">mdy</span>(<span class="st">&#39;01/01/20&#39;</span>), <span class="kw">mdy</span>(<span class="st">&#39;12/31/20&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">now</span>() <span class="op">&lt;</span><span class="st"> </span><span class="kw">c</span>(<span class="kw">mdy</span>(<span class="st">&#39;01/01/21&#39;</span>), <span class="kw">mdy</span>(<span class="st">&#39;12/31/21&#39;</span>))</span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE</code></pre>
 </section>
 <section id="accessor-functions-setting-extracting-info" class="slide level2">
@@ -176,9 +176,9 @@
 </ul>
 <p>Examples:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">month</span>(<span class="kw">now</span>())</span></code></pre></div>
-<pre><code>## [1] 8</code></pre>
+<pre><code>## [1] 11</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">wday</span>(<span class="kw">now</span>(), <span class="dt">label =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] Sat
+<pre><code>## [1] Mon
 ## Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</code></pre>
 </section>
 <section id="durations-and-periods" class="slide level2">
@@ -189,11 +189,11 @@
 <li>Periods are differences in clock times in human sense (<code>year</code>, <code>weeks</code>, …)</li>
 <li>Durations and Periods can be different due to leap years or different lengths of month.</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>d1 &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="st">&#39;2020-01-01&#39;</span>)</span>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>d1 &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="st">&#39;2021-01-01&#39;</span>)</span>
 <span id="cb18-2"><a href="#cb18-2"></a>d1 <span class="op">+</span><span class="st"> </span><span class="kw">dyears</span>(<span class="dv">1</span>) <span class="co"># dyears(1) = 365.25 days</span></span></code></pre></div>
-<pre><code>## [1] &quot;2020-12-31 06:00:00 UTC&quot;</code></pre>
+<pre><code>## [1] &quot;2022-01-01 06:00:00 UTC&quot;</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>d1 <span class="op">+</span><span class="st"> </span><span class="kw">years</span>(<span class="dv">1</span>)  <span class="co"># years(1) = flip 1 year</span></span></code></pre></div>
-<pre><code>## [1] &quot;2021-01-01&quot;</code></pre>
+<pre><code>## [1] &quot;2022-01-01&quot;</code></pre>
 </section>
 <section id="intervals" class="slide level2">
 <h2>Intervals</h2>
@@ -204,7 +204,7 @@
 <span id="cb22-2"><a href="#cb22-2"></a><span class="co"># span is interval, years(1) is duration</span></span>
 <span id="cb22-3"><a href="#cb22-3"></a>span &lt;-<span class="st"> </span><span class="kw">interval</span>(end_date <span class="op">-</span><span class="st"> </span><span class="kw">years</span>(<span class="dv">1</span>), end_date)</span>
 <span id="cb22-4"><a href="#cb22-4"></a>span</span></code></pre></div>
-<pre><code>## [1] 2019-08-29 16:32:50 CDT--2020-08-29 16:32:50 CDT</code></pre>
+<pre><code>## [1] 2020-11-01 16:33:56 CST--2021-11-01 16:33:56 CDT</code></pre>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>(end_date <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">10</span>)) <span class="op">%within%</span><span class="st"> </span>span</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </section>

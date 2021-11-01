@@ -84,7 +84,7 @@ ymd("2019/03/01")
 <span style="color:white">
 <img src="images/green.png" width=20> Create date objects for tomorrow's date by typing the date in text format and converting it with one of the `lubridate` converter functions. </br>
 <img src="images/green.png" width=20> Try different formats of writing the date and compare the end results.</br>
-<img src="images/blue.png" width=20> Convert the string `"2020-03-30 13:20:52"` to the current date and time in a date time object. Check out `?ymd_hms`.  </br>
+<img src="images/blue.png" width=20> Convert the string `"2021-11-11 11:00:00"` to the current date and time in a date time object. Check out `?ymd_hms`.  </br>
 <!-- <img src="images/black.png" width=20> How to take care of time zone? </br> -->
 </span>
 
@@ -92,8 +92,8 @@ ymd("2019/03/01")
 ## Date time Comparisons 
 - Logical operators `>`, `<`, `<=`, etc are available to compare two dates/datetimes.
 ```{r}
-now() >= mdy('01/01/20')
-now() < c(mdy('01/01/20'), mdy('12/31/20'))
+now() >= mdy('01/01/21')
+now() < c(mdy('01/01/21'), mdy('12/31/21'))
 ```
 
 
@@ -118,7 +118,7 @@ wday(now(), label = TRUE)
 - Durations and Periods can be different due to leap years or different lengths of month.
 
 ```{r}
-d1 <- ymd('2020-01-01')
+d1 <- ymd('2021-01-01')
 d1 + dyears(1) # dyears(1) = 365.25 days
 d1 + years(1)  # years(1) = flip 1 year
 ```
@@ -172,7 +172,7 @@ startPrice <- apple$price[apple$date == start]
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
 <span style="color:white">
-<img src="images/green.png" width=20> show a barchar of the days of week when the stock data is available. </br>
+<img src="images/green.png" width=20> Use a barchart to show the number of trading days (i.e., days when the stock data is available) falling on each day of week. </br>
 <img src="images/blue.png" width=20> Find the number of trading days in each month from January to June in 2020. </br>
 <img src="images/black.png" width=20> Create a data data frame containing the weekly gain for each stock. The weekly gain is calculated as `(last price in the current week / last price in the previous week) - 1`. </br>
 
