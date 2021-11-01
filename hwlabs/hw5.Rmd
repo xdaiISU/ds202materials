@@ -33,12 +33,13 @@ This dataset https://data.iowa.gov/Sales-Distribution/2021-Iowa-Liquor-Sales/cc6
 
 5. Which day of the week has the most orders? Use a barchart to visualize the results. Explain the pattern and provide a reason why the pattern occurs.
 
-<!-- 6. We would like to compare the liquor orders in each month. Create a complex time series plot of the volume sold in each day. Each month should be shown in a separate panel. Label the day of the week for the x-axis tick labels. Which months have more orders than the others? -->
-
-<!--     [Hint: Each panel should show a time series, where the x-axis stands for date, and y-axis stands for the volume sold. The tick labels of the x-axis, though, should show the day of week but not date. E.g., if the x-axis data were Jan 01, 2019 and Jan 10, 2019, then the re-labeled ticks should show Tuesday and Thursday for these two dates instead.] -->
-
 5. Create a single plot for the monthly volumes sold. Each liquor category should be shown using a separate time series. Label the top 5 categories using text labels.
 
 6. Which categories are spring graduation party favorites? Find at least one category.
+
+
+7. (Optional) We would like to compare the liquor orders in each month. Create a complex time series plot of the volume sold in each day. Each month should be shown in a separate panel. Label the day of the week for the x-axis tick labels. Which months have more orders than the others?
+
+    [Hint: Each panel should show a time series, where the x-axis stands for date, and y-axis stands for the volume sold. The tick labels of the x-axis, however, should show the day of week but not date. E.g., if the x-axis data were Jan 01, 2021 and Jan 10, 2021, then the re-labeled ticks should show Friday and Sunday for these two dates instead.]
 
 Note: your submission is supposed to be fully reproducible. 
