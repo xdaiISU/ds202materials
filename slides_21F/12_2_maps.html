@@ -80,7 +80,7 @@
   </style>
   
   
-      <script src="12_2_maps_files/header-attrs-2.3/header-attrs.js"></script>
+      <script src="12_2_maps_files/header-attrs-2.11/header-attrs.js"></script>
   
 </head>
 
@@ -202,15 +202,15 @@
 <p>Content:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>covidRaw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv&#39;</span>) </span>
 <span id="cb8-2"><a href="#cb8-2"></a>covid &lt;-<span class="st"> </span>covidRaw <span class="op">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw">filter</span>(date <span class="op">==</span><span class="st"> </span><span class="kw">mdy</span>(<span class="st">&#39;08/31/20&#39;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw">filter</span>(date <span class="op">==</span><span class="st"> </span><span class="kw">mdy</span>(<span class="st">&#39;08/31/21&#39;</span>)) <span class="op">%&gt;%</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a><span class="st">  </span><span class="kw">group_by</span>(state) <span class="op">%&gt;%</span></span>
 <span id="cb8-5"><a href="#cb8-5"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">totCases =</span> <span class="kw">sum</span>(cases),</span>
 <span id="cb8-6"><a href="#cb8-6"></a>            <span class="dt">totDeaths =</span> <span class="kw">sum</span>(deaths))</span>
 <span id="cb8-7"><a href="#cb8-7"></a><span class="kw">str</span>(covid)</span></code></pre></div>
-<pre><code>## tibble [55 × 3] (S3: tbl_df/tbl/data.frame)
+<pre><code>## tbl_df [55 × 3] (S3: tbl_df/tbl/data.frame)
 ##  $ state    : chr [1:55] &quot;Alabama&quot; &quot;Alaska&quot; &quot;Arizona&quot; &quot;Arkansas&quot; ...
-##  $ totCases : num [1:55] 126058 6075 201866 61224 712541 ...
-##  $ totDeaths: num [1:55] 2182 34 5031 797 13020 ...</code></pre>
+##  $ totCases : num [1:55] 699729 87842 1011923 452891 4449186 ...
+##  $ totDeaths: num [1:55] 12283 427 18786 6934 65863 ...</code></pre>
 </section>
 <section id="join-content-and-map-1" class="slide level2">
 <h2>Join content and map</h2>
@@ -224,8 +224,8 @@
 ##  $ region   : chr  &quot;alabama&quot; &quot;alabama&quot; &quot;alabama&quot; &quot;alabama&quot; ...
 ##  $ subregion: chr  NA NA NA NA ...</code></pre>
 </section>
-<section id="prepare-for-join" class="slide level2">
-<h2>Prepare for join</h2>
+<section id="prepare-for-joining" class="slide level2">
+<h2>Prepare for joining</h2>
 <ul>
 <li>combine <code>covid</code> and <code>states</code> by state name, but we need to convert the state names to lower cases</li>
 <li>Check out which regions have missing values using <code>anti_join</code></li>
@@ -280,7 +280,7 @@
 <h2>FARS data</h2>
 <ul>
 <li>US Department of transportation is keeping a record of every accident that results in a fatality in the FARS Data base (<a href="http://www.nhtsa.gov/FARS">fatal accident report system</a>).</li>
-<li>FARS consists of 20+ tables consisting of various aspects of each accident Documentation at <a href="https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812602" class="uri">https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812602</a></li>
+<li>FARS consists of 20+ tables consisting of various aspects of each accident Documentation at <a href="https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/813023" class="uri">https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/813023</a></li>
 <li>two of the main tables are <code>accident</code>, and <code>person</code></li>
 </ul>
 </section>

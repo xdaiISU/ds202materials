@@ -146,7 +146,7 @@ Content:
 ```{r}
 covidRaw <- read_csv('https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv') 
 covid <- covidRaw %>%
-  filter(date == mdy('08/31/20')) %>%
+  filter(date == mdy('08/31/21')) %>%
   group_by(state) %>%
   summarize(totCases = sum(cases),
             totDeaths = sum(deaths))
@@ -160,7 +160,7 @@ Map data:
 str(states)
 ```
 
-## Prepare for join
+## Prepare for joining
 
 - combine `covid` and `states` by state name, but we need to convert the state names to lower cases
 - Check out which regions have missing values using `anti_join`
@@ -229,7 +229,7 @@ states %>% ggplot(aes(x = long, y = lat)) +
 - US Department of transportation is keeping a record of every accident that results in a fatality in the FARS Data base ([fatal accident report system](http://www.nhtsa.gov/FARS)).
 - FARS consists of 20+ tables consisting of various aspects of each accident
 Documentation at
-https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812602
+https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/813023
 - two of the main tables are `accident`, and `person`
 
 ## Data 

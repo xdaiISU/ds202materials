@@ -80,7 +80,7 @@
   </style>
   
   
-      <script src="12_1_layers_files/header-attrs-2.3/header-attrs.js"></script>
+      <script src="12_1_layers_files/header-attrs-2.11/header-attrs.js"></script>
   
 </head>
 
@@ -125,13 +125,13 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2"></a>covid &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv&#39;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="kw">str</span>(covid)</span></code></pre></div>
-<pre><code>## tibble [489,195 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
-##  $ date  : Date[1:489195], format: &quot;2020-01-21&quot; &quot;2020-01-22&quot; ...
-##  $ county: chr [1:489195] &quot;Snohomish&quot; &quot;Snohomish&quot; &quot;Snohomish&quot; &quot;Cook&quot; ...
-##  $ state : chr [1:489195] &quot;Washington&quot; &quot;Washington&quot; &quot;Washington&quot; &quot;Illinois&quot; ...
-##  $ fips  : chr [1:489195] &quot;53061&quot; &quot;53061&quot; &quot;53061&quot; &quot;17031&quot; ...
-##  $ cases : num [1:489195] 1 1 1 1 1 1 1 1 1 1 ...
-##  $ deaths: num [1:489195] 0 0 0 0 0 0 0 0 0 0 ...
+<pre><code>## spec_tbl_df [1,894,595 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ date  : Date[1:1894595], format: &quot;2020-01-21&quot; &quot;2020-01-22&quot; ...
+##  $ county: chr [1:1894595] &quot;Snohomish&quot; &quot;Snohomish&quot; &quot;Snohomish&quot; &quot;Cook&quot; ...
+##  $ state : chr [1:1894595] &quot;Washington&quot; &quot;Washington&quot; &quot;Washington&quot; &quot;Illinois&quot; ...
+##  $ fips  : chr [1:1894595] &quot;53061&quot; &quot;53061&quot; &quot;53061&quot; &quot;17031&quot; ...
+##  $ cases : num [1:1894595] 1 1 1 1 1 1 1 1 1 1 ...
+##  $ deaths: num [1:1894595] 0 0 0 0 0 0 0 0 0 0 ...
 ##  - attr(*, &quot;spec&quot;)=
 ##   .. cols(
 ##   ..   date = col_date(format = &quot;&quot;),
@@ -149,7 +149,7 @@
 </ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>story &lt;-<span class="st"> </span>covid <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(state <span class="op">==</span><span class="st"> &#39;Iowa&#39;</span> <span class="op">&amp;</span><span class="st"> </span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="st">                            </span>county <span class="op">==</span><span class="st"> &#39;Story&#39;</span> <span class="op">&amp;</span><span class="st"> </span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="st">                            </span>date <span class="op">&gt;=</span><span class="st"> </span><span class="kw">mdy</span>(<span class="st">&#39;08/01/20&#39;</span>))</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="st">                            </span>date <span class="op">&gt;=</span><span class="st"> </span><span class="kw">mdy</span>(<span class="st">&#39;08/01/21&#39;</span>))</span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="kw">ggplot</span>(story, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> cases)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb3-5"><a href="#cb3-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
 <p><img src="12_1_layers_files/figure-revealjs/unnamed-chunk-2-1.png" width="912" /></p>
@@ -173,20 +173,23 @@
 <span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;loess&quot;</span>, <span class="dt">span=</span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</span></code></pre></div>
 <p><img src="12_1_layers_files/figure-revealjs/unnamed-chunk-4-1.png" width="912" /></p>
 </section>
+<section id="r-demo" class="slide level2">
+<h2>R Demo</h2>
+</section>
 <section id="layers" class="slide level2">
 <h2>Layers</h2>
-<p>Each layer has several parts which can be customized. The two most important are:</p>
+<p>Each layer has several parts which can be customized. The two most important ones are:</p>
 <ul>
-<li>mapping: using the <code>aes()</code> function, we specify mappings between variables and aesthetics of the chart</li>
 <li><code>data</code>: the dataset used in the layer</li>
+<li>mapping: using the <code>aes()</code> function, we specify mappings between variables and aesthetics of the chart</li>
 </ul>
-<p><code>ggplot</code> is the layer that sets the defaults for all layers, <br> <code>geom_XXX</code> creates a layer: for each aspect it either uses the default or has to specify its own</p>
+<p><code>ggplot</code> sets the <em>default</em> dataset and aesthetics mapping for all downstream layers, and <br> <code>geom_XXX</code> creates a new layer. If data or aesthetics are specified in the layer, they will overwrite the default when necessary</p>
 </section>
 <section id="default-versus-layer-specification" class="slide level2">
 <h2>Default versus Layer Specification</h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>johnson &lt;-<span class="st"> </span>covid <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(state <span class="op">==</span><span class="st"> &#39;Iowa&#39;</span> <span class="op">&amp;</span><span class="st"> </span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="st">                              </span>county <span class="op">==</span><span class="st"> &#39;Johnson&#39;</span> <span class="op">&amp;</span><span class="st"> </span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="st">                              </span>date <span class="op">&gt;=</span><span class="st"> </span><span class="kw">mdy</span>(<span class="st">&#39;08/01/20&#39;</span>))</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="st">                              </span>date <span class="op">&gt;=</span><span class="st"> </span><span class="kw">mdy</span>(<span class="st">&#39;08/01/21&#39;</span>))</span>
 <span id="cb6-4"><a href="#cb6-4"></a><span class="kw">ggplot</span>(story, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> cases)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb6-5"><a href="#cb6-5"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color=</span><span class="st">&#39;red&#39;</span>) <span class="op">+</span></span>
 <span id="cb6-6"><a href="#cb6-6"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data=</span>johnson, <span class="dt">color=</span><span class="st">&#39;yellow&#39;</span>)</span></code></pre></div>
@@ -210,17 +213,20 @@
 <section id="section-1" class="slide level2">
 <h2></h2>
 <ul>
-<li>Putting <code>color='blue'</code> in <code>aes()</code> usually does not give you what you want.</li>
+<li>WARNING: Putting <code>color='blue'</code> in <code>aes()</code> usually does not give you what you want.</li>
 <li>It maps a factor of a single level <code>'blue'</code> to all color aethetics</li>
 </ul>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">ggplot</span>(story, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> cases, <span class="dt">color=</span><span class="st">&#39;blue&#39;</span>)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
 <p><img src="12_1_layers_files/figure-revealjs/unnamed-chunk-8-1.png" width="912" /></p>
 </section>
+<section id="r-demo-1" class="slide level2">
+<h2>R Demo</h2>
+</section>
 <section id="your-turn-5-minutes" class="slide level2 white">
 <h2 class="white">Your Turn (5 minutes)</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white"> <img src="images/green.png" width=20> Load the covid 19 data from the NYT Github repo (go back to the code in the slides for loading the data), </br> <img src="images/green.png" width=20> Plot the total cases in the Story county. </br> <img src="images/green.png" width=20> Add a regression line onto the trend. Is the trend well described by a straight line? </br> <img src="images/blue.png" width=20> Overlay a blue line for the trend of total cases in the Black Hawk county. </br> </br> </span></p>
+<p><span style="color:white"> <img src="images/green.png" width=20> Load the covid-19 data from the NYT Github repo (go back to the code in the slides for loading the data), </br> <img src="images/green.png" width=20> Plot the total cases in the Story county. </br> <img src="images/green.png" width=20> Add a regression line onto the trend. Is the trend well described by a straight line? </br> <img src="images/blue.png" width=20> Overlay a blue line for the trend of total cases in the Black Hawk county. </br> </br> </span></p>
 </section>
 
   <!--
