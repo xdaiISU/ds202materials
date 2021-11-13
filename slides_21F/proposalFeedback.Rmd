@@ -16,26 +16,49 @@ library(tidyverse)
 
 ## Final Project {.shout}
 
+## Schedule of Presentations
+
+[See here](https://canvas.iastate.edu/courses/85495/pages/final-project-requirements)
+
 ## Topics
 
-Team 1 | Team 2 | Team 3 | Team 4 
-:------:|:------:|:------:|:------:
-Melbourne Housing | Work-life Balance in America | US Traffic Accidents | Spotify Music 
-
-Team 5 | Team 6 | Team 7 | Team 8 
-:------:|:------:|:------:|:------:
-Stroke Prediction | COVID Vaccine Distribution | COVID Vaccination | Tracking COVID Data
-
-Team 9 | Team 10 
-:------:|:------:
-Cereal Nutrition | Spotify Music 
+- Education (Team 1, 2, 3, 17, 20)
+- Income and employment (4, 16), Medicaid (7)
+- Crimes (5, 6)
+- Climate and environment (8, 10, 18, 24, 26)
+- NFL (19, 22)
+- Accidents (9, 14)
+- Tweets (11), Streaming videos (13)
+- Uber (12), AirBnb (25)
+- Jail (15)
+- Manufactures (21)
+- Trading stocks (23)
 
 ## Project Plans
 
 - A lot of intereting datasets!
-- Start easy, and divide tasks. Each teammate can look at one aspect of data. 
-- Coordinate the aspects to tell a coherent story
-- Introduce the background to the audiences
+- Start easy. If you team up, divide tasks, and then each teammate can look at a few aspects of data
+- Coordinate different aspects to tell a coherent story
+<!-- - Introduce the background to the audiences -->
+
+
+## Project Presentation {.shout}
+
+
+## Requirements
+- You have 5 minutes if you work individually, and 8 minutes if you team up
+- Timing is **very important**. Make sure your team presentation is at most 30 seconds long or short.
+- Ideally, your presentation should contain a nicely made, information-rich visualization as the featured infographics. Make sure everything is legible as well!
+- Organization, delivery, content, and timing: each 25%
+
+## Presentation Format
+- You will record the presentation 
+  - Canvas studio
+  - Zoom
+- The recorded presentations are to be played during the scheduled time live
+- After each presentation, the audiences have 2 minutes to interact with the presenters
+- [Feedback](https://forms.gle/n8mShwDhfwTXSrs26) will be sought from the audiences after the presentation 
+- You are expected to attend or watch all presentations and submit feedback (counted towards evaluation & participation)
 
 ## Project analysis
 
@@ -45,26 +68,6 @@ Thing to try for an interesting analysis:
 - Factor in other variables for making fair comparisons
 - Use multiple tools and types of graphs
 - Combine data sources
-
-## Start early!  {.shout}
-
-## Project Requirements {.shout}
-
-## Project Presentation
-- Each team has 15 minutes
-- Timing is **very important**. Make sure your team presentation is at most 1 minute long or short.
-- Ideally, your presentation should contain a nicely made, information-rich visualization as the featured infographics. Make sure everything is legible as well!
-- Organization, delivery, content, and timing: each 25%
-
-## Presentation Format
-- You will record the presentation 
-  - Canvas studio
-  - Zoom
-- The recorded presentations are to be played during the scheduled time live
-- After each presentation, the audiences have 5 minutes to interact with the presenters by asking questions and making comments. Questions/comments will be made in the class Zoom session. Counted towards participation. 
-- The class is expected to attend all presentations.
-- [Feedback](https://forms.gle/n8mShwDhfwTXSrs26) will be sought from the audiences after the presentation. This will be part of the evaluation.
-
 
 ## A good presentation should inform the audiences ...
 
@@ -82,18 +85,21 @@ Thing to try for an interesting analysis:
 - utilize different tools to explore the data
 - have pretty and informative graphs and slides
 
+
+## Start early!  {.shout}
+
 ## Final Project Report
 
 - Tell the story, not only the coding
 - The report should be as readable as a blog post
-- The total number of figures and tables **should not exceed 10**. Include only the most interesting results, and condense information in each figure
+- The total number of figures and tables **should not exceed 4 (or 6 if you team up)**. Include only the most interesting results, and condense information in each figure
 - Each figure, table, or analysis must be accomanied by explanatory text
-- Report is due on 11:59 pm, May 5.
+- Report is due on 11:59 pm, Dec 13
 
 
 ## Some Other Requirements
 
-- All teammates need to participates. Each will write a paragraph detailing the individual contribution to the team.
-- Analysis need to be done in `R` only.
-- All sources need to be cited.
-- Cannot repeat existing analysis on the web.
+- All teammates must participates. Each will write a paragraph detailing the individual contribution to the team
+- The majority of analysis need to be done in `R`
+- All sources need to be cited
+- Cannot repeat existing analysis on the web
