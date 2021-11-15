@@ -56,8 +56,8 @@ library(tidyverse)
   - Canvas studio
   - Zoom
 - The recorded presentations are to be played during the scheduled time live
-- After each presentation, the audiences have 2 minutes to interact with the presenters
-- [Feedback](https://forms.gle/n8mShwDhfwTXSrs26) will be sought from the audiences after the presentation 
+- After each presentation, the audience has 2 minutes to interact with the presenters
+- [Feedback](https://forms.gle/YqMF8fTzgA3AGwar5) will be sought from the audiences after the presentation 
 - You are expected to attend or watch all presentations and submit feedback (counted towards evaluation & participation)
 
 ## Project analysis
