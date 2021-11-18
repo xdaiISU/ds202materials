@@ -44,7 +44,7 @@ p1 + scale_color_continuous()
 
 ## Continuous Color Scales
 
-- Continuous colors is used for display numeric variables. `scale_color_gradient` is the default choice
+- Continuous color scheme is used for display numeric variables. `scale_color_gradient` is the default choice
 - We can change parameters of the default scale, or we can change
 the scale function
 
@@ -73,7 +73,7 @@ high = muted("blue"), midpoint = 0, space = "Lab", na.value = "grey50",  guide =
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 <span style="color:white">
-<img src="images/green.png" width=20> Load the `diamonds` data. See what does it contain by `?diamonds`
+<img src="images/green.png" width=20> Load the `diamonds` data in the `ggplot2` library. See what does it contain by `?diamonds`
 Plot the size (carat) versus the price of the diamonds, and color the points also according to price.
 </br>
 <img src="images/green.png" width=20> 
