@@ -19,8 +19,8 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 
 - So far visualizations are created in 2D, but many datasets are better visualized in 3D
 - `plotly` is an R package to create 3D and interactive graphics
-- The design is very similar to `ggplot`, using aethetics mappings and layered specification. 
-- `plotly` can do much much more than what I will show! See the [gallery](https://plotly.com/r/) 
+- The design is very similar to `ggplot`, using aethetics mappings and layering specification. 
+- `plotly` can do much more than what I will show! See the [gallery](https://plotly.com/r/) 
 
 ## Preparation for today
 Install `plotly`
@@ -41,7 +41,7 @@ library(tidyverse)
 ## `plotly` functions
 
 - `plotly` uses the same grammar of graphics as `ggplot`
-- The syntax of `plotly` is just a bit different: 
+- The syntax of `plotly` is just a bit different. Two typical usages are:
 
 ```{r, eval=FALSE}
 plot_ly(data, 
@@ -85,7 +85,7 @@ fbi1 %>%
 </br>
 <img src="images/green.png" width=20> Visualize the time series for the rates of two non-violent crimes using `plotly`.
 </br>
-<img src="images/green.png" width=20> Highly the time series for Iowa using the `color=` option.</br>
+<img src="images/green.png" width=20> Highlight the time series for Iowa using the `color=` option.</br>
 </span>
 
 ## An example (2D)
