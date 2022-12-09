@@ -9,27 +9,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Flight data
 
-The `nycflights13` package contains information regarding the flights that departed New York City in 2013. Use `help(package='nycflights13')` to see what datasets does the package contain. Read the documentations to get a better idea what are the datasets abouts. In this homework, we are going to focus on the `airports`, `flights`, and `weather` datasets. If you would like to know more  about this dataset and the different join functions, you can refer to the optional reading in this module.
+The `nycflights13` package contains information regarding the flights that departed New York City in 2013. Use `help(package='nycflights13')` to see what datasets does the package contain, and read the documentations to get a better idea what are the datasets abouts. In this homework, we are going to focus on the `airports`, `flights`, and `weather` datasets. Optional: More information about this dataset and joins can be found in the optional reading of this module.
 
-For all of the questions in this homework, use `dplyr` functions, joins, and the pipe `%>%` as much as possible.
+For all of the questions, use `dplyr` functions, joins, and the pipe `%>%` as much as possible.
 
-1. Find if the flight carriers use the same flight number only once in each day. Create a data frame where each row corresponds to a different combination of date, carrier, and flight number, and there should be an additional column `once` indicating whether the flight number has been used only once (`TRUE`) or not (`FALSE`). Finally, print out the first few rows of the records where the  `once` column is `FALSE`. 
+1. Find if each flight number is used only once in a day. (Hint: You may need the `any()` function).
 
-```{r,include=FALSE,eval=FALSE}
-library(nycflights13)
-library(tidyverse)
-a <- flights %>% 
-  group_by(year, month, day, carrier, flight) %>% 
-  summarize(n = n()) %>% 
-  ungroup %>%
-  mutate(once = (n == 1))
-a %>% filter(!once)
-```
-
-2. Add the location of *both* the origin *and* destination (i.e. the `lat` and `lon`) to `flights`. Retain only columns for the airport code, airport name, longitude, and latitude. Name the columns in a user-friendly manner.
+2. Add the location of the origin and destination (i.e. the `lat` and `lon`) to `flights`. Retain only columns for the airport code, airport name, longitude, and latitude. Name the columns in a user-friendly manner.
 
 3. Create appropriate numerical and/or graphical summaries to investigate how visibility condition makes it more likely to see a delay. Make sure to also investigate the flight delays with missing visibility values. (Hint: use `left_join`)
 
-4. Which 5 destination airports have the least severe arrival delay? The severity of delay is defined as the proportion of arriving flights that have no less than 30 minutes arrival delay. To give you a formula, the proportion of delayed flights = the number of delayed flights / the total number of flights. Create a data frame containing the airport name, code, and the severity of delay.
+4. Which 3 destination airports have the most severe arrival delay? The severity of delay is defined as the proportion of arriving flights that have no less than 30 minutes arrival delay. Create a data frame containing their airport name, code, and the severity of delay.
 
-5. What happened on June 13, 2013? Look at the delay severity by airport on that day, and then use Google to cross-reference with the weather.
+5. What happened on June 13 2013? Look at the delay severity by airport on that day, and then use Google to cross-reference with the weather.

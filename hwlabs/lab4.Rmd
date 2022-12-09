@@ -1,106 +1,98 @@
 ---
-title: "DS 202 - lab #4: Joining and Tidying ISU Football Data"
+title: "DS 202 - lab #4: Joining and Tidying"
 author: "Xiongtao Dai"
 ratio: 16x10
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message=FALSE, cache=FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message=FALSE, cache=TRUE)
 ```
 
 ## Outline
 
-- You can optionally team up with another student.
-- Create a repository (one per team) & give access to your teammate if any.
+- Optionally, work in assigned pairs
+- Create a repository (one per team) & give access to your teammate
 - Explore the Cyclone football data. Use `dplyr` to manipulate data frames and `tidyr` to tidy data up. 
 - Create an R markdown file that contains all code to read the data, create the plots, and your answers.
+- Teammates will review and revise each other's work.
 - Submit!
 
 
 ## Submission Requirements
 
 - A team member should create a GitHub repository called `ds202_lab4` which includes the group work.
-- If you finish the lab individually, you only need to include your answers in `individual1.Rmd`
-- If you collaborate, the team will work on `team.Rmd` to answer all the questions (for the final report). Also include your individual exploration in `individual1.Rmd` or `individual2.Rmd`, which will be your "scratch files". *Only the report generated from `team.Rmd` will be graded.*
-- Include the data you used in your repository.
+- Each team member should create at least one commit with message "Review and Revision".
+- The team will collaborate on `team.Rmd` to answer all the questions, which will be graded. Also include your individual exploration in either `individual1.Rmd` or `individual2.Rmd`. **Even if you are working alone, you must include a team.Rmd file which contains your report to be graded**.
 - The correct folder structure is as below. The folder `ds202_lab4` is a git repository.
 
     ```
     ds202_lab4
     |-- individual1.Rmd
-    |-- (individual2.Rmd)
-    |-- (team.Rmd)
+    |-- individual2.Rmd
+    |-- team.Rmd
     |-- *.html
-    |-- Data files
+    |-- Data files if needed...
     ```
 
 ## Background
-An excerpt of the individual player data of the Cyclone football team is extracted from the ISU Athletics website and is available here as an Excel file: [2020 data file](https://github.com/xdaiISU/ds202materials/raw/master/slides/cyclonesFootball2020.xlsx).
-<!-- [2020 data file](../slides/cyclonesFootball2020.xlsx). -->
+An excerpt of the individual player data of the Cyclone football team is extracted from the ISU Athletics website and is available on the course website. Explore the [2019 data file](../slides/cyclonesFootball2019.xlsx).
 
-I appreciate that some of you are probably quite new to college football, the same as I was just a few years ago. In this assignment, you will learn a little bit about the background of football so as to do data science. An actual data scientist at work constantly needs to acquire new knowledge about the business and other fields, so this lab is sort of a little practice in this aspect.
-
+Some abbreviations for the column names can be found in the Glossaries sheet in the Excel file.
 
 **References:**
 
-- Some abbreviations for the column names can be found in the Glossaries sheet in the Excel file.
 - [Iowa State University Athelete](https://cyclones.com/index.aspx)
-- [A Beginner's Guide to American Football](https://www.youtube.com/watch?v=3t6hM5tRlfA) for a 1-minute introduction to the rules of American football.
+- [A Beginner's Guide to American Football](https://www.youtube.com/watch?v=3t6hM5tRlfA) for the rules of American football.
 
 ## Loading Data
 
 The Cyclone football data involves multiple Excel sheets and is in a somewhat messy form. The following code loads the `Defensive` sheet into R. For this lab, also import the `Offensive` and the `Biography` sheets.
 ```{r}
 library(readxl)
-defense <- read_excel('../_slides/cyclonesFootball2020.xlsx', sheet='Defensive')
+defense <- read_excel('../slides/cyclonesFootball2019.xlsx', sheet='Defensive')
 str(defense)
 ```
 
 ```{r,echo=FALSE,results='hide'}
-offense <- read_excel('../_slides/cyclonesFootball2020.xlsx', sheet='Offensive')
-bio <- read_excel('../_slides/cyclonesFootball2020.xlsx', sheet='Biography')
+offense <- read_excel('../slides/cyclonesFootball2019.xlsx', sheet='Offensive')
+bio <- read_excel('../slides/cyclonesFootball2019.xlsx', sheet='Biography')
 ```
 
 ## Part one: Cleaning data
-Although the three Excel sheets are loaded into R, they are not useful before some cleaning. Manipulate the three imported data frames: 
+Although the three Excel sheets are loaded into R, they are not useful before some cleaning. Manipulate the three imported data frames, so that in the cleaned dataset: 
 
-1. The player names and opponent names should be factors.
-2. All offensive and defensive statistics should be numerical. The `Weight` column in biogrpahy should also be numeric. (Optional: Read `?across` and learn to mutate multiple columns simultaneously using the `across` function in `dplyr`)
-3. The `Height` column in `biography` should be numeric. (Hint: Use a unit that works well)
-4. Add a column to both `defense` and `offense` indicating whether it is the first or the second game versus an opponent. We had a single game versus each opponent except for Oklahoma, which we played against twice. (Hint: You can use `group_by()`, `mutate()`, and `row_number()`)
+1. The player names and opponent names are factors.
+2. All offensive and defensive statistics are numerical. The `Weight` column in biogrpahy is also numeric. (Optional: Learn to mutate multiple columns systematically using the `?across` function in `dplyr)
+3. Change the `Height` column in biogrpahy into numeric. (Hint: Use a unit that works well)
 
-By cleaning the three data frames in R, at the end of this step you should have the following three clean data frames: `defClean`, `offClean`, and `bioClean`. Print the structures of these data frames using `str()`.
+By cleaning the three data frames in R, at the end of this step you should have the following three clean data frames: `defClean`, `offClean`, and `bioClean`. Print the structures of these data frames.
 
-## Part two: Tidying and exploring
+## Part two: Tidying
 For the following questions, work on the cleaned data frames `defClean`, `offClean`, and `bioClean`.
 
-1. Reformat the `offClean` data frame into a tidy format using `pivot_longer`. The type of statistic (Receiving_REC for the number of receivings, Receiving_YDS for receiving yards, etc) is added as a new key column named `stat`. 
-2. Obtain the player-level offensive statistics. Namely, for each player and each type of statistics, obtain the sum of the statistics in all games.
-2. Show the distributions of the player-level offensive statistics. The distribution of each offensive statsitic should be shown in a separate facet. Explain the patterns you see.
-3. Did ISU have better offense against Oregon or Oklahoma? Answer this question by creating a scatterplot with the x- and y-axes being the receiving yards of the ISU players against each of these two opponents. A large number of receiving yards indicates good offense. 
+1. Reformat the `defClean` data frame into a tidy format using `pivot_longer`. The type of statistic (Tackles_Solo, Tackles_ASST, etc) is added as a new key column named `stat`. 
+2. Compare the distributions of the defensive statistics. What defensive skills are rare?
+3. Did ISU have better defense against Iowa or Notre Dame? Answer this question by creating a scatterplot with x- and y-axes being the number of solo tackles (of each player). A large number of solo tackles is an indicator of good defense. 
 
   Now turn our attention to the player biography.
 
-5. Separate the `Hometown` column into two columns, namely, the city and the state where the player comes from. Print the first few rows of these two columns. (Hint: look at the `sep=` argument of `separate`)
-6. How many players are there from each state?
+4. Separate the `Hometown` column into two columns, namely the city and the state. Print the first few rows of these two columns. (Hint: look at the `sep=` argument of `separate`)
+5. How many players are there from each state?
 ```{r,echo=FALSE,results='hide',message=FALSE}
 library(tidyverse)
 a <- bio %>% separate(Hometown, c('City', 'State'), sep = ', ')
 ```
-7. How does the performance of quarterback Brock Purdy relate to the performance of the ISU team? Comment on both the defense and offense.
 
+## Part three: Joining data frames
 
-<!-- ## Part three: Joining data frames -->
-
-<!-- 1. Find which states do the ISU players (both defensive and offensive) come from. Create an appropriate numerical or graphical summary. -->
+1. Find which states do the ISU defensive and offensive players come from. Create an appropriate summary.
 <!-- 2. Is there a relationship between the player statistics and their positions? -->
-<!-- 3. How does the performance of quarterback Brock Purdy relate to the performance of the ISU team? -->
-<!-- 4. Which ISU player(s) made the biggest progress over the last year? Compare the player-level statistics (i.e. averages and totals for each player) using both the 2020 and the 2019 data [here](../slides/cyclonesFootball2019.xlsx).  -->
-<!-- Choose for yourself the player statistics to investigate. -->
+3. How does the performance of quarterback Brock Purdy relate to the performance of the ISU team?
+4. Which ISU player(s) made big progress over the last year? Compare the 2019 and the 2018 data [here](../slides/cyclonesFootball2018.xlsx). 
 
 
 ## Tips
-- You may want to find one or more suitable statistics to quantify the performance of a player.
-- If you team up, agree on a method to clean the dataset with your teammate(s). The team can then work on the same cleaned version for downstream analysis.
-- Plan ahead to prevent merge conflict: Teammates should work on different sections of `team.Rmd`. If they need to modify the same section, do it in turn rather than at the same time. 
+- You may want to find one or more suitable statistic to quantify the performance of a player.
+- Agree on a method to clean the dataset with your teammate. Both teammates can then work on the same cleaned version for downstream analysis.
+- Plan ahead to prevent merge conflict: Teammates should work on different sections of `team.Rmd`. If they need to modify the same section, do it in turn rather than concurrently. 

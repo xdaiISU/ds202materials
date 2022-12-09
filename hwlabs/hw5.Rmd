@@ -10,13 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Liquor Sales in Iowa
 
-This dataset https://data.iowa.gov/Sales-Distribution/2021-Iowa-Liquor-Sales/cc6f-sgik contains the spirits purchase information of Iowa Class “E” liquor licensees by product and date of purchase for 2021. The dataset contains the orders of the liquors by retailer, e.g. Hyvee. 
+This dataset https://data.iowa.gov/Sales-Distribution/2019-Iowa-Liquor-Sales/38x4-vs5h contains the spirits purchase information of Iowa Class “E” liquor licensees by product and date of purchase for 2019. The dataset contains the orders of the liquors by retailer, e.g. Hyvee. 
 
-0. Understanding the dataset: Read the description for the Columns in this Dataset. We will come back here for answering the questions.
+1. Understanding the dataset: Read the description for the Columns in this Dataset. We will come back here for answering the questions.
 
 2. The complete dataset is too large. Download and import the alcohol sales data for Ames only: 
 
-    a. Go to https://data.iowa.gov/Sales-Distribution/2021-Iowa-Liquor-Sales/cc6f-sgik
+    a. Go to https://data.iowa.gov/Sales-Distribution/2019-Iowa-Liquor-Sales/38x4-vs5h
     b. Click View Data -- Filter -- Filter -- Go advanced now
     c. Add a New Filter Condition: City is Ames.
     d. Export -- CSV -- Download
@@ -33,13 +33,10 @@ This dataset https://data.iowa.gov/Sales-Distribution/2021-Iowa-Liquor-Sales/cc6
 
 5. Which day of the week has the most orders? Use a barchart to visualize the results. Explain the pattern and provide a reason why the pattern occurs.
 
-5. Create a single plot for the monthly volumes sold. Each liquor category should be shown using a separate time series. Label the top 5 categories using text labels.
+6. We would like to compare the liquor orders in each month. Create a complex time series plot of the volume sold in each day. Each month should be shown in a separate panel. Label the day of the week for the x-axis tick labels. Which months have more orders than the others?
 
-6. Which categories are spring graduation party favorites? Find at least one category.
+7. Create a single time series plot for the monthly volumes sold. Each liquor category should be shown using a separate line. Label the top 5 categories using text labels.
 
-
-7. (Optional) We would like to compare the liquor orders in each month. Create a complex time series plot of the volume sold in each day. Each month should be shown in a separate panel. Label the day of the week for the x-axis tick labels. Which months have more orders than the others?
-
-    [Hint: Each panel should show a time series, where the x-axis stands for date, and y-axis stands for the volume sold. The tick labels of the x-axis, however, should show the day of week but not date. E.g., if the x-axis data were Jan 01, 2021 and Jan 10, 2021, then the re-labeled ticks should show Friday and Sunday for these two dates instead.]
+8. Which categories are spring graduation party favorites? Find at least one category.
 
 Note: your submission is supposed to be fully reproducible. 

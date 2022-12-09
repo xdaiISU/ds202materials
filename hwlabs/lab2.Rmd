@@ -17,8 +17,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, cache = FALSE)
 
 ## Outline
 
-- You can finish this lab either individually or (optionally) in a team of two students.
-- Create a repository (one per team) & give access to your teammate (if you team up)
+- Pair up with a partner in your study group
+- Create a repository (one per team) & give access to your teammate
 - Explore data on chocolate ratings
 - Create R markdown files that contain code to read the data and create the plots
 - Submit!
@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, cache = FALSE)
 ## Background
 
 Brady Brelinski, Founding Member of the Manhattan Chocolate Society, obviously likes chocolate. He has assembled a database of ratings for plain dark chocolate bars: [Flavors of chocolate](http://flavorsofcacao.com/chocolate_database.html). 
-By now, over 2400 different chocolate bars have been rated. 
+By now, over 2300 different chocolate bars have been rated. 
 
 ### Meaning of ratings
 
@@ -39,45 +39,36 @@ Flavors of Cacao Rating System:
 - 2.0 - 2.9   = Disappointing
 - 1.0 - 1.9   = Unpleasant
 
-### Reading in the data
+### Reading the data
 
-The `choco` dataset in the `classdata` library is a web scrap from the chocolate flavor data base.
+The file `choco.csv` at https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv is a web scrap from the chocolate flavor data base.
 
 You can load the data into your session using the command below:
 
 ```{r}
-library(classdata)
-data(choco)
+choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv") 
 str(choco) 
 ```
-
-Also check out `?choco` for the help documentation. If you don't have `classdata` installed, install it using `devtools::install_github('xdaiISU/classdata')`
 
 ## Searching for the Best Chocolates
 
 We will be exploring what aspects of the chocolates may affect taste. Before setting off to the exploration, answer the following questions.
 
-1. How are the cocoa percent distributed? Create both a histogram and a boxplot and describe them. Don't forget to mention outliers, if there are any.
-2. How does the number of ratings depend on the country of bean origin? Draw a bar chart of the number of ratings by bean origin. [Hint: If your graph is too dense and the labels are not legible, show fewer bean origins.]
-3. Do ratings depend on the cacao percentage of a chocolate bar? Create both numerical and graphical summaries, and explain. [Hint: Think about why the scatterplot is *not* a very good choice for visualization here.]
+1. How are the ratings distributed? Create both a histogram and a boxplot and describe them. Don't forget to mention outliers, if there are any.
+2. How does the number of ratings depend on the year? Draw a bar chart of the number of reports.
+3. Do ratings depend on the cacao percentage of a chocolate bar? Create both numerical and graphical summaries, and explain. 
 
   Now, we are ready to explore.
 
-4. How do different bean origins compare in terms of the flavor of chocolates? Are beans from some places better than the other? Create both numerical and graphical summaries, and explain. 
-5. If you work on this lab by yourself, brainstorm *two* analyses you would like to perform. If you work with a teammate, brainstorm at least *three* analyses with your teammate. Describe in plain language what comparisons are you making. Create suitable numerical and graphical summaries for your analyses. Describe the results.
+4. How do different characteristics of the chocolate compare? To elaborate, which characteristics tend to be more favorable and which ones are not?  Create both numerical and graphical summaries, and explain. 
+5. Brainstorm *two* analyses you would like to perform with your teammate. Describe in plain language what comparisons are you making. Create suitable numerical and graphical summaries for your analyses. Describe the results.
 
-## Workflow if You Work Individually
-
-1. Log into github, and create a repository called `ds202_lab2`
-3. Push `individual1.Rmd` and `individual1.html` to the remote. Review the steps to push to GitHub used in Lab 1 if you need to.
-
-
-## Workflow if You Work with a Teammate
+## Collaboration Workflow
 
 ### Overview
 1. Discuss with your teammate plans for the analyses.
-1. Include your own analysis in an individual file. This file is the "scratch file", which should include all your own exploration and analysis, even if you would not show those results in your final report. Name your own file as either `individual1.Rmd` or `individual2.Rmd` after coordinating with your teammate. 
-2. After you have decided the exploration/analysis to show in your report,  collaborate on a single `team.Rmd` file which includes the final analysis. Only the `team.Rmd` and the knitted `team.html` files will be graded, even if you are working on this lab by yourself. 
+1. Coordinate with your teammate and decide among you who is Individual 1 and Individual 2. Accordingly, create an RMarkdown file named `individual1.Rmd` or `individual2.Rmd` to include your own exploration of the dataset.
+2. When you and your teammate are done with your own exploration and analysis, collaborate on a `team.Rmd` file which includes the final analysis. 
 
 ### Recap: Collaborating on a GitHub repository
 
@@ -89,7 +80,7 @@ We will be exploring what aspects of the chocolates may affect taste. Before set
 
 When the above is finished, **Individual 2:**
 
-1. Check your mailbox and accept the invitation to work on the team repo.
+1. Log into GitHub and accept the invitation to work on the team repo.
 1. Clone the remote repo of Individual 1's.
 2. Add `individual2.Rmd` and `individual2.html` to the local repo, and push.
 
@@ -98,20 +89,20 @@ When the above is finished, **Individual 2:**
 2. The other teammate will pull, make additions and modifications to `team.Rmd`, create a commit, and then push.
 3. Repeat as necessary. 
 
-### Tips if You Collaborate:
-- You can start from Invididual 1 adding and pushing `team.Rmd`, and then Individual 2 `git pull`
-- Before you make changes to existing files or `git push`, remember to `git pull` first
-- Coorindate with your teammate to avoid merge conflict
-- Ask for help on Piazza if you come across problems
-- If you work in a team, then all `Rmd` and the knitted `html` files for the individuals and the team are required. 
-
-## Repo Structure Requirement (for Everyone)
-The git repo should be named ds202_lab2. Use the same folder structure and file names as follows. Files in parentheses are needed only if you work with a partner.
+### Repo structure
+The git repo of your team should be named ds202_lab2. Use the same folder structure and file names as follows:
 
 ```
 ds202_lab2
 |-- individual1.Rmd
-|-- (individual2.Rmd)
-|-- (team.Rmd)
+|-- individual2.Rmd
+|-- team.Rmd
 |-- *.html files
 ```
+
+### Tips:
+- You can start from Invididual 1 adding and pushing `team.Rmd`, and then Individual 2 `git pull`
+- Before you make changes to existing files or `git push`, remember to `git pull` first
+- Coorindate with your teammate to avoid merge conflict
+- Do ask for help on Piazza if you come across problems
+- All three files `individual1.Rmd`, `individual2.Rmd`, `team.Rmd` and their knitted html files are required. Both teammates must modify `team.Rmd` (check this is done using `git log team.Rmd` in `bash`).

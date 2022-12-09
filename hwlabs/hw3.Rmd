@@ -8,29 +8,21 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## House Price in Ames
+## Tips at Restaurants
 
-In this homework we will use the `ames` dataset. The dataset contains house sales information in Ames between 2006 and 2010. The original dataset was compiled by Dean De Cock, and the version we are using is extracted from [Kaggle](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview).
-
-The dataset is included in our `classdata` library. If you have not installed this, issue in R
-```{r,eval=FALSE}
-devtools::install_github('xdaiISU/classdata')
+In this homework we will use the `tips` data set. The dataset contains tip information and is collected by a waiter, who recorded each tip he received while working in one restaurant over the course of a season. This data set is part of the `reshape2` package. You can load the data set by executing the command:
+```{r}
+data(tips, package="reshape2")
 ```
+If you do not have available the package `reshape2`, issue `install.packages('reshape2')` in the R console to install. See `?tips` for a description of all of the variables. 
 
-To load the dataset, 
-```{r,eval=FALSE}
-library(classdata)
-data(ames)
-```
-See `?ames` for the description on the dataset.
-
-Include at least one `ggplot` visualization in each of your answer except for Question 2, and describe what you find.
+Include at least one `ggplot` visualization in each of your answer, and describe what you find.
 <!-- **Submission instructions**: Create a folder named `ds202_hw3`, and name the RMarkDown file `hw3.Rmd`  which should include your solutions under this folder. For submission, create a GitHub repository named `ds202_hw3` under your GitHub account, and push both `hw3.Rmd` and the knitted `hw3.html` before the deadline. I will assume you use the same GitHub username as for your HW2 submission. The latest version of your homework appearing on GitHub before the deadline is graded. *It is crucial to follow the exact folder structure and file names*, so that your homework can be reproduced and graded by an automated script. This homework is **due on Feb 19** before class. -->
 
-1. Explore and explain what is the relationship between the sale price (y) and living area size (x). In your visualization, add a straight line with intercept at 20000 and slope equal to 100. Look at `?geom_abline`, and in particular the examples. Remark on any patterns you find and the straight line.
+1. Explore and explain what is the relationship between the total bill and tip amount. In your visualization, add a straight line with intercept at 0 and slope equal to 0.15, which stands for the amount of tip according to a 15% tip rate. Look at `?geom_abline`, and in particular the examples.
 2. Describe at least two types of anomalies in the previous plot. What do they mean?
-3. Visualize the number of sales by the overall condition. Make sure the conditions are ordered from the best to the worst. What do you find?
-4. Introduce a variable `houseAge` into the data set which stands for the age of the house at the time when it was sold. How does the age of the house affect the sale price? 
-5. Were there more sales of nice houses or poor houses? Make sure to state your criterion for a house to be "nice" or otherwise "poor". Choose an appropriate graph type.
-6. How do the neighborhood and the slope of property affect the relationship between sale price and year built? Focus on the neighborhoods of Brookside, Clear Creek, College Creek, and Somerset only. Find a visualization that incorporates all four variables. Interpret the result.
-7. Create a side-by-side histogram showing the sales price for the different types of buildings. Comment on the result.
+3. Visualize the number of customers the waiter has on each day of the week. Make sure the days are ordered sequentially from Thursday to Sunday. What pattern do you find?
+4. Introduce a variable `tiprate` into the data set which stands for the rate of tips. How does gender affect the distribution of tip rates?
+5. How do tip rates vary on different days of the week?
+6. How do smoking behavior and gender of the person who pays impact the relationship between tip and total bill? Find a visualization that incorporates all four variables. Interpret the result.
+7. Create a graphical summary of the relationship between day of the week and gender of the person paying the bill. What can you say about this relationship?
